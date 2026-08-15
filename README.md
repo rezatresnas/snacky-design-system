@@ -25,14 +25,27 @@ hand-edited, always in sync with what a human sees on the site.
 
 ## Using the components
 
+> **Not yet published to npm** (see Roadmap below). Once published, usage will be:
+>
+> ```bash
+> npm install @snacky/ui
+> ```
+>
+> ```tsx
+> import '@snacky/ui';
+> import { Button, TextField, Checkbox } from '@snacky/ui';
+> ```
+
+Until then, build it from source:
+
 ```bash
-npm install @snacky/ui
+git clone https://github.com/rezatresnas/snacky-design-system.git
+cd snacky-design-system/packages/react-ui
+npm install && npm run build
 ```
 
-```tsx
-import '@snacky/ui';
-import { Button, TextField, Checkbox } from '@snacky/ui';
-```
+Then reference it from another local project with `npm install
+file:../path/to/packages/react-ui`, or `npm link`.
 
 See [`packages/react-ui/README.md`](packages/react-ui/README.md) for the full
 component list, verification status, and known gaps.
