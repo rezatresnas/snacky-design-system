@@ -17,7 +17,11 @@ Read [llms.txt](llms.txt) first. It indexes:
 ## Building a feature
 
 Import from `@snacky/ui` instead of regenerating markup from the code samples
-in `components.json` - those are illustrative, the package is the real thing:
+in `components.json` - those are illustrative, the package is the real thing.
+
+**Not yet published to npm** - see
+[packages/react-ui/README.md](packages/react-ui/README.md) for building it
+from source in the meantime. Once published, usage will be:
 
 ```bash
 npm install @snacky/ui
@@ -28,8 +32,43 @@ import '@snacky/ui';
 import { Button, TextField, Checkbox } from '@snacky/ui';
 ```
 
-See [packages/react-ui/README.md](packages/react-ui/README.md) for the full
-component list, known gaps, and verification status.
+See that same README for the full component list, known gaps, and
+verification status.
+
+## Worked example
+
+Task: "add a promo code field to checkout." The flow an agent should follow:
+
+1. Check `components.json` first - does an existing component already cover
+   this (a `TextField` variant, an error/invalid state), or does it need new
+   markup? Prefer the existing variant.
+2. Import the real components, don't hand-roll the markup:
+
+   ```tsx
+   import { TextField, Button } from '@snacky/ui';
+
+   function PromoCodeField() {
+     const [code, setCode] = useState('');
+     return (
+       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-stack)' }}>
+         <TextField label="Promo code" value={code} onChange={setCode} placeholder="Enter code" />
+         <Button variant="secondary" onClick={() => applyPromo(code)}>Apply</Button>
+       </div>
+     );
+   }
+   ```
+
+3. Colors, padding, and radius come for free - they resolve through the
+   package's bundled `tokens.css`. The only thing to decide by hand is
+   *layout* spacing (the gap between the field and the button here), and
+   that should be a real semantic token from `tokens.json`, not a guessed
+   pixel value - `spacing.semantic.layout.stack` (`var(--gap-layout-stack)`,
+   24px) is documented for exactly this: "form field list, footer/CTA
+   button area." Check `tokens.json`'s `$description` before picking one;
+   don't assume a token name matches your use case.
+4. If this sits inside a full screen (not a sub-block), wrap it with the
+   16px screen margin (`spacing.margin.screen`) per the rule below - every
+   screen uses it, no exceptions.
 
 ## Rules that apply everywhere in this repo
 
