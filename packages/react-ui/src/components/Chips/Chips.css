@@ -1,0 +1,24 @@
+.snacky-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-main);
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.snacky-chip--selected {
+  background: var(--bg-surface-highlight);
+  border-color: var(--color-primary-500);
+}
+.snacky-chip__thumb {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}

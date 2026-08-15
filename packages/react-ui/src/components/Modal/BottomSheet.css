@@ -1,0 +1,29 @@
+.snacky-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay-dim);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+}
+.snacky-sheet {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sheet-top) var(--radius-sheet-top) 0 0;
+  padding: var(--spacing-24);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-layout-block);
+}
+.snacky-sheet__handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-neutral-200);
+  margin: 0 auto var(--spacing-8);
+}

@@ -1,0 +1,90 @@
+.snacky-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-12) var(--spacing-8);
+  border-radius: var(--radius-field);
+  border: none;
+  font-family: var(--font-small-semibold-family);
+  font-size: var(--font-small-semibold-size);
+  font-weight: var(--font-small-semibold-weight);
+  line-height: var(--font-small-semibold-line-height);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.snacky-btn:disabled {
+  cursor: not-allowed;
+}
+
+.snacky-btn--small {
+  padding: var(--spacing-8) var(--spacing-8);
+}
+
+/* Primary */
+.snacky-btn--primary {
+  background: var(--bg-action-primary);
+  color: var(--text-on-action-primary);
+}
+.snacky-btn--primary:hover:not(:disabled) { background: var(--bg-action-primary-hover); }
+.snacky-btn--primary:active:not(:disabled) { background: var(--bg-action-primary-pressed); }
+.snacky-btn--primary:disabled { background: var(--bg-action-disabled); color: var(--text-action-disabled); }
+
+/* Primary + Danger */
+.snacky-btn--primary.snacky-btn--danger {
+  background: var(--bg-action-primary-danger);
+  color: var(--text-on-action-primary);
+}
+.snacky-btn--primary.snacky-btn--danger:hover:not(:disabled) { background: var(--bg-action-primary-danger-hovered); }
+.snacky-btn--primary.snacky-btn--danger:active:not(:disabled) { background: var(--bg-action-primary-danger-pressed); }
+/* Flagged asymmetry, confirmed against the site's own live implementation:
+   Primary+Danger's disabled state carries a border that plain Primary's
+   disabled state does not. */
+.snacky-btn--primary.snacky-btn--danger:disabled { background: var(--bg-action-disabled); color: var(--text-action-disabled); border: 1px solid var(--border-action-disabled); }
+
+/* Secondary */
+.snacky-btn--secondary {
+  background: var(--bg-action-secondary);
+  border: 1px solid var(--border-action-secondary);
+  color: var(--text-on-action-primary);
+}
+.snacky-btn--secondary:hover:not(:disabled) { background: var(--bg-action-secondary-hover); }
+.snacky-btn--secondary:active:not(:disabled) { background: var(--bg-action-secondary-pressed); }
+.snacky-btn--secondary:disabled { color: var(--text-action-disabled); }
+
+/* Secondary + Danger */
+.snacky-btn--secondary.snacky-btn--danger {
+  border-color: var(--border-action-danger);
+  color: var(--text-action-danger);
+}
+.snacky-btn--secondary.snacky-btn--danger:hover:not(:disabled) { background: var(--bg-action-secondary-hover); }
+.snacky-btn--secondary.snacky-btn--danger:active:not(:disabled) { background: var(--bg-action-secondary-pressed); }
+.snacky-btn--secondary.snacky-btn--danger:disabled { border-color: var(--border-action-disabled); color: var(--text-action-disabled); }
+
+/* Tertiary - ghost, never a fill or border, including disabled */
+.snacky-btn--tertiary {
+  background: transparent;
+  color: var(--text-on-action-tertiary);
+}
+.snacky-btn--tertiary:hover:not(:disabled) { color: var(--text-on-action-tertiary-hovered); }
+.snacky-btn--tertiary:active:not(:disabled) { color: var(--text-on-action-tertiary-pressed); }
+.snacky-btn--tertiary:disabled { color: var(--text-action-disabled); }
+
+/* Tertiary + Danger */
+.snacky-btn--tertiary.snacky-btn--danger { color: var(--text-action-danger); }
+.snacky-btn--tertiary.snacky-btn--danger:hover:not(:disabled) { color: var(--text-action-danger-hovered); }
+.snacky-btn--tertiary.snacky-btn--danger:active:not(:disabled) { color: var(--text-action-danger-pressed); }
+.snacky-btn--tertiary.snacky-btn--danger:disabled { color: var(--text-action-disabled); }
+
+.snacky-btn__icon {
+  position: absolute;
+  left: var(--spacing-8);
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}

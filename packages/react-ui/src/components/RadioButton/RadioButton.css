@@ -1,0 +1,48 @@
+.snacky-radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-icon-label);
+  cursor: pointer;
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-primary);
+}
+.snacky-radio-option--disabled {
+  cursor: not-allowed;
+}
+.snacky-radio {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-main);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.snacky-radio:checked {
+  border-color: var(--color-primary-500);
+}
+.snacky-radio:checked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--color-primary-500);
+}
+.snacky-radio:disabled {
+  cursor: not-allowed;
+  border-color: var(--border-main);
+  background: var(--bg-surface);
+}
+/* Disabled suppresses the selected dot entirely, even if checked - matches
+   the site's own verified implementation exactly. */
+.snacky-radio:disabled::after {
+  display: none;
+}

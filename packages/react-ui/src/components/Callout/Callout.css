@@ -1,0 +1,41 @@
+.snacky-callout {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  max-width: 200px;
+  padding: var(--spacing-12) var(--spacing-8);
+  border-radius: var(--radius-bubble);
+  font-family: var(--font-body-regular-family);
+  font-size: var(--font-body-regular-size);
+  color: var(--text-primary);
+}
+.snacky-callout--received {
+  align-self: flex-start;
+  background: var(--bg-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.snacky-callout--sent,
+.snacky-callout--pending {
+  align-self: flex-end;
+  background: var(--color-primary-500);
+}
+.snacky-callout__message {
+  margin: 0;
+  width: 100%;
+}
+.snacky-callout__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-4);
+  width: 100%;
+  font-family: var(--font-caption-regular-family);
+  font-size: var(--font-caption-regular-size);
+  color: var(--text-primary);
+  text-align: right;
+}
+.snacky-callout__meta-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+}

@@ -1,0 +1,3768 @@
+{
+  "$description": "Snacky App component manifest. Generated from index.html by scripts/generate-agent-files.js - do not hand-edit. Each top-level key is a component id; \"v\" lists its variants, each with spec values (\"s\") and real Kotlin/React code samples (\"code\").",
+  "components": {
+    "button": {
+      "name": "Button",
+      "cat": "Actions",
+      "desc": "Action triggers for primary, secondary, and tertiary roles, each with an optional Danger intent, in two sizes and four interaction states.",
+      "usage": "Primary is the main CTA. Secondary is for alternative actions (white fill, recolors border/text only). Tertiary is low-emphasis, for toolbars and menus (no fill or border, label color alone). Danger layers onto any hierarchy, e.g. Primary + Danger for a filled destructive CTA; it isn’t a hierarchy of its own. Every combination also has a SLOT for an optional 24×24 icon or social logo, see With Icon / With Social below.",
+      "cover": "assets/images/button.png",
+      "v": [
+        {
+          "id": "btn-primary",
+          "name": "Primary",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#f8b732",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Login\", onClick = {})",
+                "tsx": "<Button onClick={() => {}}>Login</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-hover.png",
+              "sOverride": {
+                "fill": "#e2a72e"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Login\", onClick = {}) // hover: bgActionPrimaryHover",
+                "tsx": "<Button onClick={() => {}}>Login</Button> /* :hover background uses var(--bg-action-primary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-pressed.png",
+              "sOverride": {
+                "fill": "#b08224"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Login\", onClick = {}) // pressed: bgActionPrimaryPressed",
+                "tsx": "<Button onClick={() => {}}>Login</Button> /* :active background uses var(--bg-action-primary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-primary-disabled.png",
+              "sOverride": {
+                "fill": "#cccccc",
+                "color": "#a3a3a3"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Login\", onClick = {}, enabled = false)",
+                "tsx": "<Button onClick={() => {}} disabled>Login</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-primary-danger",
+          "name": "Primary · Danger",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#eb5757",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333",
+            "use": "Danger is an intent, not a hierarchy of its own; it layers onto Primary/Secondary/Tertiary"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-danger-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, danger = true)",
+                "tsx": "<Button onClick={() => {}} danger>Delete</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-danger-hover.png",
+              "sOverride": {
+                "fill": "#d64f4f"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, danger = true) // hover: bgActionPrimaryDangerHovered",
+                "tsx": "<Button onClick={() => {}} danger>Delete</Button> /* :hover background uses var(--bg-action-primary-danger-hovered) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-primary-danger-pressed.png",
+              "sOverride": {
+                "fill": "#a73e3e"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, danger = true) // pressed: bgActionPrimaryDangerPressed",
+                "tsx": "<Button onClick={() => {}} danger>Delete</Button> /* :active background uses var(--bg-action-primary-danger-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-primary-danger-disabled.png",
+              "sOverride": {
+                "fill": "#cccccc",
+                "color": "#a3a3a3",
+                "bdr": "1px solid #cccccc",
+                "note": "Unlike Primary/Base Disabled, this state carries an explicit border in the Figma source (a discovered asymmetry), flagged for design to confirm intent rather than silently normalized."
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, danger = true, enabled = false)",
+                "tsx": "<Button onClick={() => {}} danger disabled>Delete</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-secondary",
+          "name": "Secondary",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Cancel\", onClick = {}, variant = ButtonVariant.Secondary)",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\">Cancel</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-hover.png",
+              "sOverride": {
+                "fill": "#f3f3f3"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Cancel\", onClick = {}, variant = ButtonVariant.Secondary) // hover: bgActionSecondaryHover",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\">Cancel</Button> /* :hover background uses var(--bg-action-secondary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-pressed.png",
+              "sOverride": {
+                "fill": "#e0e0e0"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Cancel\", onClick = {}, variant = ButtonVariant.Secondary) // pressed: bgActionSecondaryPressed",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\">Cancel</Button> /* :active background uses var(--bg-action-secondary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-secondary-disabled.png",
+              "sOverride": {
+                "color": "#a3a3a3",
+                "note": "Fill stays white, unchanged from Default; Secondary signals disabled through border and text color only, never by greying out its fill."
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Cancel\", onClick = {}, variant = ButtonVariant.Secondary, enabled = false)",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\" disabled>Cancel</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-secondary-danger",
+          "name": "Secondary · Danger",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #eb5757",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#d64f4f"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-danger-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Remove\", onClick = {}, variant = ButtonVariant.Secondary, danger = true)",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\" danger>Remove</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-danger-hover.png",
+              "sOverride": {
+                "fill": "#f3f3f3",
+                "note": "Border and text stay the same red on hover/pressed; only the fill shifts, same as Secondary/Base."
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Remove\", onClick = {}, variant = ButtonVariant.Secondary, danger = true) // hover: bgActionSecondaryHover",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\" danger>Remove</Button> /* :hover background uses var(--bg-action-secondary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-secondary-danger-pressed.png",
+              "sOverride": {
+                "fill": "#e0e0e0"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Remove\", onClick = {}, variant = ButtonVariant.Secondary, danger = true) // pressed: bgActionSecondaryPressed",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\" danger>Remove</Button> /* :active background uses var(--bg-action-secondary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-secondary-danger-disabled.png",
+              "sOverride": {
+                "bdr": "1px solid #cccccc",
+                "color": "#a3a3a3",
+                "note": "Fill stays white, border reverts to neutral instead of red, text dims: an exact match of Secondary/Base Disabled once disabled."
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Remove\", onClick = {}, variant = ButtonVariant.Secondary, danger = true, enabled = false)",
+                "tsx": "<Button onClick={() => {}} variant=\"secondary\" danger disabled>Remove</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-tertiary",
+          "name": "Tertiary",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "transparent",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#b08224",
+            "use": "Ghost/text button: no fill or border in any state, including Disabled. The label color alone carries the affordance."
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Skip\", onClick = {}, variant = ButtonVariant.Tertiary)",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\">Skip</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-hover.png",
+              "sOverride": {
+                "color": "#88651c"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Skip\", onClick = {}, variant = ButtonVariant.Tertiary) // hover: textOnActionTertiaryHovered",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\">Skip</Button> /* :hover text uses var(--text-on-action-tertiary-hovered) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-pressed.png",
+              "sOverride": {
+                "color": "#684d15"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Skip\", onClick = {}, variant = ButtonVariant.Tertiary) // pressed: textOnActionTertiaryPressed",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\">Skip</Button> /* :active text uses var(--text-on-action-tertiary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-tertiary-disabled.png",
+              "sOverride": {
+                "color": "#a3a3a3"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Skip\", onClick = {}, variant = ButtonVariant.Tertiary, enabled = false)",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\" disabled>Skip</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-tertiary-danger",
+          "name": "Tertiary · Danger",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "transparent",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#d64f4f",
+            "use": "Ghost/text button: never has a fill or border"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-danger-default.png",
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, variant = ButtonVariant.Tertiary, danger = true)",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\" danger>Delete</Button>"
+              }
+            },
+            {
+              "sl": "Hovered",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-danger-hover.png",
+              "sOverride": {
+                "color": "#a73e3e"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, variant = ButtonVariant.Tertiary, danger = true) // hover: textActionDangerHovered",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\" danger>Delete</Button> /* :hover text uses var(--text-action-danger-hovered) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/btn-tertiary-danger-pressed.png",
+              "sOverride": {
+                "color": "#813030"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, variant = ButtonVariant.Tertiary, danger = true) // pressed: textActionDangerPressed",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\" danger>Delete</Button> /* :active text uses var(--text-action-danger-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/btn-tertiary-danger-disabled.png",
+              "sOverride": {
+                "color": "#a3a3a3"
+              },
+              "code": {
+                "kt": "SnackyButton(text = \"Delete\", onClick = {}, variant = ButtonVariant.Tertiary, danger = true, enabled = false)",
+                "tsx": "<Button onClick={() => {}} variant=\"tertiary\" danger disabled>Delete</Button>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "btn-primary-small",
+          "name": "Primary · Small",
+          "hideOverview": true,
+          "st": "active",
+          "sl": "Default",
+          "img": "assets/images/variants/btn-primary-small.png",
+          "s": {
+            "w": 376,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#f8b732",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333",
+            "use": "Small applies the same way across every Hierarchy × Intent combination above: identical tokens, just 8px vertical padding instead of 12px (40px tall instead of 48px). Shown once here rather than duplicating all 6 groups at both sizes."
+          },
+          "code": {
+            "kt": "SnackyButton(text = \"Login\", onClick = {}, size = ButtonSize.Small)",
+            "tsx": "<Button onClick={() => {}} size=\"small\">Login</Button>"
+          }
+        },
+        {
+          "id": "btn-with-icon",
+          "name": "With Icon",
+          "st": null,
+          "sl": "With Icon",
+          "img": "assets/images/variants/btn-slot-with-icon.png",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333",
+            "icon": "24×24px, from the Icon-outline component set",
+            "use": "A real Figma SLOT component property (not a variant) on every Button state: absolute-positioned left, vertically centered, 24×24px, empty by default. Filled here with a functional icon (e.g. cart)."
+          },
+          "code": {
+            "kt": "SnackyButton(text = \"Cart\", onClick = {}, variant = ButtonVariant.Secondary, icon = { Icon(SnackyIcons.CartAdd, contentDescription = null) })",
+            "tsx": "<Button onClick={() => {}} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />}>Cart</Button>"
+          }
+        },
+        {
+          "id": "btn-with-social",
+          "name": "With Social",
+          "st": null,
+          "sl": "With Social",
+          "img": "assets/images/variants/btn-slot-with-social.png",
+          "s": {
+            "w": 376,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333",
+            "icon": "24×24px, Google Logo component (brand colors, not a themeable icon)",
+            "use": "The same SLOT property as With Icon, filled instead with a brand/social logo: same slot, same 24×24 constraint, just different content. This is the \"social icon\" case: content, not a separate component or variant."
+          },
+          "code": {
+            "kt": "SnackyButton(text = \"Login with Google\", onClick = {}, variant = ButtonVariant.Secondary, icon = { Image(painterResource(R.drawable.logo_google), contentDescription = null, modifier = Modifier.size(24.dp)) })",
+            "tsx": "<Button onClick={() => {}} variant=\"secondary\" icon={<img src=\"/logos/google.svg\" width={24} height={24} alt=\"\" />}>Login with Google</Button>"
+          }
+        }
+      ]
+    },
+    "icon-button": {
+      "name": "Icon Button",
+      "cat": "Actions",
+      "desc": "Compact touch targets containing only an icon.",
+      "usage": "Use in toolbars and navigation where space is limited. Primary for the most important action, Secondary/Tertiary for alternatives. Upload variant serves as an image drop zone.",
+      "cover": "assets/images/icon-button.png",
+      "v": [
+        {
+          "id": "iconbtn-primary",
+          "name": "Primary",
+          "s": {
+            "w": 32,
+            "h": 32,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#f8b732",
+            "r": 100,
+            "icon": "16×16px"
+          },
+          "states": [
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-primary.png",
+              "code": {
+                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" />"
+              }
+            },
+            {
+              "sl": "Hover",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-primary-hover.png",
+              "sOverride": {
+                "fill": "#e2a72e"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\") // hover: bgActionPrimaryHover",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" /> /* :hover background uses var(--bg-action-primary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-primary-pressed.png",
+              "sOverride": {
+                "fill": "#b08224"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\") // pressed: bgActionPrimaryPressed",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" /> /* :active background uses var(--bg-action-primary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/iconbtn-disabled.png",
+              "sOverride": {
+                "fill": "#cccccc"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, enabled = false, contentDescription = \"Add to cart\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} disabled ariaLabel=\"Add to cart\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "iconbtn-small",
+          "name": "Small",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "pt": 4,
+            "pb": 4,
+            "pl": 4,
+            "pr": 4,
+            "fill": "#f8b732",
+            "r": 100,
+            "icon": "16×16px",
+            "use": "Compact circular action button, e.g. carousel/pagination next arrow"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/iconbtn-small-default.png",
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\")",
+                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" />"
+              }
+            },
+            {
+              "sl": "Hover",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-small-hover.png",
+              "sOverride": {
+                "fill": "#e2a72e"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\") // hover: bgActionPrimaryHover",
+                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :hover background uses var(--bg-action-primary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-small-pressed.png",
+              "sOverride": {
+                "fill": "#b08224"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\") // pressed: bgActionPrimaryPressed",
+                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :active background uses var(--bg-action-primary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/iconbtn-small-disabled.png",
+              "sOverride": {
+                "fill": "#cccccc",
+                "note": "Icon tint uses iconDisabled (#a3a3a3)"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, enabled = false, contentDescription = \"Next\")",
+                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} disabled ariaLabel=\"Next\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "iconbtn-secondary",
+          "name": "Secondary",
+          "s": {
+            "w": 40,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 100,
+            "icon": "20×20px"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/iconbtn-secondary.png",
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\")",
+                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" />"
+              }
+            },
+            {
+              "sl": "Hover",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-secondary-hover.png",
+              "sOverride": {
+                "fill": "#f3f3f3"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // hover: bgActionSecondaryHover",
+                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :hover background uses var(--bg-action-secondary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-secondary-pressed.png",
+              "sOverride": {
+                "fill": "#e0e0e0"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // pressed: bgActionSecondaryPressed",
+                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :active background uses var(--bg-action-secondary-pressed) */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/iconbtn-secondary-disabled.png",
+              "sOverride": {
+                "fill": "#cccccc",
+                "shadow": "none",
+                "note": "Flat fill, no elevation; icon tint uses iconDisabled (#a3a3a3)"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, enabled = false, contentDescription = \"Share\")",
+                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" disabled ariaLabel=\"Share\" />"
+              }
+            },
+            {
+              "sl": "Selected",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-secondary-active.png",
+              "sOverride": {
+                "note": "Toggled/favorited state: fill unchanged, icon swaps from outline to solid and tints with iconActive (#eb5757). This is a separate `selected` state, not a hover/pressed/disabled interaction pseudostate; only applies when the icon-button is used as a toggle control."
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = if (favorited) Icons.Filled.Favorite else Icons.Outlined.Favorite, onClick = { favorited = !favorited }, variant = IconButtonVariant.Secondary, tint = if (favorited) iconActive else null, contentDescription = \"Favorite\")",
+                "tsx": "<IconButton icon={favorited ? <HeartFilledIcon /> : <HeartIcon />} onClick={() => setFavorited(!favorited)} variant=\"secondary\" tint={favorited ? 'var(--icon-active)' : undefined} ariaLabel=\"Favorite\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "iconbtn-tertiary",
+          "name": "Tertiary",
+          "s": {
+            "w": 40,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "fill": "transparent",
+            "r": 100,
+            "icon": "24×24px"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/iconbtn-tertiary.png",
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\")",
+                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" />"
+              }
+            },
+            {
+              "sl": "Hover",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-tertiary-hover.png",
+              "sOverride": {
+                "fill": "rgba(0,0,0,0.08)",
+                "note": "No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // hover: state-layer overlay handled automatically by Surface's ripple/indication",
+                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :hover shows a subtle rgba(0,0,0,0.08) overlay */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-tertiary-pressed.png",
+              "sOverride": {
+                "fill": "rgba(0,0,0,0.12)",
+                "note": "No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap"
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // pressed: state-layer overlay handled automatically by Surface's ripple/indication",
+                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :active shows a stronger rgba(0,0,0,0.12) overlay */"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/iconbtn-tertiary-disabled.png",
+              "sOverride": {
+                "note": "Tertiary never has a persistent container: Hover/Pressed only show a momentary overlay, never a resting fill. Disabled stays transparent too, matching that identity, and only the icon dims to iconDisabled (#a3a3a3)."
+              },
+              "code": {
+                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, enabled = false, contentDescription = \"Close\")",
+                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" disabled ariaLabel=\"Close\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "iconbtn-upload",
+          "name": "Upload",
+          "s": {
+            "w": 72,
+            "h": 72,
+            "pt": 24,
+            "pb": 24,
+            "pl": 24,
+            "pr": 24,
+            "fill": "#ffffff",
+            "bdr": "1px dashed #cccccc",
+            "r": 100,
+            "icon": "24×24px",
+            "use": "Image upload zone"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/iconbtn-upload.png",
+              "code": {
+                "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") })",
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} />"
+              }
+            },
+            {
+              "sl": "Hover",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-upload-hover.png",
+              "sOverride": {
+                "fill": "#f3f3f3"
+              },
+              "code": {
+                "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") }) // hover: bgActionSecondaryHover",
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :hover background uses var(--bg-action-secondary-hover) */"
+              }
+            },
+            {
+              "sl": "Pressed",
+              "st": "active",
+              "img": "assets/images/variants/iconbtn-upload-pressed.png",
+              "sOverride": {
+                "fill": "#e0e0e0"
+              },
+              "code": {
+                "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") }) // pressed: bgActionSecondaryPressed",
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :active background uses var(--bg-action-secondary-pressed) */"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "input": {
+      "name": "Input",
+      "cat": "Forms",
+      "desc": "Text fields, dropdowns, date pickers, OTP, search, chat, and copy-value inputs.",
+      "usage": "All standard inputs share a 312×48px frame with 12px T/B and 8px L/R padding. Use the variant that matches the interaction type. Search and Chat inputs use reduced heights.",
+      "cover": "assets/images/input.png",
+      "v": [
+        {
+          "id": "input-text",
+          "name": "Text",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-text-default.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = username, onValueChange = { username = it }, placeholder = \"Username\")",
+                "tsx": "<TextField value={username} onChange={setUsername} placeholder=\"Username\" />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-text-active.png",
+              "sOverride": {
+                "color": "#333333",
+                "bdr": "1px solid #f8b732",
+                "note": "Focused - accent border (borderInputActive), cursor visible"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = username, onValueChange = { username = it }, placeholder = \"Username\") // focused - borderInputActive",
+                "tsx": "<TextField value={username} onChange={setUsername} placeholder=\"Username\" /> /* :focus border uses var(--border-input-active) */"
+              }
+            },
+            {
+              "sl": "Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-text-filled.png",
+              "sOverride": {
+                "color": "#333333"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"johndoe\", onValueChange = {}, placeholder = \"Username\")",
+                "tsx": "<TextField value=\"johndoe\" onChange={() => {}} placeholder=\"Username\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-texticon",
+          "name": "Text+Icon",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24,
+            "icon": "20×20px (right)",
+            "gapAnchor": "text-icon-h",
+            "gapZones": [
+              {
+                "leftPct": 88.46,
+                "widthPct": 2.56
+              }
+            ]
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-texticon-default.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = \"Password\", isPassword = true)",
+                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-texticon-active.png",
+              "sOverride": {
+                "color": "#333333",
+                "bdr": "1px solid #f8b732",
+                "note": "Focused - accent border (borderInputActive), cursor visible"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = \"Password\", isPassword = true) // focused - borderInputActive",
+                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} /> /* :focus border uses var(--border-input-active) */"
+              }
+            },
+            {
+              "sl": "Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-texticon-filled.png",
+              "sOverride": {
+                "color": "#333333"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"••••••••\", onValueChange = {}, placeholder = \"Password\", isPassword = true)",
+                "tsx": "<TextField value=\"••••••••\" onChange={() => {}} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-dropdown",
+          "name": "Dropdown",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24,
+            "icon": "Chevron 20×20px right",
+            "note": "Chevron rotated 180° when open",
+            "gapAnchor": "text-icon-h",
+            "gapZones": [
+              {
+                "leftPct": 88.46,
+                "widthPct": 2.56
+              }
+            ]
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-dropdown-default.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = Icons.Outlined.ArrowDropDown)",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<ChevronDownIcon />} />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-dropdown-active.png",
+              "sOverride": {
+                "bdr": "1px solid #f8b732",
+                "color": "#333333",
+                "icon": "Chevron 20×20px right, rotated 180°",
+                "note": "While the dropdown is open/focused, the border becomes accent (borderInputActive), the placeholder text darkens to full-strength (same rule confirmed on Date Picker's Active state), and the chevron flips 180°."
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = Icons.Outlined.ArrowDropDown) // active: borderInputActive, chevron rotated 180°",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<ChevronDownIcon />} /> /* :focus border uses var(--border-input-active); chevron rotates 180deg */"
+              }
+            },
+            {
+              "sl": "Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-dropdown-filled.png",
+              "sOverride": {
+                "color": "#333333"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"Snacks\", onValueChange = {}, trailingIcon = Icons.Outlined.ArrowDropDown)",
+                "tsx": "<TextField value=\"Snacks\" onChange={() => {}} trailingIcon={<ChevronDownIcon />} />"
+              }
+            },
+            {
+              "sl": "With Icon",
+              "st": "active",
+              "img": "assets/images/variants/input-dropdown-icon.png",
+              "sOverride": {
+                "color": "#333333",
+                "icon": "24×24px logo (left) + Chevron 20×20px (right)",
+                "note": "Leading brand/payment logo, e.g. payment method selector. Figma also exposes this exact combination under a separate \"Accordion+Icon\" property value on the Input page, pixel-identical to this state; likely a duplicate left in the file rather than a distinct variant, so it is not documented as its own row here.",
+                "gapZones": [
+                  {
+                    "leftPct": 10.26,
+                    "widthPct": 2.56
+                  },
+                  {
+                    "leftPct": 88.46,
+                    "widthPct": 2.56
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"GOPAY\", onValueChange = {}, leadingIcon = painterResource(R.drawable.ic_gopay), trailingIcon = Icons.Outlined.ArrowDropDown)",
+                "tsx": "<TextField value=\"GOPAY\" onChange={() => {}} leadingIcon={<img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />} trailingIcon={<ChevronDownIcon />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-datepicker",
+          "name": "Date Picker",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24,
+            "icon": "20×20px (right)",
+            "gapAnchor": "text-icon-h",
+            "gapZones": [
+              {
+                "leftPct": 88.46,
+                "widthPct": 2.56
+              }
+            ]
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-datepicker-default.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = Icons.Outlined.CalendarMonth)",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<CalendarIcon />} />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-datepicker-active.png",
+              "sOverride": {
+                "bdr": "1px solid #f8b732",
+                "color": "#333333",
+                "note": "While the picker is open/focused, the border becomes accent (borderInputActive) and the placeholder text darkens to full-strength, even before a date is picked. The calendar icon does not rotate (unlike Dropdown's chevron)."
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = Icons.Outlined.CalendarMonth) // active: borderInputActive",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<CalendarIcon />} /> /* :focus border uses var(--border-input-active) */"
+              }
+            },
+            {
+              "sl": "Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-datepicker-filled.png",
+              "sOverride": {
+                "color": "#333333"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"June 15, 1993\", onValueChange = {}, trailingIcon = Icons.Outlined.CalendarMonth)",
+                "tsx": "<TextField value=\"June 15, 1993\" onChange={() => {}} trailingIcon={<CalendarIcon />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-search",
+          "name": "Search",
+          "s": {
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 12,
+            "fill": "#f3f3f3",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "icon": "16×16px (left)",
+            "gapAnchor": "text-icon-h"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-search-default.png",
+              "sOverride": {
+                "w": 260,
+                "fill": "#f3f3f3",
+                "note": "Compact, shorter width - leading search icon only",
+                "gapZones": [
+                  {
+                    "leftPct": 10.77,
+                    "widthPct": 4.62
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Search products...\", leadingIcon = Icons.Outlined.Search)",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Search products...\" leadingIcon={<SearchIcon />} />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-search-active.png",
+              "sOverride": {
+                "w": 312,
+                "bdr": "1px solid #f8b732",
+                "note": "Compact height 40px - leading search icon + trailing clear icon (16×16px)",
+                "gapZones": [
+                  {
+                    "leftPct": 8.97,
+                    "widthPct": 3.85
+                  },
+                  {
+                    "leftPct": 87.18,
+                    "widthPct": 3.85
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = search, onValueChange = { search = it }, placeholder = \"Search products...\", leadingIcon = Icons.Outlined.Search, trailingIcon = Icons.Outlined.Close)",
+                "tsx": "<TextField value={search} onChange={setSearch} placeholder=\"Search products...\" leadingIcon={<SearchIcon />} trailingIcon={<ClearIcon onClick={() => setSearch('')} />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-otp",
+          "name": "Number",
+          "s": {
+            "w": 360,
+            "h": 48,
+            "fill": "#f3f3f3 (per-cell)",
+            "r": 4,
+            "font": "Poppins Bold (h3Bold)",
+            "fs": 16,
+            "cell": "48×48px, no border (except the focused cell, which gets an accent border), 4px spacing between cells"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-otp-default.png",
+              "sOverride": {
+                "note": "6 empty cells, equal 4px spacing, no border"
+              },
+              "code": {
+                "kt": "SnackyOtpField(value = otp, onValueChange = { otp = it })",
+                "tsx": "<OtpField value={otp} onChange={setOtp} />"
+              }
+            },
+            {
+              "sl": "Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-otp-filled.png",
+              "sOverride": {
+                "note": "All 6 cells filled"
+              },
+              "code": {
+                "kt": "SnackyOtpField(value = \"248135\", onValueChange = {})",
+                "tsx": "<OtpField value=\"248135\" onChange={() => {}} />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-otp-active.png",
+              "sOverride": {
+                "bdr": "1px solid #f8b732",
+                "note": "This is a per-cell state, shown on whichever cell currently has keyboard focus while typing. Only that one cell gets the accent border (borderInputActive); the rest stay borderless, matching Default/Filled."
+              },
+              "code": {
+                "kt": "SnackyOtpField(value = otp, onValueChange = { otp = it }) // focused cell: borderInputActive",
+                "tsx": "<OtpField value={otp} onChange={setOtp} /> /* the focused cell gets a var(--border-input-active) border */"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-copy",
+          "name": "Copy-value",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 12,
+            "pr": 12,
+            "fill": "#f7f7f7",
+            "r": 4,
+            "font": "Poppins SemiBold 14px (value) · Bold 12px (Copy link)",
+            "color": "#333333 (value) · #88651c (Copy link)"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-copy-default.png",
+              "sOverride": {
+                "note": "\"Copy\" text link, not an icon"
+              },
+              "code": {
+                "kt": "SnackyCopyField(value = \"7008123912039102\", onCopy = onCopyValue)",
+                "tsx": "<CopyField value=\"7008123912039102\" onCopy={onCopyValue} />"
+              }
+            },
+            {
+              "sl": "Copied",
+              "st": "active",
+              "img": "assets/images/variants/input-copy-copied.png",
+              "sOverride": {
+                "note": "Label reads \"Copied\" briefly after tap"
+              },
+              "code": {
+                "kt": "SnackyCopyField(value = \"7008123912039102\", copied = true, onCopy = onCopyValue)",
+                "tsx": "<CopyField value=\"7008123912039102\" copied onCopy={onCopyValue} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-chat",
+          "name": "Chat",
+          "s": {
+            "w": 360,
+            "h": 72,
+            "pt": 12,
+            "pb": 12,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "icon": "48×48px send button (right)",
+            "gapAnchor": "text-icon-h",
+            "gapZones": [
+              {
+                "leftPct": 81.11,
+                "widthPct": 2.22
+              }
+            ]
+          },
+          "states": [
+            {
+              "sl": "Inactive",
+              "st": null,
+              "img": "assets/images/variants/input-chat-inactive.png",
+              "sOverride": {
+                "use": "Chat message compose bar"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Write your message here\")",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Write your message here\" />"
+              }
+            },
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/input-chat-active.png",
+              "sOverride": {
+                "note": "Typing cursor visible"
+              },
+              "code": {
+                "kt": "SnackyTextField(value = message, onValueChange = { message = it }, placeholder = \"Write your message here\")",
+                "tsx": "<TextField value={message} onChange={setMessage} placeholder=\"Write your message here\" />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-address",
+          "name": "Address",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24,
+            "icon": "20×20px (marker)",
+            "gapAnchor": "text-icon-h"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/input-address-default.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)",
+                "icon": "20×20px marker - trailing (right)",
+                "note": "Trigger field - opens address search",
+                "gapZones": [
+                  {
+                    "leftPct": 88.46,
+                    "widthPct": 2.56
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Enter address\", trailingIcon = Icons.Outlined.LocationOn)",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Enter address\" trailingIcon={<MarkerIcon />} />"
+              }
+            },
+            {
+              "sl": "Search - Inactive",
+              "st": null,
+              "img": "assets/images/variants/input-address-search-inactive.png",
+              "sOverride": {
+                "color": "#7a7a7a (placeholder)",
+                "icon": "20×20px marker - leading (left)",
+                "gapZones": [
+                  {
+                    "leftPct": 8.97,
+                    "widthPct": 2.56
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"\", onValueChange = { address = it }, placeholder = \"Enter street name, apartment, or building\", leadingIcon = Icons.Outlined.LocationOn)",
+                "tsx": "<TextField value=\"\" onChange={setAddress} placeholder=\"Enter street name, apartment, or building\" leadingIcon={<MarkerIcon />} />"
+              }
+            },
+            {
+              "sl": "Search - Active",
+              "st": "active",
+              "img": "assets/images/variants/input-address-search-active.png",
+              "sOverride": {
+                "color": "#333333",
+                "icon": "20×20px marker (left) + 16×16px clear (right)",
+                "gapZones": [
+                  {
+                    "leftPct": 8.97,
+                    "widthPct": 2.56
+                  },
+                  {
+                    "leftPct": 89.74,
+                    "widthPct": 2.56
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"Senopati Street No.6\", onValueChange = { address = it }, leadingIcon = Icons.Outlined.LocationOn, trailingIcon = Icons.Outlined.Close)",
+                "tsx": "<TextField value=\"Senopati Street No.6\" onChange={setAddress} leadingIcon={<MarkerIcon />} trailingIcon={<ClearIcon onClick={() => setAddress('')} />} />"
+              }
+            },
+            {
+              "sl": "Search - Filled",
+              "st": "active",
+              "img": "assets/images/variants/input-address-search-filled.png",
+              "sOverride": {
+                "color": "#333333",
+                "icon": "20×20px marker - leading (left)",
+                "note": "Single-line truncated full address, no trailing icon",
+                "gapZones": [
+                  {
+                    "leftPct": 8.97,
+                    "widthPct": 2.56
+                  }
+                ]
+              },
+              "code": {
+                "kt": "SnackyTextField(value = \"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\", onValueChange = {}, leadingIcon = Icons.Outlined.LocationOn)",
+                "tsx": "<TextField value=\"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\" onChange={() => {}} leadingIcon={<MarkerIcon />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "input-address-result",
+          "name": "Address - Search Result",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/input-address-search-selected.png",
+          "s": {
+            "w": 312,
+            "h": 72,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "r": 4,
+            "font": "Poppins SemiBold 12px (title) · Regular 12px (subtitle, truncated)",
+            "icon": "20×20px marker (left)",
+            "use": "Selected address search-result row, shown in the results list below the Address/Search input",
+            "gapAnchor": "text-icon-h",
+            "gapZones": [
+              {
+                "leftPct": 8.97,
+                "widthPct": 2.56
+              }
+            ]
+          },
+          "code": {
+            "kt": "Row(\n    modifier = Modifier\n        .fillMaxWidth()\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .border(1.dp, borderInputDefault, RoundedCornerShape(4.dp))\n        .padding(horizontal = spacing8, vertical = spacing12),\n    horizontalArrangement = Arrangement.spacedBy(gapTextIcon)\n) {\n    Icon(Icons.Outlined.LocationOn, contentDescription = null, modifier = Modifier.size(20.dp))\n    Column {\n        Text(\"Senopati Street No.6\", style = SnackyTypography.smallBold, color = textPrimary)\n        Text(\n            \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\",\n            style = SnackyTypography.smallRegular,\n            color = textPrimary,\n            maxLines = 1,\n            overflow = TextOverflow.Ellipsis\n        )\n    }\n}",
+            "tsx": "<div style={{ display: 'flex', gap: 'var(--gap-text-icon)', padding: 'var(--spacing-12) var(--spacing-8)', border: '1px solid var(--border-input-default)', borderRadius: 4, background: 'var(--bg-surface)' }}>\n  <MarkerIcon width={20} height={20} />\n  <div>\n    <p style={{ ...typography.smallBold, margin: 0 }}>Senopati Street No.6</p>\n    <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta</p>\n  </div>\n</div>"
+          }
+        }
+      ]
+    },
+    "chips": {
+      "name": "Chips",
+      "cat": "Forms",
+      "desc": "Selectable filter and product category tags.",
+      "usage": "Product chips include a thumbnail image. Filter chips are text-only. Both use 100px border-radius (pill shape) and switch to accent fill when selected. The static \"Variant: 75 Grams\" label seen on product screens is documented under Badge, not here: Figma's own file places that node on the Badge page, not the Chips page, and it has no unselected/clickable state, unlike a real chip.",
+      "cover": "assets/images/chips.png",
+      "v": [
+        {
+          "id": "chips-produk",
+          "name": "Produk",
+          "s": {
+            "w": 95,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "gap": 4,
+            "gapAnchor": "thumb-label",
+            "gapZones": [
+              {
+                "leftPct": 33.68,
+                "widthPct": 4.21
+              }
+            ],
+            "r": 100,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "color": "#333333",
+            "thumb": "24×24px"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/chips-produk-default.png",
+              "sOverride": {
+                "fill": "transparent",
+                "bdr": "1px solid #cccccc"
+              },
+              "code": {
+                "kt": "SnackyProductChip(label = \"70 gram\", selected = false, onClick = {}, icon = { Image(painterResource(\"chiki.png\"), null) })",
+                "tsx": "<ProductChip label=\"70 gram\" selected={false} onClick={() => {}} thumbnail={<img src=\"/chiki.png\" width={24} height={24} />} />"
+              }
+            },
+            {
+              "sl": "Selected",
+              "st": "active",
+              "img": "assets/images/variants/chips-produk-selected.png",
+              "sOverride": {
+                "fill": "#fef8eb",
+                "bdr": "1px solid #f8b732"
+              },
+              "code": {
+                "kt": "SnackyProductChip(label = \"70 gram\", selected = true, onClick = {}, icon = { Image(painterResource(\"chiki.png\"), null) })",
+                "tsx": "<ProductChip label=\"70 gram\" selected onClick={() => {}} thumbnail={<img src=\"/chiki.png\" width={24} height={24} />} />"
+              }
+            }
+          ]
+        },
+        {
+          "id": "chips-filter",
+          "name": "Filter",
+          "s": {
+            "w": 67,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "r": 100,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "color": "#333333"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": null,
+              "img": "assets/images/variants/chips-filter-default.png",
+              "sOverride": {
+                "fill": "#ffffff",
+                "bdr": "1px solid #cccccc"
+              },
+              "code": {
+                "kt": "SnackyFilterChip(label = \"Spicy\", selected = false, onClick = {})",
+                "tsx": "<FilterChip label=\"Spicy\" selected={false} onClick={() => {}} />"
+              }
+            },
+            {
+              "sl": "Selected",
+              "st": "active",
+              "img": "assets/images/variants/chips-filter-selected.png",
+              "sOverride": {
+                "fill": "#fef8eb",
+                "bdr": "1px solid #f8b732"
+              },
+              "code": {
+                "kt": "SnackyFilterChip(label = \"Spicy\", selected = true, onClick = {})",
+                "tsx": "<FilterChip label=\"Spicy\" selected onClick={() => {}} />"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "radio-button": {
+      "name": "Radio Button",
+      "cat": "Forms",
+      "desc": "Single-selection control for mutually exclusive options.",
+      "usage": "Always use in a group of 2+ options. Never use for binary on/off - use Toggle or Checkbox instead. Active state shows an accent-colored ring with a center dot.",
+      "cover": "assets/images/radio-button.png",
+      "v": [
+        {
+          "id": "radio",
+          "name": "Radio Button",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "r": 999
+          },
+          "states": [
+            {
+              "sl": "Unselected",
+              "st": null,
+              "img": "assets/images/variants/radio-default.png",
+              "sOverride": {
+                "fill": "#ffffff",
+                "bdr": "1px solid #cccccc"
+              },
+              "code": {
+                "kt": "SnackyRadioOption(label = \"Reguler\", selected = false, onClick = {})",
+                "tsx": "<RadioOption label=\"Reguler\" selected={false} onClick={() => {}} />"
+              }
+            },
+            {
+              "sl": "Selected",
+              "st": "active",
+              "img": "assets/images/variants/radio-active.png",
+              "sOverride": {
+                "fill": "#f8b732 ring",
+                "bdr": "#f8b732",
+                "dot": "6×6px center fill"
+              },
+              "code": {
+                "kt": "SnackyRadioOption(label = \"Reguler\", selected = true, onClick = {})",
+                "tsx": "<RadioOption label=\"Reguler\" selected onClick={() => {}} />"
+              }
+            },
+            {
+              "sl": "Disabled",
+              "st": "disabled",
+              "img": "assets/images/variants/radio-disabled.png",
+              "sOverride": {
+                "fill": "#ffffff",
+                "bdr": "1px solid #cccccc",
+                "opacity": "Reduced, non-interactive"
+              },
+              "code": {
+                "kt": "SnackyRadioOption(label = \"Reguler\", selected = false, onClick = {}, enabled = false)",
+                "tsx": "<RadioOption label=\"Reguler\" selected={false} onClick={() => {}} disabled />"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "cat": "Forms",
+      "desc": "Binary on/off selection control.",
+      "usage": "Use for multi-select lists or standalone toggle on settings screens. The accent fill signals checked state with a white checkmark.",
+      "cover": "assets/images/checkbox.png",
+      "v": [
+        {
+          "id": "checkbox",
+          "name": "Checkbox",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "r": 4
+          },
+          "states": [
+            {
+              "sl": "On",
+              "st": "active",
+              "img": "assets/images/variants/checkbox-on.png",
+              "sOverride": {
+                "fill": "#f8b732",
+                "icon": "White checkmark"
+              },
+              "code": {
+                "kt": "SnackyCheckbox(label = \"I agree\", checked = true, onCheckedChange = {})",
+                "tsx": "<Checkbox label=\"I agree\" checked onChange={() => {}} />"
+              }
+            },
+            {
+              "sl": "Off",
+              "st": null,
+              "img": "assets/images/variants/checkbox-off.png",
+              "sOverride": {
+                "fill": "#7a7a7a",
+                "bdr": "1px solid #7a7a7a"
+              },
+              "code": {
+                "kt": "SnackyCheckbox(label = \"I agree\", checked = false, onCheckedChange = {})",
+                "tsx": "<Checkbox label=\"I agree\" checked={false} onChange={() => {}} />"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "toggle": {
+      "name": "Toggle",
+      "cat": "Forms",
+      "desc": "Switch for enabling or disabling a setting.",
+      "usage": "Use for immediate settings that take effect without a confirm step. Thumb slides right (on) or left (off). Accent tint background signals on state.",
+      "cover": "assets/images/toggle.png",
+      "v": [
+        {
+          "id": "toggle",
+          "name": "Toggle",
+          "s": {
+            "w": 56,
+            "h": 24,
+            "r": 100
+          },
+          "states": [
+            {
+              "sl": "On",
+              "st": "active",
+              "img": "assets/images/variants/toggle-on.png",
+              "sOverride": {
+                "fill": "#fffbe9 (accent tint)",
+                "thumb": "32×32px · accent · right"
+              },
+              "code": {
+                "kt": "SnackyToggle(checked = true, onCheckedChange = {})",
+                "tsx": "<Toggle checked onChange={() => {}} />"
+              }
+            },
+            {
+              "sl": "Off",
+              "st": null,
+              "img": "assets/images/variants/toggle-off.png",
+              "sOverride": {
+                "fill": "#cccccc",
+                "thumb": "32×32px · grey · left"
+              },
+              "code": {
+                "kt": "SnackyToggle(checked = false, onCheckedChange = {})",
+                "tsx": "<Toggle checked={false} onChange={() => {}} />"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "navbar": {
+      "name": "Navbar",
+      "cat": "Navigation",
+      "desc": "Bottom navigation bar for the customer flow.",
+      "usage": "Pinned to the bottom edge. Shows 5 tabs for customers. Active tab uses accent color and filled icon.",
+      "cover": "assets/images/navbar.png",
+      "v": [
+        {
+          "id": "navbar-default",
+          "name": "Navbar",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/navbar-customer.png",
+          "s": {
+            "w": 360,
+            "h": 72,
+            "fill": "#ffffff",
+            "shadow": "0 -4px 10px rgba(0,0,0,0.08)",
+            "gap": 4,
+            "gapAnchor": "icon-label",
+            "gapTopPct": 53.26,
+            "gapHeightPct": 4.35,
+            "icon": "20×20px",
+            "font": "Poppins Regular",
+            "fs": 12,
+            "color": "#7a7a7a (default) · small/bold #333333 (active)",
+            "tabs": "Home · Category · Cart · History · Account"
+          },
+          "code": {
+            "kt": "SnackyNavBar(items = navItems, selected = 0, onSelect = { selectedTab = it })",
+            "tsx": "<NavBar items={navItems} selected={0} onSelect={setSelectedTab} />"
+          }
+        }
+      ]
+    },
+    "tab": {
+      "name": "Tab",
+      "cat": "Navigation",
+      "desc": "Inline tab selector for switching between content views.",
+      "usage": "Used horizontally below page headers. Active tab shows accent color with a 2px underline indicator. Inactive tabs are grey.",
+      "cover": "assets/images/tab.png",
+      "v": [
+        {
+          "id": "tab",
+          "name": "Tab",
+          "s": {
+            "h": 40,
+            "gap": 16
+          },
+          "states": [
+            {
+              "sl": "Active",
+              "st": "active",
+              "img": "assets/images/variants/tab-active.png",
+              "sOverride": {
+                "font": "Poppins SemiBold",
+                "fs": 14,
+                "color": "#f8b732",
+                "indicator": "2px accent underline",
+                "gapAnchor": "text-line",
+                "gapTopPct": 60,
+                "gapHeightPct": 40
+              },
+              "code": {
+                "kt": "SnackyTabRow(tabs = listOf(\"All\", \"Waiting\"), selected = 0, onSelect = {})",
+                "tsx": "<TabRow tabs={['All', 'Waiting']} selected={0} onSelect={() => {}} />"
+              }
+            },
+            {
+              "sl": "Inactive",
+              "st": null,
+              "img": "assets/images/variants/tab-inactive.png",
+              "sOverride": {
+                "font": "Poppins Regular",
+                "fs": 14,
+                "color": "#333333",
+                "indicator": "None (line is transparent, same layout height reserved)",
+                "gapAnchor": "text-line",
+                "gapTopPct": 60,
+                "gapHeightPct": 40
+              },
+              "code": {
+                "kt": "SnackyTabRow(tabs = listOf(\"All\", \"Waiting\"), selected = 1, onSelect = {})",
+                "tsx": "<TabRow tabs={['All', 'Waiting']} selected={1} onSelect={() => {}} />"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "banner": {
+      "name": "Banner",
+      "cat": "Content",
+      "desc": "Promotional and informational banners throughout the app.",
+      "usage": "Hero banners appear in a carousel at the top of the home screen. Square banners show featured categories. Alert banner communicates system messages. Point balance strip shows loyalty data.",
+      "cover": "assets/images/banner.png",
+      "v": [
+        {
+          "id": "banner-hero",
+          "name": "Banner",
+          "st": null,
+          "sl": "Promo",
+          "img": "assets/images/variants/banner.png",
+          "s": {
+            "w": 978,
+            "h": 152,
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "use": "Main hero carousel"
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/promo.jpg\", variant = BannerVariant.Hero)",
+            "tsx": "<Banner variant=\"hero\" imageUrl=\"/banners/promo.jpg\" alt=\"50% off promo\" />"
+          }
+        },
+        {
+          "id": "banner-square-discount",
+          "name": "Square - Discount",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-square-discount.png",
+          "s": {
+            "w": 360,
+            "h": 334,
+            "r": 8
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/discount.jpg\", variant = BannerVariant.Square, onClick = { navController.navigate(\"category/discount\") })",
+            "tsx": "<Banner variant=\"square\" imageUrl=\"/banners/discount.jpg\" alt=\"Special discount\" />"
+          }
+        },
+        {
+          "id": "banner-square-fav",
+          "name": "Square - Favourites",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-square-fav.png",
+          "s": {
+            "w": 360,
+            "h": 334,
+            "r": 8
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/favourites.jpg\", variant = BannerVariant.Square, onClick = { navController.navigate(\"category/favourites\") })",
+            "tsx": "<Banner variant=\"square\" imageUrl=\"/banners/favourites.jpg\" alt=\"Favorite products\" />"
+          }
+        },
+        {
+          "id": "banner-square-deals",
+          "name": "Square - Deals",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-square-deals.png",
+          "s": {
+            "w": 360,
+            "h": 334,
+            "r": 8
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/deals.jpg\", variant = BannerVariant.Square, onClick = { navController.navigate(\"category/deals\") })",
+            "tsx": "<Banner variant=\"square\" imageUrl=\"/banners/deals.jpg\" alt=\"Best deals\" />"
+          }
+        },
+        {
+          "id": "banner-point-balance",
+          "name": "Point Balance",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-point-balance.png",
+          "s": {
+            "w": 312,
+            "h": 60,
+            "pt": 8,
+            "pb": 8,
+            "pl": 16,
+            "pr": 16,
+            "gap": 12,
+            "gapAnchor": "icon-label",
+            "gapZones": [
+              {
+                "leftPct": 10.26,
+                "widthPct": 3.93
+              },
+              {
+                "leftPct": 57.69,
+                "widthPct": 4.09
+              }
+            ],
+            "fill": "#fef8eb",
+            "bdr": "1px solid #f8b732",
+            "r": 10,
+            "use": "Loyalty points and balance summary strip"
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/point-balance.jpg\", variant = BannerVariant.PointBalance)",
+            "tsx": "<Banner variant=\"pointBalance\" imageUrl=\"/banners/point-balance.jpg\" alt=\"Your points balance\" />"
+          }
+        },
+        {
+          "id": "banner-alert",
+          "name": "Alert Banner",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-alert.png",
+          "s": {
+            "w": 360,
+            "h": 40,
+            "pt": 8,
+            "pb": 8,
+            "pl": 24,
+            "pr": 24,
+            "gap": 4,
+            "fill": "#eb5757",
+            "font": "Poppins Regular/SemiBold",
+            "fs": 14,
+            "color": "#ffffff",
+            "use": "Inline info/warning strip with countdown"
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/alert.jpg\", variant = BannerVariant.Alert)",
+            "tsx": "<Banner variant=\"alert\" imageUrl=\"/banners/alert.jpg\" alt=\"System notification\" />"
+          }
+        },
+        {
+          "id": "banner-full-width",
+          "name": "Full-width Banner",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/banner-full-width.png",
+          "s": {
+            "w": 360,
+            "h": 176,
+            "use": "Prominent promotional banner. Figma names this property value \"banner-detail,\" suggesting it may be intended specifically for a product/order detail-page context rather than a generic full-width placement; worth confirming with design before relying on the current \"prominent promotional banner\" framing."
+          },
+          "code": {
+            "kt": "SnackyBanner(imageUrl = \"https://cdn.snacky.app/banners/full-width.jpg\", variant = BannerVariant.FullWidth)",
+            "tsx": "<Banner variant=\"fullWidth\" imageUrl=\"/banners/full-width.jpg\" alt=\"Main promo\" />"
+          }
+        }
+      ]
+    },
+    "badge": {
+      "name": "Badge",
+      "cat": "Content",
+      "desc": "Small count and tag indicators: notification pill, discount tag, sold-out overlay, and a static variant label.",
+      "usage": "Use Notification as an absolute overlay on cart/notification icons to show a numeric count. Use Discount as an inline tag (e.g. on Product Card) to show a percentage-off label. Use Sold Out as an absolute overlay on product images to indicate stock unavailability. Use Variant as a static, non-interactive label showing the currently selected product variant (e.g. \"Variant: 75 Grams\") - it lives in Figma's Badge frame, not Chips, and has no unselected/clickable state.",
+      "cover": "assets/images/badge.png",
+      "v": [
+        {
+          "id": "badge-notification",
+          "name": "Notification",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/badge.png",
+          "s": {
+            "w": 28,
+            "h": 19,
+            "pt": 2,
+            "pb": 2,
+            "pl": 4,
+            "pr": 4,
+            "fill": "#eb5757",
+            "r": 999,
+            "font": "Poppins SemiBold",
+            "fs": 10,
+            "color": "#ffffff",
+            "use": "Overlay on cart/notification icon"
+          },
+          "code": {
+            "kt": "SnackyBadge(count = 3) { Icon(Icons.Outlined.ShoppingCart, contentDescription = \"Cart\") }",
+            "tsx": "<Badge count={3}><CartIcon width={20} height={20} aria-label=\"Cart\" /></Badge>"
+          }
+        },
+        {
+          "id": "badge-discount",
+          "name": "Discount",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/badge-discount.png",
+          "s": {
+            "w": 36,
+            "h": 24,
+            "pt": 2,
+            "pb": 2,
+            "pl": 4,
+            "pr": 4,
+            "fill": "#eb5757",
+            "r": 6,
+            "font": "Poppins SemiBold",
+            "fs": 10,
+            "lh": 24,
+            "color": "#ffffff",
+            "use": "Inline discount/promo tag - e.g. \"-50%\" on Product Card"
+          },
+          "code": {
+            "kt": "SnackyDiscountTag(label = \"-50%\")",
+            "tsx": "<DiscountTag label=\"-50%\" />"
+          }
+        },
+        {
+          "id": "badge-soldout",
+          "name": "Sold Out",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/badge-soldout.png",
+          "s": {
+            "w": 65,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 7,
+            "pr": 7,
+            "fill": "rgba(51,51,51,0.8)",
+            "r": 100,
+            "font": "Poppins Regular",
+            "fs": 12,
+            "lh": 24,
+            "color": "#ffffff",
+            "use": "Absolute overlay on product image - indicates item is out of stock"
+          },
+          "code": {
+            "kt": "SnackySoldOutBadge()",
+            "tsx": "<SoldOutBadge />"
+          }
+        },
+        {
+          "id": "badge-variant",
+          "name": "Variant",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/badge-variant.png",
+          "s": {
+            "w": 113,
+            "h": 32,
+            "pt": 8,
+            "pb": 8,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#fef8eb",
+            "bdr": "1px solid #f8b732",
+            "r": 4,
+            "font": "Poppins Regular",
+            "fs": 10,
+            "lh": 16,
+            "color": "#333333",
+            "use": "Static label showing the currently selected product variant, non-interactive, always shown in the accent-highlighted style. Documented as a Badge, not a Chip: Figma's own file places this node on the Badge page, and unlike Produk/Filter chips it has no unselected/clickable state."
+          },
+          "code": {
+            "kt": "SnackyVariantBadge(label = \"Variant: 75 Grams\")",
+            "tsx": "<VariantBadge label=\"Variant: 75 Grams\" />"
+          }
+        }
+      ]
+    },
+    "callout": {
+      "name": "Callout",
+      "cat": "Content",
+      "desc": "Chat message bubbles for sent, pending, and received messages.",
+      "usage": "Received messages align left with white background. Sent and Pending messages align right with accent fill. All use padding-field-y/x padding and 8px border radius. Pending shows a clock icon instead of Sent’s checkmark.",
+      "cover": "assets/images/callout.png",
+      "v": [
+        {
+          "id": "callout-received",
+          "name": "Received",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/callout-received.png",
+          "s": {
+            "w": 200,
+            "h": 92,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 4,
+            "gapAnchor": "text-timestamp",
+            "gapTopPct": 65.22,
+            "gapHeightPct": 4.35,
+            "fill": "#ffffff",
+            "r": 8,
+            "align": "Left",
+            "font": "Poppins Regular",
+            "fs": 14,
+            "lh": 24,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyCallout(message = \"Hi, how far along is my order?\", timestamp = \"09:41\", variant = CalloutVariant.Received)",
+            "tsx": "<Callout message=\"Hi, how far along is my order?\" timestamp=\"09:41\" variant=\"received\" />"
+          }
+        },
+        {
+          "id": "callout-sent",
+          "name": "Sent",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/callout-sent.png",
+          "s": {
+            "w": 200,
+            "h": 92,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 4,
+            "gapAnchor": "text-timestamp",
+            "gapTopPct": 65.22,
+            "gapHeightPct": 4.35,
+            "fill": "#f8b732 (accent)",
+            "r": 8,
+            "align": "Right",
+            "icon": "16×16px check (sent indicator)",
+            "font": "Poppins Regular",
+            "fs": 14,
+            "lh": 24,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyCallout(message = \"Your order is on its way!\", timestamp = \"09:42\", variant = CalloutVariant.Sent)",
+            "tsx": "<Callout message=\"Your order is on its way!\" timestamp=\"09:42\" variant=\"sent\" />"
+          }
+        },
+        {
+          "id": "callout-pending",
+          "name": "Pending",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/callout-pending.png",
+          "s": {
+            "w": 200,
+            "h": 92,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 4,
+            "gapAnchor": "text-timestamp",
+            "gapTopPct": 65.22,
+            "gapHeightPct": 4.35,
+            "fill": "#f8b732 (accent)",
+            "r": 8,
+            "align": "Right",
+            "icon": "16×16px clock (pending indicator)",
+            "note": "Same accent fill as Sent - clock icon instead of checkmark while the message is still sending",
+            "font": "Poppins Regular",
+            "fs": 14,
+            "lh": 24,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyCallout(message = \"Your order is on its way!\", timestamp = \"09:42\", variant = CalloutVariant.Pending)",
+            "tsx": "<Callout message=\"Your order is on its way!\" timestamp=\"09:42\" variant=\"pending\" />"
+          }
+        }
+      ]
+    },
+    "list": {
+      "name": "List",
+      "cat": "Content",
+      "desc": "Order history and notification list items with status indicators.",
+      "usage": "Order list items show product thumbnails, status badges, and action buttons. Notification items use accent tint background to highlight unread items.",
+      "cover": "assets/images/list.png",
+      "v": [
+        {
+          "id": "list-order-waiting",
+          "name": "Order - Waiting",
+          "st": "danger",
+          "sl": "Waiting",
+          "img": "assets/images/variants/list-order-waiting.png",
+          "s": {
+            "w": 328,
+            "h": 152,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 44.08,
+                "heightPct": 5.26
+              },
+              {
+                "topPct": 69.41,
+                "heightPct": 5.26
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Chiki Balls 68g\", productImage = chikiUrl, price = \"Rp 8.000\", quantity = \"x2\", status = OrderStatus.Waiting)",
+            "tsx": "<OrderListItem productName=\"Chiki Balls 68g\" productImage={chikiUrl} price=\"Rp 8.000\" quantity=\"x2\" status=\"waiting\" />"
+          }
+        },
+        {
+          "id": "list-order-process",
+          "name": "Order - Process",
+          "st": null,
+          "sl": "Process",
+          "img": "assets/images/variants/list-order-process.png",
+          "s": {
+            "w": 328,
+            "h": 120,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 55.83,
+                "heightPct": 6.67
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px",
+            "color": "#333333 (plain text, not status-colored)"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Chiki Twist 65g\", productImage = chikiUrl, price = \"Rp 9.000\", quantity = \"x1\", status = OrderStatus.Process)",
+            "tsx": "<OrderListItem productName=\"Chiki Twist 65g\" productImage={chikiUrl} price=\"Rp 9.000\" quantity=\"x1\" status=\"process\" />"
+          }
+        },
+        {
+          "id": "list-order-process-cod",
+          "name": "Order - Process (COD)",
+          "st": null,
+          "sl": "Process",
+          "img": "assets/images/variants/list-order-process-cod.png",
+          "s": {
+            "w": 328,
+            "h": 120,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 55.83,
+                "heightPct": 6.67
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px",
+            "color": "#333333 (plain text, not status-colored)",
+            "note": "Adds a COD chip next to Order Total"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Chiki Twist 65g\", productImage = chikiUrl, price = \"Rp 9.000\", quantity = \"x1\", status = OrderStatus.ProcessCod)",
+            "tsx": "<OrderListItem productName=\"Chiki Twist 65g\" productImage={chikiUrl} price=\"Rp 9.000\" quantity=\"x1\" status=\"processCod\" />"
+          }
+        },
+        {
+          "id": "list-order-shipped",
+          "name": "Order - Shipped",
+          "st": "info",
+          "sl": "Shipped",
+          "img": "assets/images/variants/list-order-shipped.png",
+          "s": {
+            "w": 328,
+            "h": 168,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 39.88,
+                "heightPct": 4.76
+              },
+              {
+                "topPct": 62.8,
+                "heightPct": 4.76
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Lays Original 75g\", productImage = laysUrl, price = \"Rp 12.000\", quantity = \"x1\", status = OrderStatus.Shipped, onDetailClick = { navController.navigate(\"order/123\") })",
+            "tsx": "<OrderListItem productName=\"Lays Original 75g\" productImage={laysUrl} price=\"Rp 12.000\" quantity=\"x1\" status=\"shipped\" onDetailClick={() => navigate('/order/123')} />"
+          }
+        },
+        {
+          "id": "list-order-received",
+          "name": "Order - Received",
+          "st": "active",
+          "sl": "Done",
+          "img": "assets/images/variants/list-order-received.png",
+          "s": {
+            "w": 328,
+            "h": 168,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 39.88,
+                "heightPct": 4.76
+              },
+              {
+                "topPct": 62.8,
+                "heightPct": 4.76
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Piatos Cheese 75g\", productImage = piatosUrl, price = \"Rp 11.000\", quantity = \"x3\", status = OrderStatus.Received)",
+            "tsx": "<OrderListItem productName=\"Piatos Cheese 75g\" productImage={piatosUrl} price=\"Rp 11.000\" quantity=\"x3\" status=\"received\" />"
+          }
+        },
+        {
+          "id": "list-order-cancelled",
+          "name": "Order - Cancelled",
+          "st": "danger",
+          "sl": "Cancelled",
+          "img": "assets/images/variants/list-order-cancelled.png",
+          "s": {
+            "w": 328,
+            "h": 168,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "gap": 8,
+            "gapAnchor": "row-gap",
+            "gapBands": [
+              {
+                "topPct": 39.88,
+                "heightPct": 4.76
+              },
+              {
+                "topPct": 62.8,
+                "heightPct": 4.76
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "thumb": "48×48px"
+          },
+          "code": {
+            "kt": "SnackyOrderListItem(productName = \"Oishi Mie 80g\", productImage = oishiUrl, price = \"Rp 7.500\", quantity = \"x1\", status = OrderStatus.Cancelled)",
+            "tsx": "<OrderListItem productName=\"Oishi Mie 80g\" productImage={oishiUrl} price=\"Rp 7.500\" quantity=\"x1\" status=\"cancelled\" />"
+          }
+        },
+        {
+          "id": "list-notif",
+          "name": "Notification",
+          "s": {
+            "w": 328,
+            "h": 64,
+            "pt": 8,
+            "pb": 8,
+            "pl": 12,
+            "pr": 12,
+            "r": 4
+          },
+          "states": [
+            {
+              "sl": "New",
+              "st": "active",
+              "img": "assets/images/variants/list-notif-highlighted.png",
+              "sOverride": {
+                "fill": "Accent tint"
+              },
+              "code": {
+                "kt": "Row(modifier = Modifier.fillMaxWidth().background(bgSurfaceHighlight).padding(horizontal = spacing12, vertical = spacing8)) { Text(\"New order received\", style = SnackyTypography.smallRegular) }",
+                "tsx": "<div style={{ background: 'var(--bg-surface-highlight)', padding: 'var(--spacing-8) var(--spacing-12)' }}><p style={typography.smallRegular}>New order received</p></div>"
+              }
+            },
+            {
+              "sl": "Read",
+              "st": null,
+              "img": "assets/images/variants/list-notif-default.png",
+              "sOverride": {
+                "fill": "#ffffff"
+              },
+              "code": {
+                "kt": "Row(modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing12, vertical = spacing8)) { Text(\"Weekend promo has started!\", style = SnackyTypography.smallRegular) }",
+                "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--spacing-8) var(--spacing-12)' }}><p style={typography.smallRegular}>Weekend promo has started!</p></div>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "accordion": {
+      "name": "Accordion",
+      "cat": "Content",
+      "desc": "Expandable panel for FAQs and collapsible details, with or without a leading icon.",
+      "usage": "Collapsed shows a title and a chevron icon; clicking expands content below and rotates the chevron 180°. Figma models icon presence as a real variant, not just optional content: With Icon uses a smaller 12px title (smallSemibold) alongside a 24×24px leading logo/icon, has no border, and relies on elevation alone. No Icon uses the default 14px title (bodySemibold), no leading icon, and adds a borderMain outline on the collapsed header that With Icon never has. In code, both are the same component - the border and title size respond automatically to whether leadingIcon is passed.",
+      "cover": "assets/images/accordion.png",
+      "v": [
+        {
+          "id": "accordion-with-icon",
+          "name": "With Icon",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 8,
+            "gapAnchor": "icon-title",
+            "gapZones": [
+              {
+                "leftPct": 10.26,
+                "widthPct": 2.56
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 12,
+            "lh": 24,
+            "color": "#333333",
+            "icon": "24×24px leading logo/icon",
+            "use": "Payment-method-style rows (e.g. \"Mandiri Virtual Account\") - smaller 12px title, no border, elevation only"
+          },
+          "states": [
+            {
+              "sl": "Collapsed",
+              "st": null,
+              "img": "assets/images/variants/accordion-withicon-default.png",
+              "code": {
+                "kt": "SnackyAccordion(\n    title = \"BCA Virtual Account\",\n    leadingIcon = { AsyncImage(model = R.drawable.logo_bca, contentDescription = \"BCA\") }\n) { Text(\"Account number: 1234567890\") }",
+                "tsx": "<Accordion title=\"BCA Virtual Account\" leadingIcon={<img src=\"/logos/bca.png\" alt=\"BCA\" width={24} height={24} />}>\n  <p>Account number: 1234567890</p>\n</Accordion>"
+              }
+            },
+            {
+              "sl": "Expanded",
+              "st": "active",
+              "img": "assets/images/variants/accordion-withicon-expand.png",
+              "sOverride": {
+                "h": 340
+              },
+              "code": {
+                "kt": "// expanded state is internal - click toggles it\nSnackyAccordion(\n    title = \"BCA Virtual Account\",\n    leadingIcon = { AsyncImage(model = R.drawable.logo_bca, contentDescription = \"BCA\") }\n) { Text(\"Account number: 1234567890\") }",
+                "tsx": "// expanded state is internal - click toggles it\n<Accordion title=\"BCA Virtual Account\" leadingIcon={<img src=\"/logos/bca.png\" alt=\"BCA\" width={24} height={24} />}>\n  <p>Account number: 1234567890</p>\n</Accordion>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "accordion-no-icon",
+          "name": "No Icon",
+          "s": {
+            "w": 312,
+            "h": 48,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "fill": "#ffffff",
+            "bdr": "1px solid #cccccc",
+            "shadow": "0 4px 8px rgba(0,0,0,0.08)",
+            "r": 4,
+            "font": "Poppins SemiBold",
+            "fs": 14,
+            "lh": 24,
+            "color": "#333333",
+            "use": "Plain FAQ-style rows - default 14px title, no leading icon, adds a borderMain outline on the collapsed header alongside the usual elevation"
+          },
+          "states": [
+            {
+              "sl": "Collapsed",
+              "st": null,
+              "img": "assets/images/variants/accordion-noicon-default.png",
+              "sOverride": {
+                "icon": "Chevron 20×20px right"
+              },
+              "code": {
+                "kt": "SnackyAccordion(title = \"How do I track my order?\") { Text(\"Open the History menu and select your order...\") }",
+                "tsx": "<Accordion title=\"How do I track my order?\"><p>Open the History menu and select your order...</p></Accordion>"
+              }
+            },
+            {
+              "sl": "Expanded",
+              "st": "active",
+              "img": "assets/images/variants/accordion-noicon-expand.png",
+              "sOverride": {
+                "h": 340,
+                "icon": "Chevron rotated 180°",
+                "note": "The collapsed-header border seen in Default is not present in Figma's own Expanded node for either variant - this may be an intentional resting-state-only detail or a minor inconsistency in the source file; flagged rather than silently assumed."
+              },
+              "code": {
+                "kt": "// expanded state is internal - click toggles it\nSnackyAccordion(title = \"Apakah ada biaya pengiriman?\") { Text(\"Biaya pengiriman dihitung berdasarkan jarak.\") }",
+                "tsx": "// expanded state is internal - click toggles it\n<Accordion title=\"Apakah ada biaya pengiriman?\"><p>Biaya pengiriman dihitung berdasarkan jarak.</p></Accordion>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "modal": {
+      "name": "Modal",
+      "cat": "Content",
+      "desc": "Bottom sheets and overlay dialogs.",
+      "usage": "All modals use 20px top-corner radius giving a bottom-sheet appearance. Internal padding is 24px on all sides. Gap between illustration and buttons is 32px.",
+      "cover": "assets/images/modal.png",
+      "v": [
+        {
+          "id": "modal-welcome",
+          "name": "Welcome",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-welcome.png",
+          "s": {
+            "w": 360,
+            "h": 440,
+            "pt": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 32,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 49.29,
+                "heightPct": 7.27
+              },
+              {
+                "topPct": 75,
+                "heightPct": 7.27
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins Bold",
+            "fs": 16,
+            "lh": 36,
+            "color": "#333333",
+            "illus": "200×200px",
+            "note": "Subtitle is small/regular 12px. Footer row: Skip (secondary, 164px) + Take the Tour (primary), gap 16px, pt:4 pb:24 pl:8 pr:8"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showWelcome = false }) {\n    SnackyIllustration(IllustrationVariant.Welcome)\n    Text(\"Hi, Welcome to Snacky!\", style = SnackyTypography.h3Bold)\n    Text(\"Let's take a quick tour so you can get to know our features better\", style = SnackyTypography.smallRegular)\n    Row(horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        SnackyButton(\"Skip\", { showWelcome = false }, variant = ButtonVariant.Secondary, size = ButtonSize.Small)\n        SnackyButton(\"Take the Tour\", { startTour() })\n    }\n}",
+            "tsx": "<BottomSheet open={showWelcome} onDismiss={() => setShowWelcome(false)}>\n  <Illustration variant=\"welcome\" alt=\"\" />\n  <h2 style={typography.h3Bold}>Hi, Welcome to Snacky!</h2>\n  <p style={typography.smallRegular}>Let's take a quick tour so you can get to know our features better</p>\n  <div style={{ display: 'flex', gap: 'var(--gap-layout-block)' }}>\n    <Button onClick={() => setShowWelcome(false)} variant=\"secondary\" size=\"small\">Skip</Button>\n    <Button onClick={startTour}>Take the Tour</Button>\n  </div>\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-success",
+          "name": "Success",
+          "st": "active",
+          "sl": null,
+          "img": "assets/images/variants/modal-success.png",
+          "s": {
+            "w": 360,
+            "h": 416,
+            "pt": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 32,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 52.16,
+                "heightPct": 7.69
+              },
+              {
+                "topPct": 73.92,
+                "heightPct": 7.69
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins Bold 16px lh36 (title) · Regular 12px lh24 (subtitle) · SemiBold 12px (button)",
+            "color": "#333333",
+            "illus": "200×200px",
+            "align": "Center",
+            "use": "Action success confirmation",
+            "note": "Footer: full-width primary button \"OK\", pt:4 pb:24 px:24"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showSuccess = false }) {\n    SnackyIllustration(IllustrationVariant.Success)\n    Text(\"Password Successfully Changed\", style = SnackyTypography.h3Bold, color = textPrimary, textAlign = TextAlign.Center)\n    Text(\"You can now log in with your new password\", style = SnackyTypography.smallRegular, color = textPrimary, textAlign = TextAlign.Center)\n    SnackyButton(\"OK\", onClick = { showSuccess = false }, modifier = Modifier.fillMaxWidth())\n}",
+            "tsx": "<BottomSheet open={showSuccess} onDismiss={() => setShowSuccess(false)}>\n  <Illustration variant=\"success\" alt=\"\" />\n  <h2 style={{ ...typography.h3Bold, textAlign: 'center' }}>Password Successfully Changed</h2>\n  <p style={{ ...typography.smallRegular, textAlign: 'center' }}>You can now log in with your new password</p>\n  <Button onClick={() => setShowSuccess(false)} style={{ width: '100%' }}>OK</Button>\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-confirmation",
+          "name": "Confirmation",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-confirmation.png",
+          "s": {
+            "w": 360,
+            "h": 200,
+            "pt": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 32,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 45.75,
+                "heightPct": 16
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins Bold 16px lh36 (title) · Regular 12px lh24 (subtitle) · SemiBold 12px (buttons)",
+            "color": "#333333",
+            "align": "Center",
+            "use": "Yes/no compact prompt",
+            "note": "Footer row: No (secondary, 164px) + Log Out (primary), gap 14px, pt:4 pb:24 pl:8 pr:8"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showConfirm = false }) {\n    Text(\"Are you sure you want to log out?\", style = SnackyTypography.h3Bold, color = textPrimary, textAlign = TextAlign.Center)\n    Text(\"You need to log in again to access your account\", style = SnackyTypography.smallRegular, color = textPrimary, textAlign = TextAlign.Center)\n    Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {\n        SnackyButton(\"No\", { showConfirm = false }, variant = ButtonVariant.Secondary, modifier = Modifier.width(164.dp))\n        SnackyButton(\"Log Out\", { logout() })\n    }\n}",
+            "tsx": "<BottomSheet open={showConfirm} onDismiss={() => setShowConfirm(false)}>\n  <h2 style={{ ...typography.h3Bold, textAlign: 'center' }}>Are you sure you want to log out?</h2>\n  <p style={{ ...typography.smallRegular, textAlign: 'center' }}>You need to log in again to access your account</p>\n  <div style={{ display: 'flex', gap: 14 }}>\n    <Button onClick={() => setShowConfirm(false)} variant=\"secondary\" style={{ width: 164 }}>No</Button>\n    <Button onClick={logout}>Log Out</Button>\n  </div>\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-onboarding",
+          "name": "Onboarding",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-onboarding.png",
+          "s": {
+            "w": 325,
+            "h": 160,
+            "pt": 12,
+            "pb": 12,
+            "pl": 12,
+            "pr": 12,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 50,
+                "heightPct": 10
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins SemiBold 12px (title) · Regular 12px (body/step) · SemiBold 12px (button)",
+            "color": "#333333 (title/body) · #7a7a7a (step counter)",
+            "use": "Feature intro coachmark/tooltip - plain card, not a bottom sheet",
+            "note": "Footer row gap:19 - \"1 of 5\" step counter + primary \"Continue\" button"
+          },
+          "code": {
+            "kt": "Column(\n    modifier = Modifier\n        .width(325.dp)\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .padding(spacing12),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Text(\"Shipping Address\", style = SnackyTypography.smallBold, color = textPrimary)\n    Text(\"Your delivery destination can be easily accessed here\", style = SnackyTypography.smallRegular, color = textPrimary)\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(19.dp)) {\n        Text(\"1 of 5\", style = SnackyTypography.smallRegular, color = textSecondary)\n        Spacer(Modifier.weight(1f))\n        SnackyButton(\"Continue\", onClick = onNextTip)\n    }\n}",
+            "tsx": "<div style={{ width: 325, background: 'var(--bg-surface)', borderRadius: 4, padding: 'var(--spacing-12)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <p style={{ ...typography.smallBold, margin: 0 }}>Shipping Address</p>\n  <p style={{ ...typography.smallRegular, margin: 0 }}>Your delivery destination can be easily accessed here</p>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 19 }}>\n    <span style={{ ...typography.smallRegular, color: 'var(--text-secondary)' }}>1 of 5</span>\n    <div style={{ flex: 1 }} />\n    <Button onClick={onNextTip}>Continue</Button>\n  </div>\n</div>"
+          }
+        },
+        {
+          "id": "modal-calendar",
+          "name": "Calendar",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-calendar.png",
+          "s": {
+            "w": 360,
+            "h": 505,
+            "pt": 24,
+            "pb": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 24,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 11.83,
+                "heightPct": 4.75
+              },
+              {
+                "topPct": 79.83,
+                "heightPct": 4.75
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins Bold 16px lh36 (month title) · Regular 12px (weekday labels) · Bold/Regular 16px lh36 (day numbers) · SemiBold 12px (button)",
+            "color": "#333333 (in-month) · #a3a3a3 (out-of-month)",
+            "use": "Full date picker sheet - month nav, day grid, range selection highlight"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showCalendar = false }) {\n    DatePicker(\n        state = datePickerState,\n        title = null,\n        headline = null,\n        showModeToggle = false,\n        colors = DatePickerDefaults.colors(\n            selectedDayContainerColor = bgActionPrimary,\n            todayDateBorderColor = bgActionPrimary\n        )\n    )\n    SnackyButton(\"Select Date\", onClick = { showCalendar = false }, modifier = Modifier.fillMaxWidth())\n}",
+            "tsx": "<BottomSheet open={showCalendar} onDismiss={() => setShowCalendar(false)}>\n  <DatePicker value={date} onChange={setDate} />\n  <Button onClick={() => setShowCalendar(false)} style={{ width: '100%' }}>Select Date</Button>\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-variants",
+          "name": "Variants Selector",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-variants.png",
+          "s": {
+            "w": 360,
+            "h": 356,
+            "pt": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 10.43,
+                "heightPct": 4.49
+              },
+              {
+                "topPct": 42.59,
+                "heightPct": 4.49
+              },
+              {
+                "topPct": 76.93,
+                "heightPct": 4.49
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins SemiBold 14px (header) · Regular 12px (chip label)",
+            "icon": "24×24px close",
+            "thumb": "80×80px, border 1px #ccc, p4 r4",
+            "chip": "Selected: fill #fef8eb border 1px #f8b732 · Unselected: border 1px #ccc, r100, p8",
+            "use": "Product variant/weight selector - preview image, weight chip rows, Basket + Buy Now footer",
+            "note": "Footer: outlined \"Basket\" (160px, with cart icon) + primary \"Buy Now\" (160px), gap8 pb24 pt4 px16"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showVariants = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        IconButton(onClick = { showVariants = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Variants\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(80.dp).padding(spacing4))\n    FlowRow(horizontalArrangement = Arrangement.spacedBy(gapCell), verticalArrangement = Arrangement.spacedBy(gapCell)) {\n        weights.forEach { w -> SnackyFilterChip(w.label, selected = w.id == selectedWeightId, { selectWeight(w.id) }) }\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyButton(\"Basket\", { addToBasket() }, variant = ButtonVariant.Secondary, icon = { Icon(Icons.Outlined.ShoppingCart, contentDescription = null) }, modifier = Modifier.width(160.dp))\n        SnackyButton(\"Buy Now\", { buyNow() }, modifier = Modifier.width(160.dp))\n    }\n}",
+            "tsx": "<BottomSheet open={showVariants} onDismiss={() => setShowVariants(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n    <button onClick={() => setShowVariants(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Variants</h2>\n  </div>\n  <img src={productImageUrl} width={80} height={80} style={{ padding: 'var(--spacing-4)', border: '1px solid var(--border-main)', borderRadius: 4 }} alt=\"\" />\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-cell)' }}>\n    {weights.map((w) => <FilterChip key={w.id} label={w.label} selected={w.id === selectedWeightId} onClick={() => selectWeight(w.id)} />)}\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <Button onClick={addToBasket} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />} style={{ width: 160 }}>Basket</Button>\n    <Button onClick={buyNow} style={{ width: 160 }}>Buy Now</Button>\n  </div>\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-payment-methods",
+          "name": "Payment Methods",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-payment-methods.png",
+          "s": {
+            "w": 360,
+            "h": 904,
+            "pt": 16,
+            "pb": 16,
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins SemiBold 14px (header) · Bold 16px lh36 (section titles) · SemiBold 12px (method name) · Regular 12px (balance subtext) · Bold 12px (Top Up/Add links)",
+            "color": "#333333 (header/section titles/method name) · #7a7a7a (balance subtext) · #88651c (Top Up/Add links)",
+            "icon": "24×24px (close + payment logos)",
+            "use": "Payment method picker - Balance/COD, E-Wallet, Credit/Debit Card, Virtual Account groups"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showPaymentMethods = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showPaymentMethods = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Payment Methods\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Text(\"Balance & COD\", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_money, label = \"Balance\", subtitle = \"$6.00 (Insufficient Balance)\", actionLabel = \"Top Up\", onAction = onTopUp)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_truck, label = \"COD\")\n    Text(\"E-Wallet\", style = SnackyTypography.h3Bold, color = textPrimary)\n    eWallets.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, selected = it.id == selectedId, onClick = { selectMethod(it.id) }) }\n    Text(\"Credit/Debit Card\", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_credit_card, label = \"Visa/Mastercard\", actionLabel = \"Add\", onAction = onAddCard)\n    Text(\"Virtual Account\", style = SnackyTypography.h3Bold, color = textPrimary)\n    virtualAccounts.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, onClick = { selectMethod(it.id) }) }\n}",
+            "tsx": "<BottomSheet open={showPaymentMethods} onDismiss={() => setShowPaymentMethods(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowPaymentMethods(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Payment Methods</h2>\n  </div>\n  <h3 style={typography.h3Bold}>Balance & COD</h3>\n  <PaymentMethodRow icon={<MoneyIcon />} label=\"Balance\" subtitle=\"$6.00 (Insufficient Balance)\" actionLabel=\"Top Up\" onAction={onTopUp} />\n  <PaymentMethodRow icon={<TruckIcon />} label=\"COD\" />\n  <h3 style={typography.h3Bold}>E-Wallet</h3>\n  {eWallets.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} selected={m.id === selectedId} onClick={() => selectMethod(m.id)} />)}\n  <h3 style={typography.h3Bold}>Credit/Debit Card</h3>\n  <PaymentMethodRow icon={<CreditCardIcon />} label=\"Visa/Mastercard\" actionLabel=\"Add\" onAction={onAddCard} />\n  <h3 style={typography.h3Bold}>Virtual Account</h3>\n  {virtualAccounts.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} onClick={() => selectMethod(m.id)} />)}\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-reviews",
+          "name": "Buyer Reviews",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-reviews.png",
+          "s": {
+            "w": 360,
+            "h": 656,
+            "pt": 16,
+            "pb": 16,
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins SemiBold 14px (header) · SemiBold 12px (rating) · Regular 12px (rating count/review body) · Bold 12px (reviewer name)",
+            "color": "#333333 (header/reviewer name/review body) · #7a7a7a (rating count)",
+            "chip": "Filter chips - Selected: fill #fef8eb border 1px #f8b732 · Unselected: fill #ffffff border 1px #cccccc, r100",
+            "avatar": "32×32px circle",
+            "thumb": "40×40px, border 1px #ccc, r4",
+            "use": "Buyer reviews list - rating summary, sort filter chips, reviewer cards with photo thumbnails"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showReviews = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showReviews = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Buyer Reviews\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"4.5\", style = SnackyTypography.smallSemibold, color = textSecondary)\n        Text(\"(471 ratings)\", style = SnackyTypography.smallRegular, color = textSecondary)\n        Text(\"189 Reviews\", style = SnackyTypography.smallRegular, color = textSecondary)\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyFilterChip(\"Latest\", selected = sortBy == \"latest\", { sortBy = \"latest\" })\n        SnackyFilterChip(\"Highest Rating\", selected = sortBy == \"highest\", { sortBy = \"highest\" })\n        SnackyFilterChip(\"Lowest Rating\", selected = sortBy == \"lowest\", { sortBy = \"lowest\" })\n    }\n    reviews.forEach { review ->\n        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n            AsyncImage(review.avatarUrl, contentDescription = null, modifier = Modifier.size(32.dp).clip(CircleShape))\n            Column {\n                Text(review.author, style = SnackyTypography.smallBold, color = textPrimary)\n                SnackyRatingStars(rating = review.rating)\n            }\n        }\n        Text(review.comment, style = SnackyTypography.smallRegular, color = textPrimary)\n        Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n            review.photoUrls.forEach { AsyncImage(it, contentDescription = null, modifier = Modifier.size(40.dp)) }\n        }\n        HorizontalDivider()\n    }\n}",
+            "tsx": "<BottomSheet open={showReviews} onDismiss={() => setShowReviews(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowReviews(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Buyer Reviews</h2>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <StarIcon width={16} height={16} />\n    <span style={typography.smallSemibold}>4.5</span>\n    <span style={typography.smallRegular}>(471 ratings)</span>\n    <span style={typography.smallRegular}>189 Reviews</span>\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <FilterChip label=\"Latest\" selected={sortBy === 'latest'} onClick={() => setSortBy('latest')} />\n    <FilterChip label=\"Highest Rating\" selected={sortBy === 'highest'} onClick={() => setSortBy('highest')} />\n    <FilterChip label=\"Lowest Rating\" selected={sortBy === 'lowest'} onClick={() => setSortBy('lowest')} />\n  </div>\n  {reviews.map((review) => (\n    <div key={review.id}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n        <img src={review.avatarUrl} width={32} height={32} style={{ borderRadius: '50%' }} alt=\"\" />\n        <div>\n          <p style={{ ...typography.smallBold, margin: 0 }}>{review.author}</p>\n          <RatingStars rating={review.rating} />\n        </div>\n      </div>\n      <p style={{ ...typography.smallRegular, margin: '8px 0' }}>{review.comment}</p>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n        {review.photoUrls.map((url) => <img key={url} src={url} width={40} height={40} alt=\"\" />)}\n      </div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    </div>\n  ))}\n</BottomSheet>"
+          }
+        },
+        {
+          "id": "modal-driver",
+          "name": "Driver Tracking",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/modal-driver.png",
+          "s": {
+            "w": 360,
+            "h": 456,
+            "pt": 8,
+            "pb": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 24.48,
+                "heightPct": 3.51
+              },
+              {
+                "topPct": 30.59,
+                "heightPct": 3.51
+              },
+              {
+                "topPct": 42.93,
+                "heightPct": 3.51
+              },
+              {
+                "topPct": 47.4,
+                "heightPct": 3.51
+              }
+            ],
+            "fill": "#ffffff",
+            "r": "20px (top corners)",
+            "font": "Poppins SemiBold 14px (name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA/step title) · Regular 12px (timestamp)",
+            "color": "#333333 (name/ETA/active step) · #7a7a7a (plate/label/timestamp) · #a3a3a3 (disabled step)",
+            "handle": "Material3 ModalBottomSheet default drag handle",
+            "avatar": "56×56px circle (size/avatar/md)",
+            "use": "Driver card + partial order status timeline (3 steps) - order tracking bottom sheet"
+          },
+          "code": {
+            "kt": "SnackyBottomSheet(onDismiss = { showDriver = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text(\"Mimbar Al Risyad\", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text(\"B1112ARB\", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = \"Call\", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = \"Chat\", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text(\"Estimated arrival at\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"12:30 - 12:40\", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Driver picking up order from seller\", \"Dec 30, 11:00 AM\"),\n        TimelineStep(\"Driver delivering order to customer\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order received by customer\", active = false),\n    ))\n}",
+            "tsx": "<BottomSheet open={showDriver} onDismiss={() => setShowDriver(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <OrderStatusTimeline steps={[\n    { title: 'Driver picking up order from seller', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Driver delivering order to customer', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order received by customer', active: false },\n  ]} />\n</BottomSheet>"
+          }
+        }
+      ]
+    },
+    "section": {
+      "name": "Section",
+      "cat": "Content",
+      "desc": "Composite content sections used on product and order screens.",
+      "usage": "Each section type serves a different layout purpose: variant selector, product description, buyer reviews, horizontal product scroll, banner+product grid, and a full vertical product list.",
+      "cover": "assets/images/section.png",
+      "v": [
+        {
+          "id": "section-variant",
+          "name": "Variant Selector",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-variant-preview.png",
+          "s": {
+            "w": 360,
+            "h": 112,
+            "pt": 16,
+            "pb": 16,
+            "fill": "#ffffff",
+            "use": "Product options (size/weight picker) - chips row with scroll"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Variant\", actionLabel = null) { Row { variants.forEach { SnackyFilterChip(it.label, it.selected, {}) } } }",
+            "tsx": "<Section title=\"Variant\" actionLabel={undefined}><div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>{variants.map((v) => <FilterChip key={v.id} label={v.label} selected={v.selected} onClick={() => {}} />)}</div></Section>"
+          }
+        },
+        {
+          "id": "section-description",
+          "name": "Product Description",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-description-preview.png",
+          "s": {
+            "w": 360,
+            "h": 144,
+            "pt": 16,
+            "pb": 16,
+            "fill": "#ffffff",
+            "font": "Poppins SemiBold 14px (title) · Regular 12px (body)",
+            "use": "Product detail - name, flavour, net weight"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Product Description\", actionLabel = null) { Text(\"Chiki Balls cheese flavor, 68 grams per pack.\") }",
+            "tsx": "<Section title=\"Product Description\" actionLabel={undefined}><p>Chiki Balls cheese flavor, 68 grams per pack.</p></Section>"
+          }
+        },
+        {
+          "id": "section-review",
+          "name": "Buyer Reviews",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-review-preview.png",
+          "s": {
+            "w": 360,
+            "h": 248,
+            "pt": 16,
+            "pb": 16,
+            "fill": "#ffffff",
+            "use": "Aggregate rating + single review with photo thumbnails"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Buyer Reviews\", onAction = { navController.navigate(\"reviews\") }) { /* rating summary + review card */ }",
+            "tsx": "<Section title=\"Buyer Reviews\" onAction={() => navigate('/reviews')}>{/* rating summary + review card */}</Section>"
+          }
+        },
+        {
+          "id": "section-horizontal",
+          "name": "Group Products - Horizontal",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-horizontal-preview.png",
+          "s": {
+            "w": 360,
+            "h": 372,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 8,
+            "gapZones": [
+              {
+                "leftPct": 26.7,
+                "widthPct": 1.17
+              },
+              {
+                "leftPct": 50,
+                "widthPct": 1.17
+              },
+              {
+                "leftPct": 73.3,
+                "widthPct": 1.17
+              }
+            ],
+            "fill": "#ffffff",
+            "use": "Horizontal scrolling product row (Similar Products, etc.)"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Similar Products\", onAction = { navController.navigate(\"products\") }) { LazyRow { items(similarProducts) { SnackyProductCard(it.name, it.imageUrl, it.price, variant = ProductCardVariant.Slider, onClick = {}) } } }",
+            "tsx": "<Section title=\"Similar Products\" onAction={() => navigate('/products')}><div style={{ display: 'flex', gap: 'var(--gap-cell)', overflowX: 'auto' }}>{similarProducts.map((p) => <ProductCard key={p.id} productName={p.name} imageUrl={p.imageUrl} price={p.price} variant=\"slider\" onClick={() => {}} />)}</div></Section>"
+          }
+        },
+        {
+          "id": "section-banner",
+          "name": "Group Products - Banner Grid",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-banner-preview.png",
+          "s": {
+            "w": 360,
+            "h": 396,
+            "fill": "#ffffff",
+            "use": "Banner overlapping product card row (promo section)"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Special Promo\", actionLabel = null) { SnackyBanner(imageUrl = promoUrl, variant = BannerVariant.Square); /* product row */ }",
+            "tsx": "<Section title=\"Special Promo\" actionLabel={undefined}><Banner variant=\"square\" imageUrl={promoUrl} alt=\"Promo\" />{/* product row */}</Section>"
+          }
+        },
+        {
+          "id": "section-vertical",
+          "name": "Group Products - Vertical",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/section.png",
+          "s": {
+            "w": 360,
+            "h": 1278,
+            "fill": "#ffffff",
+            "use": "Full vertical product list (All Products page)"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"All Products\", actionLabel = null) { products.forEach { SnackyProductCard(it.name, it.imageUrl, it.price, variant = ProductCardVariant.Normal, onClick = {}) } }",
+            "tsx": "<Section title=\"All Products\" actionLabel={undefined}>{products.map((p) => <ProductCard key={p.id} productName={p.name} imageUrl={p.imageUrl} price={p.price} variant=\"normal\" onClick={() => {}} />)}</Section>"
+          }
+        },
+        {
+          "id": "section-order-status",
+          "name": "Order Status Timeline",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "icon-label",
+            "gapZones": [
+              {
+                "leftPct": 12.22,
+                "widthPct": 5.56
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins SemiBold 14px (title) · Bold 12px (step title) · Regular 12px (timestamp)",
+            "dot": "24×24px dot, 2px connecting line, 32px vertical gap between steps",
+            "color": "Active step: #333333 · Disabled step: #7a7a7a · Error step: #a73e3e (textError)"
+          },
+          "states": [
+            {
+              "sl": "Received",
+              "st": "active",
+              "img": "assets/images/variants/section-order-status-received.png",
+              "code": {
+                "kt": "SnackySection(title = \"Order Status\", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Payment Received\", \"Dec 30, 11:00 AM\"),\n        TimelineStep(\"Order Processing\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order Delivered\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order Received\", \"Dec 30, 12:30 PM\"),\n    ))\n}",
+                "tsx": "<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Payment Received', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Order Processing', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Delivered', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Received', timestamp: 'Dec 30, 12:30 PM' },\n  ]} />\n</Section>"
+              }
+            },
+            {
+              "sl": "Waiting",
+              "st": null,
+              "img": "assets/images/variants/section-order-status-waiting.png",
+              "code": {
+                "kt": "SnackySection(title = \"Order Status\", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Waiting for payment\", \"Pay before Dec 30, 11:00\"),\n        TimelineStep(\"Order Processed\", active = false),\n        TimelineStep(\"Order Delivered\", active = false),\n        TimelineStep(\"Order Received\", active = false),\n    ))\n}",
+                "tsx": "<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Waiting for payment', timestamp: 'Pay before Dec 30, 11:00' },\n    { title: 'Order Processed', active: false },\n    { title: 'Order Delivered', active: false },\n    { title: 'Order Received', active: false },\n  ]} />\n</Section>"
+              }
+            },
+            {
+              "sl": "Delivered",
+              "st": "active",
+              "img": "assets/images/variants/section-order-status-delivered.png",
+              "code": {
+                "kt": "SnackySection(title = \"Order Status\", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Payment Received\", \"Dec 30, 11:00 AM\"),\n        TimelineStep(\"Order Processing\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order Delivered\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order Received\", active = false),\n    ))\n}",
+                "tsx": "<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Payment Received', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Order Processing', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Delivered', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Received', active: false },\n  ]} />\n</Section>"
+              }
+            },
+            {
+              "sl": "Cancelled",
+              "st": "danger",
+              "img": "assets/images/variants/section-order-status-cancelled.png",
+              "code": {
+                "kt": "SnackySection(title = \"Order Status\", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Order Cancelled\", \"Dec 30, 11:00 AM\", isError = true),\n        TimelineStep(\"Order Processing\", active = false),\n        TimelineStep(\"Order Delivered\", active = false),\n        TimelineStep(\"Order Received\", active = false),\n    ))\n}",
+                "tsx": "<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Order Cancelled', timestamp: 'Dec 30, 11:00 AM', isError: true },\n    { title: 'Order Processing', active: false },\n    { title: 'Order Delivered', active: false },\n    { title: 'Order Received', active: false },\n  ]} />\n</Section>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "section-destination",
+          "name": "Destination - Compact",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-destination.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 4,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 42.86,
+                "heightPct": 14.29
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins Regular 12px (label) · Bold 12px (address tag)",
+            "icon": "16×16px marker + chevron",
+            "color": "#333333",
+            "use": "Compact destination address summary - cart/checkout header, single-line truncated address"
+          },
+          "code": {
+            "kt": "Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapIconLabel)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_marker), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"Sent to\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"Home\", style = SnackyTypography.smallBold, color = textPrimary)\n        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n    }\n    Text(\n        text = \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary,\n        maxLines = 1,\n        overflow = TextOverflow.Ellipsis\n    )\n}",
+            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-icon-label)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <MarkerIcon width={16} height={16} />\n    <span style={typography.smallRegular}>Sent to</span>\n    <span style={typography.smallBold}>Home</span>\n    <ChevronDownIcon width={16} height={16} />\n  </div>\n  <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>\n    Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\n  </p>\n</div>"
+          }
+        },
+        {
+          "id": "section-destination-description",
+          "name": "Destination - Full",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-destination-description.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 23.13,
+                "heightPct": 19.73
+              },
+              {
+                "topPct": 49.66,
+                "heightPct": 10.2
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins SemiBold 14px (title) · Bold 12px (label) · Regular 12px (address, multi-line)",
+            "color": "#333333",
+            "use": "Full destination address card - order detail page"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Destination Location\", actionLabel = null) {\n    Text(\"Home\", style = SnackyTypography.smallBold, color = textPrimary)\n    Text(\n        \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary\n    )\n}",
+            "tsx": "<Section title=\"Destination Location\" actionLabel={undefined}>\n  <p style={{ ...typography.smallBold, margin: 0 }}>Home</p>\n  <p style={{ ...typography.smallRegular, margin: '4px 0 0' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta</p>\n</Section>"
+          }
+        },
+        {
+          "id": "section-payment",
+          "name": "Payment Method Row",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-payment.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 4,
+            "gapAnchor": "icon-label",
+            "gapZones": [
+              {
+                "leftPct": 73.06,
+                "widthPct": 2.78
+              },
+              {
+                "leftPct": 87.5,
+                "widthPct": 2.22
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins Regular 12px (label) · SemiBold 12px (method name)",
+            "icon": "24×24px logo + 16×16px chevron",
+            "color": "#333333",
+            "use": "Payment method selector row - checkout"
+          },
+          "code": {
+            "kt": "Row(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalAlignment = Alignment.CenterVertically\n) {\n    Text(\"Payment Method\", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n    Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n    Spacer(Modifier.width(gapIconLabel))\n    Text(\"GOPAY\", style = SnackyTypography.smallSemibold, color = textPrimary)\n    Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n}",
+            "tsx": "<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', padding: 'var(--gap-layout-block) var(--spacing-24)', background: 'var(--bg-surface)' }}>\n  <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n  <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n  <span style={typography.smallSemibold}>GOPAY</span>\n  <ChevronDownIcon width={16} height={16} />\n</div>"
+          }
+        },
+        {
+          "id": "section-driver",
+          "name": "Driver",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-driver.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 11.97,
+                "heightPct": 7.75
+              },
+              {
+                "topPct": 40.85,
+                "heightPct": 5.28
+              },
+              {
+                "topPct": 46.83,
+                "heightPct": 7.39
+              },
+              {
+                "topPct": 66.55,
+                "heightPct": 7.75
+              },
+              {
+                "topPct": 75,
+                "heightPct": 5.28
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins SemiBold 14px (title/name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA) · SemiBold 12px (button)",
+            "avatar": "56×56px circle (size/avatar/md)",
+            "cta": "Full-width button, fill #f8b732, r4, p8",
+            "use": "Driver info card with contact actions and live ETA - order tracking"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Driver\", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text(\"Mimbar Al Risyad\", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text(\"B1112ARB\", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = \"Call\", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = \"Chat\", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text(\"Estimated arrival at\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"12:30 - 12:40\", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyButton(\"Track Delivery\", onClick = onTrack, modifier = Modifier.fillMaxWidth())\n}",
+            "tsx": "<Section title=\"Driver\" actionLabel={undefined}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <Button onClick={onTrack} style={{ width: '100%' }}>Track Delivery</Button>\n</Section>"
+          }
+        },
+        {
+          "id": "section-order-summary",
+          "name": "Order Summary",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-order-summary.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 24,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 12.61,
+                "heightPct": 5.88
+              },
+              {
+                "topPct": 23.53,
+                "heightPct": 6.3
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins SemiBold 14px (title) · SemiBold 12px (invoice id) · Bold 12px (Copy/labels) · Regular 12px (body)",
+            "use": "Full order receipt - invoice, payment method, line items, notes, totals (order detail page)"
+          },
+          "code": {
+            "kt": "SnackySection(title = \"Order\", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        Text(\"INV/KK/20220911/112/846226/2395144\", style = SnackyTypography.smallSemibold, color = textSecondary, modifier = Modifier.weight(1f))\n        Text(\"Copy\", style = SnackyTypography.smallBold, color = textLink, modifier = Modifier.clickable(onClick = onCopyInvoice))\n    }\n    Row {\n        Text(\"Payment Method\", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n        Text(\"GOPAY\", style = SnackyTypography.smallSemibold, color = textPrimary)\n    }\n    Column(verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        orderItems.forEach { item ->\n            Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n                Text(\"${item.qty}x\", style = SnackyTypography.smallRegular, color = textPrimary)\n                Text(item.name, style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n                Text(item.price, style = SnackyTypography.smallSemibold, color = textPrimary)\n            }\n            HorizontalDivider()\n        }\n        Column {\n            Text(\"Notes\", style = SnackyTypography.smallRegular, color = textSecondary)\n            Text(\"Lorem ipsum dolor sit amet\", style = SnackyTypography.smallRegular, color = textPrimary)\n        }\n        HorizontalDivider()\n        Column(verticalArrangement = Arrangement.spacedBy(gapCell)) {\n            Row { Text(\"Subtotal\", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text(\"Rp 10,000\", style = SnackyTypography.smallSemibold) }\n            Row { Text(\"Shipping Fee\", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text(\"Rp 5,000\", style = SnackyTypography.smallRegular, textDecoration = TextDecoration.LineThrough); Text(\"Free\", style = SnackyTypography.smallRegular) }\n            Row { Text(\"Referral Promo\", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text(\"- Rp 2,000\", style = SnackyTypography.smallRegular) }\n            HorizontalDivider()\n            Row { Text(\"Total\", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text(\"Rp 8,000\", style = SnackyTypography.smallSemibold) }\n        }\n    }\n}",
+            "tsx": "<Section title=\"Order\" actionLabel={undefined}>\n  <div style={{ display: 'flex', alignItems: 'center' }}>\n    <p style={{ ...typography.smallSemibold, margin: 0, flex: 1, color: 'var(--text-secondary)' }}>INV/KK/20220911/112/846226/2395144</p>\n    <button onClick={onCopyInvoice} style={{ ...typography.smallBold, background: 'none', border: 'none', color: 'var(--text-link)' }}>Copy</button>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center' }}>\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n    <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n    <span style={typography.smallSemibold}>GOPAY</span>\n  </div>\n  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n    {orderItems.map((item) => (\n      <div key={item.id}>\n        <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n          <span style={typography.smallRegular}>{item.qty}x</span>\n          <span style={{ ...typography.smallRegular, flex: 1 }}>{item.name}</span>\n          <span style={typography.smallSemibold}>{item.price}</span>\n        </div>\n        <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n      </div>\n    ))}\n    <div>\n      <p style={{ ...typography.smallRegular, margin: 0, color: 'var(--text-secondary)' }}>Notes</p>\n      <p style={{ ...typography.smallRegular, margin: 0 }}>Lorem ipsum dolor sit amet</p>\n    </div>\n    <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-cell)' }}>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Subtotal</span><span style={typography.smallSemibold}>Rp 10,000</span></div>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.smallRegular, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.smallRegular}>Free</span></div>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Referral Promo</span><span style={typography.smallRegular}>- Rp 2,000</span></div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Total</span><span style={typography.smallSemibold}>Rp 8,000</span></div>\n    </div>\n  </div>\n</Section>"
+          }
+        },
+        {
+          "id": "section-order-details",
+          "name": "Order Details - Line Item",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/section-order-details.png",
+          "s": {
+            "w": 360,
+            "pt": 16,
+            "pb": 16,
+            "pl": 24,
+            "pr": 24,
+            "gap": 16,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 19.94,
+                "heightPct": 4.11
+              },
+              {
+                "topPct": 34.18,
+                "heightPct": 4.75
+              },
+              {
+                "topPct": 39.56,
+                "heightPct": 6.01
+              },
+              {
+                "topPct": 50.63,
+                "heightPct": 6.01
+              },
+              {
+                "topPct": 57.28,
+                "heightPct": 6.65
+              },
+              {
+                "topPct": 68.67,
+                "heightPct": 7.91
+              },
+              {
+                "topPct": 81.33,
+                "heightPct": 7.91
+              }
+            ],
+            "fill": "#ffffff",
+            "r": 4,
+            "font": "Poppins Regular 12px (product/labels) · SemiBold 14px (price) · Regular 10px (variant chip) · SemiBold 10px (qty count) · Bold 12px (Add Note link)",
+            "thumb": "48×48px",
+            "variantChip": "fill #fef8eb, border 1px #f8b732, r4, p8",
+            "qtyStepper": "circular +/- buttons, fill #f8b732, r100, p8",
+            "use": "Single product line-item with variant chip, qty stepper, note link, and price breakdown - cart/order edit"
+          },
+          "code": {
+            "kt": "Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(48.dp).padding(spacing4))\n        Text(\"Chicki Balls Cheeky Chicken 75 g\", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(\n        verticalAlignment = Alignment.CenterVertically,\n        horizontalArrangement = Arrangement.spacedBy(gapLayoutStack),\n        modifier = Modifier.padding(start = 60.dp)\n    ) {\n        SnackyChip(label = \"Variant: 75 Grams\", variant = ChipVariant.Product, selected = true)\n        Spacer(Modifier.weight(1f))\n        SnackyQtyStepper(quantity = 1, onIncrement = {}, onDecrement = {})\n    }\n    HorizontalDivider()\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        Icon(painterResource(R.drawable.ic_pencil), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"Add Note\", style = SnackyTypography.smallBold, color = textLink)\n    }\n    HorizontalDivider()\n    Row { Text(\"Subtotal\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold) }\n    Row { Text(\"Shipping Fee\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold, textDecoration = TextDecoration.LineThrough); Text(\"Free\", style = SnackyTypography.bodySemibold) }\n    Row { Text(\"Referral Promo\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"- Rp 2,000\", style = SnackyTypography.bodySemibold) }\n}",
+            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <img src={productImageUrl} width={48} height={48} style={{ padding: 'var(--spacing-4)' }} alt=\"\" />\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</p>\n    <span style={typography.bodySemibold}>Rp 5,000</span>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-stack)', paddingLeft: 60 }}>\n    <Chip label=\"Variant: 75 Grams\" variant=\"product\" selected />\n    <div style={{ flex: 1 }} />\n    <QtyStepper quantity={1} onIncrement={() => {}} onDecrement={() => {}} />\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <PencilIcon width={16} height={16} />\n    <span style={typography.smallBold}>Add Note</span>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Subtotal</span><span style={typography.bodySemibold}>Rp 5,000</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.bodySemibold, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.bodySemibold}>Free</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Referral Promo</span><span style={typography.bodySemibold}>- Rp 2,000</span></div>\n</div>"
+          }
+        }
+      ]
+    },
+    "avatar": {
+      "name": "Avatar",
+      "cat": "Assets",
+      "desc": "Circular profile photo in three fixed sizes.",
+      "usage": "Use size/avatar/sm for compact list rows (reviewer photos), size/avatar/md for contact/driver cards, and size/avatar/lg for larger profile contexts. Always a perfect circle - no border by default.",
+      "cover": "assets/images/variants/avatar-md.png",
+      "v": [
+        {
+          "id": "avatar-sm",
+          "name": "Small",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/avatar-sm.png",
+          "s": {
+            "w": 32,
+            "h": 32,
+            "r": 100,
+            "use": "Compact list rows - e.g. reviewer photo in Buyer Reviews"
+          },
+          "code": {
+            "kt": "SnackyAvatar(imageUrl = reviewerPhotoUrl, size = AvatarSize.Small, contentDescription = \"Reviewer photo\")",
+            "tsx": "<Avatar src={reviewerPhotoUrl} size=\"sm\" alt=\"Reviewer photo\" />"
+          }
+        },
+        {
+          "id": "avatar-md",
+          "name": "Medium",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/avatar-md.png",
+          "s": {
+            "w": 56,
+            "h": 56,
+            "r": 100,
+            "use": "Contact/driver cards - e.g. driver photo in the order tracking Section/Modal"
+          },
+          "code": {
+            "kt": "SnackyAvatar(imageUrl = driverPhotoUrl, size = AvatarSize.Medium, contentDescription = \"Driver photo\")",
+            "tsx": "<Avatar src={driverPhotoUrl} size=\"md\" alt=\"Driver photo\" />"
+          }
+        },
+        {
+          "id": "avatar-lg",
+          "name": "Large",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/avatar-lg.png",
+          "s": {
+            "w": 72,
+            "h": 72,
+            "r": 100,
+            "use": "Larger profile contexts - e.g. account/profile header"
+          },
+          "code": {
+            "kt": "SnackyAvatar(imageUrl = userPhotoUrl, size = AvatarSize.Large, contentDescription = \"Profile photo\")",
+            "tsx": "<Avatar src={userPhotoUrl} size=\"lg\" alt=\"Profile photo\" />"
+          }
+        }
+      ]
+    },
+    "icon": {
+      "name": "Icon",
+      "cat": "Assets",
+      "desc": "System icon set in two styles - Outline (default/inactive) and Solid (active/selected).",
+      "usage": "Use Outline as the default state for every icon. Swap to the Solid counterpart of the same name for the active/selected state (Navbar items, filled Favourite, etc). Use 20px for navbar, 24px for buttons and general UI, 16–20px for input fields.",
+      "cover": "assets/images/variants/icon-outline.png",
+      "v": [
+        {
+          "id": "icon-outline",
+          "name": "Outline",
+          "st": null,
+          "sl": "Default",
+          "img": "assets/images/variants/icon-outline.png",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "use": "41 icons: Home, Category, Cart, Document, Person, Bell, Heart, Truck, Cash, Check, Clock, Lock, Receipt, Logout, Help, Smartphone, Key, Edit, Credit Card, Phone, Chat, Send, Search, Trash, Chevron Right, Share, Message Square, Close Circle, Cart Add, Plus, Minus, Eye Off, Eye, Back, Close, Pin, Chevron Down, Chevron Up, Calendar, Location, Camera",
+            "note": "Default/inactive state - 1.5px stroke, no fill. Drawn at 24×24px; scale to 20px (size/icon/md) for Navbar or 16px (size/icon/sm) for compact input affordances."
+          },
+          "code": {
+            "kt": "Icon(imageVector = SnackyIcons.Home, contentDescription = \"Home\", tint = iconSecondary, modifier = Modifier.size(sizeIconMd))",
+            "tsx": "<SnackyIcons.outline.home width={20} height={20} color=\"var(--icon-secondary)\" />"
+          }
+        },
+        {
+          "id": "icon-solid",
+          "name": "Solid",
+          "st": "active",
+          "sl": "Active",
+          "img": "assets/images/variants/icon-solid.png",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "use": "10 icons: Home, Category, Cart, Document, Person, Bell, Truck, Cash, Gift, Heart",
+            "note": "Active/selected state - filled shape, same 24×24px footprint as its Outline counterpart. Gift has no Outline equivalent in the set (promo/badge contexts only)."
+          },
+          "code": {
+            "kt": "Icon(imageVector = SnackyIcons.HomeSolid, contentDescription = \"Home\", tint = iconBrand, modifier = Modifier.size(sizeIconMd))",
+            "tsx": "<SnackyIcons.solid.home width={20} height={20} color=\"var(--icon-brand)\" />"
+          }
+        }
+      ]
+    },
+    "illustration": {
+      "name": "Illustration",
+      "cat": "Assets",
+      "desc": "Decorative spot illustrations for empty states, onboarding, and confirmations.",
+      "usage": "Use large illustrations in modals and empty states. Keep illustrations from this set - do not substitute with custom artwork.",
+      "cover": "assets/images/illustration.png",
+      "v": [
+        {
+          "id": "illus-empty",
+          "name": "Empty State",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/illus-empty.png",
+          "s": {
+            "w": 268,
+            "h": 200,
+            "use": "No results / empty list"
+          },
+          "code": {
+            "kt": "SnackyIllustration(IllustrationVariant.Empty)",
+            "tsx": "<Illustration variant=\"empty\" alt=\"No products found\" />"
+          }
+        },
+        {
+          "id": "illus-create-account",
+          "name": "Create Account",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/illus-create-account.png",
+          "s": {
+            "w": 360,
+            "h": 240,
+            "use": "Registration screen"
+          },
+          "code": {
+            "kt": "SnackyIllustration(IllustrationVariant.CreateAccount)",
+            "tsx": "<Illustration variant=\"createAccount\" alt=\"Create a new account\" />"
+          }
+        },
+        {
+          "id": "illus-welcome",
+          "name": "Welcome",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/illus-welcome.png",
+          "s": {
+            "w": 200,
+            "h": 200,
+            "use": "Welcome / login screen"
+          },
+          "code": {
+            "kt": "SnackyIllustration(IllustrationVariant.Welcome)",
+            "tsx": "<Illustration variant=\"welcome\" alt=\"Welcome\" />"
+          }
+        },
+        {
+          "id": "illus-success",
+          "name": "Success",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/illus-success.png",
+          "s": {
+            "w": 200,
+            "h": 200,
+            "use": "Order / action success"
+          },
+          "code": {
+            "kt": "SnackyIllustration(IllustrationVariant.Success)",
+            "tsx": "<Illustration variant=\"success\" alt=\"Success\" />"
+          }
+        },
+        {
+          "id": "illus-discount-referral",
+          "name": "Discount Referral",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/illus-discount-referral.png",
+          "s": {
+            "w": 268,
+            "h": 200,
+            "use": "Referral program promotion"
+          },
+          "code": {
+            "kt": "SnackyIllustration(IllustrationVariant.DiscountReferral)",
+            "tsx": "<Illustration variant=\"discountReferral\" alt=\"Invite a friend, get a discount\" />"
+          }
+        }
+      ]
+    },
+    "product-image": {
+      "name": "Product Image",
+      "cat": "Assets",
+      "desc": "Context-aware product image component - adapts its frame size and border to where it appears in the UI.",
+      "usage": "Pass the usage prop to match the placement. Product-card (128) and product-details (200) render a bare transparent image. List (56) and review (48) wrap the image in a padded frame; review also adds a 1px border. Variant (88) shows the image in a bordered, rounded selection frame. Accordion-modal (24) renders a payment-method logo instead of a product photo. Pass sold to overlay a centered \"Sold Out\" badge on product-card and product-details.",
+      "cover": "assets/images/product-image.png",
+      "v": [
+        {
+          "id": "product-image-card",
+          "name": "Product Card",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-card.png",
+          "s": {
+            "w": 128,
+            "h": 128,
+            "bg": "Transparent PNG",
+            "products": "Chiki Balls · Chiki Twist · Chiki Puff · Lays · Pota · Oishi · Piatos",
+            "use": "Inside Slider and Normal product cards"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/product-image-card.png",
+              "code": {
+                "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductCard)",
+                "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-card\" />"
+              }
+            },
+            {
+              "sl": "Sold Out",
+              "st": "disabled",
+              "img": "assets/images/variants/product-image-card-sold.png",
+              "sOverride": {
+                "note": "Overlay: full-size white 46% opacity · Badge: #333333 80% r100, pt12 pb12 pl7 pr7 · \"Sold Out\" Poppins Regular 12px white"
+              },
+              "code": {
+                "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductCard, sold = true)",
+                "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-card\" sold />"
+              }
+            }
+          ],
+          "code": {
+            "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductCard)",
+            "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-card\" />"
+          }
+        },
+        {
+          "id": "product-image-details",
+          "name": "Product Details",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-details.png",
+          "s": {
+            "w": 200,
+            "h": 200,
+            "bg": "Transparent PNG",
+            "use": "On the product detail page, centred above the product specs"
+          },
+          "states": [
+            {
+              "sl": "Default",
+              "st": "active",
+              "img": "assets/images/variants/product-image-details.png",
+              "code": {
+                "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductDetails)",
+                "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-details\" />"
+              }
+            },
+            {
+              "sl": "Sold Out",
+              "st": "disabled",
+              "img": "assets/images/variants/product-image-details-sold.png",
+              "sOverride": {
+                "note": "Overlay: full-size white 46% opacity · Badge: #333333 80% r100, pt12 pb12 pl7 pr7 · \"Sold Out\" Poppins Regular 12px white"
+              },
+              "code": {
+                "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductDetails, sold = true)",
+                "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-details\" sold />"
+              }
+            }
+          ],
+          "code": {
+            "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.ProductDetails)",
+            "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"product-details\" />"
+          }
+        },
+        {
+          "id": "product-image-list",
+          "name": "List",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-list.png",
+          "s": {
+            "w": 56,
+            "h": 56,
+            "pt": 4,
+            "pb": 4,
+            "pl": 4,
+            "pr": 4,
+            "r": 4,
+            "img_inner": "48×48px",
+            "use": "Inside list rows - Order list, Cart, Notification list"
+          },
+          "code": {
+            "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.List)",
+            "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"list\" />"
+          }
+        },
+        {
+          "id": "product-image-review",
+          "name": "Review",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-review.png",
+          "s": {
+            "w": 48,
+            "h": 48,
+            "pt": 4,
+            "pb": 4,
+            "pl": 4,
+            "pr": 4,
+            "r": 4,
+            "bdr": "1px solid #cccccc",
+            "img_inner": "40×40px",
+            "use": "Inside review rows alongside star rating and reviewer name"
+          },
+          "code": {
+            "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.Review)",
+            "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"review\" />"
+          }
+        },
+        {
+          "id": "product-image-variant",
+          "name": "Variant",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-variant.png",
+          "s": {
+            "w": 88,
+            "h": 88,
+            "pt": 4,
+            "pb": 4,
+            "pl": 4,
+            "pr": 4,
+            "r": 4,
+            "bdr": "1px solid #cccccc",
+            "use": "Bordered, rounded selection frame - product variant/weight picker (Modal Variants Selector)"
+          },
+          "code": {
+            "kt": "SnackyProductImage(url = product.imageUrl, contentDescription = product.name, usage = ImageUsage.Variant)",
+            "tsx": "<ProductImage src={product.imageUrl} alt={product.name} usage=\"variant\" />"
+          }
+        },
+        {
+          "id": "product-image-accordion-modal",
+          "name": "Accordion / Modal",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/product-image-accordion-modal.png",
+          "s": {
+            "w": 24,
+            "h": 24,
+            "use": "Renders a payment-method logo instead of a product photo - Accordion leading icon and payment-method rows in Modal"
+          },
+          "code": {
+            "kt": "SnackyProductImage(url = paymentMethod.logoUrl, contentDescription = paymentMethod.name, usage = ImageUsage.AccordionModal)",
+            "tsx": "<ProductImage src={paymentMethod.logoUrl} alt={paymentMethod.name} usage=\"accordion-modal\" />"
+          }
+        }
+      ]
+    },
+    "product-card": {
+      "name": "Product Card",
+      "cat": "Assets",
+      "desc": "Reusable product listing cards in list and detail views.",
+      "usage": "Use List cards in horizontal carousels and 2-column product grids - same card, its container just constrains the width differently. Use Details on the product detail page, with a larger image, sold-out overlay, and Favorite/Share/Chat actions.",
+      "cover": "assets/images/product-card.png",
+      "v": [
+        {
+          "id": "productcard-list",
+          "name": "List",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/productcard-slider.png",
+          "s": {
+            "w": 152,
+            "h": 294,
+            "pt": 12,
+            "pb": 12,
+            "pl": 8,
+            "pr": 8,
+            "gap": 12,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 44.07,
+                "heightPct": 5.3
+              },
+              {
+                "topPct": 59.68,
+                "heightPct": 5.86
+              },
+              {
+                "topPct": 69,
+                "heightPct": 6.57
+              }
+            ],
+            "fill": "#ffffff",
+            "shadow": "0 10px 30px rgba(0,0,0,0.1)",
+            "r": 4,
+            "font": "Poppins Regular/Bold",
+            "fs": 12,
+            "color": "#333333",
+            "img_size": "128×128px",
+            "discount_badge": "top-right overlay on image · bg #eb5757 · 24px tall · r:6px",
+            "use": "Reused at different widths for horizontal carousels vs. 2-column grids - confirmed against Figma Dev Mode (node 127:218), no separate \"Normal\"/\"Slider\" variant exists"
+          },
+          "code": {
+            "kt": "SnackyProductCard(productName = \"Lays Original 75g\", imageUrl = laysUrl, price = \"Rp 12,000\", originalPrice = \"Rp 15,000\", discountLabel = \"-20%\", rating = 4.5, onAddToCart = { addToCart(product.id) }, onClick = {})",
+            "tsx": "<ProductCard productName=\"Lays Original 75g\" imageUrl={laysUrl} price=\"Rp 12,000\" originalPrice=\"Rp 15,000\" discountLabel=\"-20%\" rating={4.5} onAddToCart={() => addToCart(product.id)} onClick={() => {}} />"
+          }
+        },
+        {
+          "id": "productcard-details",
+          "name": "Details",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/productcard-details.png",
+          "s": {
+            "w": 360,
+            "h": 372,
+            "pt": 12,
+            "pb": 16,
+            "pl": 0,
+            "pr": 0,
+            "gap": 8,
+            "gapAnchor": "block-gap",
+            "gapBands": [
+              {
+                "topPct": 56.7,
+                "heightPct": 10.89
+              },
+              {
+                "topPct": 71.39,
+                "heightPct": 4.12
+              },
+              {
+                "topPct": 82.22,
+                "heightPct": 4.38
+              }
+            ],
+            "fill": "#ffffff",
+            "font": "Poppins Regular 14px (name) · Bold 20px (price) · Bold 16px (original price, strikethrough) · SemiBold/Regular 12px (rating)",
+            "img_size": "200×200px",
+            "use": "Product detail page - sold-out overlay + Favorite/Share/Chat icon-button row"
+          },
+          "code": {
+            "kt": "SnackyProductCard(productName = \"Piatos Cheese 75g\", imageUrl = piatosUrl, price = \"Rp 11,000\", rating = 4.5, ratingCount = 471, favorited = isFavorited, onFavoriteClick = { isFavorited = !isFavorited }, onShareClick = { shareProduct(product.id) }, onChatClick = { openChat(product.sellerId) }, variant = ProductCardVariant.Details, onClick = {})",
+            "tsx": "<ProductCard productName=\"Piatos Cheese 75g\" imageUrl={piatosUrl} price=\"Rp 11,000\" rating={4.5} ratingCount={471} favorited={isFavorited} onFavoriteClick={() => setIsFavorited(!isFavorited)} onShareClick={() => shareProduct(product.id)} onChatClick={() => openChat(product.sellerId)} variant=\"details\" onClick={() => {}} />"
+          }
+        }
+      ]
+    }
+  }
+}

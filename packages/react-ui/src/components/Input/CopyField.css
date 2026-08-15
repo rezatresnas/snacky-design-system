@@ -1,0 +1,35 @@
+.snacky-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  padding: var(--spacing-12);
+  background: var(--bg-surface-variant);
+  border-radius: var(--radius-field);
+  box-sizing: border-box;
+}
+.snacky-copy__value {
+  font-family: var(--font-body-semibold-family);
+  font-size: var(--font-body-semibold-size);
+  font-weight: var(--font-body-semibold-weight);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.snacky-copy__action {
+  flex-shrink: 0;
+  margin-left: var(--spacing-12);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-small-bold-family);
+  font-size: var(--font-small-bold-size);
+  font-weight: var(--font-small-bold-weight);
+  color: var(--text-link);
+}
+.snacky-copy__action--copied {
+  color: var(--text-secondary);
+}

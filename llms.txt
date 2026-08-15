@@ -1,0 +1,40 @@
+# Snacky App Design System
+
+> Design system for Snacky, a snack e-commerce mobile app, targeting Kotlin Compose Multiplatform and React. Source of truth is a Figma file, extracted pixel-accurately; every value below traces back to a real Figma node, not an estimate.
+
+This is a single-page interactive site (`index.html`) documenting 21 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). It also ships two generated, machine-readable files specifically for AI tools/agents - read those instead of scraping the HTML.
+
+## Machine-readable files (read these first)
+
+- [tokens.json](tokens.json): All design tokens (color, spacing, radius, sizing, shadow, typography) in [W3C Design Tokens Community Group format](https://design-tokens.github.io/community-group/format/). Two layers: `color.primitive`/`spacing.primitive`/`radius.primitive` are the raw scales; everything under `*.semantic` is what components actually use, with `$value` referencing the primitive it aliases (e.g. `bgActionPrimary` → `{color.primitive.primary.500}`) and `$description` explaining when to use it. Always reach for a semantic token over a primitive one.
+- [components.json](components.json): Every component's variants and states, each with its real spec values (padding, fill, radius, font, etc., token-annotated) and working Kotlin (Compose Multiplatform) + React (TSX) code samples. This is the same data driving the interactive site's Spec and Code tabs - if you need real usage code for a component, it's in here, not in prose.
+
+Both files are generated from `index.html` by `scripts/generate-agent-files.js` and will always match what a human sees on the site. Never hand-edit `tokens.json` or `components.json`.
+
+## Installable component library (use this to build, not just read)
+
+- [packages/react-ui](packages/react-ui): `@snacky/ui`, a real React implementation of
+  all 21 components below. If you're building a new feature (e.g. a form), `import`
+  from this package instead of writing new markup from the code samples in
+  `components.json` - the samples are for reference, this package is for reuse. See
+  its README for setup and known gaps (the icon set is a starter subset; the full
+  documented icon set still needs exporting from Figma).
+
+## Components
+
+- **Actions**: Button, Icon Button
+- **Forms**: Input (text, password, dropdown, date picker, address, search, OTP, chat, copy-value), Chips, Radio Button, Checkbox, Toggle
+- **Navigation**: Navbar, Tab
+- **Content**: Banner, Badge, Callout, List, Accordion, Modal, Section
+- **Assets**: Avatar, Icon, Illustration, Product Image, Product Card
+
+## Key rules an agent should not violate
+
+- Every screen uses a single 16px horizontal margin (`spacing.margin.screen` in tokens.json) between the screen edge and content; content is Fill-container width, not a fixed pixel width.
+- Danger is an intent that layers onto Primary/Secondary/Tertiary hierarchy - it is not a fourth hierarchy of its own.
+- Component padding uses primitive spacing tokens directly (`spacing-N`); there are no semantic padding aliases at this scale. Gaps and layout spacing do use semantic tokens.
+- Only genuinely fixed-size elements (icons, avatars, navbar height) get a sizing token; buttons/cards/inputs size themselves from content and are documented per-component instead.
+
+## Human-facing site
+
+- [index.html](index.html): The full interactive documentation - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. Best for a human verifying a value visually; `tokens.json`/`components.json` are better for an agent consuming values programmatically.

@@ -1,0 +1,27 @@
+.snacky-otp {
+  display: flex;
+  gap: var(--spacing-4);
+}
+.snacky-otp__cell {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-field);
+  background: var(--bg-surface-variant);
+  font-family: var(--font-h3-bold-family);
+  font-size: var(--font-h3-bold-size);
+  font-weight: var(--font-h3-bold-weight);
+  /* 46px, not the h3Bold token's 36px - specifically tuned to center a
+     single digit in the 48px cell, per the site's own implementation. */
+  line-height: 46px;
+  letter-spacing: 0.16px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.1s ease;
+}
+.snacky-otp__cell:focus {
+  border-color: var(--border-input-active);
+}

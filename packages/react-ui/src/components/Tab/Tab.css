@@ -1,0 +1,24 @@
+.snacky-tabrow {
+  display: flex;
+  gap: var(--spacing-24);
+  border-bottom: 1px solid var(--border-main);
+}
+.snacky-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0 0 var(--spacing-12) 0;
+  cursor: pointer;
+  font-family: var(--font-body-regular-family);
+  font-size: 14px;
+  line-height: var(--font-body-regular-line-height);
+  color: var(--text-primary);
+  transition: color 0.15s ease;
+}
+.snacky-tab--active {
+  font-family: var(--font-body-semibold-family);
+  font-weight: var(--font-body-semibold-weight);
+  color: var(--color-primary-500);
+  border-bottom-color: var(--color-primary-500);
+}

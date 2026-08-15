@@ -1,0 +1,50 @@
+.snacky-search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  /* Animates 260px -> 312px on focus, matching the site's own verified
+     implementation - not a fluid 100% field. */
+  width: 260px;
+  height: 40px;
+  padding: var(--spacing-8) var(--spacing-12);
+  background: var(--bg-surface-variant);
+  border: 1px solid transparent;
+  border-radius: var(--radius-field);
+  box-sizing: border-box;
+  transition: border-color 0.12s ease, width 0.15s ease;
+}
+.snacky-search:focus-within {
+  width: 312px;
+  border-color: var(--border-input-active);
+}
+.snacky-search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-primary);
+}
+.snacky-search__input::placeholder {
+  color: var(--text-placeholder);
+}
+.snacky-search__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--icon-secondary);
+}
+.snacky-search__clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--icon-secondary);
+}

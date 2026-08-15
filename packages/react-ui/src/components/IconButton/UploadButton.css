@@ -1,0 +1,17 @@
+.snacky-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  padding: var(--spacing-24);
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-main);
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+.snacky-upload svg,
+.snacky-upload img { width: 100%; height: 100%; }
+.snacky-upload:hover { background: var(--bg-action-secondary-hover); }
+.snacky-upload:active { background: var(--bg-action-secondary-pressed); }

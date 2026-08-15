@@ -1,0 +1,99 @@
+.snacky-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  background: var(--bg-surface);
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.snacky-product-card--list {
+  width: 152px;
+  padding: var(--spacing-12) var(--spacing-8);
+  border-radius: var(--radius-field);
+  box-shadow: var(--shadow-lg);
+}
+.snacky-product-card--details {
+  width: 100%;
+  padding: var(--spacing-12) 0 var(--spacing-16);
+  gap: var(--spacing-8);
+}
+.snacky-product-card__image-wrap {
+  position: relative;
+}
+.snacky-product-card--list .snacky-product-card__image-wrap { width: 128px; height: 128px; }
+.snacky-product-card--details .snacky-product-card__image-wrap { width: 200px; height: 200px; margin: 0 auto; }
+.snacky-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.snacky-product-card__discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.snacky-product-card__name {
+  margin: 0;
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-primary);
+}
+.snacky-product-card--details .snacky-product-card__name {
+  font-size: 14px;
+}
+.snacky-product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-4);
+}
+.snacky-product-card__price {
+  font-family: var(--font-small-bold-family);
+  font-weight: var(--font-small-bold-weight);
+  color: var(--text-primary);
+}
+.snacky-product-card--details .snacky-product-card__price {
+  font-size: 20px;
+  font-weight: 700;
+}
+.snacky-product-card__original-price {
+  font-family: var(--font-small-bold-family);
+  font-weight: var(--font-small-bold-weight);
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+.snacky-product-card--details .snacky-product-card__original-price {
+  font-size: 16px;
+  font-weight: 700;
+}
+.snacky-product-card__footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+}
+.snacky-product-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-icon-label);
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-secondary);
+}
+.snacky-product-card__rating-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary-500);
+}
+.snacky-product-card__actions {
+  display: flex;
+  gap: var(--gap-cell);
+}
+/* Details page's Favorite/Share/Chat icon buttons use a slightly softer
+   shadow than the standard Secondary icon-button elevation. */
+.snacky-product-card__actions--details button {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+}

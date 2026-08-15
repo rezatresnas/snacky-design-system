@@ -1,0 +1,37 @@
+.snacky-address-result {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-text-icon);
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-8);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-input-default);
+  border-radius: var(--radius-field);
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: left;
+}
+.snacky-address-result__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--icon-secondary);
+  margin-top: 2px;
+}
+.snacky-address-result__title {
+  margin: 0;
+  font-family: var(--font-small-bold-family);
+  font-size: var(--font-small-bold-size);
+  font-weight: var(--font-small-bold-weight);
+  color: var(--text-primary);
+}
+.snacky-address-result__subtitle {
+  margin: 0;
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
