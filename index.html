@@ -295,7 +295,8 @@ html.light .vcard-img{background:#f0f0f2}
 html.light .ov-img{background:#f0f0f2}
 html.light .tok-sw .dot{border-color:rgba(0,0,0,.08)}
 /* theme switcher - tab-style segmented control, pinned in the sidebar's fixed header */
-.theme-tabs{position:relative;display:flex;margin:12px 16px 14px;padding:2px;background:var(--bg);border:1px solid var(--border);border-radius:9px}
+.theme-fab{position:fixed;top:14px;right:20px;z-index:60}
+.theme-tabs{position:relative;display:flex;padding:2px;background:var(--surface2);border:1px solid var(--border);border-radius:9px}
 .theme-tabs-thumb{position:absolute;top:2px;height:calc(100% - 4px);background:var(--surface3);border-radius:7px;transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1)}
 .theme-tab-btn{position:relative;z-index:1;flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 8px;background:transparent;border:none;color:var(--text-muted);font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;outline:none;transition:color .2s}
 .theme-tab-btn.on{color:var(--text)}
@@ -303,9 +304,7 @@ html.light .tok-sw .dot{border-color:rgba(0,0,0,.08)}
 </style>
 </head>
 <body>
-<aside class="sidebar">
-  <div class="sidebar-fixed">
-  <div class="brand"><div class="brand-inner"><img src="assets/images/favicon.png" alt="Snacky App" class="brand-logo"><div><h1>Snacky App</h1><span>Design System v1.0</span></div></div></div>
+<div class="theme-fab">
   <div class="theme-tabs">
     <div class="theme-tabs-thumb" id="theme-tabs-thumb"></div>
     <button type="button" class="theme-tab-btn" id="theme-tab-light" onclick="applyTheme('light')">
@@ -317,6 +316,10 @@ html.light .tok-sw .dot{border-color:rgba(0,0,0,.08)}
       Dark
     </button>
   </div>
+</div>
+<aside class="sidebar">
+  <div class="sidebar-fixed">
+  <div class="brand"><div class="brand-inner"><img src="assets/images/favicon.png" alt="Snacky App" class="brand-logo"><div><h1>Snacky App</h1><span>Design System v1.0</span></div></div></div>
   </div>
   <div class="sidebar-scroll">
   <div class="nav-group"><div class="nav-label">Overview</div>
