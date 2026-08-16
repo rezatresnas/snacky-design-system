@@ -51,13 +51,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 /* main */
 .main{margin-left:var(--sidebar);flex:1;padding:36px 36px 80px;min-width:0;max-width:100vw;box-sizing:border-box}
 /* mobile nav */
-.menu-toggle{display:none;position:fixed;top:14px;left:16px;z-index:110;width:36px;height:36px;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border);border-radius:9px;color:var(--text-sub);cursor:pointer}
+.menu-toggle{display:none;position:fixed;top:14px;left:16px;z-index:110;width:34px;height:34px;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border);border-radius:999px;color:var(--text-sub);cursor:pointer;transition:left .25s ease,color .15s}
+.menu-toggle svg{width:15px;height:15px;flex-shrink:0}
+.menu-toggle .icon-close{display:none}
 .sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
 @media(max-width:900px){
   .menu-toggle{display:flex}
   .sidebar{transform:translateX(-100%);transition:transform .25s ease}
   body.sidebar-open .sidebar{transform:translateX(0)}
   body.sidebar-open .sidebar-backdrop{display:block}
+  body.sidebar-open .menu-toggle{left:calc(var(--sidebar) + 12px);color:var(--text)}
+  body.sidebar-open .menu-toggle .icon-open{display:none}
+  body.sidebar-open .menu-toggle .icon-close{display:flex}
   .main{margin-left:0;padding:70px 20px 60px}
   .home-hero h2{font-size:26px}
   .theme-fab{top:14px;right:16px}
@@ -321,7 +326,10 @@ html.light .tok-sw .dot{border-color:rgba(0,0,0,.08)}
 </style>
 </head>
 <body>
-<button type="button" class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<button type="button" class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">
+  <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+</button>
 <div class="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
 <div class="theme-fab">
   <div class="theme-tabs">
