@@ -131,6 +131,13 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .spec-props-col{padding:20px 16px}
 /* measurement canvas - fills column width */
 .sd-canvas{background:#e8e8e8;border-radius:var(--r);padding:36px 44px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:50%;box-sizing:border-box}
+@media(max-width:900px){
+  /* the diagram card was capped at 50% of its column on purpose for
+     desktop breathing room, but that same 50% of a phone-width column
+     left the diagram too small to read - let it use the column instead. */
+  .sd-canvas{max-width:100%;padding:24px 20px}
+  .spec-diagram-col{padding:20px 12px;min-height:0}
+}
 /* overview scroll sections */
 .ov-scroll{display:flex;flex-direction:column;gap:28px}
 .ov-variant-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
