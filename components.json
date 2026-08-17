@@ -1823,11 +1823,8 @@
       "cover": "assets/images/variants/header-back.png",
       "v": [
         {
-          "id": "header-back",
-          "name": "Back",
-          "st": null,
-          "sl": null,
-          "img": "assets/images/variants/header-back.png",
+          "id": "header-leading",
+          "name": "Leading Icon",
           "s": {
             "w": 360,
             "h": 72,
@@ -1837,46 +1834,36 @@
             "pl": 8,
             "fill": "#ffffff",
             "icon": "24×24px",
-            "note": "Leading icon sits in a 40×40px tappable circle",
+            "note": "Leading icon sits in a 40×40px tappable circle. Back and Close are the same slot with different icon content, not two structurally different variants - see Usage.",
             "font": "Poppins Bold",
             "fs": 16,
             "lh": 36,
             "color": "#333333"
           },
-          "code": {
-            "kt": "SnackyHeader(title = \"Order Details\", leadingIcon = HeaderIcon.Back, onLeadingClick = onBack)",
-            "tsx": "<Header title=\"Order Details\" leadingIcon=\"back\" onLeadingClick={onBack} />"
-          }
-        },
-        {
-          "id": "header-close",
-          "name": "Close",
-          "st": null,
-          "sl": null,
-          "img": "assets/images/variants/header-close.png",
-          "s": {
-            "w": 360,
-            "h": 72,
-            "pt": 16,
-            "pr": 8,
-            "pb": 16,
-            "pl": 8,
-            "fill": "#ffffff",
-            "icon": "24×24px",
-            "note": "Leading icon sits in a 40×40px tappable circle",
-            "font": "Poppins Bold",
-            "fs": 16,
-            "lh": 36,
-            "color": "#333333"
-          },
-          "code": {
-            "kt": "SnackyHeader(title = \"Cart\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss)",
-            "tsx": "<Header title=\"Cart\" leadingIcon=\"close\" onLeadingClick={onDismiss} />"
-          }
+          "states": [
+            {
+              "sl": "Back",
+              "st": null,
+              "img": "assets/images/variants/header-back.png",
+              "code": {
+                "kt": "SnackyHeader(title = \"Order Details\", leadingIcon = HeaderIcon.Back, onLeadingClick = onBack)",
+                "tsx": "<Header title=\"Order Details\" leadingIcon=\"back\" onLeadingClick={onBack} />"
+              }
+            },
+            {
+              "sl": "Close",
+              "st": null,
+              "img": "assets/images/variants/header-close.png",
+              "code": {
+                "kt": "SnackyHeader(title = \"Cart\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss)",
+                "tsx": "<Header title=\"Cart\" leadingIcon=\"close\" onLeadingClick={onDismiss} />"
+              }
+            }
+          ]
         },
         {
           "id": "header-close-action",
-          "name": "Close + Right Action",
+          "name": "Leading + Right Action",
           "st": null,
           "sl": null,
           "img": "assets/images/variants/header-close-action.png",
@@ -1889,7 +1876,7 @@
             "pl": 8,
             "fill": "#ffffff",
             "icon": "24×24px",
-            "note": "Leading and trailing icons each sit in their own 40×40px tappable circle",
+            "note": "Leading and trailing icons each sit in their own 40×40px tappable circle. Right Action only ever pairs with Close, never Back.",
             "font": "Poppins Bold",
             "fs": 16,
             "lh": 36,
