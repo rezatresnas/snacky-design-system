@@ -1815,6 +1815,118 @@
         }
       ]
     },
+    "header": {
+      "name": "Header",
+      "cat": "Navigation",
+      "desc": "Page header bar with an optional leading back/close icon and an optional trailing action icon.",
+      "usage": "Back drills deeper into a flow and returns to the previous screen; Close dismisses the flow entirely. Right Action only ever pairs with Close, never Back. Title always centers in the remaining space - with a leading icon present, the title row gets matching right padding so the text stays optically centered against the whole bar, not just the leftover space next to the icon.",
+      "cover": "assets/images/variants/header-back.png",
+      "v": [
+        {
+          "id": "header-back",
+          "name": "Back",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/header-back.png",
+          "s": {
+            "w": 360,
+            "h": 72,
+            "pt": 16,
+            "pr": 8,
+            "pb": 16,
+            "pl": 8,
+            "fill": "#ffffff",
+            "icon": "24×24px",
+            "note": "Leading icon sits in a 40×40px tappable circle",
+            "font": "Poppins Bold",
+            "fs": 16,
+            "lh": 36,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyHeader(title = \"Order Details\", leadingIcon = HeaderIcon.Back, onLeadingClick = onBack)",
+            "tsx": "<Header title=\"Order Details\" leadingIcon=\"back\" onLeadingClick={onBack} />"
+          }
+        },
+        {
+          "id": "header-close",
+          "name": "Close",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/header-close.png",
+          "s": {
+            "w": 360,
+            "h": 72,
+            "pt": 16,
+            "pr": 8,
+            "pb": 16,
+            "pl": 8,
+            "fill": "#ffffff",
+            "icon": "24×24px",
+            "note": "Leading icon sits in a 40×40px tappable circle",
+            "font": "Poppins Bold",
+            "fs": 16,
+            "lh": 36,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyHeader(title = \"Cart\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss)",
+            "tsx": "<Header title=\"Cart\" leadingIcon=\"close\" onLeadingClick={onDismiss} />"
+          }
+        },
+        {
+          "id": "header-close-action",
+          "name": "Close + Right Action",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/header-close-action.png",
+          "s": {
+            "w": 360,
+            "h": 72,
+            "pt": 16,
+            "pr": 8,
+            "pb": 16,
+            "pl": 8,
+            "fill": "#ffffff",
+            "icon": "24×24px",
+            "note": "Leading and trailing icons each sit in their own 40×40px tappable circle",
+            "font": "Poppins Bold",
+            "fs": 16,
+            "lh": 36,
+            "color": "#333333"
+          },
+          "code": {
+            "kt": "SnackyHeader(title = \"Address Details\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss, trailingIcon = HeaderIcon.Map, onTrailingClick = onOpenMap)",
+            "tsx": "<Header title=\"Address Details\" leadingIcon=\"close\" onLeadingClick={onDismiss} trailingIcon=\"map\" onTrailingClick={onOpenMap} />"
+          }
+        },
+        {
+          "id": "header-none",
+          "name": "None",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/header-none.png",
+          "s": {
+            "w": 360,
+            "h": 68,
+            "pt": 16,
+            "pr": 8,
+            "pb": 16,
+            "pl": 8,
+            "fill": "#ffffff",
+            "font": "Poppins Bold",
+            "fs": 16,
+            "lh": 36,
+            "color": "#333333",
+            "note": "No leading or trailing icon - title fills the full width"
+          },
+          "code": {
+            "kt": "SnackyHeader(title = \"Snacky\")",
+            "tsx": "<Header title=\"Snacky\" />"
+          }
+        }
+      ]
+    },
     "banner": {
       "name": "Banner",
       "cat": "Content",

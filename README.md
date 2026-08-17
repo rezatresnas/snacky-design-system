@@ -13,10 +13,10 @@ than estimated.
 
 | Path | What it is |
 |---|---|
-| [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 21 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
+| [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 22 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
 | [`tokens.json`](tokens.json) | All design tokens in [W3C Design Tokens](https://design-tokens.github.io/community-group/format/) format. |
 | [`components.json`](components.json) | Every component's variants/states with real spec values and working Kotlin (Compose Multiplatform) + React (TSX) code samples. |
-| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` - a real, installable React implementation of all 21 components, styled entirely from the tokens above. |
+| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` - a real, installable React implementation of all 22 components, styled entirely from the tokens above. |
 | [`llms.txt`](llms.txt) / [`AGENTS.md`](AGENTS.md) | Entry points for AI coding tools - point an agent here instead of scraping the HTML. |
 
 `tokens.json` and `components.json` are generated from `index.html` by

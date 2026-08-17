@@ -41,13 +41,13 @@ function SignupForm() {
 
 ## What's here
 
-All 21 documented components, each matching its `code.tsx` sample's prop
+All 22 documented components, each matching its `code.tsx` sample's prop
 shape from `components.json` (padding, colors, radius, states - all sourced
 directly from the design tokens, not eyeballed):
 
 Button, IconButton/UploadButton, Input family (TextField, SearchField,
 OtpField, CopyField, ChatInput, AddressResult), Chips (ProductChip/FilterChip),
-RadioOption, Checkbox, Toggle, NavBar, TabRow, Banner family, Badge family,
+RadioOption, Checkbox, Toggle, NavBar, TabRow, Header, Banner family, Badge family,
 Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
 (the shared Modal shell), Section (the shared content-block shell), Avatar,
 Illustration, ProductImage, ProductCard.
@@ -83,6 +83,14 @@ COD chip on `processCod`, a `paymentDeadline` banner on `waiting`, a right-
 aligned primary Button - "Track Shipment" / "Buy Again" - on
 shipped/received/cancelled), and a title+message notification row with a
 `1px solid var(--border-main)` border on every state, not just unread.
+
+`Header` was added later, directly from Figma rather than retrofitted from
+an existing implementation: inspected the `Header` component set (page
+"Header", variants `Icon=Back|Close|None` x `Right Action=True|False`) node
+tree for exact spec values (16px/8px padding, 40x40px circular icon buttons,
+Poppins Bold 16px/36px title), verified against a live smoke-test render for
+all 4 variants (structure, computed styles, click handlers), and confirmed
+the `PG.header.impl` string added to the site itself matches the same spec.
 
 **One deliberate deviation, not an oversight:** `NavBar` items use `flex:1`
 to fill the container width, where the site's own demo hardcodes `72x72`

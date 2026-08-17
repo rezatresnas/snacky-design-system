@@ -24,6 +24,7 @@ const FIGMA_LINKS = {
   // Navigation
   'navbar': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8876',
   'tab': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8878',
+  'header': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=9617-5808',
 
   // Content
   'banner': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8879',

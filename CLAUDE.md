@@ -30,7 +30,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
   leaving a screenshot showing an old value.
 - `packages/react-ui/` - installable `@snacky/ui` npm package: real React
-  implementations of all 21 documented components (not just doc samples), so an AI
+  implementations of all 22 documented components (not just doc samples), so an AI
   tool building a new feature can `import` them instead of regenerating similar
   markup. `src/theme/tokens.css`/`tokens.ts` are generated from `tokens.json` by
   `scripts/generate-react-tokens.js` - run it after `generate-agent-files.js`

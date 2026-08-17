@@ -17,6 +17,7 @@ export * from './components/Checkbox/index.js';
 export * from './components/Toggle/index.js';
 export * from './components/Navbar/index.js';
 export * from './components/Tab/index.js';
+export * from './components/Header/index.js';
 export * from './components/Banner/index.js';
 export * from './components/Badge/index.js';
 export * from './components/Callout/index.js';

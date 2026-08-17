@@ -1,0 +1,45 @@
+.snacky-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-16) var(--spacing-8);
+  background: var(--bg-surface);
+}
+.snacky-header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.snacky-header__title-row {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+/* When a leading icon is present but there's no trailing action, the title
+   row gets matching right padding so the text stays optically centered
+   against the whole bar, not just the leftover space next to the icon. */
+.snacky-header__title-row--balance {
+  padding-right: 40px;
+}
+.snacky-header__title {
+  font-family: var(--font-h3-bold-family);
+  font-weight: var(--font-h3-bold-weight);
+  font-size: var(--font-h3-bold-size);
+  line-height: var(--font-h3-bold-line-height);
+  letter-spacing: var(--font-h3-bold-letter-spacing);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

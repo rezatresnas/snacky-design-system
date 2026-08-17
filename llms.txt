@@ -2,7 +2,7 @@
 
 > Design system for Snacky, a snack e-commerce mobile app, targeting Kotlin Compose Multiplatform and React. Source of truth is a Figma file, extracted pixel-accurately; every value below traces back to a real Figma node, not an estimate.
 
-This is a single-page interactive site (`index.html`) documenting 21 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). It also ships two generated, machine-readable files specifically for AI tools/agents - read those instead of scraping the HTML.
+This is a single-page interactive site (`index.html`) documenting 22 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). It also ships two generated, machine-readable files specifically for AI tools/agents - read those instead of scraping the HTML.
 
 ## Machine-readable files (read these first)
 
@@ -14,7 +14,7 @@ Both files are generated from `index.html` by `scripts/generate-agent-files.js` 
 ## Installable component library (use this to build, not just read)
 
 - [packages/react-ui](packages/react-ui): `@snacky/ui`, a real React implementation of
-  all 21 components below. If you're building a new feature (e.g. a form), `import`
+  all 22 components below. If you're building a new feature (e.g. a form), `import`
   from this package instead of writing new markup from the code samples in
   `components.json` - the samples are for reference, this package is for reuse. See
   its README for setup and known gaps (the icon set is a starter subset; the full
@@ -24,7 +24,7 @@ Both files are generated from `index.html` by `scripts/generate-agent-files.js` 
 
 - **Actions**: Button, Icon Button
 - **Forms**: Input (text, password, dropdown, date picker, address, search, OTP, chat, copy-value), Chips, Radio Button, Checkbox, Toggle
-- **Navigation**: Navbar, Tab
+- **Navigation**: Navbar, Tab, Header
 - **Content**: Banner, Badge, Callout, List, Accordion, Modal, Section
 - **Assets**: Avatar, Icon, Illustration, Product Image, Product Card
 
