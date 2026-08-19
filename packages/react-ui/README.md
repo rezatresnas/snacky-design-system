@@ -10,8 +10,12 @@ markup from scratch every time.
 
 ## Install
 
-Not yet published - link it locally from an app in this monorepo, or `npm pack`
-and install the tarball:
+```bash
+npm install @snacky/ui
+```
+
+Published at [npmjs.com/package/@snacky/ui](https://www.npmjs.com/package/@snacky/ui).
+To build from source instead (e.g. to work on the components themselves):
 
 ```bash
 cd packages/react-ui

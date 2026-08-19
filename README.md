@@ -25,27 +25,16 @@ hand-edited, always in sync with what a human sees on the site.
 
 ## Using the components
 
-> **Not yet published to npm** (see Roadmap below). Once published, usage will be:
->
-> ```bash
-> npm install @snacky/ui
-> ```
->
-> ```tsx
-> import '@snacky/ui';
-> import { Button, TextField, Checkbox } from '@snacky/ui';
-> ```
-
-Until then, build it from source:
-
 ```bash
-git clone https://github.com/rezatresnas/snacky-design-system.git
-cd snacky-design-system/packages/react-ui
-npm install && npm run build
+npm install @snacky/ui
 ```
 
-Then reference it from another local project with `npm install
-file:../path/to/packages/react-ui`, or `npm link`.
+```tsx
+import '@snacky/ui';
+import { Button, TextField, Checkbox } from '@snacky/ui';
+```
+
+Published at [npmjs.com/package/@snacky/ui](https://www.npmjs.com/package/@snacky/ui).
 
 See [`packages/react-ui/README.md`](packages/react-ui/README.md) for the full
 component list, verification status, and known gaps.
@@ -59,7 +48,7 @@ agent can build real UI instead of re-deriving values from screenshots.
 
 ## Roadmap
 
-- [ ] Publish `@snacky/ui` to npm
+- [x] Publish `@snacky/ui` to npm
 - [ ] Kotlin Compose Multiplatform component package
 - [ ] Full icon set (currently a ~30-icon starter subset)
 

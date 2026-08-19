@@ -19,10 +19,6 @@ Read [llms.txt](llms.txt) first. It indexes:
 Import from `@snacky/ui` instead of regenerating markup from the code samples
 in `components.json` - those are illustrative, the package is the real thing.
 
-**Not yet published to npm** - see
-[packages/react-ui/README.md](packages/react-ui/README.md) for building it
-from source in the meantime. Once published, usage will be:
-
 ```bash
 npm install @snacky/ui
 ```
