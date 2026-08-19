@@ -4,6 +4,11 @@ name: Publish @snacky/ui
 #   1. Bump "version" in packages/react-ui/package.json
 #   2. Commit that change
 #   3. git tag v0.2.0 && git push --tags
+#
+# Publishes via npm Trusted Publishing (OIDC) - no NPM_TOKEN secret to
+# store or rotate. This only works once the @snacky/ui package on
+# npmjs.com has this exact repo + workflow filename added as a trusted
+# publisher (Package Settings -> Trusted Publisher on npmjs.com).
 on:
   push:
     tags:
@@ -12,6 +17,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required to mint the OIDC token Trusted Publishing exchanges for a publish token
     defaults:
       run:
         working-directory: packages/react-ui
@@ -20,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22' # Trusted Publishing needs a recent npm CLI, bundled with a current Node LTS
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
@@ -45,5 +53,3 @@ jobs:
 
       - name: Publish to npm
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
