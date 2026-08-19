@@ -43,6 +43,20 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   generated CSS custom properties, so token-only changes propagate automatically.
   See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
   Illustration ships no artwork, etc).
+- `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
+  to `packages/react-ui`, targeting `androidTarget` + iOS. Currently theme tokens
+  only, no components yet. `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt` is
+  generated from `tokens.json` by `scripts/generate-compose-tokens.js` - run it after
+  `generate-agent-files.js` whenever token values change:
+  ```
+  node scripts/generate-compose-tokens.js
+  ```
+  Not yet published: targeting Maven Central under the verified `io.github.rezatresnas`
+  namespace, `.github/workflows/publish-compose-ui.yml` triggers on `compose-v*.*.*`
+  tags but needs a GPG key + Central Portal token added as repo secrets first (see
+  `packages/compose-ui/README.md`). Gradle setup is unverified end-to-end (no
+  JDK/Gradle/Android SDK in the environment it was scaffolded in, no wrapper checked
+  in - CI installs Gradle directly instead of via `./gradlew`).
 
 ## Key rules (don't relitigate these, they're already decided)
 
