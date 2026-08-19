@@ -28,8 +28,14 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22' # Trusted Publishing needs a recent npm CLI, bundled with a current Node LTS
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+
+      # Trusted Publishing (OIDC) needs npm >= 11.5 - Node 22's bundled npm
+      # can be older than that depending on which point release the runner
+      # picked up, so pin it explicitly instead of trusting whatever shipped.
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm install
