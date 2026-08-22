@@ -38,7 +38,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.5.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.6.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -438,31 +438,41 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   usable in a localised app.
 
 - The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
-  `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace
-  matching the `SnackyIcons.outline.home` shape used in the site's own
-  documented code samples, mirroring `packages/react-ui`'s `src/icons/`
-  one-for-one: 42 Outline entries (41 icons plus `Pin`, an alias of
-  `Location`, exactly as react-ui exports it) and 4 Solid.
+  `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace:
+  **42 Outline + 10 Solid, exported from the real Figma icon components**
+  (`Icon-outline` node `55:2062`, `Icon-solid` node `8772:5851`).
 
-  Geometry is stored as the same SVG primitives react-ui uses (`SvgPath`,
-  `Circle`, `Rect`) and path strings are parsed at runtime with Compose's own
-  `PathParser`, so the data is copied verbatim rather than hand-translated
-  into `Path` calls. This is the one place in the package where a large amount
-  of vector data crosses platforms, and hand-transcription would be the
-  obvious way to introduce silent drift, so parity was also verified
-  mechanically by extracting every primitive from both sources and diffing
-  them: 46/46 exact match.
+  `SnackyIcons.kt` is generated from `../../assets/icons/icons.json` by
+  `../../scripts/generate-icons.js` (never hand-edit it), the same source and
+  the same script that generate `packages/react-ui`'s `outline.tsx`/`solid.tsx`
+  - so the two platforms cannot drift from each other or from Figma. Parity was
+  verified by diffing every path and viewBox in both generated outputs against
+  the source: 52/52 exact on both sides.
 
-  `tint` defaults to the ambient `LocalContentColor`, so an icon dropped into
-  a slot on `SnackyIconButton`, `SnackyTextField`, `SnackyChatInput` etc.
-  picks up that component's own resolved icon color automatically.
+  Two things worth knowing about the real set, both different from what the
+  earlier hand-drawn placeholder assumed:
+  - **Both styles are filled.** Outline icons are filled outline shapes with
+    the weight baked into the path, not stroked paths, so there is no stroke
+    width to configure.
+  - **The set is not uniform.** Icons are authored at 16, 20 or 24 units
+    depending on where they are used (navbar at 20, buttons and general UI at
+    24, compact input affordances at 16), so each icon carries its own
+    viewBox and `size` defaults to that natural size.
 
-  Carries react-ui's documented gap unchanged, deliberately: this is a
-  STARTER SUBSET drawn generically, NOT the full documented 41-icon Outline /
-  10-icon Solid set exported from the real Figma icon components. react-ui
-  ships only 4 of the 10 Solid icons, and this port stops at the same 4 rather
-  than inventing the rest. The remaining icons should be exported from Figma
-  via the same `download_assets` tooling used elsewhere in this design system.
+  Rendering uses Compose's own `PathParser` on the SVG path strings, with
+  `PathFillType.EvenOdd` where Figma set `fill-rule="evenodd"` (Help and
+  Logout rely on it to knock holes out of their shapes). `tint` defaults to
+  the ambient `LocalContentColor`, so an icon dropped into a slot on
+  `SnackyIconButton`, `SnackyTextField`, `SnackyChatInput` etc. picks up that
+  component's own resolved icon color automatically.
+
+  Three icons are named for what they actually draw rather than their Figma
+  property value, confirmed by rendering the exported geometry: Figma's `cod`
+  is a delivery truck (`truck`, not a banknote), `list` is a right chevron
+  (`chevronRight`), and the two `password` states are a crossed-out and an
+  open eye (`eyeOff`/`eye`). Indonesian property values are translated
+  (`riwayat` -> `history`, `akun` -> `account`, `Saldo` -> `balance`,
+  `poin` -> `points`, `NoHP` -> `smartphone`, `Ganti pass` -> `key`).
 
 ### Theme tokens
 

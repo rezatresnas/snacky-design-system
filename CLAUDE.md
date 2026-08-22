@@ -25,6 +25,17 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   ```
   Treat this as a required step, not optional cleanup - if `index.html` changes and
   this isn't re-run, the two JSON files silently go stale.
+- `assets/icons/icons.json` - the real icon geometry exported from Figma's `Icon-outline`
+  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 10 solid,
+  each with its own viewBox (the set is 16/20/24px, not uniform) and its SVG path data.
+  **Never hand-edit.** `scripts/generate-icons.js` turns it into BOTH
+  `packages/react-ui/src/icons/outline.tsx`/`solid.tsx` and compose-ui's
+  `SnackyIcons.kt`, so the two platforms cannot drift from each other or from Figma:
+  ```
+  node scripts/generate-icons.js
+  ```
+  Note these are FILLED outline shapes, not stroked paths - the outline weight is baked
+  into each shape, so there is no stroke width to set.
 - `assets/images/` - exported PNGs, one per documented variant/state, at 2x-4x scale
   depending on the component. Re-export from the matching Figma node (`download_assets`,
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
@@ -41,8 +52,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Component files under `src/components/` are hand-written (structural/prop changes
   need a manual edit), but their colors/spacing/radius/shadow all resolve through the
   generated CSS custom properties, so token-only changes propagate automatically.
-  See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
-  Illustration ships no artwork, etc).
+  See `packages/react-ui/README.md` for known gaps (Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
   to `packages/react-ui`, targeting `androidTarget` + iOS. 19 of 22 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,

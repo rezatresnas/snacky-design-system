@@ -3480,11 +3480,11 @@
           "s": {
             "w": 24,
             "h": 24,
-            "use": "41 icons: Home, Category, Cart, Document, Person, Bell, Heart, Truck, Cash, Check, Clock, Lock, Receipt, Logout, Help, Smartphone, Key, Edit, Credit Card, Phone, Chat, Send, Search, Trash, Chevron Right, Share, Message Square, Close Circle, Cart Add, Plus, Minus, Eye Off, Eye, Back, Close, Pin, Chevron Down, Chevron Up, Calendar, Location, Camera",
-            "note": "Default/inactive state - 1.5px stroke, no fill. Drawn at 24×24px; scale to 20px (size/icon/md) for Navbar or 16px (size/icon/sm) for compact input affordances."
+            "use": "42 icons: account, address, back, balance, bell, calendar, camera, cart, cartAdd, category, chat, chevronDown, chevronRight, chevronUp, close, closeInput, creditCard, document, edit, eye, eyeOff, heart, help, history, home, key, lock, logout, map, messageSquare, minus, phone, plus, referral, search, send, sent, share, smartphone, trash, truck, unsent",
+            "note": "Default/inactive state. These are filled outline shapes, not stroked paths: the outline weight is baked into each shape, so they render with a fill and have no stroke width to set. The set is deliberately not uniform, icons are authored at 16, 20 or 24px depending on where they are used (navbar at 20, buttons and general UI at 24, compact input affordances at 16), so each one carries its own viewBox rather than being scaled from a single size."
           },
           "code": {
-            "kt": "Icon(imageVector = SnackyIcons.Home, contentDescription = \"Home\", tint = iconSecondary, modifier = Modifier.size(sizeIconMd))",
+            "kt": "SnackyIcon(SnackyIcons.Outline.Home, contentDescription = \"Home\", tint = iconSecondary, size = sizeIconMd)",
             "tsx": "<SnackyIcons.outline.home width={20} height={20} color=\"var(--icon-secondary)\" />"
           }
         },
@@ -3497,11 +3497,11 @@
           "s": {
             "w": 24,
             "h": 24,
-            "use": "10 icons: Home, Category, Cart, Document, Person, Bell, Truck, Cash, Gift, Heart",
-            "note": "Active/selected state - filled shape, same 24×24px footprint as its Outline counterpart. Gift has no Outline equivalent in the set (promo/badge contexts only)."
+            "use": "10 icons: account, balance, bell, cart, category, heart, history, home, points, truck",
+            "note": "Active/selected state - filled counterpart of the Outline icon of the same name. Authored at 20px for the navbar set and 24px for truck/balance/points. `points` renders as a gift box and has no Outline counterpart (loyalty/promo contexts only)."
           },
           "code": {
-            "kt": "Icon(imageVector = SnackyIcons.HomeSolid, contentDescription = \"Home\", tint = iconBrand, modifier = Modifier.size(sizeIconMd))",
+            "kt": "SnackyIcon(SnackyIcons.Solid.Home, contentDescription = \"Home\", tint = iconBrand, size = sizeIconMd)",
             "tsx": "<SnackyIcons.solid.home width={20} height={20} color=\"var(--icon-brand)\" />"
           }
         }

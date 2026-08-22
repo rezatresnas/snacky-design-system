@@ -104,13 +104,19 @@ flexible layout was kept on purpose.
 
 ## Known gaps - read before relying on these
 
-- **Icons** (`SnackyIcons.outline.*` / `SnackyIcons.solid.*`): only a starter
-  set is included (~30 outline, 3 solid), covering what's needed for a typical
-  form. The full documented set (41 outline + 10 solid) needs to be exported
-  from Figma's real icon components - the same way this whole design system
-  was built (`get_screenshot`/`download_assets` via the `figma-use` skill) -
-  and dropped into `src/icons/`. The starter set was hand-drawn as generic,
-  conventional UI glyphs; it does **not** claim pixel-fidelity to Figma.
+- **Icons** (`SnackyIcons.outline.*` / `SnackyIcons.solid.*`): no longer a
+  gap. The hand-drawn starter set has been replaced by the real thing - all
+  42 Outline + 10 Solid icons exported from Figma's own `Icon-outline` (node
+  `55:2062`) and `Icon-solid` (`8772:5851`) component sets. `src/icons/outline.tsx` and
+  `solid.tsx` are generated from `../../assets/icons/icons.json` by
+  `../../scripts/generate-icons.js` (never hand-edit them), the same source
+  that generates compose-ui's `SnackyIcons.kt`.
+
+  Two things changed versus the old hand-drawn placeholder: the icons are
+  **filled outline shapes**, not stroked paths (the weight is baked into each
+  shape, there is no `strokeWidth` to set), and the set is **not uniform** -
+  icons are authored at 16, 20 or 24px depending on use, so each carries its
+  own viewBox and defaults to that natural size.
 - **Illustration** ships no artwork - pass your own hosted `src`.
 - **Modal/Section**: the design system documents ~9 Modal "variants" and ~13
   Section "variants", but each is really the *same* shell component
