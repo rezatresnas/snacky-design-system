@@ -44,8 +44,8 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
   Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. 2 of 22 components ported
-  so far (`SnackyButton`, `SnackyIconButton`). `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt`
+  to `packages/react-ui`, targeting `androidTarget` + iOS. 3 of 22 components ported
+  so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`). `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt`
   is generated from `tokens.json` by `scripts/generate-compose-tokens.js` - run it after
   `generate-agent-files.js` whenever token values change:
   ```

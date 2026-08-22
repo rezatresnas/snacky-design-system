@@ -6,9 +6,9 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 2 of 22 components
+## Status: 3 of 22 components
 
-Design tokens, plus `Button` and `IconButton` (see below). Kotlin
+Design tokens, plus `Button`, `IconButton`, and `Checkbox` (see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -95,6 +95,26 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   Secondary's elevation uses Compose's own `Modifier.shadow`, an
   approximation, not a literal replication of the CSS `box-shadow` blur
   (see `SnackyShadow`'s doc comment in Tokens.kt).
+
+- `SnackyCheckbox` (`src/commonMain/kotlin/com/snacky/ui/components/checkbox/Checkbox.kt`),
+  binary on/off selection with a label. Off is a white field (`bgSurfaceField`)
+  with a `borderInputDefault` outline, checked is a solid `bgActionPrimary`
+  fill with a white (`iconOnAccent`) checkmark. The checkmark is drawn with a
+  `Canvas`/`Path`, not an icon font or vector asset, scaled proportionally
+  from the same polyline Checkbox.css masks in (points `(20,6)-(9,17)-(4,12)`
+  in a 24x24 space, stroke width 2.5). Figma defines no distinct disabled
+  visual (only On/Off), so `enabled` only gates interactivity here, it
+  doesn't dim or recolor anything.
+
+  Ported and verified against Figma (node `444:11084`) twice in the same
+  session: first caught two real color bugs in `packages/react-ui`'s
+  `Checkbox.css` and `index.html`'s Live Preview (off-state fill bound to
+  `icon-secondary` instead of the correct value, checkmark using
+  `text-primary` instead of white), fixed both; then the user updated the Off
+  state in Figma itself mid-session (solid gray fill -> white field + outline),
+  and all four surfaces (react-ui, index.html's Live Preview, its Spec-tab
+  data, its Kotlin illustrative sample) plus this Compose port were updated to
+  match.
 
 ### Theme tokens
 
