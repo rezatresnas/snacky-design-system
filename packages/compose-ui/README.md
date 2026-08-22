@@ -6,12 +6,12 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 18 of 22 components
+## Status: 19 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
 `Accordion`, `Header`, `List`, `BottomSheet`, `Section`, the `Input` family,
-and the `Banner` family (see below).
+the `Banner` family, and the `Icon` set (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -38,7 +38,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.4.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.5.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -436,6 +436,33 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   One small addition over react-ui: the "Points"/"Balance" captions are
   parameters instead of hardcoded English strings, so the component stays
   usable in a localised app.
+
+- The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
+  `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace
+  matching the `SnackyIcons.outline.home` shape used in the site's own
+  documented code samples, mirroring `packages/react-ui`'s `src/icons/`
+  one-for-one: 42 Outline entries (41 icons plus `Pin`, an alias of
+  `Location`, exactly as react-ui exports it) and 4 Solid.
+
+  Geometry is stored as the same SVG primitives react-ui uses (`SvgPath`,
+  `Circle`, `Rect`) and path strings are parsed at runtime with Compose's own
+  `PathParser`, so the data is copied verbatim rather than hand-translated
+  into `Path` calls. This is the one place in the package where a large amount
+  of vector data crosses platforms, and hand-transcription would be the
+  obvious way to introduce silent drift, so parity was also verified
+  mechanically by extracting every primitive from both sources and diffing
+  them: 46/46 exact match.
+
+  `tint` defaults to the ambient `LocalContentColor`, so an icon dropped into
+  a slot on `SnackyIconButton`, `SnackyTextField`, `SnackyChatInput` etc.
+  picks up that component's own resolved icon color automatically.
+
+  Carries react-ui's documented gap unchanged, deliberately: this is a
+  STARTER SUBSET drawn generically, NOT the full documented 41-icon Outline /
+  10-icon Solid set exported from the real Figma icon components. react-ui
+  ships only 4 of the 10 Solid icons, and this port stops at the same 4 rather
+  than inventing the rest. The remaining icons should be exported from Figma
+  via the same `download_assets` tooling used elsewhere in this design system.
 
 ### Theme tokens
 
