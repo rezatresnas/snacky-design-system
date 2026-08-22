@@ -44,20 +44,22 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
   Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. 1 of 22 components ported
-  so far (`SnackyButton`). `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt` is
-  generated from `tokens.json` by `scripts/generate-compose-tokens.js` - run it after
+  to `packages/react-ui`, targeting `androidTarget` + iOS. 2 of 22 components ported
+  so far (`SnackyButton`, `SnackyIconButton`). `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt`
+  is generated from `tokens.json` by `scripts/generate-compose-tokens.js` - run it after
   `generate-agent-files.js` whenever token values change:
   ```
   node scripts/generate-compose-tokens.js
   ```
-  Not yet published: targeting JitPack (not Maven Central, simpler for a portfolio
-  project, no account/signing/secrets, builds straight from a git tag), see
-  `jitpack.yml` at the repo root and `packages/compose-ui/README.md`. Gradle setup
-  is unverified end-to-end (no JDK/Gradle/Android SDK in the environment it was
-  scaffolded in), and there is no Gradle wrapper checked in yet, JitPack needs one
-  (its fallback without one is too old a Gradle version for this project), it gets
-  generated the first time this module is opened in Android Studio.
+  Published via JitPack (not Maven Central, simpler for a portfolio project, no
+  account/signing/secrets, builds straight from a git tag), see `jitpack.yml` at the
+  repo root and `packages/compose-ui/README.md`. Gradle wrapper is committed and
+  confirmed working (`Build > Rebuild Project` green in Android Studio); the module
+  had never actually been compiled before `compose-v0.1.1`'s JitPack attempt, which
+  surfaced (and are now fixed): `gradlew` missing its Unix executable bit (git on
+  Windows doesn't preserve it, `git update-index --chmod=+x` fixes it), a missing
+  `import androidx.compose.runtime.getValue` for a `by` delegate on `State<T>`, and
+  a Kotlin/AGP JVM-target mismatch (11 vs default 1.8).
 
 ## Key rules (don't relitigate these, they're already decided)
 

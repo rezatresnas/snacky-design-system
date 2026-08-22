@@ -6,15 +6,19 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 1 of 22 components
+## Status: 2 of 22 components
 
-Design tokens, plus `Button` (see below). Kotlin Multiplatform library
-targeting `androidTarget` and iOS (`iosX64`, `iosArm64`,
-`iosSimulatorArm64`), with Compose Multiplatform wired in as a dependency.
+Design tokens, plus `Button` and `IconButton` (see below). Kotlin
+Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
+`iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
+dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
+in Android Studio), not just written and assumed correct, and a real
+JitPack build attempt (`compose-v0.1.1`) already got as far as real Kotlin
+compilation before hitting the two bugs described below, `compose-v0.1.2`
+has those fixed but its own JitPack build result isn't confirmed yet.
 
-Not published yet. Once it is, published via [JitPack](https://jitpack.io)
-(builds straight from this Git repo on a tag, no registry account or
-publish step on our side), the coordinates will be something like:
+Published via [JitPack](https://jitpack.io) (builds straight from this Git
+repo on a tag, no registry account or publish step on our side):
 
 ```kotlin
 // settings.gradle.kts
@@ -25,33 +29,34 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.1.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.1.2")
 ```
 
-The exact artifact coordinate (whether it resolves at the repo level like
-above, or needs the module-qualified form
-`com.github.rezatresnas.snacky-design-system:compose-ui:compose-v0.1.0`)
-isn't confirmed yet, this repo has never actually been built by JitPack.
-Check [jitpack.io/#rezatresnas/snacky-design-system](https://jitpack.io/#rezatresnas/snacky-design-system)
-after the first tag to see the coordinate it actually generated.
+Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
+form, not the module-qualified `User.Repo:Module` form) via JitPack's own
+generated snippet. Check [jitpack.io/#rezatresnas/snacky-design-system](https://jitpack.io/#rezatresnas/snacky-design-system)
+for the latest tag's actual build status.
 
-### Publishing to JitPack, what's left
+### Publishing to JitPack
 
-Unlike Maven Central, JitPack needs no account, no signing, no secrets: it
-builds directly from the tagged commit the first time someone requests that
-version. What's still needed:
+No account, no signing, no repo secrets: it builds directly from the
+tagged commit the first time someone requests that version (click "Get it"
+on the JitPack page, or just have a real build resolve the dependency). To
+cut a release: bump `version` in `gradle.properties`, commit,
+`git tag compose-v0.1.X && git push --tags` (the `compose-v` prefix, not
+`v`, is so it doesn't collide with `packages/react-ui`'s npm-release tags
+on the same repo). See [../../jitpack.yml](../../jitpack.yml) for the build
+command JitPack runs (it points at this subfolder, since the buildable
+Gradle project isn't at the repo root).
 
-1. A Gradle wrapper committed at `packages/compose-ui/gradlew` (see
-   "Building" below), JitPack's default fallback without one is a very old
-   Gradle version that can't build a modern Compose Multiplatform project.
-2. A tag: bump `version` in `gradle.properties`, commit,
-   `git tag compose-v0.1.0 && git push --tags` (the `compose-v` prefix, not
-   `v`, is so it doesn't collide with `packages/react-ui`'s npm-release
-   tags on the same repo).
-
-That's it, no repo secrets to configure. See [../../jitpack.yml](../../jitpack.yml)
-for the build command JitPack runs (it points at this subfolder, since the
-buildable Gradle project isn't at the repo root).
+The first real attempt (`compose-v0.1.0`) surfaced two real bugs since
+this had never actually been built before: `gradlew` was committed without
+its Unix executable bit (Windows/NTFS has no such concept, `git
+update-index --chmod=+x` fixed it), and `Button.kt` was missing `import
+androidx.compose.runtime.getValue` needed for a `by` delegate on
+`State<Boolean>` to resolve, plus a JVM-target mismatch between Kotlin (11)
+and AGP's own javac step (still defaulting to 1.8). Both fixed in
+`compose-v0.1.2`.
 
 ## What's here
 
@@ -71,9 +76,25 @@ buildable Gradle project isn't at the repo root).
 
   Not yet given a `FontFamily` (Poppins isn't bundled, see the Typography
   note below), it renders in the ambient/system default font until this
-  package grows a `SnackyTheme` that can supply one globally, that's the
-  next piece of shared infrastructure worth building once a second component
-  needs it too.
+  package grows a `SnackyTheme` that can supply one globally.
+
+- `SnackyIconButton` (`src/commonMain/kotlin/com/snacky/ui/components/iconbutton/IconButton.kt`),
+  a compact circular touch target for a single icon. Primary (32dp default /
+  24dp small, the icon glyph itself always stays 16dp), Secondary (40dp,
+  shadowed, doubles as a toggle via `selected`), Tertiary (40dp, no resting
+  fill). Ported from `packages/react-ui`'s verified `IconButton.tsx`/
+  `IconButton.css`, not the site's illustrative Kotlin sample (that sample's
+  `tint`/upload-variant params aren't in react-ui's real, verified prop
+  shape, so weren't carried over here either).
+
+  Caught one stale doc comment in `IconButton.tsx` while porting: it claims
+  Primary is "24px (default) or 16px (small)", the CSS (32px/24px) is what
+  actually ships and is what this Compose port matches, same "verified
+  implementation wins" rule the rest of this repo already follows.
+
+  Secondary's elevation uses Compose's own `Modifier.shadow`, an
+  approximation, not a literal replication of the CSS `box-shadow` blur
+  (see `SnackyShadow`'s doc comment in Tokens.kt).
 
 ### Theme tokens
 
@@ -112,15 +133,13 @@ are no cross-references between generated Kotlin objects.
 
 ## Building
 
-This module has not been compiled or opened in Android Studio yet (no
-JDK/Gradle/Android SDK was available in the environment it was scaffolded
-in), so treat the Gradle setup as unverified until you build it once. There
-is also no Gradle wrapper checked in: open this folder directly in Android
-Studio (File > Open > `packages/compose-ui`), it will generate `gradlew`,
-`gradlew.bat`, and `gradle/wrapper/` on first sync, commit those once they
-appear. Or run `gradle wrapper --gradle-version 8.9` yourself if you already
-have Gradle installed. Either way, this same wrapper is what JitPack's build
-uses (see `install:` in [../../jitpack.yml](../../jitpack.yml)).
+Open this folder directly in Android Studio (File > Open >
+`packages/compose-ui`). The Gradle wrapper is committed (pinned to Gradle
+8.7, matching AGP 8.5.2, see `gradle/wrapper/gradle-wrapper.properties`),
+so sync should just work, `Build > Rebuild Project` has been confirmed
+green for `Button` + `IconButton`. iOS targets show as disabled on a
+non-macOS machine ("The following Kotlin/Native targets cannot be built on
+this machine"), that's expected, iOS compilation needs Xcode.
 
 ## Keeping this in sync
 
