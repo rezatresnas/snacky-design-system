@@ -55,5 +55,6 @@
 }
 .snacky-iconbtn--tertiary .snacky-iconbtn__icon { width: 24px; height: 24px; color: var(--icon-primary); }
 .snacky-iconbtn--tertiary:hover:not(:disabled) { background: rgba(0, 0, 0, 0.08); }
+.snacky-iconbtn--tertiary:hover:not(:disabled) .snacky-iconbtn__icon { color: var(--icon-secondary); }
 .snacky-iconbtn--tertiary:active:not(:disabled) { background: rgba(0, 0, 0, 0.12); }
 .snacky-iconbtn--tertiary:disabled .snacky-iconbtn__icon { color: var(--icon-disabled); }
