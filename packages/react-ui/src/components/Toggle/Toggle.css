@@ -21,11 +21,17 @@
   width: 56px;
   height: 24px;
   border-radius: 12px;
-  background: var(--color-neutral-200);
+  /* Bound to bg-action-disabled in Figma (same #cccccc as neutral-200, this
+     just matches the actual token binding, confirmed via the file's variables). */
+  background: var(--bg-action-disabled);
   transition: background-color 0.2s ease;
 }
 .snacky-toggle--on .snacky-toggle__track {
-  /* "Accent tint" per Figma - a light wash, not the solid accent color. */
+  /* "Accent tint" per Figma - a light wash, not the solid accent color. Figma's
+     actual paint (#fffbe9) isn't bound to any variable and isn't quite
+     bg-surface-highlight/primary-50 (#fef8eb) either, close enough (a few
+     values out of 255 per channel) that this token is used rather than a new
+     one-off raw color for an likely-untokenized value in Figma itself. */
   background: var(--bg-surface-highlight);
 }
 .snacky-toggle__thumb {
@@ -35,7 +41,9 @@
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  background: var(--color-neutral-500);
+  /* Confirmed against Figma (bound to the icon-disabled variable): #a3a3a3,
+     not neutral-500 (#7a7a7a). */
+  background: var(--icon-disabled);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   transition: left 0.2s ease, background-color 0.2s ease;
 }

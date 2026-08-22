@@ -6,10 +6,10 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 4 of 22 components
+## Status: 5 of 22 components
 
-Design tokens, plus `Button`, `IconButton`, `Checkbox`, and `RadioButton`
-(see below). Kotlin
+Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`, and
+`Toggle` (see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -132,6 +132,25 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   instead of `bgSurfaceVariant`. Spec-tab text also had the selected dot
   documented as "6x6px" (the real Ellipse is 12x12) and Disabled described as
   an opacity effect (it's a solid fill, not opacity) - both corrected.
+
+- `SnackyToggle` (`src/commonMain/kotlin/com/snacky/ui/components/toggle/Toggle.kt`),
+  switch for settings that take effect immediately. A 56x24dp pill track
+  (vertically centered in a 56x32dp hit target) with a 32dp thumb that
+  slides between the two ends, animated with `animateDpAsState`/
+  `animateColorAsState` (needs the `compose.animation` dependency, added
+  alongside this component). Disabled dims the whole control to 50% opacity
+  - the one component so far with an actual Figma-defined disabled
+  treatment, unlike Checkbox/RadioButton where it's left unspecified.
+
+  Found and fixed one real color bug in `packages/react-ui`'s `Toggle.css`
+  and `index.html`'s Live Preview while porting, confirmed against Figma
+  (node `441:14339`, page "Toggle") via its bound variables, not just raw
+  hex: the off-thumb is bound to the `icon-disabled` variable (#a3a3a3),
+  react-ui had `neutral-500` (#7a7a7a). Also noted, but left alone: the
+  on-track's paint (#fffbe9) isn't bound to any Figma variable and differs
+  by a few values per channel from `bgSurfaceHighlight`/primary-50
+  (#fef8eb), close enough that introducing a new one-off raw token for what
+  reads as untokenized Figma drift wasn't worth it.
 
 ### Theme tokens
 
