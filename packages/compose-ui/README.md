@@ -6,10 +6,10 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 5 of 22 components
+## Status: 6 of 22 components
 
-Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`, and
-`Toggle` (see below). Kotlin
+Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
+`Toggle`, and `Avatar` (see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -151,6 +151,17 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   by a few values per channel from `bgSurfaceHighlight`/primary-50
   (#fef8eb), close enough that introducing a new one-off raw token for what
   reads as untokenized Figma drift wasn't worth it.
+
+- `SnackyAvatar` (`src/commonMain/kotlin/com/snacky/ui/components/avatar/Avatar.kt`),
+  circular profile photo in three fixed sizes (32/56/72dp,
+  `SnackySize.Avatar`). Confirmed against Figma (node `8807:6467`, page
+  "Avatar"): a plain circle, image fill, no border/ring at any size, exactly
+  matching `packages/react-ui`'s `Avatar.tsx`/`Avatar.css` already, no bugs
+  found this time. Ships no image loader (no network/bitmap-loading
+  dependency in this package, the same gap `Illustration` already has in
+  `packages/react-ui`), `content` is whatever image composable you already
+  use (Coil's `AsyncImage`, a raw `Image(bitmap = ...)`, etc.), this just
+  handles the fixed size and circular clip.
 
 ### Theme tokens
 
