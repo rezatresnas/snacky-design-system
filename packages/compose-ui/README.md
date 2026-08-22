@@ -6,10 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 9 of 22 components
+## Status: 10 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, the `Badge` family, `Callout`, and `Chips` (see below).
+`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, and `NavBar`
+(see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -201,6 +202,20 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   `thumbnail` composable slot. Confirmed against Figma (node `351:6731`,
   page "Chips"): both variants x both states matched already, no
   color/token bugs this time.
+
+- `SnackyNavBar` (`src/commonMain/kotlin/com/snacky/ui/components/navbar/Navbar.kt`),
+  bottom navigation, 5 tabs for the customer flow. Mirrors
+  `packages/react-ui`'s `Navbar.tsx`/`Navbar.css`, including its documented
+  deliberate deviation: items use `Modifier.weight(1f)` to fill the
+  container width, where Figma's frame hardcodes 72x72 per item (shown at a
+  fixed 360dp width there). Confirmed against Figma (node `441:13155`, page
+  "Navbar"): no bugs, including the already-noted detail that icon and
+  label use different inactive colors (`iconSecondary` #525252 vs
+  `textSecondary` #7a7a7a) and the active icon color (`primitive.primary.500`)
+  - all re-verified directly rather than assumed correct because a comment
+  said so. The outer shadow matches `shadowTop` exactly (offsetY -4, blur
+  10, alpha 0.08), approximated with a plain `Modifier.shadow` since Compose
+  has no directional offset control for an upward-cast shadow.
 
 ### Theme tokens
 
