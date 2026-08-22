@@ -324,17 +324,20 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   groups, order summary, etc). Mirrors `packages/react-ui`'s
   `Section.tsx`/`Section.css`.
 
-  Found and fixed a real bug in `react-ui`'s `Section.css` and `index.html`'s
-  Live Preview while porting, confirmed against Figma (node `8877:8885`,
-  page "Section", component set `351:7830`) via node data and a screenshot
-  of "Group-Products-Horizontal": the "see more" action button's chevron
-  icon is white (`iconOnAccent`), react-ui had the dark
-  `textOnActionPrimary` a labeled button's text would use, wrong for a small
-  circular icon-only affordance. This button is bespoke to `Section` (a
-  hand-rolled inline SVG/`Canvas` shape, like react-ui's own), not the
-  shared `IconButton` component, whose separately-verified Primary variant
-  intentionally does use the dark icon color on the same gold background -
-  the two are different real Figma components that happen to look similar.
+  The "see more" action button's chevron icon is `textPrimary` (#333333),
+  confirmed against Figma (node `8877:8885`, page "Section", component set
+  `351:7830`) by reading the chevron vector's own bound variable
+  (`text/text-primary`) directly. An earlier pass of this port misread the
+  icon *instance's* separate, unrelated white frame fill as the icon color
+  and briefly "fixed" `react-ui`'s originally-correct `textOnActionPrimary`
+  (same #333333 value, different token name) to white across `Section.css`,
+  `index.html`'s Live Preview, and this file - caught from a phone
+  screenshot of the real rendered dark chevron and reverted everywhere.
+  Landed on `--text-primary` rather than restoring the original
+  `--text-on-action-primary` string, since that's the variable Figma
+  actually binds here, even though both resolve to the same hex value. This
+  button is bespoke to `Section` (a hand-rolled inline SVG/`Canvas` shape,
+  like react-ui's own), not the shared `IconButton` component.
 
   Also confirmed, but not something to "fix": shell padding is
   content-dependent in some real variants (Figma's "Variant" variant has 0

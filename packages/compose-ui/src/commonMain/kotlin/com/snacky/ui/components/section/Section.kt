@@ -41,16 +41,14 @@ import com.snacky.ui.theme.SnackyTypography
  * vertical product groups, order summary, etc). Mirrors packages/react-ui's
  * Section.tsx/Section.css.
  *
- * Found and fixed a real bug while porting: the "see more" action button's
- * chevron icon is white (iconOnAccent), confirmed against Figma (node
- * 8877-8885, page "Section", component set 351:7830) via node tree + a
- * screenshot of "Group-Products-Horizontal" - react-ui originally used the
- * dark textOnActionPrimary a labeled button's text would use, wrong for a
- * small circular icon-only affordance. This button is bespoke to Section
- * (like react-ui's own hand-rolled inline SVG button), not the shared
- * IconButton component, so it doesn't reuse SnackyIconButton's Primary
- * variant, which is a separately-verified, intentionally different Figma
- * component that does use the dark icon color.
+ * The "see more" action button's chevron icon is textPrimary (#333333),
+ * confirmed against Figma (node 8877-8885, page "Section", component set
+ * 351:7830) by reading the chevron vector's own bound variable
+ * (text/text-primary) directly, not the icon instance's own separate white
+ * frame fill, which was misread as the icon color in an earlier pass of
+ * this port and briefly "fixed" to white before being caught and reverted.
+ * This button is bespoke to Section (like react-ui's own hand-rolled inline
+ * SVG button), not the shared IconButton component.
  *
  * Also confirmed, but not something to "fix": shell padding is content-
  * dependent in some real variants (e.g. Figma's "Variant" variant has 0
@@ -128,7 +126,7 @@ private fun SectionActionButton(onClick: () -> Unit) {
             }
             drawPath(
                 path = path,
-                color = SnackyColor.iconOnAccent,
+                color = SnackyColor.textPrimary,
                 style = Stroke(
                     width = size.minDimension * (1.5f / 16f),
                     cap = StrokeCap.Round,

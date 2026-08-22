@@ -30,10 +30,13 @@
   border: none;
   border-radius: var(--radius-full);
   background: var(--bg-action-primary);
-  /* Confirmed against Figma: white (icon-on-accent), not the dark
-     text-on-action-primary regular buttons use - this is a small circular
-     icon-only affordance, not a labeled button. */
-  color: var(--icon-on-accent);
+  /* Re-verified against Figma's actual bound variable on the chevron vector
+     (not the icon instance's own unrelated white frame fill, which was
+     mistakenly read as the icon color in an earlier pass): text/text-primary,
+     #333333 - same rendered color as --text-on-action-primary, which is what
+     this originally was, but --text-primary is the variable Figma actually
+     binds here. */
+  color: var(--text-primary);
   cursor: pointer;
 }
 .snacky-section__action:hover { background: var(--bg-action-primary-hover); }
