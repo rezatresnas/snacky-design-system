@@ -18,7 +18,7 @@
   flex-shrink: 0;
   box-sizing: border-box;
   border-radius: 999px;
-  border: 1.5px solid var(--border-main);
+  border: 1px solid var(--border-main);
   background: transparent;
   cursor: pointer;
   position: relative;
@@ -39,7 +39,7 @@
 .snacky-radio:disabled {
   cursor: not-allowed;
   border-color: var(--border-main);
-  background: var(--bg-surface);
+  background: var(--bg-surface-variant);
 }
 /* Disabled suppresses the selected dot entirely, even if checked - matches
    the site's own verified implementation exactly. */

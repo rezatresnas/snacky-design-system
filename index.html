@@ -549,8 +549,8 @@ const C={
     v:[
       {id:'radio',name:'Radio Button',s:{w:24,h:24,r:999},states:[
         {sl:'Unselected',st:null,img:'assets/images/variants/radio-default.png',sOverride:{fill:'#ffffff',bdr:'1px solid #cccccc'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {})',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} />'}},
-        {sl:'Selected',st:'active',img:'assets/images/variants/radio-active.png',sOverride:{fill:'#f8b732 ring',bdr:'#f8b732',dot:'6×6px center fill'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = true, onClick = {})',tsx:'<RadioOption label="Reguler" selected onClick={() => {}} />'}},
-        {sl:'Disabled',st:'disabled',img:'assets/images/variants/radio-disabled.png',sOverride:{fill:'#ffffff',bdr:'1px solid #cccccc',opacity:'Reduced, non-interactive'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {}, enabled = false)',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} disabled />'}},
+        {sl:'Selected',st:'active',img:'assets/images/variants/radio-active.png',sOverride:{fill:'#f8b732 ring',bdr:'#f8b732',dot:'12×12px center fill'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = true, onClick = {})',tsx:'<RadioOption label="Reguler" selected onClick={() => {}} />'}},
+        {sl:'Disabled',st:'disabled',img:'assets/images/variants/radio-disabled.png',sOverride:{fill:'#f3f3f3',bdr:'1px solid #cccccc',note:'Solid bg-surface-variant fill, not an opacity effect; the dot is suppressed entirely even if checked'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {}, enabled = false)',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} disabled />'}},
       ]},
     ]},
   checkbox:{name:'Checkbox',cat:'Forms',desc:'Binary on/off selection control.',usage:'Use for multi-select lists or standalone toggle on settings screens. The accent fill signals checked state with a white checkmark.',cover:'assets/images/checkbox.png',
@@ -878,7 +878,7 @@ const PG={
   'radio-button':{
     component:'RadioDemo',initialProps:{selected:false,disabled:false},
     controls:[{id:'selected',label:'Selected',type:'toggle',def:false},{id:'disabled',label:'Disabled',type:'toggle',def:false}],
-    impl:`const RadioDemo=({selected,disabled})=>{const h=React.createElement;const[sel,setSel]=useState(!!selected);useEffect(()=>{setSel(!!selected);},[selected]);const border=disabled?'#cccccc':(sel?'#f8b732':'#cccccc');const bg=disabled?'#ffffff':'transparent';const dot=(!disabled&&sel);return h('div',{onClick:()=>{if(!disabled)setSel(s=>!s);},style:{width:24,height:24,boxSizing:'border-box',borderRadius:'50%',border:'1.5px solid '+border,background:bg,display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:disabled?'not-allowed':'pointer',transition:'border .15s'}},dot?h('div',{style:{width:12,height:12,borderRadius:'50%',background:'#f8b732'}}):null);};`,
+    impl:`const RadioDemo=({selected,disabled})=>{const h=React.createElement;const[sel,setSel]=useState(!!selected);useEffect(()=>{setSel(!!selected);},[selected]);const border=disabled?'#cccccc':(sel?'#f8b732':'#cccccc');const bg=disabled?'#f3f3f3':'transparent';const dot=(!disabled&&sel);return h('div',{onClick:()=>{if(!disabled)setSel(s=>!s);},style:{width:24,height:24,boxSizing:'border-box',borderRadius:'50%',border:'1px solid '+border,background:bg,display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:disabled?'not-allowed':'pointer',transition:'border .15s'}},dot?h('div',{style:{width:12,height:12,borderRadius:'50%',background:'#f8b732'}}):null);};`,
     getReact:p=>`<RadioOption label="Reguler" selected={${p.selected}} onClick={handleSelect}${p.disabled?' disabled':''} />`,
     getKotlin:p=>`SnackyRadioOption(\n  label = "Reguler",\n  selected = ${p.selected},\n  onClick = { /* select */ }${p.disabled?',\n  enabled = false':''}\n)`
   },

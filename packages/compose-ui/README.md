@@ -6,9 +6,10 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 3 of 22 components
+## Status: 4 of 22 components
 
-Design tokens, plus `Button`, `IconButton`, and `Checkbox` (see below). Kotlin
+Design tokens, plus `Button`, `IconButton`, `Checkbox`, and `RadioButton`
+(see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -115,6 +116,22 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   and all four surfaces (react-ui, index.html's Live Preview, its Spec-tab
   data, its Kotlin illustrative sample) plus this Compose port were updated to
   match.
+
+- `SnackyRadioOption` (`src/commonMain/kotlin/com/snacky/ui/components/radiobutton/RadioButton.kt`),
+  single-selection control for a group of 2+ mutually exclusive options. A
+  24dp ring (1px `borderMain`, or `primitive.primary.500` when selected) with
+  a 12dp center dot when selected. Disabled is a solid `bgSurfaceVariant`
+  (#f3f3f3) fill and suppresses the dot entirely even if selected (no
+  disabled+selected variant exists in Figma to contradict that).
+
+  Found and fixed two real bugs in `packages/react-ui`'s `RadioButton.css`
+  and all of `index.html`'s surfaces (Live Preview, Spec-tab) while porting,
+  confirmed against Figma (node `366:9683`, page "Radio Button", both raw
+  node data and a screenshot): the ring was `1.5px` (Figma's `strokeWeight`
+  is `1` on every variant), and Disabled's fill was plain white/`bgSurface`
+  instead of `bgSurfaceVariant`. Spec-tab text also had the selected dot
+  documented as "6x6px" (the real Ellipse is 12x12) and Disabled described as
+  an opacity effect (it's a solid fill, not opacity) - both corrected.
 
 ### Theme tokens
 
