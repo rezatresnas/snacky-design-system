@@ -6,10 +6,10 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 7 of 22 components
+## Status: 8 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, and the `Badge` family (see below). Kotlin
+`Toggle`, `Avatar`, the `Badge` family, and `Callout` (see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -176,6 +176,22 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   acted on: Figma's Sold variant measures 7dp horizontal padding, not the
   spacing-8 token react-ui/this port both use, reads like an auto-layout
   hug-content rounding artifact rather than an intentional value.
+
+- `SnackyCallout` (`src/commonMain/kotlin/com/snacky/ui/components/callout/Callout.kt`),
+  chat message bubble. Received aligns left/white, Sent/Pending align
+  right/accent, text stays `textPrimary` (#333333) on every variant
+  including Sent/Pending's yellow fill, confirmed against Figma, not
+  inverted to white. `statusIcon` is an optional composable slot (a
+  consumer-supplied check/clock icon), shown only when not Received.
+
+  Found and fixed one real bug in `packages/react-ui`'s `Callout.css` and
+  `index.html`'s Live Preview while porting, confirmed against Figma (node
+  `8690:7426`, page "Callout") via both raw node data and a screenshot:
+  both had an invented `box-shadow` on the Received variant that doesn't
+  exist in Figma (its `effects` array is empty, flat like Sent/Pending,
+  visually confirmed with no shadow under the white bubble in the
+  screenshot). Component Source's Kotlin sample already had no shadow, so
+  it needed no fix.
 
 ### Theme tokens
 

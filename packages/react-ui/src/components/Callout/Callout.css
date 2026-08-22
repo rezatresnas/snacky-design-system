@@ -12,7 +12,8 @@
 .snacky-callout--received {
   align-self: flex-start;
   background: var(--bg-surface);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* No box-shadow: confirmed against Figma (node 8690:7424), the Received
+     bubble has an empty effects array, flat like Sent/Pending. */
 }
 .snacky-callout--sent,
 .snacky-callout--pending {
