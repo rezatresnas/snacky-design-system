@@ -44,19 +44,20 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
   Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. Currently theme tokens
-  only, no components yet. `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt` is
+  to `packages/react-ui`, targeting `androidTarget` + iOS. 1 of 22 components ported
+  so far (`SnackyButton`). `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt` is
   generated from `tokens.json` by `scripts/generate-compose-tokens.js` - run it after
   `generate-agent-files.js` whenever token values change:
   ```
   node scripts/generate-compose-tokens.js
   ```
-  Not yet published: targeting Maven Central under the verified `io.github.rezatresnas`
-  namespace, `.github/workflows/publish-compose-ui.yml` triggers on `compose-v*.*.*`
-  tags but needs a GPG key + Central Portal token added as repo secrets first (see
-  `packages/compose-ui/README.md`). Gradle setup is unverified end-to-end (no
-  JDK/Gradle/Android SDK in the environment it was scaffolded in, no wrapper checked
-  in - CI installs Gradle directly instead of via `./gradlew`).
+  Not yet published: targeting JitPack (not Maven Central, simpler for a portfolio
+  project, no account/signing/secrets, builds straight from a git tag), see
+  `jitpack.yml` at the repo root and `packages/compose-ui/README.md`. Gradle setup
+  is unverified end-to-end (no JDK/Gradle/Android SDK in the environment it was
+  scaffolded in), and there is no Gradle wrapper checked in yet, JitPack needs one
+  (its fallback without one is too old a Gradle version for this project), it gets
+  generated the first time this module is opened in Android Studio.
 
 ## Key rules (don't relitigate these, they're already decided)
 

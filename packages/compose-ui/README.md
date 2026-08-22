@@ -6,41 +6,76 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: theme tokens only
+## Status: 1 of 22 components
 
-This module currently ships **design tokens, no components yet**. It is a
-Kotlin Multiplatform library targeting `androidTarget` and iOS
-(`iosX64`, `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired
-in as a dependency, ready for component work to start.
+Design tokens, plus `Button` (see below). Kotlin Multiplatform library
+targeting `androidTarget` and iOS (`iosX64`, `iosArm64`,
+`iosSimulatorArm64`), with Compose Multiplatform wired in as a dependency.
 
-Not published yet. Once it is, the coordinates will be:
+Not published yet. Once it is, published via [JitPack](https://jitpack.io)
+(builds straight from this Git repo on a tag, no registry account or
+publish step on our side), the coordinates will be something like:
 
 ```kotlin
-implementation("io.github.rezatresnas:snacky-ui:0.1.0")
+// settings.gradle.kts
+dependencyResolutionManagement {
+    repositories {
+        maven("https://jitpack.io")
+    }
+}
+
+// build.gradle.kts
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.1.0")
 ```
 
-### Publishing to Maven Central, what's left
+The exact artifact coordinate (whether it resolves at the repo level like
+above, or needs the module-qualified form
+`com.github.rezatresnas.snacky-design-system:compose-ui:compose-v0.1.0`)
+isn't confirmed yet, this repo has never actually been built by JitPack.
+Check [jitpack.io/#rezatresnas/snacky-design-system](https://jitpack.io/#rezatresnas/snacky-design-system)
+after the first tag to see the coordinate it actually generated.
 
-The `io.github.rezatresnas` Central Portal namespace is verified (GitHub
-sign-in, no domain needed) and `build.gradle.kts` already has the
-`com.vanniktech.maven.publish` plugin + full POM wired in. Still needed
-before [.github/workflows/publish-compose-ui.yml](../../.github/workflows/publish-compose-ui.yml)
-can actually publish:
+### Publishing to JitPack, what's left
 
-1. A GPG key pair for artifact signing (Maven Central requires every artifact
-   signed - npm has no equivalent requirement), public key uploaded to
-   `keys.openpgp.org`.
-2. A Central Portal User Token (account settings, not your login password).
-3. Four repo secrets from the above: `MAVEN_CENTRAL_USERNAME`,
-   `MAVEN_CENTRAL_PASSWORD`, `SIGNING_IN_MEMORY_KEY` (armored private key),
-   `SIGNING_IN_MEMORY_KEY_PASSWORD`.
+Unlike Maven Central, JitPack needs no account, no signing, no secrets: it
+builds directly from the tagged commit the first time someone requests that
+version. What's still needed:
 
-To cut a release once that's done: bump `version` in `gradle.properties`,
-commit, `git tag compose-v0.1.0 && git push --tags` (note the `compose-v`
-prefix, not `v`, so it doesn't collide with `packages/react-ui`'s npm-release
-tags on the same repo).
+1. A Gradle wrapper committed at `packages/compose-ui/gradlew` (see
+   "Building" below), JitPack's default fallback without one is a very old
+   Gradle version that can't build a modern Compose Multiplatform project.
+2. A tag: bump `version` in `gradle.properties`, commit,
+   `git tag compose-v0.1.0 && git push --tags` (the `compose-v` prefix, not
+   `v`, is so it doesn't collide with `packages/react-ui`'s npm-release
+   tags on the same repo).
+
+That's it, no repo secrets to configure. See [../../jitpack.yml](../../jitpack.yml)
+for the build command JitPack runs (it points at this subfolder, since the
+buildable Gradle project isn't at the repo root).
 
 ## What's here
+
+### Components
+
+- `SnackyButton` (`src/commonMain/kotlin/com/snacky/ui/components/button/Button.kt`),
+  Primary/Secondary/Tertiary hierarchy, each with an optional Danger intent,
+  Default/Small sizes, an optional 24x24 leading icon slot. Ported from
+  `packages/react-ui`'s verified `Button.tsx`/`Button.css`, matches the
+  `SnackyButton(text = ..., variant = ButtonVariant.X, ...)` shape already
+  documented in the site's own Kotlin code samples (`index.html`'s
+  `PG.button.getKotlin`).
+
+  One deliberate deviation from the web version: mobile has no hover, only a
+  press. This maps `Button.css`'s `:active` (pressed) colors and drops
+  `:hover` entirely rather than trying to simulate it on a touch target.
+
+  Not yet given a `FontFamily` (Poppins isn't bundled, see the Typography
+  note below), it renders in the ambient/system default font until this
+  package grows a `SnackyTheme` that can supply one globally, that's the
+  next piece of shared infrastructure worth building once a second component
+  needs it too.
+
+### Theme tokens
 
 `src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt` is generated from
 `tokens.json` by `../../scripts/generate-compose-tokens.js` (never hand-edit
@@ -80,9 +115,12 @@ are no cross-references between generated Kotlin objects.
 This module has not been compiled or opened in Android Studio yet (no
 JDK/Gradle/Android SDK was available in the environment it was scaffolded
 in), so treat the Gradle setup as unverified until you build it once. There
-is also no Gradle wrapper checked in: open the module in Android Studio (it
-will generate one), or run `gradle wrapper --gradle-version 8.9` yourself if
-you have Gradle installed.
+is also no Gradle wrapper checked in: open this folder directly in Android
+Studio (File > Open > `packages/compose-ui`), it will generate `gradlew`,
+`gradlew.bat`, and `gradle/wrapper/` on first sync, commit those once they
+appear. Or run `gradle wrapper --gradle-version 8.9` yourself if you already
+have Gradle installed. Either way, this same wrapper is what JitPack's build
+uses (see `install:` in [../../jitpack.yml](../../jitpack.yml)).
 
 ## Keeping this in sync
 

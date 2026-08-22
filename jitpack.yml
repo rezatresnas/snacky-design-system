@@ -1,0 +1,12 @@
+jdk:
+  - openjdk17
+
+# The buildable Gradle project lives in packages/compose-ui (a monorepo
+# alongside the unrelated npm package in packages/react-ui, not at the repo
+# root), so JitPack's default "./gradlew build publishToMavenLocal" at the
+# repo root would find nothing. This points it at the right subfolder instead.
+#
+# Untested: this repo has no Gradle wrapper checked in yet (see
+# packages/compose-ui/README.md), so this command has never actually run.
+install:
+  - cd packages/compose-ui && ./gradlew build publishToMavenLocal

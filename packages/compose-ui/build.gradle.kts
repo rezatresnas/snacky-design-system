@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,14 +6,16 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.mavenPublish)
+    `maven-publish`
 }
 
-// io.github.rezatresnas is a Central Portal namespace verified via GitHub sign-in
-// (Publishing Settings -> Namespace), no domain ownership needed. Release version
-// lives in gradle.properties, not here, so CI can grep it the same way the npm
-// workflow reads package.json's "version".
-group = "io.github.rezatresnas"
+// Published via JitPack (jitpack.io), which builds straight from this Git repo
+// on demand, not via a registry push, so the actual groupId here doesn't matter
+// to consumers: JitPack always serves it as com.github.rezatresnas.* regardless
+// of what's declared below. Release version lives in gradle.properties, not
+// here, so it stays a single grep-able source (used by anyone scripting a
+// release, JitPack itself reads the git tag directly).
+group = "com.snacky"
 
 kotlin {
     androidTarget {
@@ -54,38 +55,9 @@ android {
     }
 }
 
-// Uses the vanniktech/gradle-maven-publish-plugin, which wraps maven-publish +
-// signing + the Central Portal upload API into one config block. Untested here
-// (no JDK/Gradle in this environment), so if publishToMavenCentral()'s signature
-// has moved on whatever plugin version resolves, check the plugin's changelog.
-mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
-
-    coordinates(group.toString(), "snacky-ui", version.toString())
-
-    pom {
-        name.set("Snacky Compose UI")
-        description.set("Compose Multiplatform implementation of the Snacky App design system, pixel-accurate to Figma.")
-        inceptionYear.set("2026")
-        url.set("https://github.com/rezatresnas/snacky-design-system")
-        licenses {
-            license {
-                name.set("MIT")
-                url.set("https://github.com/rezatresnas/snacky-design-system/blob/main/LICENSE")
-            }
-        }
-        developers {
-            developer {
-                id.set("rezatresnas")
-                name.set("rezatresnas")
-                url.set("https://github.com/rezatresnas")
-            }
-        }
-        scm {
-            url.set("https://github.com/rezatresnas/snacky-design-system")
-            connection.set("scm:git:git://github.com/rezatresnas/snacky-design-system.git")
-            developerConnection.set("scm:git:ssh://git@github.com/rezatresnas/snacky-design-system.git")
-        }
-    }
-}
+// Applying the bare maven-publish plugin is all JitPack needs: the Kotlin
+// Multiplatform plugin auto-registers a publication per target (androidRelease,
+// kotlinMultiplatform, iosX64, iosArm64, iosSimulatorArm64) once it sees
+// maven-publish applied, no manual publications {} block required. JitPack then
+// runs its own build (see ../../jitpack.yml) and serves whatever lands in
+// mavenLocal, no signing and no external account needed, unlike Maven Central.
