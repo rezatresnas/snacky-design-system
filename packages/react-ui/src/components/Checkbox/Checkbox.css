@@ -14,10 +14,11 @@
   margin: 0;
   box-sizing: border-box;
   flex-shrink: 0;
-  /* Off state is a white field surface with a default input border - updated
-     in Figma (node 444:11084) from an earlier solid neutral-500 fill to this
-     outline style. */
-  border: 1px solid var(--border-input-default);
+  /* Off state is a white field surface with an outline - updated in Figma
+     (node 444:11084) from an earlier solid neutral-500 fill to this outline
+     style. Figma binds the stroke to border/border-main, not the
+     border-input-default this used before (same #cccccc either way). */
+  border: 1px solid var(--border-main);
   border-radius: var(--radius-field);
   cursor: pointer;
   position: relative;

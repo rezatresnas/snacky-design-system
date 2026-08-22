@@ -1593,7 +1593,7 @@
               "st": null,
               "img": "assets/images/variants/radio-default.png",
               "sOverride": {
-                "fill": "#ffffff",
+                "fill": "Transparent (no fill, only the ring)",
                 "bdr": "1px solid #cccccc"
               },
               "code": {
@@ -1608,7 +1608,7 @@
               "sOverride": {
                 "fill": "#f8b732 ring",
                 "bdr": "#f8b732",
-                "dot": "6×6px center fill"
+                "dot": "12×12px center fill"
               },
               "code": {
                 "kt": "SnackyRadioOption(label = \"Reguler\", selected = true, onClick = {})",
@@ -1620,9 +1620,9 @@
               "st": "disabled",
               "img": "assets/images/variants/radio-disabled.png",
               "sOverride": {
-                "fill": "#ffffff",
+                "fill": "#f3f3f3",
                 "bdr": "1px solid #cccccc",
-                "opacity": "Reduced, non-interactive"
+                "note": "Solid bg-surface-variant fill, not an opacity effect; the dot is suppressed entirely even if checked"
               },
               "code": {
                 "kt": "SnackyRadioOption(label = \"Reguler\", selected = false, onClick = {}, enabled = false)",
@@ -1667,8 +1667,8 @@
               "st": null,
               "img": "assets/images/variants/checkbox-off.png",
               "sOverride": {
-                "fill": "#7a7a7a",
-                "bdr": "1px solid #7a7a7a"
+                "fill": "#ffffff",
+                "bdr": "1px solid #cccccc"
               },
               "code": {
                 "kt": "SnackyCheckbox(label = \"I agree\", checked = false, onCheckedChange = {})",
@@ -1782,8 +1782,8 @@
               "sOverride": {
                 "font": "Poppins SemiBold",
                 "fs": 14,
-                "color": "#f8b732",
-                "indicator": "2px accent underline",
+                "color": "#b08224",
+                "indicator": "2px accent (primary-500) underline, a distinct lighter value from the primary-700 label color",
                 "gapAnchor": "text-line",
                 "gapTopPct": 60,
                 "gapHeightPct": 40
@@ -2536,7 +2536,7 @@
       "name": "Accordion",
       "cat": "Content",
       "desc": "Expandable panel for FAQs and collapsible details, with or without a leading icon.",
-      "usage": "Collapsed shows a title and a chevron icon; clicking expands content below and rotates the chevron 180°. Figma models icon presence as a real variant, not just optional content: With Icon uses a smaller 12px title (smallSemibold) alongside a 24×24px leading logo/icon, has no border, and relies on elevation alone. No Icon uses the default 14px title (bodySemibold), no leading icon, and adds a borderMain outline on the collapsed header that With Icon never has. In code, both are the same component - the border and title size respond automatically to whether leadingIcon is passed.",
+      "usage": "Collapsed shows a title and a chevron icon; clicking expands content below and rotates the chevron 180°. The expanded panel renders as its own separate elevated card (own radius-field + shadow-md) with a spacing-4 gap below the header, not a padding-only section merged into the header's card. Figma models icon presence as a real variant, not just optional content: With Icon uses a smaller 12px title (smallSemibold) alongside a 24×24px leading logo/icon; No Icon uses the default 14px title (bodySemibold), no leading icon. Neither variant, in either state, ever has a border - elevation alone. In code, both are the same component - the title size responds automatically to whether leadingIcon is passed.",
       "cover": "assets/images/accordion.png",
       "v": [
         {
@@ -2602,14 +2602,13 @@
             "pl": 8,
             "pr": 8,
             "fill": "#ffffff",
-            "bdr": "1px solid #cccccc",
             "shadow": "0 4px 8px rgba(0,0,0,0.08)",
             "r": 4,
             "font": "Poppins SemiBold",
             "fs": 14,
             "lh": 24,
             "color": "#333333",
-            "use": "Plain FAQ-style rows - default 14px title, no leading icon, adds a borderMain outline on the collapsed header alongside the usual elevation"
+            "use": "Plain FAQ-style rows - default 14px title, no leading icon, elevation only (no border, confirmed directly against Figma node 8728:5878, same as With Icon)"
           },
           "states": [
             {
@@ -2630,8 +2629,7 @@
               "img": "assets/images/variants/accordion-noicon-expand.png",
               "sOverride": {
                 "h": 340,
-                "icon": "Chevron rotated 180°",
-                "note": "The collapsed-header border seen in Default is not present in Figma's own Expanded node for either variant - this may be an intentional resting-state-only detail or a minor inconsistency in the source file; flagged rather than silently assumed."
+                "icon": "Chevron rotated 180°"
               },
               "code": {
                 "kt": "// expanded state is internal - click toggles it\nSnackyAccordion(title = \"Apakah ada biaya pengiriman?\") { Text(\"Biaya pengiriman dihitung berdasarkan jarak.\") }",

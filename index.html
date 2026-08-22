@@ -548,7 +548,7 @@ const C={
   'radio-button':{name:'Radio Button',cat:'Forms',desc:'Single-selection control for mutually exclusive options.',usage:'Always use in a group of 2+ options. Never use for binary on/off - use Toggle or Checkbox instead. Active state shows an accent-colored ring with a center dot.',cover:'assets/images/radio-button.png',
     v:[
       {id:'radio',name:'Radio Button',s:{w:24,h:24,r:999},states:[
-        {sl:'Unselected',st:null,img:'assets/images/variants/radio-default.png',sOverride:{fill:'#ffffff',bdr:'1px solid #cccccc'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {})',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} />'}},
+        {sl:'Unselected',st:null,img:'assets/images/variants/radio-default.png',sOverride:{fill:'Transparent (no fill, only the ring)',bdr:'1px solid #cccccc'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {})',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} />'}},
         {sl:'Selected',st:'active',img:'assets/images/variants/radio-active.png',sOverride:{fill:'#f8b732 ring',bdr:'#f8b732',dot:'12×12px center fill'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = true, onClick = {})',tsx:'<RadioOption label="Reguler" selected onClick={() => {}} />'}},
         {sl:'Disabled',st:'disabled',img:'assets/images/variants/radio-disabled.png',sOverride:{fill:'#f3f3f3',bdr:'1px solid #cccccc',note:'Solid bg-surface-variant fill, not an opacity effect; the dot is suppressed entirely even if checked'},code:{kt:'SnackyRadioOption(label = "Reguler", selected = false, onClick = {}, enabled = false)',tsx:'<RadioOption label="Reguler" selected={false} onClick={() => {}} disabled />'}},
       ]},
@@ -1440,6 +1440,15 @@ const TEXT_ACTION_IDS=['button'];
 const FILL_TOKEN_ACTION={'#f8b732':'bgActionPrimary','#ffffff':'bgActionSecondary','#cccccc':'bgActionDisabled','#eb5757':'bgActionPrimaryDanger','#d64f4f':'bgActionPrimaryDangerHovered','#a73e3e':'bgActionPrimaryDangerPressed','#e2a72e':'bgActionPrimaryHover','#b08224':'bgActionPrimaryPressed','#f3f3f3':'bgActionSecondaryHover','#e0e0e0':'bgActionSecondaryPressed','#fef8eb':'bgSurfaceHighlight'};
 const FILL_TOKEN_SURFACE={'#ffffff':'bgSurface','#f8b732':'bgSurfacePrimary','#eb5757':'bgSurfaceAccent','#f3f3f3':'bgSurfaceVariant','#fef8eb':'bgSurfaceHighlight','#f7f7f7':'bgApp'};
 const FILL_TOKEN_RGBA={'rgba(51,51,51,0.8)':'bgOverlayDim'};
+// Checkbox/Radio/Toggle are action controls for the accent + disabled values they share
+// with buttons (#f8b732 -> bgActionPrimary, #cccccc -> bgActionDisabled, both confirmed
+// against Figma's own bound variables), but their neutral surfaces are NOT the button
+// ones: Figma binds Checkbox's off field to background/surface/bg-surface-field and Radio's
+// disabled circle to background/surface/bg-surface-variant, where the button map would
+// mislabel them bgActionSecondary/bgActionSecondaryHover. Only these two values are
+// overridden, everything else falls through to FILL_TOKEN_ACTION.
+const FILL_TOKEN_FORM_OVERRIDE={'#ffffff':'bgSurfaceField','#f3f3f3':'bgSurfaceVariant'};
+const FORM_CONTROL_IDS=['checkbox','radio-button','toggle'];
 const BORDER_TOKEN_DEFAULT={'#cccccc':'borderMain','#f8b732':'borderHighlight','#fcdea1':'borderHighlight','#a3a3a3':'borderActionSecondaryPressed','#eb5757':'borderInputError'};
 const BORDER_TOKEN_FIELD={'#cccccc':'borderInputDefault','#f8b732':'borderInputActive','#eb5757':'borderInputError'};
 // Button's border, like its text, depends on (hierarchy × intent × state) rather than a
@@ -1466,12 +1475,19 @@ function fillTok(str,id){
   if(FILL_TOKEN_RGBA[str])return str+' '+tok(FILL_TOKEN_RGBA[str]);
   return annotateHexes(str,h=>{
     if(FIELD_IDS.includes(id)&&h==='#ffffff')return'bgSurfaceField';
+    if(FORM_CONTROL_IDS.includes(id)&&FILL_TOKEN_FORM_OVERRIDE[h])return FILL_TOKEN_FORM_OVERRIDE[h];
     return ACTION_FILL_IDS.includes(id)?FILL_TOKEN_ACTION[h]:FILL_TOKEN_SURFACE[h];
   });
 }
 function borderTok(str,id){
   const map=BORDER_ACTION_IDS.includes(id)?BORDER_TOKEN_ACTION:(FIELD_IDS.includes(id)?BORDER_TOKEN_FIELD:BORDER_TOKEN_DEFAULT);
-  return annotateHexes(str,h=>map[h]);
+  return annotateHexes(str,h=>{
+    // Radio's selected ring is a stroke, but Figma binds it to the *fill* token
+    // background/action/bg-action-primary, not border-highlight - the accent action
+    // color on an interactive control, matching what the ring's own centre dot uses.
+    if(FORM_CONTROL_IDS.includes(id)&&h==='#f8b732')return'bgActionPrimary';
+    return map[h];
+  });
 }
 // Type scale → token-name lookup, mirroring the Typography foundation page. Each
 // (size, weight) pair is unique across the scale, so a clean "Poppins <Weight>" font

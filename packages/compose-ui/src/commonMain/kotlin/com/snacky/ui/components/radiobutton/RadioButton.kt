@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyTypography
 
@@ -33,6 +32,10 @@ import com.snacky.ui.theme.SnackyTypography
  * effect. Disabled suppresses the dot entirely even if selected, matching
  * react-ui and the fact that Figma defines no separate disabled+selected
  * variant to contradict that choice.
+ *
+ * Re-verified in a later token-binding audit: the selected ring and dot are
+ * bound to background/action/bg-action-primary, not the raw primary-500
+ * primitive first assumed (same #f8b732 value either way).
  */
 @Composable
 fun SnackyRadioOption(
@@ -43,7 +46,7 @@ fun SnackyRadioOption(
     enabled: Boolean = true,
 ) {
     val ringColor = when {
-        selected && enabled -> SnackyColorPrimitive.Primary.c500
+        selected && enabled -> SnackyColor.bgActionPrimary
         else -> SnackyColor.borderMain
     }
     val fillColor = if (enabled) Color.Transparent else SnackyColor.bgSurfaceVariant
@@ -72,7 +75,7 @@ fun SnackyRadioOption(
                     modifier = Modifier
                         .size(12.dp)
                         .clip(CircleShape)
-                        .background(SnackyColorPrimitive.Primary.c500),
+                        .background(SnackyColor.bgActionPrimary),
                 )
             }
         }

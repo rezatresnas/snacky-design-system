@@ -31,8 +31,12 @@ import com.snacky.ui.theme.SnackyTypography
  * Snacky Checkbox - binary on/off selection control. Mirrors
  * packages/react-ui's Checkbox.tsx/Checkbox.css, confirmed against Figma
  * (node 444:11084): off is a white field (`bgSurfaceField`) with a
- * `borderInputDefault` outline, checked is a solid `bgActionPrimary` fill
+ * `borderMain` outline, checked is a solid `bgActionPrimary` fill
  * with a white (`iconOnAccent`) checkmark, not `textPrimary`.
+ *
+ * Re-verified in a later token-binding audit: the off-state stroke is bound
+ * to border/border-main, not the `borderInputDefault` first assumed (same
+ * #cccccc value either way).
  *
  * Figma defines no distinct visual for disabled (only On/Off), so [enabled]
  * only gates interactivity here, it doesn't dim or recolor anything - same
@@ -63,7 +67,7 @@ fun SnackyCheckbox(
                 .clip(shape)
                 .background(if (checked) SnackyColor.bgActionPrimary else SnackyColor.bgSurfaceField)
                 .then(
-                    if (!checked) Modifier.border(1.dp, SnackyColor.borderInputDefault, shape) else Modifier,
+                    if (!checked) Modifier.border(1.dp, SnackyColor.borderMain, shape) else Modifier,
                 ),
             contentAlignment = Alignment.Center,
         ) {

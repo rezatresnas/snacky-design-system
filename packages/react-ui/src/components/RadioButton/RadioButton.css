@@ -24,7 +24,10 @@
   position: relative;
 }
 .snacky-radio:checked {
-  border-color: var(--color-primary-500);
+  /* Figma binds both the ring and the dot to background/action/bg-action-primary
+     (same #f8b732 as the primary-500 primitive this used before, but the real
+     semantic token the file actually references). */
+  border-color: var(--bg-action-primary);
 }
 .snacky-radio:checked::after {
   content: '';
@@ -34,7 +37,7 @@
   width: 12px;
   height: 12px;
   border-radius: 999px;
-  background: var(--color-primary-500);
+  background: var(--bg-action-primary);
 }
 .snacky-radio:disabled {
   cursor: not-allowed;
