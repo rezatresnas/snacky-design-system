@@ -6,10 +6,10 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 6 of 22 components
+## Status: 7 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, and `Avatar` (see below). Kotlin
+`Toggle`, `Avatar`, and the `Badge` family (see below). Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -162,6 +162,20 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   `packages/react-ui`), `content` is whatever image composable you already
   use (Coil's `AsyncImage`, a raw `Image(bitmap = ...)`, etc.), this just
   handles the fixed size and circular clip.
+
+- `SnackyBadge`/`SnackyDiscountTag`/`SnackySoldOutBadge`/`SnackyVariantBadge`
+  (`src/commonMain/kotlin/com/snacky/ui/components/badge/Badge.kt`), the
+  Badge family, four small independent composables mirroring
+  `packages/react-ui`'s four-export `Badge.tsx`/`Badge.css` split exactly.
+  `SnackyBadge` is a numeric count overlay (wraps a `content` slot, e.g. a
+  cart icon) that hides entirely when `count <= 0`. Confirmed against Figma
+  (node `8792:6172`, page "Badge") - all four variants matched already, no
+  color/token bugs this time, `SnackySoldOutBadge`'s dim overlay uses
+  `bgOverlayDim` (the token already carries the exact `rgba(51,51,51,0.8)`
+  react-ui hardcodes as a raw value). One likely-inconsequential note, not
+  acted on: Figma's Sold variant measures 7dp horizontal padding, not the
+  spacing-8 token react-ui/this port both use, reads like an auto-layout
+  hug-content rounding artifact rather than an intentional value.
 
 ### Theme tokens
 
