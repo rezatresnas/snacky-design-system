@@ -44,10 +44,10 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   See `packages/react-ui/README.md` for known gaps (icon set is a starter subset,
   Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. 11 of 22 components ported
+  to `packages/react-ui`, targeting `androidTarget` + iOS. 12 of 22 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,
   `SnackyToggle`, `SnackyAvatar`, the Badge family, `SnackyCallout`, Chips, `SnackyNavBar`,
-  `SnackyTabRow`). Compiles are self-verified via `gradlew
+  `SnackyTabRow`, `SnackyAccordion`). Compiles are self-verified via `gradlew
   compileDebugKotlinAndroid compileCommonMainKotlinMetadata`, run directly with
   `JAVA_HOME` pointed at Android Studio's bundled JBR
   (`C:\Program Files\Android\Android Studio\jbr`), no need to drive the IDE UI.

@@ -1,12 +1,8 @@
 .snacky-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
   width: 100%;
-  background: var(--bg-surface);
-  border-radius: var(--radius-field);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-}
-.snacky-accordion--bordered {
-  border: 1px solid var(--border-main);
 }
 .snacky-accordion__header {
   display: flex;
@@ -14,8 +10,10 @@
   gap: var(--gap-text-icon);
   width: 100%;
   padding: var(--spacing-12) var(--spacing-8);
-  background: none;
+  background: var(--bg-surface);
   border: none;
+  border-radius: var(--radius-field);
+  box-shadow: var(--shadow-md);
   cursor: pointer;
   text-align: left;
   color: var(--text-primary);
@@ -40,13 +38,23 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  /* Confirmed against Figma: icon-secondary in both open and closed states,
+     not inherited text-primary. */
+  color: var(--icon-secondary);
   transition: transform 0.15s ease;
 }
 .snacky-accordion__chevron--open {
   transform: rotate(180deg);
 }
+/* Confirmed against Figma (node 8696:6572): the expanded panel is its own
+   separate elevated card (own radius-field + shadow-md), not a padding-only
+   section merged into the header's card, and there is no bordered variant
+   at all - Figma never draws a border on either the icon or no-icon case. */
 .snacky-accordion__panel {
-  padding: 0 var(--spacing-8) var(--spacing-12);
+  padding: var(--spacing-12);
+  background: var(--bg-surface);
+  border-radius: var(--radius-field);
+  box-shadow: var(--shadow-md);
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-primary);

@@ -4,7 +4,7 @@ import './Accordion.css';
 
 export interface AccordionProps {
   title: string;
-  /** When passed, uses the compact 12px title with no border (elevation only) - e.g. a payment-method logo. */
+  /** When passed, uses the compact 12px title (icon-slot variant) - e.g. a payment-method logo. */
   leadingIcon?: ReactNode;
   children: ReactNode;
   defaultOpen?: boolean;
@@ -12,16 +12,18 @@ export interface AccordionProps {
 }
 
 /**
- * Snacky Accordion - one component whose header border and title size respond
- * automatically to whether `leadingIcon` is passed (matches the Figma source,
- * which models icon presence as a real variant rather than optional content).
+ * Snacky Accordion - header and (when open) panel render as two separate
+ * elevated cards with a small gap between them, not one continuous card;
+ * title size responds to whether `leadingIcon` is passed (matches the
+ * Figma source, which models icon presence as a real variant rather than
+ * optional content). Neither state ever has a border, only elevation.
  */
 export function Accordion({ title, leadingIcon, children, defaultOpen = false, className }: AccordionProps) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();
 
   return (
-    <div className={cx('snacky-accordion', !leadingIcon && 'snacky-accordion--bordered', !!leadingIcon && 'snacky-accordion--icon', className)}>
+    <div className={cx('snacky-accordion', !!leadingIcon && 'snacky-accordion--icon', className)}>
       <button
         type="button"
         className="snacky-accordion__header"

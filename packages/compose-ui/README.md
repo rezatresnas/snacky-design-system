@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 11 of 22 components
+## Status: 12 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, and
-`Tab` (see below).
+`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
+and `Accordion` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -231,6 +231,32 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   Component Source's Kotlin sample (uses Material3's own `TabRow`, a
   different visual paradigm) toward the same distinction, lower confidence
   since it's illustrative-only.
+
+- `SnackyAccordion` (`src/commonMain/kotlin/com/snacky/ui/components/accordion/Accordion.kt`),
+  expandable panel for FAQs and collapsible details. Header and (when
+  expanded) panel render as two separate elevated cards with a small gap
+  between them, not one continuous card. Title size responds to whether
+  `leadingIcon` is passed. Supports both self-managed (`expanded`/`onToggle`
+  omitted) and controlled usage.
+
+  This one turned up the biggest find of the Figma audit so far. Confirmed
+  against Figma (node `8696:6572`, page "Accordion") via a screenshot and
+  raw node data, `packages/react-ui`'s `Accordion.tsx`/`Accordion.css` and
+  every surface in `index.html` (Live Preview, Spec-tab, both Kotlin and
+  React Component Source samples) had: an invented `borderMain` outline on
+  the no-icon header that doesn't exist in Figma at all (neither variant, in
+  either state, has a border, elevation only), the chevron using
+  `textPrimary`/`iconPrimary` instead of `iconSecondary`, and (in
+  `react-ui`/the React Component Source sample specifically) the expanded
+  panel modeled as a padding-only section of the same card instead of its
+  own separate elevated card. Fixed all of it. The shared `Acc` helper
+  index.html injects into several other components' Playground iframes had
+  already gotten the card structure right, only its chevron color needed
+  fixing. A prior session had actually already caught the border
+  inconsistency (a Spec-tab note said "flagged rather than silently
+  assumed" after finding Figma's Expanded node had no border while Default
+  claimed one) but couldn't resolve which was correct without deeper
+  inspection - this session's direct node/variable access resolved it.
 
 ### Theme tokens
 
