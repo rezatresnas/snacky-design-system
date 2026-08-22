@@ -98,3 +98,13 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
 - The Playground's shared `Btn`/`IconBtn` helper functions (used by Modal, List,
   Section, Product Card) are a separate code path from the standalone Button/Icon
   Button pages' own implementations - a fix to one does not propagate to the other.
+- For the remaining `packages/compose-ui` ports: stop re-verifying against Figma per
+  component. `index.html`'s Live Preview and `packages/react-ui`'s implementation are
+  already pixel-perfect (confirmed by the user directly), so port from that code
+  as source of truth instead. Reason: the Section component's manual Figma re-check
+  actually introduced a wrong "fix" (misread an unrelated instance fill as the
+  rendered icon color) that a working, already-verified implementation wouldn't have
+  had - re-deriving from Figma each time adds transcription risk without adding
+  accuracy once a surface is already confirmed pixel-perfect. Still fine to check
+  Figma if something in the existing code looks actually wrong/inconsistent on its
+  own terms, just not as a routine per-component step anymore.
