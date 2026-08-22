@@ -6,10 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 8 of 22 components
+## Status: 9 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, the `Badge` family, and `Callout` (see below). Kotlin
+`Toggle`, `Avatar`, the `Badge` family, `Callout`, and `Chips` (see below).
+Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
 dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
@@ -192,6 +193,14 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   visually confirmed with no shadow under the white bubble in the
   screenshot). Component Source's Kotlin sample already had no shadow, so
   it needed no fix.
+
+- `SnackyFilterChip`/`SnackyProductChip` (`src/commonMain/kotlin/com/snacky/ui/components/chips/Chips.kt`),
+  two independent pill-toggle components mirroring `packages/react-ui`'s
+  `FilterChip.tsx`/`ProductChip.tsx`/`Chips.css` split exactly.
+  `SnackyFilterChip` is text-only, `SnackyProductChip` adds a 24x24
+  `thumbnail` composable slot. Confirmed against Figma (node `351:6731`,
+  page "Chips"): both variants x both states matched already, no
+  color/token bugs this time.
 
 ### Theme tokens
 
