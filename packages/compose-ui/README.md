@@ -6,12 +6,12 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 17 of 22 components
+## Status: 18 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, `Header`, `List`, `BottomSheet`, `Section`, and the `Input`
-family (see below).
+`Accordion`, `Header`, `List`, `BottomSheet`, `Section`, the `Input` family,
+and the `Banner` family (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -38,7 +38,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.3.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.4.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -411,6 +411,31 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   - Icons are caller-supplied composable slots throughout (eye toggle,
     chevron, calendar, marker, search, clear, send), since this package
     ships no icon set, the same gap `Avatar` and `Illustration` already have.
+
+- The `Banner` family (`src/commonMain/kotlin/com/snacky/ui/components/banner/Banner.kt`),
+  five composables mirroring `packages/react-ui`'s five-export `Banner.tsx`
+  exactly: `SnackyHeroBanner`, `SnackySquareBanner`, `SnackyFullWidthBanner`,
+  `SnackyPointBalanceBanner`, `SnackyAlertBanner`.
+
+  The three image banners ship no image loader (same gap `Avatar` has), so
+  `content` is whatever image composable you already use - they own the frame
+  only: Hero gets `radius-field` + elevation, Square pins the documented
+  360:334 ratio at `radius-bubble`, Full-width pins 360:176 with no radius or
+  elevation since it runs edge to edge. Hero's height stays caller-owned
+  because react-ui sets only `width: 100%` on it with no aspect ratio, unlike
+  the other two.
+
+  `SnackyPointBalanceBanner`'s border and divider use the raw `primary-500`
+  primitive rather than a semantic token, matching react-ui exactly - there is
+  no semantic "accent outline" token in this system, and inventing a binding
+  Figma does not carry is what produced the mislabels fixed earlier in this
+  package. Its divider uses `IntrinsicSize.Min` + `fillMaxHeight()`, the
+  Compose equivalent of the CSS `align-self: stretch` it replaces, rather than
+  a hardcoded height.
+
+  One small addition over react-ui: the "Points"/"Balance" captions are
+  parameters instead of hardcoded English strings, so the component stays
+  usable in a localised app.
 
 ### Theme tokens
 
