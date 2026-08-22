@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 14 of 22 components
+## Status: 15 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, `Header`, and `List` (see below).
+`Accordion`, `Header`, `List`, and `BottomSheet` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -292,6 +292,31 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   already documents this component as cross-checked directly against its
   Figma component set in an earlier session, and this re-check confirms
   that held up.
+
+- `SnackyBottomSheet` (`src/commonMain/kotlin/com/snacky/ui/components/modal/BottomSheet.kt`),
+  the shared modal shell every documented Modal "variant" (Welcome,
+  Success, Confirmation, Calendar, Variants Selector, Payment Methods,
+  Buyer Reviews, Driver Tracking) composes from. 20dp radius on top
+  corners only, dim overlay backdrop (`bgOverlayDim`), dismiss on backdrop
+  click. Built on `androidx.compose.ui.window.Dialog`. Mirrors
+  `packages/react-ui`'s `BottomSheet.tsx`/`BottomSheet.css`.
+
+  Found and fixed a real bug in react-ui's `BottomSheet.tsx` while porting:
+  confirmed against Figma (node `8681:8211`, page "Modal") by checking all
+  9 documented variants' node trees plus a screenshot, none of them ever
+  show a drag-handle bar - react-ui defaulted to showing one (`hideHandle
+  = false`). Renamed to `showHandle`, defaulting to `false`, so a future
+  variant can opt in rather than every existing one opting out (no other
+  file in the repo referenced the old prop name).
+
+  Also confirmed, but not something to "fix": the padding-bottom/gap-
+  between-blocks values genuinely differ per real variant (Welcome's gap
+  is 32dp, Calendar's is 24dp, others 16dp; several variants get their
+  trailing 24dp spacing from their own button-row's own padding rather
+  than the shell), so no single shell default reproduces all of them -
+  `content`'s own spacing is expected to override the shell's default
+  `SnackyLayout.block` gap when a composition needs something else,
+  matching how react-ui already treats it.
 
 ### Theme tokens
 

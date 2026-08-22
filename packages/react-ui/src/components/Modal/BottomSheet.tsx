@@ -6,8 +6,10 @@ export interface BottomSheetProps {
   open: boolean;
   onDismiss: () => void;
   children: ReactNode;
-  /** Hide the drag-handle bar, e.g. for content that supplies its own header. */
-  hideHandle?: boolean;
+  /** Show the drag-handle bar. Confirmed against Figma: none of the 9
+   *  documented Modal variants show one, so this defaults to false - opt
+   *  in only if a future variant actually needs it. */
+  showHandle?: boolean;
   className?: string;
 }
 
@@ -19,7 +21,7 @@ export interface BottomSheetProps {
  * 20px radius on top corners only, dim overlay backdrop, dismiss on
  * backdrop click or Escape.
  */
-export function BottomSheet({ open, onDismiss, children, hideHandle = false, className }: BottomSheetProps) {
+export function BottomSheet({ open, onDismiss, children, showHandle = false, className }: BottomSheetProps) {
   useEffect(() => {
     if (!open) return;
     function onKeyDown(e: KeyboardEvent) {
@@ -39,7 +41,7 @@ export function BottomSheet({ open, onDismiss, children, hideHandle = false, cla
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
       >
-        {!hideHandle && <div className="snacky-sheet__handle" />}
+        {showHandle && <div className="snacky-sheet__handle" />}
         {children}
       </div>
     </div>
