@@ -6,13 +6,19 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 21 of 22 components
+## Status: 22 of 22 components - complete
 
-Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, `Header`, `List`, `BottomSheet`, `Section`, the `Input` family,
-the `Banner` family, the `Icon` set, `Illustration`, and `ProductImage`
-(see below). Only `ProductCard` is left.
+Every documented component is ported: design tokens, plus `Button`,
+`IconButton`, `Checkbox`, `RadioButton`, `Toggle`, `Avatar`, the `Badge`
+family, `Callout`, `Chips`, `NavBar`, `Tab`, `Accordion`, `Header`, `List`,
+`BottomSheet`, `Section`, the `Input` family, the `Banner` family, the `Icon`
+set, `Illustration`, `ProductImage`, and `ProductCard` (see below).
+
+Known gaps that are deliberate, not unfinished work: this package ships no
+image loader and no bundled artwork, so `Avatar`, the image banners,
+`Illustration`, `ProductImage` and `ProductCard` all take the image as a
+`content` slot; and no `FontFamily` is supplied (Poppins is not bundled), so
+text renders in the ambient font until a `SnackyTheme` provides one.
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -39,7 +45,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.7.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -507,6 +513,28 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   in the source CSS with no token behind it, so it is not mapped onto a token
   that would not actually describe it. The label's own background does have
   one (`bgOverlayDim`).
+
+- `SnackyProductCard` / `SnackyProductCardDetails`
+  (`src/commonMain/kotlin/com/snacky/ui/components/productcard/ProductCard.kt`),
+  the 152dp card used in carousels and 2-column grids, and the product detail
+  page header with its rating count and Favorite/Share/Chat actions. Composes
+  `SnackyDiscountTag`, `SnackySoldOutBadge` and `SnackyIconButton`, mirroring
+  react-ui reusing its own `DiscountTag`/`SoldOutBadge`/`IconButton`.
+
+  One structural deviation: react-ui models the two variants as a
+  discriminated union on a single component, because their prop sets genuinely
+  differ (list has `onAddToCart`, details has `ratingCount` and three social
+  actions). Kotlin has no equivalent, and collapsing them into one composable
+  with nullable parameters would let callers construct states that cannot
+  exist, so this splits into two composables. The rendered output matches
+  react-ui's two branches exactly.
+
+  Two smaller notes: the rating star is tinted by the component
+  (`primary-500`, matching react-ui's `.snacky-product-card__rating-icon`)
+  rather than left to the caller, even though the icon itself is a slot; and
+  the details variant's three action buttons use `SnackyIconButton`'s own
+  Secondary elevation, since react-ui's slightly softer `0 4px 4px` shadow has
+  no equivalent in Compose's blur-less `Modifier.shadow`.
 
 ### Theme tokens
 
