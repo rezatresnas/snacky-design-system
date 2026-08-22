@@ -2962,13 +2962,14 @@ fun SnackyRadioOption(
             onClick  = onClick,
             enabled  = enabled,
             colors   = RadioButtonDefaults.colors(
-                selectedColor           = iconBrand,
+                // Figma binds the selected ring and dot to bg-action-primary
+                selectedColor           = bgActionPrimary,
                 unselectedColor         = borderMain,
-                disabledSelectedColor   = iconBrand.copy(alpha = 0.4f),
+                disabledSelectedColor   = bgActionPrimary.copy(alpha = 0.4f),
                 disabledUnselectedColor = borderMain.copy(alpha = 0.4f)
             )
         )
-        Spacer(Modifier.width(gapTextIcon))
+        Spacer(Modifier.width(gapIconLabel))
         Text(
             text  = label,
             style = SnackyTypography.smallRegular,
@@ -3023,13 +3024,13 @@ fun SnackyCheckbox(
             enabled         = enabled,
             colors          = CheckboxDefaults.colors(
                 checkedColor           = bgActionPrimary,
-                uncheckedColor         = borderInputDefault, // unchecked is a white field with a #cccccc outline in Figma, not a filled box
+                uncheckedColor         = borderMain, // unchecked is a white field with a #cccccc outline in Figma, not a filled box
                 checkmarkColor         = iconOnAccent,
                 disabledCheckedColor   = bgActionPrimary.copy(alpha = 0.4f),
-                disabledUncheckedColor = borderInputDefault.copy(alpha = 0.4f)
+                disabledUncheckedColor = borderMain.copy(alpha = 0.4f)
             )
         )
-        Spacer(Modifier.width(gapTextIcon))
+        Spacer(Modifier.width(gapIconLabel))
         Text(
             text  = label,
             style = SnackyTypography.smallRegular,
@@ -3058,6 +3059,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.snacky.ui.theme.*
 
 @Composable
@@ -3073,15 +3075,17 @@ fun SnackyToggle(
         modifier        = modifier,
         enabled         = enabled,
         colors          = SwitchDefaults.colors(
+            // Figma's toggle has no stroke on either variant, so both border
+            // colors are transparent rather than an invented outline.
             checkedThumbColor           = iconBrand,
             checkedTrackColor           = bgSurfaceHighlight,
-            checkedBorderColor          = borderInputActive,
-            uncheckedThumbColor         = bgSurface,
+            checkedBorderColor          = Color.Transparent,
+            uncheckedThumbColor         = iconDisabled, // #a3a3a3, not white
             uncheckedTrackColor         = bgActionDisabled,
-            uncheckedBorderColor        = borderMain,
+            uncheckedBorderColor        = Color.Transparent,
             disabledCheckedThumbColor   = iconBrand.copy(alpha = 0.4f),
             disabledCheckedTrackColor   = bgSurfaceHighlight.copy(alpha = 0.4f),
-            disabledUncheckedThumbColor = bgActionDisabled,
+            disabledUncheckedThumbColor = iconDisabled.copy(alpha = 0.4f),
             disabledUncheckedTrackColor = bgActionDisabled.copy(alpha = 0.4f)
         )
     )
@@ -6106,24 +6110,27 @@ interface RadioOptionProps {
 }
 
 export function RadioOption({ label, selected, onClick, disabled = false }: RadioOptionProps) {
-  const ringColor = disabled ? 'rgba(248,183,50,0.4)' : 'var(--icon-brand)';
-  const outerStyle: CSSProperties = { display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)', cursor: disabled ? 'not-allowed' : 'pointer' };
+  // Ring is 1px. Selected binds to --bg-action-primary (ring and dot alike).
+  // Disabled is a solid --bg-surface-variant fill with the neutral ring, and it
+  // suppresses the dot entirely - it is not a faded/translucent accent ring.
+  const outerStyle: CSSProperties = { display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', cursor: disabled ? 'not-allowed' : 'pointer' };
   const radioStyle: CSSProperties = {
     width: 24,
     height: 24,
+    boxSizing: 'border-box',
     borderRadius: '50%',
-    border: `2px solid ${selected ? ringColor : 'var(--border-main)'}`,
+    border: `1px solid ${selected && !disabled ? 'var(--bg-action-primary)' : 'var(--border-main)'}`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'none',
+    background: disabled ? 'var(--bg-surface-variant)' : 'transparent',
     flexShrink: 0,
   };
-  const dotStyle: CSSProperties = { width: 6, height: 6, borderRadius: '50%', background: ringColor };
+  const dotStyle: CSSProperties = { width: 12, height: 12, borderRadius: '50%', background: 'var(--bg-action-primary)' };
 
   return (
     <label style={outerStyle} onClick={disabled ? undefined : onClick}>
-      <span style={radioStyle}>{selected && <span style={dotStyle} />}</span>
+      <span style={radioStyle}>{selected && !disabled && <span style={dotStyle} />}</span>
       <span style={{ ...typography.smallRegular, color: disabled ? 'var(--text-disabled)' : 'var(--text-primary)' }}>
         {label}
       </span>
@@ -6154,13 +6161,14 @@ interface CheckboxProps {
 }
 
 export function Checkbox({ label, checked, onChange, disabled = false }: CheckboxProps) {
-  // Unchecked fill+border is #7a7a7a (--text-secondary) in Figma, not a white box with a grey border.
+  // Unchecked is a white field (--bg-surface-field) with a 1px --border-main outline.
+  // Checked fills with --bg-action-primary and shows a white --icon-on-accent checkmark.
   const boxStyle: CSSProperties = {
     width: 24,
     height: 24,
     borderRadius: 'var(--radius-field)',
-    border: checked ? 'none' : '1px solid var(--text-secondary)',
-    background: checked ? 'var(--bg-action-primary)' : 'var(--text-secondary)',
+    border: checked ? 'none' : '1px solid var(--border-main)',
+    background: checked ? 'var(--bg-action-primary)' : 'var(--bg-surface-field)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -6169,13 +6177,13 @@ export function Checkbox({ label, checked, onChange, disabled = false }: Checkbo
   };
   return (
     <label
-      style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)', cursor: disabled ? 'not-allowed' : 'pointer' }}
+      style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', cursor: disabled ? 'not-allowed' : 'pointer' }}
       onClick={disabled ? undefined : () => onChange(!checked)}
     >
       <span style={boxStyle}>
         {checked && (
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="var(--icon-on-accent)" strokeWidth="2">
-            <path d="M3 8l3.5 3.5L13 5" />
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--icon-on-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
           </svg>
         )}
       </span>
@@ -6204,12 +6212,15 @@ interface ToggleProps {
 }
 
 export function Toggle({ checked, onChange, disabled = false }: ToggleProps) {
+  // Figma's toggle has no stroke on either variant, so the track carries no border.
+  // The 32px thumb deliberately overhangs the 24px track, top/bottom alike.
   const trackStyle: CSSProperties = {
     width: 56,
     height: 24,
     borderRadius: 'var(--radius-full)',
     background: checked ? 'var(--bg-surface-highlight)' : 'var(--bg-action-disabled)',
-    border: `1px solid ${checked ? 'var(--border-input-active)' : 'var(--border-main)'}`,
+    border: 'none',
+    padding: 0,
     position: 'relative',
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.4 : 1,
@@ -6217,12 +6228,13 @@ export function Toggle({ checked, onChange, disabled = false }: ToggleProps) {
   };
   const thumbStyle: CSSProperties = {
     position: 'absolute',
-    top: 1,
-    left: checked ? 30 : 2,
-    width: 20,
-    height: 20,
+    top: -4,
+    left: checked ? 24 : 0,
+    width: 32,
+    height: 32,
     borderRadius: '50%',
-    background: checked ? 'var(--icon-brand)' : 'var(--bg-surface)',
+    // Off thumb is --icon-disabled (#a3a3a3) per Figma's bound variable, not white.
+    background: checked ? 'var(--bg-action-primary)' : 'var(--icon-disabled)',
     transition: 'left .15s',
   };
 
