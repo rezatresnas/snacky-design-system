@@ -6,12 +6,13 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 19 of 22 components
+## Status: 21 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
 `Accordion`, `Header`, `List`, `BottomSheet`, `Section`, the `Input` family,
-the `Banner` family, and the `Icon` set (see below).
+the `Banner` family, the `Icon` set, `Illustration`, and `ProductImage`
+(see below). Only `ProductCard` is left.
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -38,7 +39,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.6.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.7.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -473,6 +474,39 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   open eye (`eyeOff`/`eye`). Indonesian property values are translated
   (`riwayat` -> `history`, `akun` -> `account`, `Saldo` -> `balance`,
   `poin` -> `points`, `NoHP` -> `smartphone`, `Ganti pass` -> `key`).
+
+- `SnackyIllustration` (`src/commonMain/kotlin/com/snacky/ui/components/illustration/Illustration.kt`),
+  the five documented spot illustrations for empty states, onboarding and
+  confirmations, each an `IllustrationVariant` carrying the fixed canvas size
+  Figma authors it at (268x200, 360x240, 200x200, 200x200, 268x200). Mirrors
+  `packages/react-ui`'s `Illustration.tsx`.
+
+  Ships NO artwork, deliberately, matching react-ui's own "host your own
+  export" decision rather than silently bundling five large assets inside a
+  component library: `content` is whatever image composable you already use,
+  and this owns only the variant's footprint. The artwork can be exported
+  from Figma the same way the icon set was if you want it bundled.
+
+- `SnackyProductImage` (`src/commonMain/kotlin/com/snacky/ui/components/productimage/ProductImage.kt`),
+  a product photo frame that adapts to where it appears (`ProductCard` 128dp,
+  `ProductDetails` 200dp, `List` 56dp, `Review` 48dp, `Variant` 88dp,
+  `AccordionModal` 24dp for a payment-method logo), with an optional centred
+  "Sold Out" scrim. Mirrors `packages/react-ui`'s
+  `ProductImage.tsx`/`ProductImage.css`. Image loading is a `content` slot,
+  same as `Avatar`/`Banner`/`Illustration`.
+
+  Found and fixed a real bug in react-ui's `ProductImage.css` while porting:
+  the component builds its class name as `--${usage}`, but the stylesheet
+  spelled the first two rules `--card`/`--details` instead of
+  `--product-card`/`--product-details`. Those two usages, the 128px card
+  image and the 200px detail image (the two most common ones), therefore
+  matched no rule at all and rendered completely unsized. Fixed by renaming
+  the selectors, which leaves the public `usage` API unchanged.
+
+  One value stays raw on purpose: the sold-out scrim is a literal white-at-46%
+  in the source CSS with no token behind it, so it is not mapped onto a token
+  that would not actually describe it. The label's own background does have
+  one (`bgOverlayDim`).
 
 ### Theme tokens
 

@@ -54,11 +54,12 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   generated CSS custom properties, so token-only changes propagate automatically.
   See `packages/react-ui/README.md` for known gaps (Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. 19 of 22 components ported
+  to `packages/react-ui`, targeting `androidTarget` + iOS. 21 of 22 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,
   `SnackyToggle`, `SnackyAvatar`, the Badge family, `SnackyCallout`, Chips, `SnackyNavBar`,
   `SnackyTabRow`, `SnackyAccordion`, `SnackyHeader`, List, `SnackyBottomSheet`,
-  `SnackySection`, the Input family, the Banner family, the Icon set). Compiles are
+  `SnackySection`, the Input family, the Banner family, the Icon set, `SnackyIllustration`,
+  `SnackyProductImage`). Compiles are
   self-verified via `gradlew
   compileDebugKotlinAndroid compileCommonMainKotlinMetadata`, run directly with
   `JAVA_HOME` pointed at Android Studio's bundled JBR
