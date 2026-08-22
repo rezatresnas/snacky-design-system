@@ -53,6 +53,14 @@ android {
     defaultConfig {
         minSdk = 24
     }
+    // Must match kotlin.androidTarget's jvmTarget above (11) - AGP's own javac
+    // step defaults to 1.8 independently of the Kotlin compiler setting, and
+    // the two disagreeing fails the build ("Inconsistent JVM-target
+    // compatibility").
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }
 
 // Applying the bare maven-publish plugin is all JitPack needs: the Kotlin
