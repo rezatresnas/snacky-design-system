@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 13 of 22 components
+## Status: 14 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, and `Header` (see below).
+`Accordion`, `Header`, and `List` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -276,6 +276,22 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   `M6 6l12 12M18 6L6 18`, 1.5 stroke in a 24x24 space). That set is itself
   documented as generic, not pixel-verified against Figma, so this port
   carries the same known gap rather than inventing a new one.
+
+- `SnackyOrderListItem`/`SnackyNotificationListItem` (`src/commonMain/kotlin/com/snacky/ui/components/list/List.kt`),
+  mirroring `packages/react-ui`'s `List.tsx`/`List.css` (`OrderListItem`/
+  `NotificationListItem`). `SnackyOrderListItem`'s layout, CTA (reuses
+  `SnackyButton`, matching react-ui reusing its own `Button`), and the COD
+  chip / payment-deadline banner are all driven by `status`
+  (Waiting/Process/ProcessCod/Shipped/Received/Cancelled).
+  `SnackyNotificationListItem` gets an accent-tinted background when
+  `unread`.
+
+  Spot-checked against Figma (node `8695:6485`, page "List") during this
+  port: card shadow/radius and the notification border/unread-highlight
+  colors all matched exactly, no bugs this time - react-ui's own README
+  already documents this component as cross-checked directly against its
+  Figma component set in an earlier session, and this re-check confirms
+  that held up.
 
 ### Theme tokens
 
