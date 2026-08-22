@@ -31,11 +31,20 @@ import com.snacky.ui.theme.SnackyTypography
  *
  * Found and fixed one real bug in react-ui's Tab.css and both of
  * index.html's surfaces (Live Preview, Spec-tab) while porting, confirmed
- * against Figma (node 386:10909, page "Tab") via a screenshot and the
- * label/underline's separate node fills: the active label is
- * `primitive.primary.700` (#b08224), a distinct, darker value from the
- * `primitive.primary.500` (#f8b732) underline - both had the same color
- * (primary-500) repeated for label and underline instead.
+ * against Figma (node 386:10909, page "Tab"): the active label is a
+ * distinct, darker value (#b08224) from the underline (#f8b732) - both had
+ * the same color repeated for label and underline instead.
+ *
+ * Re-verified in a later pass: the active label's real bound Figma
+ * variable is text/on-action/text-on-action-tertiary, not the raw
+ * primary-700 primitive first assumed (same #b08224 value either way) -
+ * the same semantic token Tertiary buttons use for their default label,
+ * reused here since Tab's active state is the same kind of accent-colored
+ * interactive text. The underline's own bound variable turned out to be
+ * border/input/border-input-active (an input-focus token, same #f8b732
+ * value) - that reads as incidental Figma variable reuse rather than an
+ * intentional shared role, so it stays on the primitive `Primary.c500`
+ * here rather than adopting a misleading semantic name.
  */
 @Composable
 fun SnackyTabRow(
@@ -60,7 +69,7 @@ fun SnackyTabRow(
         tabs.forEachIndexed { index, tab ->
             val active = index == selected
             val style = if (active) SnackyTypography.Body.semibold else SnackyTypography.Body.regular
-            val color = if (active) SnackyColorPrimitive.Primary.c700 else SnackyColor.textPrimary
+            val color = if (active) SnackyColor.textOnActionTertiary else SnackyColor.textPrimary
 
             Column(
                 modifier = Modifier.selectable(

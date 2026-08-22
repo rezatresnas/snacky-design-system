@@ -223,14 +223,24 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
 
   Found and fixed one real bug in react-ui's `Tab.css` and both of
   `index.html`'s surfaces (Live Preview, Spec-tab) while porting, confirmed
-  against Figma (node `386:10909`, page "Tab") via a screenshot and the
-  label/underline's separate node fills: the active label is
-  `primitive.primary.700` (#b08224), a distinct darker value from the
-  `primitive.primary.500` (#f8b732) underline - all three had the same
-  color repeated for both instead of two different ones. Also nudged
-  Component Source's Kotlin sample (uses Material3's own `TabRow`, a
-  different visual paradigm) toward the same distinction, lower confidence
-  since it's illustrative-only.
+  against Figma (node `386:10909`, page "Tab") via a screenshot: the active
+  label is a distinct, darker value (#b08224) from the underline (#f8b732)
+  - all three had the same color repeated for both instead of two
+  different ones. Also nudged Component Source's Kotlin sample (uses
+  Material3's own `TabRow`, a different visual paradigm) toward the same
+  distinction, lower confidence since it's illustrative-only.
+
+  Re-verified in a later pass, prompted by the same kind of Figma misread
+  the Section component had: the active label's real bound variable is
+  `text/on-action/text-on-action-tertiary` (`--text-on-action-tertiary` in
+  react-ui, `SnackyColor.textOnActionTertiary` here), not the raw
+  `primary-700` primitive first assumed - same #b08224 value, but the
+  correct semantic token, the same one Tertiary buttons use for their
+  default label. The underline's own bound variable turned out to be
+  `border/input/border-input-active` (an input-focus token, same #f8b732
+  value) - read as incidental Figma variable reuse rather than an
+  intentional shared role, so it stays on the primitive `color-primary-500`
+  /`Primary.c500` rather than adopting a misleading semantic name.
 
 - `SnackyAccordion` (`src/commonMain/kotlin/com/snacky/ui/components/accordion/Accordion.kt`),
   expandable panel for FAQs and collapsible details. Header and (when

@@ -1424,14 +1424,13 @@ function annotateSizeText(str){
 // the field it appears in (fill/border/text) and, where that's still ambiguous, to a small
 // component-category heuristic (action controls vs. surfaces, input fields vs. generic
 // borders) rather than guessing from the hex alone.
-const TEXT_COLOR_TOKEN={'#333333':'textPrimary','#7a7a7a':'textSecondary','#a3a3a3':'textDisabled','#88651c':'textLink','#a73e3e':'textError','#ffffff':'textInverse'};
-// A handful of real values are deliberately raw primitives with no semantic text alias
-// (e.g. Tab's active label, confirmed against Figma as the primitive color/primary-700,
-// distinct from its primary-500 underline, not a semantic "accent text" token that
-// doesn't exist in this system). Every other primitive scale (spacing, radius) still gets
-// a badge even as a primitive, so this is a narrow fallback to keep color consistent with
-// that, not a semantic claim - only consulted when the semantic maps above have no entry.
-const TEXT_COLOR_TOKEN_PRIMITIVE={'#b08224':'colorPrimary700'};
+// #b08224 (Tab's active label) was first read as the raw primary-700 primitive with no
+// semantic alias; re-checking Figma's actual bound variable found it's really
+// text/on-action/text-on-action-tertiary - the same semantic token Tertiary buttons use
+// for their default label, reused here because Tab's active state is visually the same
+// kind of accent-colored interactive text. Included directly rather than via the
+// button-scoped TEXT_COLOR_TOKEN_ACTION map, since it legitimately applies outside buttons.
+const TEXT_COLOR_TOKEN={'#333333':'textPrimary','#7a7a7a':'textSecondary','#a3a3a3':'textDisabled','#88651c':'textLink','#a73e3e':'textError','#ffffff':'textInverse','#b08224':'textOnActionTertiary'};
 // Button label color is conditional on (hierarchy × intent × state), so the same hex
 // resolves to a different token than the generic Text group above: scoped to 'button' only,
 // not the whole ACTION_FILL_IDS list, since Checkbox/RadioButton/Toggle/etc. labels still use
@@ -1461,7 +1460,7 @@ function annotateHexes(str,lookup){
   return str.replace(/#[0-9a-f]{6}/gi,hex=>`${hex}${tok(lookup(hex.toLowerCase()))}`);
 }
 function textTok(str,id){
-  return annotateHexes(str,h=>(TEXT_ACTION_IDS.includes(id)?TEXT_COLOR_TOKEN_ACTION[h]:TEXT_COLOR_TOKEN[h])||TEXT_COLOR_TOKEN_PRIMITIVE[h]);
+  return annotateHexes(str,h=>TEXT_ACTION_IDS.includes(id)?TEXT_COLOR_TOKEN_ACTION[h]:TEXT_COLOR_TOKEN[h]);
 }
 function fillTok(str,id){
   if(FILL_TOKEN_RGBA[str])return str+' '+tok(FILL_TOKEN_RGBA[str]);

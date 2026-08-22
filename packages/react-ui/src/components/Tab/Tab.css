@@ -19,9 +19,15 @@
 .snacky-tab--active {
   font-family: var(--font-body-semibold-family);
   font-weight: var(--font-body-semibold-weight);
-  /* Confirmed against Figma (node 386:10909): the active label is
-     primary-700 (#b08224), a distinct, darker value from the primary-500
-     (#f8b732) underline - not the same color repeated. */
-  color: var(--color-primary-700);
+  /* Re-verified against Figma's actual bound variables (an earlier pass
+     read this as the raw primary-700 primitive): the active label's text
+     fill is bound to text/on-action/text-on-action-tertiary (#b08224,
+     same value as primary-700, but the real semantic token, matching the
+     Tertiary button's default label color). The underline's stroke is
+     bound to border/input/border-input-active (#f8b732) - an input-focus
+     token reused here, which reads as incidental Figma variable reuse
+     rather than an intentional shared role, so this keeps the primitive
+     --color-primary-500 instead of adopting a misleading token name. */
+  color: var(--text-on-action-tertiary);
   border-bottom-color: var(--color-primary-500);
 }
