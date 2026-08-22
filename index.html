@@ -574,7 +574,7 @@ const C={
   tab:{name:'Tab',cat:'Navigation',desc:'Inline tab selector for switching between content views.',usage:'Used horizontally below page headers. Active tab shows accent color with a 2px underline indicator. Inactive tabs are grey.',cover:'assets/images/tab.png',
     v:[
       {id:'tab',name:'Tab',s:{h:40,gap:16},states:[
-        {sl:'Active',st:'active',img:'assets/images/variants/tab-active.png',sOverride:{font:'Poppins SemiBold',fs:14,color:'#f8b732',indicator:'2px accent underline',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 0, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={0} onSelect={() => {}} />"}},
+        {sl:'Active',st:'active',img:'assets/images/variants/tab-active.png',sOverride:{font:'Poppins SemiBold',fs:14,color:'#b08224',indicator:'2px accent (primary-500) underline, a distinct lighter value from the primary-700 label color',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 0, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={0} onSelect={() => {}} />"}},
         {sl:'Inactive',st:null,img:'assets/images/variants/tab-inactive.png',sOverride:{font:'Poppins Regular',fs:14,color:'#333333',indicator:'None (line is transparent, same layout height reserved)',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 1, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={1} onSelect={() => {}} />"}},
       ]},
     ]},
@@ -926,7 +926,7 @@ const PG={
     component:'TabDemo',
     initialProps:{active:'Explore'},
     controls:[{id:'active',label:'Active Tab',type:'select',options:['Explore','Category','Wishlist']}],
-    impl:`const TabDemo=({active})=>{const h=React.createElement;const tabs=['Explore','Category','Wishlist'];const[sel,setSel]=useState(active);useEffect(()=>{setSel(active);},[active]);return h('div',{style:{display:'flex',gap:24,borderBottom:'1px solid #e4e4e7',fontFamily:'Poppins,sans-serif'}},tabs.map((t,i)=>{const on=t===sel;return h('button',{key:i,onClick:()=>setSel(t),style:{padding:'0 0 12px',border:'none',borderBottom:'2px solid '+(on?'#f8b732':'transparent'),marginBottom:-1,background:'transparent',color:on?'#f8b732':'#333333',fontFamily:'Poppins,sans-serif',fontSize:14,lineHeight:'24px',fontWeight:on?600:400,cursor:'pointer',outline:'none',transition:'color .15s'}},t);}));};`,
+    impl:`const TabDemo=({active})=>{const h=React.createElement;const tabs=['Explore','Category','Wishlist'];const[sel,setSel]=useState(active);useEffect(()=>{setSel(active);},[active]);return h('div',{style:{display:'flex',gap:24,borderBottom:'1px solid #e4e4e7',fontFamily:'Poppins,sans-serif'}},tabs.map((t,i)=>{const on=t===sel;return h('button',{key:i,onClick:()=>setSel(t),style:{padding:'0 0 12px',border:'none',borderBottom:'2px solid '+(on?'#f8b732':'transparent'),marginBottom:-1,background:'transparent',color:on?'#b08224':'#333333',fontFamily:'Poppins,sans-serif',fontSize:14,lineHeight:'24px',fontWeight:on?600:400,cursor:'pointer',outline:'none',transition:'color .15s'}},t);}));};`,
     getReact:p=>`<TabRow\n  tabs={["Explore", "Category", "Wishlist"]}\n  selected={${['Explore','Category','Wishlist'].indexOf(p.active)}}\n  onSelect={setSelectedTab}\n/>`,
     getKotlin:p=>`SnackyTabRow(\n  tabs = listOf("Explore", "Category", "Wishlist"),\n  selected = ${['Explore','Category','Wishlist'].indexOf(p.active)},\n  onSelect = { selectedTab = it }\n)`
   },
@@ -3186,7 +3186,7 @@ fun SnackyTabRow(
         selectedTabIndex = selected,
         modifier         = modifier,
         containerColor   = bgSurface,
-        contentColor     = iconBrand, // active tab renders brand yellow
+        contentColor     = textOnActionTertiary, // active label is primary-700, a distinct darker value from the primary-500 (iconBrand) indicator
         indicator        = { tabPositions ->
             TabRowDefaults.SecondaryIndicator(
                 modifier = Modifier.tabIndicatorOffset(tabPositions[selected]),
@@ -3207,7 +3207,7 @@ fun SnackyTabRow(
                                 else SnackyTypography.bodyRegular
                     )
                 },
-                selectedContentColor   = iconBrand,
+                selectedContentColor   = textOnActionTertiary,
                 unselectedContentColor = textPrimary
             )
         }

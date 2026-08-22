@@ -19,6 +19,9 @@
 .snacky-tab--active {
   font-family: var(--font-body-semibold-family);
   font-weight: var(--font-body-semibold-weight);
-  color: var(--color-primary-500);
+  /* Confirmed against Figma (node 386:10909): the active label is
+     primary-700 (#b08224), a distinct, darker value from the primary-500
+     (#f8b732) underline - not the same color repeated. */
+  color: var(--color-primary-700);
   border-bottom-color: var(--color-primary-500);
 }

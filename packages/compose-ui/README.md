@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 10 of 22 components
+## Status: 11 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
-`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, and `NavBar`
-(see below).
+`Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, and
+`Tab` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -216,6 +216,21 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   said so. The outer shadow matches `shadowTop` exactly (offsetY -4, blur
   10, alpha 0.08), approximated with a plain `Modifier.shadow` since Compose
   has no directional offset control for an upward-cast shadow.
+
+- `SnackyTabRow` (`src/commonMain/kotlin/com/snacky/ui/components/tab/Tab.kt`),
+  inline tab selector with a 2dp accent underline on the active tab. Mirrors
+  `packages/react-ui`'s `Tab.tsx`/`Tab.css`.
+
+  Found and fixed one real bug in react-ui's `Tab.css` and both of
+  `index.html`'s surfaces (Live Preview, Spec-tab) while porting, confirmed
+  against Figma (node `386:10909`, page "Tab") via a screenshot and the
+  label/underline's separate node fills: the active label is
+  `primitive.primary.700` (#b08224), a distinct darker value from the
+  `primitive.primary.500` (#f8b732) underline - all three had the same
+  color repeated for both instead of two different ones. Also nudged
+  Component Source's Kotlin sample (uses Material3's own `TabRow`, a
+  different visual paradigm) toward the same distinction, lower confidence
+  since it's illustrative-only.
 
 ### Theme tokens
 
