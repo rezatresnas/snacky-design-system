@@ -6,11 +6,12 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 16 of 22 components
+## Status: 17 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, `Header`, `List`, `BottomSheet`, and `Section` (see below).
+`Accordion`, `Header`, `List`, `BottomSheet`, `Section`, and the `Input`
+family (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -37,7 +38,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.2.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.3.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -371,6 +372,45 @@ and AGP's own javac step (still defaulting to 1.8). All fixed in
   match it at all - flagged here rather than silently rewritten, since
   fixing it means redoing all 16 documented variants' code samples, out of
   scope for this specific color-bug pass.
+
+- The `Input` family (`src/commonMain/kotlin/com/snacky/ui/components/input/`),
+  six composables mirroring `packages/react-ui`'s six-file `Input/` split
+  exactly: `SnackyTextField` + `SnackyPasswordField` (`TextField.kt`),
+  `SnackySearchField`, `SnackyOtpField`, `SnackyChatInput`,
+  `SnackyCopyField`, `SnackyAddressResult`.
+
+  `SnackyTextField` is the shared 48dp field behind the Text, Password,
+  Dropdown, Date Picker and Address variants - the variant is expressed
+  through slots and flags rather than an enum, the same way react-ui's
+  `TextField.tsx` does it (Dropdown/Date Picker pass a `trailingIcon` plus
+  `readOnly = true`, Address passes a `leadingIcon`).
+
+  This is the first component ported under the workflow change from
+  re-verifying each one against Figma to porting directly from
+  `index.html`/`react-ui`, which are already confirmed pixel-perfect. All
+  values come from react-ui's verified CSS, including the details its own
+  comments flag as deliberate: `SearchField`'s fixed 260dp -> 312dp width
+  animation on focus (not a fluid field), `OtpField`'s hand-tuned 46sp line
+  height rather than the h3Bold token's 36sp, and `ChatInput`'s send button
+  staying fully transparent with a muted icon when empty instead of
+  rendering as a greyed-out disabled circle.
+
+  Four deliberate deviations from the web version, all forced by platform
+  differences rather than chosen:
+  - react-ui gets its focus ring from CSS `:focus-within`, which has no
+    Compose equivalent, so focus is tracked via each field's own
+    `MutableInteractionSource`.
+  - `error` there is `boolean | string`; Kotlin has no union type, so it
+    splits into `isError` and `errorMessage`, a non-null message implying
+    the error state.
+  - `SnackyCopyField` cannot write to the clipboard itself (Compose
+    Multiplatform has no common clipboard API), so the copy is delegated to
+    an `onCopy` callback - wire it to `LocalClipboardManager` on Android or
+    `UIPasteboard` on iOS. The "Copied" label feedback is still owned by the
+    component, so it behaves identically either way.
+  - Icons are caller-supplied composable slots throughout (eye toggle,
+    chevron, calendar, marker, search, clear, send), since this package
+    ships no icon set, the same gap `Avatar` and `Illustration` already have.
 
 ### Theme tokens
 
