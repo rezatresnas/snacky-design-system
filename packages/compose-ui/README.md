@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 12 of 22 components
+## Status: 13 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-and `Accordion` (see below).
+`Accordion`, and `Header` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -257,6 +257,25 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   assumed" after finding Figma's Expanded node had no border while Default
   claimed one) but couldn't resolve which was correct without deeper
   inspection - this session's direct node/variable access resolved it.
+
+- `SnackyHeader` (`src/commonMain/kotlin/com/snacky/ui/components/header/Header.kt`),
+  page header bar. Title always centers in the remaining space - when a
+  leading icon is present but there's no trailing action, the title row
+  gets matching right padding so it stays optically centered against the
+  whole bar, not just the leftover space next to the icon. Mirrors
+  `packages/react-ui`'s `Header.tsx`/`Header.css`.
+
+  Confirmed against Figma (node `9617:5808`, page "Header"): padding,
+  40dp icon-button sizing, and title typography (Poppins Bold 16sp/36sp
+  line height/0.01em) all matched exactly, no bugs this time - this
+  component was already carefully verified when first built earlier in
+  this project's history, and re-checking it now confirms that held up.
+
+  The back/close glyphs are hand-drawn `Canvas`/`Path` shapes matching
+  `packages/react-ui`'s own starter icon set exactly (`M15 6l-6 6 6 6` /
+  `M6 6l12 12M18 6L6 18`, 1.5 stroke in a 24x24 space). That set is itself
+  documented as generic, not pixel-verified against Figma, so this port
+  carries the same known gap rather than inventing a new one.
 
 ### Theme tokens
 
