@@ -36,6 +36,13 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   ```
   Note these are FILLED outline shapes, not stroked paths - the outline weight is baked
   into each shape, so there is no stroke width to set.
+  The generator ALSO rewrites `index.html`'s own `const ICONS={...}` registry and the
+  `const ICON_SET={...}` index the Icon playground gallery enumerates, so the site renders
+  the same geometry the packages ship. Playground-only glyphs that are not part of the
+  Figma icon sets (ratings star, timeline check/clock, deals, chat-driver) live in
+  `assets/icons/legacy-extras.json` and are merged back in, and the older key names the
+  playgrounds already pass to `ic()` (`fav-o`, `add-to-cart`, `dropdown`, `cod`, `saldo`,
+  ...) are kept working as aliases - so never hand-edit that registry either.
 - `assets/images/` - exported PNGs, one per documented variant/state, at 2x-4x scale
   depending on the component. Re-export from the matching Figma node (`download_assets`,
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
