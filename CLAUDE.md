@@ -61,7 +61,12 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   ```
   Published via JitPack (not Maven Central, simpler for a portfolio project, no
   account/signing/secrets, builds straight from a git tag), see `jitpack.yml` at the
-  repo root and `packages/compose-ui/README.md`. Gradle wrapper is committed and
+  repo root and `packages/compose-ui/README.md`. Unlike `@snacky/ui`, there is NO CI
+  publish step here: pushing to `main` releases nothing, a `compose-v*` tag has to be
+  cut explicitly (bump `version` in `packages/compose-ui/gradle.properties` first).
+  This was missed for 15 consecutive components once already: `compose-v0.1.2` shipped
+  with only `Button` while everything after it sat unreleased on `main`, so cut a tag
+  whenever a component lands or a real fix goes in, not just at the end. Gradle wrapper is committed and
   confirmed working (`Build > Rebuild Project` green in Android Studio); the module
   had never actually been compiled before `compose-v0.1.1`'s JitPack attempt, which
   surfaced (and are now fixed): `gradlew` missing its Unix executable bit (git on

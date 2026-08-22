@@ -14,11 +14,16 @@ Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
-dependency. Confirmed to actually compile locally (`Build > Rebuild Project`
-in Android Studio), not just written and assumed correct, and a real
-JitPack build attempt (`compose-v0.1.1`) already got as far as real Kotlin
-compilation before hitting the two bugs described below, `compose-v0.1.2`
-has those fixed but its own JitPack build result isn't confirmed yet.
+dependency. Every component is confirmed to actually compile before being
+committed, not written and assumed correct: `gradlew compileDebugKotlinAndroid
+compileCommonMainKotlinMetadata`, run with `JAVA_HOME` pointed at Android
+Studio's bundled JBR.
+
+Note on release cadence: `compose-v0.1.2` shipped when only `Button` existed,
+and the 15 components added after it sat on `main` unreleased for a while.
+`compose-v0.2.0` is the first tag carrying the full set, hence the minor
+bump rather than a patch. If you consumed `compose-v0.1.2`, you effectively
+had a one-component library.
 
 Published via [JitPack](https://jitpack.io) (builds straight from this Git
 repo on a tag, no registry account or publish step on our side):
@@ -32,7 +37,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v0.1.2")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v0.2.0")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -46,11 +51,16 @@ No account, no signing, no repo secrets: it builds directly from the
 tagged commit the first time someone requests that version (click "Get it"
 on the JitPack page, or just have a real build resolve the dependency). To
 cut a release: bump `version` in `gradle.properties`, commit,
-`git tag compose-v0.1.X && git push --tags` (the `compose-v` prefix, not
-`v`, is so it doesn't collide with `packages/react-ui`'s npm-release tags
-on the same repo). See [../../jitpack.yml](../../jitpack.yml) for the build
-command JitPack runs (it points at this subfolder, since the buildable
-Gradle project isn't at the repo root).
+`git tag compose-v0.X.Y && git push origin compose-v0.X.Y` (the `compose-v`
+prefix, not `v`, is so it doesn't collide with `packages/react-ui`'s
+npm-release tags on the same repo). See [../../jitpack.yml](../../jitpack.yml)
+for the build command JitPack runs (it points at this subfolder, since the
+buildable Gradle project isn't at the repo root).
+
+Unlike `@snacky/ui`, this has no CI publish step, so pushing to `main` does
+NOT release anything - a tag has to be cut explicitly. Cut one whenever a
+component is added or a real fix lands, otherwise consumers stay pinned to
+whatever the last tag happened to contain.
 
 The first real attempt (`compose-v0.1.0`) surfaced two real bugs since
 this had never actually been built before: `gradlew` was committed without
@@ -58,7 +68,7 @@ its Unix executable bit (Windows/NTFS has no such concept, `git
 update-index --chmod=+x` fixed it), and `Button.kt` was missing `import
 androidx.compose.runtime.getValue` needed for a `by` delegate on
 `State<Boolean>` to resolve, plus a JVM-target mismatch between Kotlin (11)
-and AGP's own javac step (still defaulting to 1.8). Both fixed in
+and AGP's own javac step (still defaulting to 1.8). All fixed in
 `compose-v0.1.2`.
 
 ## What's here
