@@ -30,7 +30,10 @@
   border: none;
   border-radius: var(--radius-full);
   background: var(--bg-action-primary);
-  color: var(--text-on-action-primary);
+  /* Confirmed against Figma: white (icon-on-accent), not the dark
+     text-on-action-primary regular buttons use - this is a small circular
+     icon-only affordance, not a labeled button. */
+  color: var(--icon-on-accent);
   cursor: pointer;
 }
 .snacky-section__action:hover { background: var(--bg-action-primary-hover); }

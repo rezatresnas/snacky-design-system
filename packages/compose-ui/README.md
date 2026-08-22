@@ -6,11 +6,11 @@ design system, the Compose counterpart to `@snacky/ui`
 `../../tokens.json` / `../../components.json` that trace back to Figma
 (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
 
-## Status: 15 of 22 components
+## Status: 16 of 22 components
 
 Design tokens, plus `Button`, `IconButton`, `Checkbox`, `RadioButton`,
 `Toggle`, `Avatar`, the `Badge` family, `Callout`, `Chips`, `NavBar`, `Tab`,
-`Accordion`, `Header`, `List`, and `BottomSheet` (see below).
+`Accordion`, `Header`, `List`, `BottomSheet`, and `Section` (see below).
 Kotlin
 Multiplatform library targeting `androidTarget` and iOS (`iosX64`,
 `iosArm64`, `iosSimulatorArm64`), with Compose Multiplatform wired in as a
@@ -317,6 +317,37 @@ and AGP's own javac step (still defaulting to 1.8). Both fixed in
   `content`'s own spacing is expected to override the shell's default
   `SnackyLayout.block` gap when a composition needs something else,
   matching how react-ui already treats it.
+
+- `SnackySection` (`src/commonMain/kotlin/com/snacky/ui/components/section/Section.kt`),
+  the shared shell wrapping the app's composite content blocks (variant
+  selector, product description, buyer reviews, horizontal/vertical product
+  groups, order summary, etc). Mirrors `packages/react-ui`'s
+  `Section.tsx`/`Section.css`.
+
+  Found and fixed a real bug in `react-ui`'s `Section.css` and `index.html`'s
+  Live Preview while porting, confirmed against Figma (node `8877:8885`,
+  page "Section", component set `351:7830`) via node data and a screenshot
+  of "Group-Products-Horizontal": the "see more" action button's chevron
+  icon is white (`iconOnAccent`), react-ui had the dark
+  `textOnActionPrimary` a labeled button's text would use, wrong for a small
+  circular icon-only affordance. This button is bespoke to `Section` (a
+  hand-rolled inline SVG/`Canvas` shape, like react-ui's own), not the
+  shared `IconButton` component, whose separately-verified Primary variant
+  intentionally does use the dark icon color on the same gold background -
+  the two are different real Figma components that happen to look similar.
+
+  Also confirmed, but not something to "fix": shell padding is
+  content-dependent in some real variants (Figma's "Variant" variant has 0
+  horizontal padding at the shell level, with the header itself owning the
+  24dp instead) - a content-composition pattern like `BottomSheet`'s
+  per-variant spacing, not a shell bug.
+
+  `index.html`'s Spec-tab and Component Source panels for Section describe
+  an older/fictional API (`actionLabel` text-link buttons, no circular
+  chevron affordance) that predates the real `Section.tsx` and doesn't
+  match it at all - flagged here rather than silently rewritten, since
+  fixing it means redoing all 16 documented variants' code samples, out of
+  scope for this specific color-bug pass.
 
 ### Theme tokens
 
