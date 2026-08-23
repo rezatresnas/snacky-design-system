@@ -20,11 +20,12 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   silently: it once still claimed the icon set was "a starter subset" long after the
   real set shipped, and never mentioned `packages/compose-ui` at all. Re-read it
   whenever a package, a known gap, or the asset-licensing story changes.
-- The published `compose-v*` version string is hardcoded in FIVE places that must be
+- The published `compose-v*` version string is hardcoded in FOUR places that must be
   bumped together when a tag is cut: `packages/compose-ui/README.md`, `llms.txt`,
-  `AGENTS.md`, root `README.md`, and the "Compose Package" card on `index.html`'s home
-  page. (`@snacky/ui`'s version is not hardcoded anywhere in docs - npm resolves
-  `latest`.) Grep for `compose-v` before tagging.
+  `AGENTS.md`, and root `README.md`. (`@snacky/ui`'s version is not hardcoded anywhere
+  in docs - npm resolves `latest`.) Grep for `compose-v` before tagging. `index.html`'s
+  "Compose Package" card deliberately carries no version: its button links to the
+  JitPack page, which always shows the current one.
 - `AGENTS.md` and `design-system-prompt.md` are hand-written agent entry points and drift the
   same way `llms.txt` does - both sat at "21 components" and omitted `Header` long
   after it shipped, and `AGENTS.md` never mentioned `packages/compose-ui`. Re-read all
