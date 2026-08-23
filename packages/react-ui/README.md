@@ -62,8 +62,8 @@ Illustration, ProductImage, ProductCard.
 Every component is diffed against `index.html`'s own Live Preview
 implementation - the code that actually renders the documentation site - not
 just the spec values in `components.json`. Where the two disagree, the
-verified implementation wins. `List` and `Header` were additionally checked
-against their Figma component sets directly.
+verified implementation wins. `List`, `Header`, `BottomSheet` and `Section`
+were additionally checked against their Figma component sets directly.
 
 Three things worth knowing before you rely on them:
 
@@ -73,9 +73,13 @@ Three things worth knowing before you rely on them:
   a deliberate deviation rather than a mismatch.
 - **`List`'s 56x56 thumbnail frame uses a literal `#f4f4f5`**, not a token -
   it is a distinct value with no equivalent in the generated surface colors.
-- **`BottomSheet` and `Section`** have not been diffed field-by-field the way
-  the rest of the package has. Treat their exact padding and gap values as
-  reasonable-but-unverified.
+- **`BottomSheet` and `Section` spacing is variant-dependent by design.** Both
+  shells have since been checked against Figma, and the finding was that no
+  single shell default reproduces every variant: BottomSheet's block gap is
+  32px on Welcome, 24px on Calendar and 16px elsewhere, and Section's "Variant"
+  layout has no horizontal shell padding at all, with its header owning the
+  24px instead. The shells ship sensible defaults and expect `children` to
+  override the spacing where a specific composition needs to.
 
 See [CHANGELOG.md](https://github.com/rezatresnas/snacky-design-system/blob/main/packages/react-ui/CHANGELOG.md)
 for how the package got here, including the mistakes.
@@ -140,8 +144,8 @@ what is already in the bundle.
   Section "variants", but each is really the *same* shell component
   (`BottomSheet` / `Section`) with different `children` - so that's what's
   exported, matching every `code.tsx` sample exactly, rather than 22 near-
-  duplicate components. (See Verification status above for the caveat on
-  their exact padding/gap values.)
+  duplicate components. (See Verification status above on why their spacing is
+  variant-dependent.)
 
 ## Keeping this in sync
 

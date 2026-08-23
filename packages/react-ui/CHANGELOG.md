@@ -61,7 +61,13 @@ where `components.json`'s prose spec disagrees with it.
 `List` and `Header` were additionally cross-checked directly against their
 Figma component sets, and both agreed with the verified implementation.
 
-`BottomSheet` and `Section` have not had this treatment yet.
+`BottomSheet` and `Section` were checked later, while porting them to the
+Compose package, and both turned up real bugs: `BottomSheet` defaulted to
+showing a drag handle that none of the nine documented Figma variants actually
+have (the prop was inverted to `showHandle`, defaulting to `false`), and
+`Section`'s "see more" chevron was using the wrong color. That check also
+established that their spacing is variant-dependent by design rather than
+unverified - see the README's Verification status.
 
 ## Other fixes worth recording
 
