@@ -65,20 +65,6 @@ just the spec values in `components.json`. Where the two disagree, the
 verified implementation wins. `List`, `Header`, `BottomSheet` and `Section`
 were additionally checked against their Figma component sets directly.
 
-Two things worth knowing before you rely on them:
-
-- **`NavBar` items use `flex: 1`** to fill the container, where the site's own
-  demo hardcodes `72x72` per item. That demo only ever renders at a fixed
-  360px frame; a real nav bar has to fill the actual device width, so this is
-  a deliberate deviation rather than a mismatch.
-- **`BottomSheet` and `Section` spacing is variant-dependent by design.** Both
-  shells have since been checked against Figma, and the finding was that no
-  single shell default reproduces every variant: BottomSheet's block gap is
-  32px on Welcome, 24px on Calendar and 16px elsewhere, and Section's "Variant"
-  layout has no horizontal shell padding at all, with its header owning the
-  24px instead. The shells ship sensible defaults and expect `children` to
-  override the spacing where a specific composition needs to.
-
 See [CHANGELOG.md](https://github.com/rezatresnas/snacky-design-system/blob/main/packages/react-ui/CHANGELOG.md)
 for how the package got here, including the mistakes.
 
@@ -138,12 +124,16 @@ what is already in the bundle.
   library of your own. Either way, check the licence yourself before shipping
   - it is the one part of this that a component library cannot decide for you.
 
+- **`NavBar` items use `flex: 1`** to fill the container, where the site's demo
+  hardcodes `72x72` per item - that demo only ever renders at a fixed 360px
+  frame, so this is a deliberate deviation rather than a mismatch.
 - **Modal/Section**: the design system documents ~9 Modal "variants" and ~13
   Section "variants", but each is really the *same* shell component
   (`BottomSheet` / `Section`) with different `children` - so that's what's
   exported, matching every `code.tsx` sample exactly, rather than 22 near-
-  duplicate components. (See Verification status above on why their spacing is
-  variant-dependent.)
+  duplicate components. Their spacing is variant-dependent by design - Figma
+  uses different gaps per variant, so the shells ship sensible defaults and
+  expect `children` to override where a composition needs it.
 
 ## Keeping this in sync
 
