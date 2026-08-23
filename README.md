@@ -1,9 +1,7 @@
 # Snacky App Design System
 
 Design system for **Snacky**, a snack e-commerce mobile app - targeting Kotlin
-Compose Multiplatform and React. Every documented value traces back to a real
-Figma node (file key `4Uh4Y1fPQXu2hwq0vEXHXd`), extracted and verified rather
-than estimated.
+Compose Multiplatform and React.
 
 **Live site:** https://rezatresnas.github.io/snacky-design-system/
 
