@@ -25,7 +25,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `AGENTS.md`, root `README.md`, and the "Compose Package" card on `index.html`'s home
   page. (`@snacky/ui`'s version is not hardcoded anywhere in docs - npm resolves
   `latest`.) Grep for `compose-v` before tagging.
-- `AGENTS.md` and `stitch-prompt.md` are hand-written agent entry points and drift the
+- `AGENTS.md` and `design-system-prompt.md` are hand-written agent entry points and drift the
   same way `llms.txt` does - both sat at "21 components" and omitted `Header` long
   after it shipped, and `AGENTS.md` never mentioned `packages/compose-ui`. Re-read all
   three whenever the component set, a package, or the licensing story changes.

@@ -1,8 +1,10 @@
-# Snacky App design system - prompt for Google Stitch / v0 / Bolt / similar
+# Snacky App design system - copy/paste prompt
 
-Copy everything below the line into the tool's prompt or system-context box. It's
-condensed from `llms.txt` for tools that take a text prompt rather than file uploads -
-if the tool supports file upload or a design-system config, use `tokens.json` and
+For any AI tool that takes a text prompt rather than reading files - Google Stitch,
+v0, Bolt, Lovable's chat box, Claude Artifacts, etc. Copy everything below the line
+into the tool's prompt or system-context box. It's condensed from `llms.txt` for
+exactly that case - if the tool can read files directly or has a design-system
+config (Figma import, GitHub connection, `npm install`), use `tokens.json` and
 `components.json` instead, they're more complete and won't drift from this file.
 
 ---

@@ -18,6 +18,10 @@ Read [llms.txt](llms.txt) first. It indexes:
   (`com.github.rezatresnas:snacky-design-system:compose-v1.0.1`). Generated from
   the same source as the React package, so the two do not drift.
 
+If you cannot read files (a prompt-only surface, not this agent), use
+[design-system-prompt.md](design-system-prompt.md) instead - it is the same
+information condensed into one paste-able block.
+
 Asset licensing: the repo's MIT LICENSE covers CODE ONLY. The bundled icon set is
 UIcons by Flaticon under CC BY 4.0 (modified). The attribution is embedded as a
 comment header in the generated icon sources and must not be stripped - see

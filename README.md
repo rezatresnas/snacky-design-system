@@ -19,6 +19,7 @@ than estimated.
 | [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 22 components, styled entirely from the tokens above. |
 | [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 22 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
 | [`llms.txt`](llms.txt) / [`AGENTS.md`](AGENTS.md) | Entry points for AI coding tools - point an agent here instead of scraping the HTML. |
+| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste version of the above for tools that take a text prompt instead of reading files (Stitch, v0, Bolt, Claude Artifacts). |
 
 `tokens.json` and `components.json` are generated from `index.html` by
 [`scripts/generate-agent-files.js`](scripts/generate-agent-files.js) - never
@@ -52,10 +53,15 @@ component list, verification status, and known gaps.
 
 ## Using this with an AI tool
 
-Point it at [`llms.txt`](llms.txt) (or [`AGENTS.md`](AGENTS.md), same index in
-the convention some agents look for by default) - it lists the
-machine-readable token/component data and the installable package, so the
-agent can build real UI instead of re-deriving values from screenshots.
+- **Reads files or runs npm/JitPack** (Claude Code, Cursor, most coding agents,
+  or "Create using Claude Code" in Claude Design): point it at
+  [`llms.txt`](llms.txt) (or [`AGENTS.md`](AGENTS.md), same index in the
+  convention some agents look for by default) - it lists the machine-readable
+  token/component data and the installable packages, so the agent builds real
+  UI instead of re-deriving values from screenshots.
+- **Takes a prompt but can't read files** (Google Stitch, v0, Bolt, Lovable's
+  chat box, Claude Artifacts): paste [`design-system-prompt.md`](design-system-prompt.md)
+  into its prompt/system-context box instead.
 
 ## Roadmap
 

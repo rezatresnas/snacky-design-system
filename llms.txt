@@ -11,6 +11,14 @@ This is a single-page interactive site (`index.html`) documenting 22 components 
 
 Both files are generated from `index.html` by `scripts/generate-agent-files.js` and will always match what a human sees on the site. Never hand-edit `tokens.json` or `components.json`.
 
+## No-file-access tools (paste a prompt instead of reading files)
+
+- [design-system-prompt.md](design-system-prompt.md): condensed copy-paste prompt for
+  tools that take a text/system prompt rather than reading files or running npm -
+  Google Stitch, v0, Bolt, Lovable's chat box, Claude Artifacts. Covers colors,
+  spacing, radius, shadow and the component list; not a substitute for
+  `tokens.json`/`components.json` where a tool can read those instead.
+
 ## Installable component libraries (use these to build, not just read)
 
 Both implement all 22 components below and are generated from the same source, so
