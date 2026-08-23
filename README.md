@@ -64,8 +64,9 @@ component list, verification status, and known gaps.
 ## Roadmap
 
 - [x] Publish `@snacky/ui` to npm
-- [ ] Kotlin Compose Multiplatform component package
-- [ ] Full icon set (currently a ~30-icon starter subset)
+- [x] Kotlin Compose Multiplatform component package, published via JitPack
+- [x] Full icon set - all 42 Outline + 10 Solid, exported from Figma's real
+      icon components (CC BY 4.0, see [NOTICE](NOTICE))
 
 ## License
 
