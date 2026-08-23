@@ -102,6 +102,22 @@ per item - because that demo is only ever shown at a fixed 360px frame. A
 production nav bar needs to fill whatever width the real device is, so the
 flexible layout was kept on purpose.
 
+## Artwork credit and licensing
+
+The code in this package is MIT. The **icon artwork is not**: it is
+[UIcons by Flaticon](https://www.flaticon.com/uicons), used under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and modified
+(exported from the Figma Community file and renamed to semantic English
+names).
+
+CC BY 4.0 allows redistribution, including inside this package, but the
+attribution has to travel with the artwork. It is embedded in
+`src/icons/*.tsx` and survives into the published bundle, and the full
+statement ships as `NOTICE`. **If you redistribute these icons - vendoring
+them, re-exporting them, publishing your own package built on them - keep
+that credit.** Using them in an app you ship needs no visible credit beyond
+what is already in the bundle.
+
 ## Known gaps - read before relying on these
 
 - **Icons** (`SnackyIcons.outline.*` / `SnackyIcons.solid.*`): no longer a

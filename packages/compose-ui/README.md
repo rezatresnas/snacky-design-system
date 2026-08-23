@@ -45,7 +45,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.1")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
@@ -78,6 +78,16 @@ androidx.compose.runtime.getValue` needed for a `by` delegate on
 `State<Boolean>` to resolve, plus a JVM-target mismatch between Kotlin (11)
 and AGP's own javac step (still defaulting to 1.8). All fixed in
 `compose-v0.1.2`.
+
+## Artwork credit and licensing
+
+The code in this package is MIT. The **icon artwork is not**: it is
+[UIcons by Flaticon](https://www.flaticon.com/uicons), used under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and modified
+(exported from the Figma Community file and renamed to semantic English
+names). The attribution is embedded in the generated `SnackyIcons.kt` and
+the full statement ships as `NOTICE`. If you redistribute the icons, keep
+that credit with them.
 
 ## What's here
 

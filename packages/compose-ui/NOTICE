@@ -1,0 +1,41 @@
+Snacky App Design System
+========================
+
+The LICENSE file (MIT) covers the source code of this repository: the
+components, design tokens, generators, and the documentation site.
+
+Some bundled ASSETS are third-party work under their own licenses and are
+NOT covered by the MIT license. They are listed below. Downstream users who
+redistribute these assets must keep this attribution intact.
+
+
+UIcons by Flaticon
+------------------
+
+Applies to:
+  - assets/icons/icons.json
+  - packages/react-ui/src/icons/outline.tsx
+  - packages/react-ui/src/icons/solid.tsx
+  - packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/components/icon/SnackyIcons.kt
+  - the `ICONS` registry embedded in index.html
+  - the compiled output of the above (e.g. @snacky/ui's dist/, the compose-ui
+    JAR published via JitPack)
+
+Creator:  Flaticon
+Source:   https://www.flaticon.com/uicons
+Figma:    https://www.figma.com/community/file/952131925958384905/uicons-by-flaticon-free-interface-icons
+License:  Creative Commons Attribution 4.0 International (CC BY 4.0)
+          https://creativecommons.org/licenses/by/4.0/
+
+Modifications: yes. The icons were exported from the Figma Community file
+above and transformed for this design system. Specifically: the SVG path
+geometry was extracted from the component sets, renamed from the Figma
+property values to semantic English names (for example Flaticon's `cod`
+became `truck`, `list` became `chevronRight`, and the Indonesian labels
+`riwayat`/`akun`/`Saldo`/`poin` became `history`/`account`/`balance`/
+`points`), and re-emitted as React components and Kotlin/Compose
+declarations. The drawn artwork itself is unchanged.
+
+Disclaimer of warranties: the licensed material is provided as-is and
+as-available, and the licensor makes no representations or warranties of any
+kind concerning it, as set out in Section 5 of CC BY 4.0.

@@ -19,3 +19,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+This MIT license applies to the source code of this repository.
+
+Some bundled assets are third-party work under their own licenses and are NOT
+covered by it - notably the icon set, which is UIcons by Flaticon, used under
+CC BY 4.0 and modified. See the NOTICE file for the full attribution and the
+list of affected files. If you redistribute those assets, that attribution
+must travel with them.

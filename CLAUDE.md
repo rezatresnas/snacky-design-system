@@ -92,6 +92,18 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `import androidx.compose.runtime.getValue` for a `by` delegate on `State<T>`, and
   a Kotlin/AGP JVM-target mismatch (11 vs default 1.8).
 
+## Asset licensing (important, do not regress this)
+
+The repo's MIT `LICENSE` covers CODE ONLY. The icon artwork is UIcons by Flaticon,
+used under **CC BY 4.0** and modified. CC BY permits bundling it in the published
+packages, but attribution must travel with the artwork, so it is emitted into every
+generated icon file (`/*! ... */` so minifiers keep it), survives into `@snacky/ui`'s
+`dist/`, ships as `NOTICE` in both packages, and is credited on the site's Icon page.
+`scripts/generate-icons.js` owns that header - never strip it, and never move the icon
+artwork into a file that lacks it. The illustrations and favicon are also
+stock-derived; confirm their licence before bundling either into a package (the
+`Illustration` component deliberately ships no artwork today).
+
 ## Key rules (don't relitigate these, they're already decided)
 
 - Screen margin is 16px on every screen (`spacing.margin.screen`), content is Fill

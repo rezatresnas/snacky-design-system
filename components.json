@@ -3468,7 +3468,7 @@
       "name": "Icon",
       "cat": "Assets",
       "desc": "System icon set in two styles - Outline (default/inactive) and Solid (active/selected).",
-      "usage": "Use Outline as the default state for every icon. Swap to the Solid counterpart of the same name for the active/selected state (Navbar items, filled Favourite, etc). Use 20px for navbar, 24px for buttons and general UI, 16–20px for input fields.",
+      "usage": "Use Outline as the default state for every icon. Swap to the Solid counterpart of the same name for the active/selected state (Navbar items, filled Favourite, etc). Use 20px for navbar, 24px for buttons and general UI, 16–20px for input fields. Artwork credit: the icon set is UIcons by Flaticon (flaticon.com/uicons), used under CC BY 4.0 and modified (renamed to semantic English names). If you redistribute these icons, that attribution has to come along.",
       "cover": "assets/images/variants/icon-outline.png",
       "v": [
         {

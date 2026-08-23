@@ -1,4 +1,11 @@
 // Generated from assets/icons/icons.json by scripts/generate-icons.js - do not hand-edit.
+/*!
+ * Icon artwork: UIcons by Flaticon (https://www.flaticon.com/uicons),
+ * used under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) and
+ * modified: exported from the Figma Community file and renamed to semantic
+ * English names. This attribution must be retained when redistributing.
+ * See NOTICE at the repo root for the full statement.
+ */
 import type { IconProps } from './types.js';
 
 /**
