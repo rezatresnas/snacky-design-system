@@ -128,7 +128,10 @@ stock-derived; confirm their licence before bundling either into a package (the
 - Only genuinely fixed-size elements (icons, avatars, navbar height) get a sizing
   token; buttons/cards/inputs size from content, documented per-component instead.
 - No em dashes in any authored text on this site (descriptions, usage copy, code
-  comments, generated files) - use a comma, colon, or parentheses instead.
+  comments, generated files) - use a comma, colon, or parentheses instead. This
+  covers a spaced hyphen used AS a dash (`... this page - they carry ...`), not
+  just the U+2014 character: the site's own home-page cards drifted into that
+  and had to be rewritten. En dashes in numeric ranges (`16-20px`) are fine.
 - When a Figma component-set variant's `Property 2` value is inconsistent/mislabeled
   (e.g. still says "Default" for what is structurally a new "Active" state), verify by
   inspecting actual fills/strokes/rotation, don't trust the property name alone.
