@@ -59,49 +59,26 @@ Illustration, ProductImage, ProductCard.
 
 ## Verification status
 
-The first pass of every component was built from `components.json`'s `s`
-(spec) values and `code.tsx` samples alone - those are real token values, but
-`code.tsx` is an *illustrative* usage sample, not the site's actual rendered
-implementation. That first pass was **not** checked against how the site
-itself actually renders each component, and several real mismatches slipped
-through as a result (Button's icon slot, Toggle's true dimensions, Checkbox's
-checkmark color, Radio's dot size, Tab's gap, ProductCard's cart-button size,
-List's status colors, and more).
+Every component is diffed against `index.html`'s own Live Preview
+implementation - the code that actually renders the documentation site - not
+just the spec values in `components.json`. Where the two disagree, the
+verified implementation wins. `List` and `Header` were additionally checked
+against their Figma component sets directly.
 
-Every component has since been diffed against `index.html`'s own `PG[id].impl`
-strings - the actual React-createElement code that powers the site's "Live
-Preview" panels, extracted and compared field-by-field (padding, colors,
-font, line-height, hover/pressed/disabled states) - and corrected to match.
-This is the authoritative source in this repo; `components.json`'s prose spec
-text occasionally disagrees with it (e.g. Checkbox's checkmark is documented
-as "white" but the verified implementation uses `#333333`) and the verified
-implementation wins in every such case.
+Three things worth knowing before you rely on them:
 
-`List`'s `OrderListItem`/`NotificationListItem` were additionally cross-checked
-directly against their Figma component set (page "List", component `List`,
-`Property 1=order|notification` x `Property 2=<status>`) - the node tree
-(fills, strokes, padding, gap, type styles) matches the verified `PG.list.impl`
-implementation exactly, so both sources agree: 56x56 thumbnail frame (`#f4f4f5`
-background, not a token - a literal value distinct from any generated surface
-color), a per-status summary card (`itemsSummary` + bold `total`, a bordered
-COD chip on `processCod`, a `paymentDeadline` banner on `waiting`, a right-
-aligned primary Button - "Track Shipment" / "Buy Again" - on
-shipped/received/cancelled), and a title+message notification row with a
-`1px solid var(--border-main)` border on every state, not just unread.
+- **`NavBar` items use `flex: 1`** to fill the container, where the site's own
+  demo hardcodes `72x72` per item. That demo only ever renders at a fixed
+  360px frame; a real nav bar has to fill the actual device width, so this is
+  a deliberate deviation rather than a mismatch.
+- **`List`'s 56x56 thumbnail frame uses a literal `#f4f4f5`**, not a token -
+  it is a distinct value with no equivalent in the generated surface colors.
+- **`BottomSheet` and `Section`** have not been diffed field-by-field the way
+  the rest of the package has. Treat their exact padding and gap values as
+  reasonable-but-unverified.
 
-`Header` was added later, directly from Figma rather than retrofitted from
-an existing implementation: inspected the `Header` component set (page
-"Header", variants `Icon=Back|Close|None` x `Right Action=True|False`) node
-tree for exact spec values (16px/8px padding, 40x40px circular icon buttons,
-Poppins Bold 16px/36px title), verified against a live smoke-test render for
-all 4 variants (structure, computed styles, click handlers), and confirmed
-the `PG.header.impl` string added to the site itself matches the same spec.
-
-**One deliberate deviation, not an oversight:** `NavBar` items use `flex:1`
-to fill the container width, where the site's own demo hardcodes `72x72`
-per item - because that demo is only ever shown at a fixed 360px frame. A
-production nav bar needs to fill whatever width the real device is, so the
-flexible layout was kept on purpose.
+See [CHANGELOG.md](https://github.com/rezatresnas/snacky-design-system/blob/main/packages/react-ui/CHANGELOG.md)
+for how the package got here, including the mistakes.
 
 ## Artwork credit and licensing
 
@@ -163,9 +140,8 @@ what is already in the bundle.
   Section "variants", but each is really the *same* shell component
   (`BottomSheet` / `Section`) with different `children` - so that's what's
   exported, matching every `code.tsx` sample exactly, rather than 22 near-
-  duplicate components. These two shells have not yet been diffed field-by-
-  field against `PG.modal`/`PG.section` the way the rest of the package has -
-  treat their exact padding/gap values as reasonable-but-unverified.
+  duplicate components. (See Verification status above for the caveat on
+  their exact padding/gap values.)
 
 ## Keeping this in sync
 
