@@ -57,6 +57,12 @@ Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
 (the shared Modal shell), Section (the shared content-block shell), Avatar,
 Illustration, ProductImage, ProductCard.
 
+Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (42
+Outline, 10 Solid). Two things to know: they are **filled** shapes rather than
+stroked paths, so there is no `strokeWidth` to set, and the set is **not
+uniform** - each icon is authored at 16, 20 or 24px and defaults to its own
+natural size, so pass `width`/`height` if you need them to match.
+
 ## Verification status
 
 Every component is diffed against `index.html`'s own Live Preview
@@ -85,19 +91,6 @@ what is already in the bundle.
 
 ## Known gaps - read before relying on these
 
-- **Icons** (`SnackyIcons.outline.*` / `SnackyIcons.solid.*`): no longer a
-  gap. The hand-drawn starter set has been replaced by the real thing - all
-  42 Outline + 10 Solid icons exported from Figma's own `Icon-outline` (node
-  `55:2062`) and `Icon-solid` (`8772:5851`) component sets. `src/icons/outline.tsx` and
-  `solid.tsx` are generated from `../../assets/icons/icons.json` by
-  `../../scripts/generate-icons.js` (never hand-edit them), the same source
-  that generates compose-ui's `SnackyIcons.kt`.
-
-  Two things changed versus the old hand-drawn placeholder: the icons are
-  **filled outline shapes**, not stroked paths (the weight is baked into each
-  shape, there is no `strokeWidth` to set), and the set is **not uniform** -
-  icons are authored at 16, 20 or 24px depending on use, so each carries its
-  own viewBox and defaults to that natural size.
 - **Illustration** ships no artwork - you supply the image. This is
   deliberate and normal (Material, Radix and Chakra ship none either); the
   component owns the documented canvas size for each variant, which is the
