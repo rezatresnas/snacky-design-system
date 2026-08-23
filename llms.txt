@@ -11,14 +11,36 @@ This is a single-page interactive site (`index.html`) documenting 22 components 
 
 Both files are generated from `index.html` by `scripts/generate-agent-files.js` and will always match what a human sees on the site. Never hand-edit `tokens.json` or `components.json`.
 
-## Installable component library (use this to build, not just read)
+## Installable component libraries (use these to build, not just read)
 
-- [packages/react-ui](packages/react-ui): `@snacky/ui`, a real React implementation of
-  all 22 components below. If you're building a new feature (e.g. a form), `import`
-  from this package instead of writing new markup from the code samples in
-  `components.json` - the samples are for reference, this package is for reuse. See
-  its README for setup and known gaps (the icon set is a starter subset; the full
-  documented icon set still needs exporting from Figma).
+Both implement all 22 components below and are generated from the same source, so
+they do not drift from each other or from Figma. If you're building a feature,
+import from the package for your platform instead of writing new markup from the
+code samples in `components.json` - the samples are for reference, the packages are
+for reuse.
+
+- [packages/react-ui](packages/react-ui): `@snacky/ui` on npm.
+  `npm install @snacky/ui`, then `import { Button } from '@snacky/ui'` and
+  `import '@snacky/ui/styles.css'`.
+- [packages/compose-ui](packages/compose-ui): Kotlin Multiplatform / Compose
+  Multiplatform (`androidTarget` + iOS), published via JitPack. Add the
+  `https://jitpack.io` repository, then
+  `implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.1")`.
+  Ships no image loader and no font, so image-bearing components (`Avatar`, the
+  Banner family, `Illustration`, `ProductImage`, `ProductCard`) take the image as a
+  `content` slot.
+
+See each README for setup and known gaps.
+
+## Asset licensing (an agent must not get this wrong)
+
+The repo's MIT LICENSE covers CODE ONLY. The bundled icon set is **UIcons by
+Flaticon**, used under **CC BY 4.0** and modified. CC BY allows redistribution, but
+attribution must travel with the artwork - it is embedded as a comment header in the
+generated icon sources and survives into the published bundles, and the full
+statement is in [NOTICE](NOTICE). Do not strip that header, and do not relicense the
+icons. The illustrations are also modified stock and are deliberately NOT bundled:
+`Illustration` ships only the documented canvas size and takes your own artwork.
 
 ## Components
 

@@ -16,6 +16,14 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   tools/agents (W3C Design Tokens format + full component/variant/code manifest).
   **Never hand-edit these.**
 - `llms.txt` - concise root index for AI tools, pointing at the two files above.
+  **Hand-maintained, unlike `tokens.json`/`components.json`**, so it goes stale
+  silently: it once still claimed the icon set was "a starter subset" long after the
+  real set shipped, and never mentioned `packages/compose-ui` at all. Re-read it
+  whenever a package, a known gap, or the asset-licensing story changes.
+- The published `compose-v*` version string is hardcoded in THREE places that must be
+  bumped together when a tag is cut: `packages/compose-ui/README.md`, `llms.txt`, and
+  the "Compose Package" card on `index.html`'s home page. (`@snacky/ui`'s version is
+  not hardcoded anywhere in docs - npm always resolves `latest`.)
 - `scripts/generate-agent-files.js` - regenerates `tokens.json` and `components.json`
   straight from `index.html`'s source (bracket-matched literal extraction, not a
   hand transcription). Run it after any change to a foundation page's token data or
