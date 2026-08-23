@@ -15,7 +15,8 @@ npm install @snacky/ui
 ```
 
 Published at [npmjs.com/package/@snacky/ui](https://www.npmjs.com/package/@snacky/ui).
-To build from source instead (e.g. to work on the components themselves):
+To build from source instead (e.g. to work on the components themselves), clone
+[the repo](https://github.com/rezatresnas/snacky-design-system) and, from its root:
 
 ```bash
 cd packages/react-ui
@@ -26,7 +27,7 @@ npm run build
 ## Usage
 
 ```tsx
-import '@snacky/ui'; // pulls in theme/tokens.css as a side effect
+import '@snacky/ui/styles.css'; // required - the compiled bundle does not inject this for you
 import { Button, TextField, Checkbox } from '@snacky/ui';
 
 function SignupForm() {
