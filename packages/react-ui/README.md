@@ -2,7 +2,7 @@
 
 React implementation of the Snacky App design system - generated from the
 source of truth at `../../index.html` (via `tokens.json` / `components.json`),
-pixel-accurate to Figma (file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
+pixel-accurate to Figma.
 
 This exists so AI coding tools (and humans) building new Snacky features can
 **import** these components directly instead of regenerating similar-looking
@@ -62,8 +62,7 @@ Illustration, ProductImage, ProductCard.
 Every component is diffed against `index.html`'s own Live Preview
 implementation - the code that actually renders the documentation site - not
 just the spec values in `components.json`. Where the two disagree, the
-verified implementation wins. `List`, `Header`, `BottomSheet` and `Section`
-were additionally checked against their Figma component sets directly.
+verified implementation wins.
 
 See [CHANGELOG.md](https://github.com/rezatresnas/snacky-design-system/blob/main/packages/react-ui/CHANGELOG.md)
 for how the package got here, including the mistakes.

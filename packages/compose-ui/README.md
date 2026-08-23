@@ -3,8 +3,7 @@
 Kotlin Multiplatform / Compose Multiplatform implementation of the Snacky App
 design system, the Compose counterpart to `@snacky/ui`
 ([packages/react-ui](../react-ui)). Sourced from the same
-`../../tokens.json` / `../../components.json` that trace back to Figma
-(file key `4Uh4Y1fPQXu2hwq0vEXHXd`).
+`../../tokens.json` / `../../components.json`.
 
 ## Status: 22 of 22 components - complete
 
