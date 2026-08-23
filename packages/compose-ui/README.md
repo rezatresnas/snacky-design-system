@@ -497,11 +497,35 @@ that credit with them.
   Figma authors it at (268x200, 360x240, 200x200, 200x200, 268x200). Mirrors
   `packages/react-ui`'s `Illustration.tsx`.
 
-  Ships NO artwork, deliberately, matching react-ui's own "host your own
-  export" decision rather than silently bundling five large assets inside a
-  component library: `content` is whatever image composable you already use,
-  and this owns only the variant's footprint. The artwork can be exported
-  from Figma the same way the icon set was if you want it bundled.
+  Ships NO artwork, deliberately: `content` is whatever image composable you
+  already use, and this owns only the variant's footprint. That is the normal
+  split (Material, Radix and Chakra ship none either) - the documented canvas
+  size is the part that belongs in a design system, and the Snacky artwork
+  itself is modified stock that is not ours to redistribute.
+
+  ```kotlin
+  SnackyIllustration(IllustrationVariant.Empty) {
+      Image(
+          painter = painterResource(Res.drawable.illus_empty),
+          contentDescription = "No products found",
+      )
+  }
+  ```
+
+  Any image composable works - `painterResource` from Compose Multiplatform
+  resources, Coil's `AsyncImage` for a remote URL, a raw `Image(bitmap = ...)`.
+  For bundled artwork, `composeResources/drawable/` is the idiomatic home: it
+  works on Android and iOS, and unlike generated `ImageVector` Kotlin it does
+  not compile a large illustration into code (the Snacky `create-account`
+  artwork alone is 376 vector paths, which would make for a punishing source
+  file and a slow build).
+
+  **Where to get artwork that fits:** [Open Peeps](https://www.openpeeps.com/)
+  is CC0 (public domain - no attribution, no restrictions), the easiest
+  drop-in. [unDraw](https://undraw.co/) needs no attribution and allows
+  commercial use, but its licence forbids redistributing the assets "in
+  packs", so use it inside your own app rather than re-publishing it in a
+  library of your own. Check the licence yourself before shipping either way.
 
 - `SnackyProductImage` (`src/commonMain/kotlin/com/snacky/ui/components/productimage/ProductImage.kt`),
   a product photo frame that adapts to where it appears (`ProductCard` 128dp,

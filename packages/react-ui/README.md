@@ -133,7 +133,31 @@ what is already in the bundle.
   shape, there is no `strokeWidth` to set), and the set is **not uniform** -
   icons are authored at 16, 20 or 24px depending on use, so each carries its
   own viewBox and defaults to that natural size.
-- **Illustration** ships no artwork - pass your own hosted `src`.
+- **Illustration** ships no artwork - you supply the image. This is
+  deliberate and normal (Material, Radix and Chakra ship none either); the
+  component owns the documented canvas size for each variant, which is the
+  part that belongs in a design system. The Snacky artwork itself is modified
+  stock and is not ours to redistribute.
+
+  ```tsx
+  import { Illustration } from '@snacky/ui';
+
+  <Illustration variant="empty" src="/img/empty.svg" alt="No products found" />
+  ```
+
+  Variant sizes are fixed: `empty` 268x200, `createAccount` 360x240,
+  `welcome` 200x200, `success` 200x200, `discountReferral` 268x200. Export
+  your artwork at those ratios (SVG preferred) and host it wherever your app
+  already serves static assets.
+
+  **Where to get artwork that fits:** [Open Peeps](https://www.openpeeps.com/)
+  is CC0 (public domain - no attribution, no restrictions), so it is the
+  easiest drop-in. [unDraw](https://undraw.co/) needs no attribution and
+  allows commercial use, but its licence forbids redistributing the assets
+  "in packs", so use it in your own app rather than re-publishing it inside a
+  library of your own. Either way, check the licence yourself before shipping
+  - it is the one part of this that a component library cannot decide for you.
+
 - **Modal/Section**: the design system documents ~9 Modal "variants" and ~13
   Section "variants", but each is really the *same* shell component
   (`BottomSheet` / `Section`) with different `children` - so that's what's

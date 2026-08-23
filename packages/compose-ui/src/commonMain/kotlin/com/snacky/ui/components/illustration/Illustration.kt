@@ -41,11 +41,25 @@ enum class IllustrationVariant(val width: Dp, val height: Dp) {
  * the same footprint the design system documents regardless of what you
  * render inside it.
  *
- * The artwork itself can be exported from Figma the same way the icon set
- * was (see `assets/icons/icons.json` and `scripts/generate-icons.js`); it
- * is deliberately not bundled here, matching react-ui's own "host your own
- * export" decision rather than silently shipping five large assets inside a
- * component library.
+ * ```
+ * SnackyIllustration(IllustrationVariant.Empty) {
+ *     Image(
+ *         painter = painterResource(Res.drawable.illus_empty),
+ *         contentDescription = "No products found",
+ *     )
+ * }
+ * ```
+ *
+ * Shipping no artwork is deliberate, and the normal split - Material, Radix
+ * and Chakra ship none either. The documented canvas size is the part that
+ * belongs in a design system; the Snacky artwork itself is modified stock
+ * and is not ours to redistribute. For bundled artwork of your own,
+ * `composeResources/drawable/` is the idiomatic home (works on Android and
+ * iOS, and unlike generated `ImageVector` Kotlin it does not compile a large
+ * illustration into source). Open Peeps (openpeeps.com) is CC0 and drops in
+ * cleanly; unDraw (undraw.co) is free without attribution but its licence
+ * forbids redistributing assets "in packs", so keep it inside your own app.
+ * See this package's README for the fuller note.
  */
 @Composable
 fun SnackyIllustration(

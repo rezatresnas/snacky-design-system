@@ -3511,7 +3511,7 @@
       "name": "Illustration",
       "cat": "Assets",
       "desc": "Decorative spot illustrations for empty states, onboarding, and confirmations.",
-      "usage": "Use large illustrations in modals and empty states. Keep illustrations from this set - do not substitute with custom artwork.",
+      "usage": "Use large illustrations in modals and empty states. Keep illustrations from this set - do not substitute with custom artwork. Note for package users: @snacky/ui and compose-ui ship the documented canvas sizes but no artwork, because the Snacky illustrations are modified stock that is not ours to redistribute. Supply your own image to the component (React: the src prop; Compose: the content slot) and export it at the variant size shown here. Open Peeps (openpeeps.com) is CC0 and drops in cleanly; unDraw (undraw.co) is free without attribution but its licence forbids redistributing assets in packs, so keep it inside your own app.",
       "cover": "assets/images/illustration.png",
       "v": [
         {
