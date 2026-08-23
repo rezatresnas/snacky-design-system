@@ -30,6 +30,14 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   same way `llms.txt` does - both sat at "21 components" and omitted `Header` long
   after it shipped, and `AGENTS.md` never mentioned `packages/compose-ui`. Re-read all
   three whenever the component set, a package, or the licensing story changes.
+  `design-system-prompt.md` also carries the literal export names for both platforms
+  (prompt-only tools guess otherwise: the docs say "Input", the code says `TextField`,
+  `SearchField`, `OtpField`, `CopyField`, `ChatInput`, `AddressResult`). Re-derive them
+  after any export change:
+  ```
+  node -e "const d=require('fs').readFileSync('packages/react-ui/dist/index.d.ts','utf8');console.log([...new Set([...d.matchAll(/declare (?:function|const) ([A-Z][A-Za-z]+)/g)].map(m=>m[1]))].join(', '))"
+  grep -rhoE "^fun Snacky[A-Za-z]+" packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/components | sed 's/fun //' | sort -u
+  ```
 - `scripts/generate-agent-files.js` - regenerates `tokens.json` and `components.json`
   straight from `index.html`'s source (bracket-matched literal extraction, not a
   hand transcription). Run it after any change to a foundation page's token data or

@@ -52,10 +52,38 @@ mobile app (Kotlin Compose Multiplatform + React), sourced pixel-accurately from
 - Stronger elevation (product cards): `0 10px 30px rgba(0,0,0,0.1)`
 - Upward shadow (bottom navbar): `0 -4px 10px rgba(0,0,0,0.08)`
 
-**Components available** (22): Button, Icon Button, Input (text/password/dropdown/date
-picker/address/search/OTP/chat/copy-value), Chips, Radio Button, Checkbox, Toggle,
-Navbar, Tab, Header, Banner, Badge, Callout, List, Accordion, Modal, Section, Avatar,
-Icon, Illustration, Product Image, Product Card.
+**Components** - the 22 documented components ship under these exact export
+names. Use them verbatim; several documented "components" are really a family
+(what the docs call "Input" is six separate exports, for example).
+
+React, from `@snacky/ui` (37):
+Button, IconButton, UploadButton, TextField, SearchField, OtpField,
+CopyField, ChatInput, AddressResult, ProductChip, FilterChip, RadioOption,
+Checkbox, Toggle, NavBar, TabRow, Header, HeroBanner, SquareBanner,
+FullWidthBanner, PointBalanceBanner, AlertBanner, NotificationBadge,
+DiscountTag, SoldOutBadge, VariantBadge, Callout, OrderListItem,
+NotificationListItem, Accordion, BottomSheet, Section, Avatar,
+Illustration, ProductImage, ProductCard, SnackyIcons
+
+Compose, from `com.github.rezatresnas:snacky-design-system` (38):
+SnackyAccordion, SnackyAddressResult, SnackyAlertBanner, SnackyAvatar,
+SnackyBadge, SnackyBottomSheet, SnackyButton, SnackyCallout,
+SnackyChatInput, SnackyCheckbox, SnackyCopyField, SnackyDiscountTag,
+SnackyFilterChip, SnackyFullWidthBanner, SnackyHeader, SnackyHeroBanner,
+SnackyIcon, SnackyIconButton, SnackyIllustration, SnackyNavBar,
+SnackyNotificationListItem, SnackyOrderListItem, SnackyOtpField,
+SnackyPasswordField, SnackyPointBalanceBanner, SnackyProductCard,
+SnackyProductCardDetails, SnackyProductChip, SnackyProductImage,
+SnackyRadioOption, SnackySearchField, SnackySection, SnackySoldOutBadge,
+SnackySquareBanner, SnackyTabRow, SnackyTextField, SnackyToggle,
+SnackyVariantBadge
+
+Compose enums you will need: ButtonVariant, ButtonSize, IconButtonVariant,
+IconButtonSize, AvatarSize, CalloutVariant, HeaderLeadingIcon,
+IllustrationVariant, OrderStatus, ProductImageUsage.
+
+In Compose, every image-bearing component takes the image as a `content` slot
+(the package ships no image loader), and no font is bundled.
 
 Match these values exactly rather than approximating - if a spacing/color/radius
 value you'd normally default to doesn't match one listed above, use the listed value.
