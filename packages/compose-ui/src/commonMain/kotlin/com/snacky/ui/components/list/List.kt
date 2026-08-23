@@ -103,10 +103,10 @@ fun SnackyOrderListItem(
             Box(
                 modifier = Modifier
                     .size(56.dp)
-                    .clip(RoundedCornerShape(SnackyRadius.field))
-                    // Literal value from the verified thumbnail frame - distinct
-                    // from any generated surface token, matching List.css's own comment.
-                    .background(Color(0xFFF4F4F5)),
+                    // No background: Figma's Image component set (usage=list) has no
+                    // fill and no stroke on the 56dp frame, it only holds the 48dp
+                    // photo. An earlier pass invented #f4f4f5 here.
+                    .clip(RoundedCornerShape(SnackyRadius.field)),
                 contentAlignment = Alignment.Center,
             ) {
                 Box(modifier = Modifier.size(48.dp)) {

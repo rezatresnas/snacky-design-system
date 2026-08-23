@@ -65,14 +65,12 @@ just the spec values in `components.json`. Where the two disagree, the
 verified implementation wins. `List`, `Header`, `BottomSheet` and `Section`
 were additionally checked against their Figma component sets directly.
 
-Three things worth knowing before you rely on them:
+Two things worth knowing before you rely on them:
 
 - **`NavBar` items use `flex: 1`** to fill the container, where the site's own
   demo hardcodes `72x72` per item. That demo only ever renders at a fixed
   360px frame; a real nav bar has to fill the actual device width, so this is
   a deliberate deviation rather than a mismatch.
-- **`List`'s 56x56 thumbnail frame uses a literal `#f4f4f5`**, not a token -
-  it is a distinct value with no equivalent in the generated surface colors.
 - **`BottomSheet` and `Section` spacing is variant-dependent by design.** Both
   shells have since been checked against Figma, and the finding was that no
   single shell default reproduces every variant: BottomSheet's block gap is

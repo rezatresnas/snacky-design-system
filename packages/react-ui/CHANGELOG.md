@@ -59,7 +59,8 @@ hover/pressed/disabled states. That implementation is treated as authoritative
 where `components.json`'s prose spec disagrees with it.
 
 `List` and `Header` were additionally cross-checked directly against their
-Figma component sets, and both agreed with the verified implementation.
+Figma component sets. `Header` agreed. `List` agreed on everything except its
+thumbnail background, which turned out to be invented - see below.
 
 `BottomSheet` and `Section` were checked later, while porting them to the
 Compose package, and both turned up real bugs: `BottomSheet` defaulted to
@@ -76,6 +77,15 @@ unverified - see the README's Verification status.
   `--details` instead of `--product-card` and `--product-details`. Those two
   usages - the 128px card image and the 200px detail image, the two most common
   ones - matched no rule at all and rendered completely unsized.
+- **List thumbnail background (0.3.6).** The 56x56 frame behind an order's
+  product photo was filled `#f4f4f5`, and both the README and this file claimed
+  Figma agreed with it. It does not: Figma's `Image` component set has no fill
+  and no stroke on the `usage=list` variant, only the 48x48 photo inside. The
+  value was invented somewhere between the site's Live Preview and the
+  component, is 1-2 values off `--bg-surface-variant` (suggesting it was
+  eyeballed rather than read), and contradicted `ProductImage`'s own
+  `usage="list"`, which correctly had no background. Removed from all three
+  places that carried it.
 - **Unstyled-components trap (0.3.3).** The README's usage snippet said
   `import '@snacky/ui'` would pull in the stylesheet "as a side effect". It does
   not: tsup extracts the CSS to a standalone `dist/index.css` and never

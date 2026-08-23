@@ -20,9 +20,10 @@
   height: 56px;
   flex-shrink: 0;
   border-radius: var(--radius-field);
-  /* Literal value from the verified thumbnail frame - distinct from any
-     generated surface token. */
-  background: #f4f4f5;
+  /* No background: Figma's Image component set (usage=list) has no fill and no
+     stroke on the 56x56 frame, it only holds the 48x48 photo. An earlier pass
+     invented #f4f4f5 here, which is also 1-2 values off bg-surface-variant and
+     contradicted ProductImage's own usage="list", which correctly has none. */
   display: flex;
   align-items: center;
   justify-content: center;
