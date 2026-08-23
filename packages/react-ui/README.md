@@ -63,6 +63,11 @@ stroked paths, so there is no `strokeWidth` to set, and the set is **not
 uniform** - each icon is authored at 16, 20 or 24px and defaults to its own
 natural size, so pass `width`/`height` if you need them to match.
 
+The design system documents ~9 Modal and ~13 Section "variants", but each is
+the same shell with different `children`, so you get two components rather
+than 22 near-duplicates. Their spacing varies per variant in Figma, so the
+shells ship sensible defaults and expect `children` to override it.
+
 ## Verification status
 
 Every component is diffed against `index.html`'s own Live Preview
@@ -119,23 +124,3 @@ what is already in the bundle.
 - **`NavBar` items use `flex: 1`** to fill the container, where the site's demo
   hardcodes `72x72` per item - that demo only ever renders at a fixed 360px
   frame, so this is a deliberate deviation rather than a mismatch.
-- **Modal/Section**: the design system documents ~9 Modal "variants" and ~13
-  Section "variants", but each is really the *same* shell component
-  (`BottomSheet` / `Section`) with different `children` - so that's what's
-  exported, matching every `code.tsx` sample exactly, rather than 22 near-
-  duplicate components. Their spacing is variant-dependent by design - Figma
-  uses different gaps per variant, so the shells ship sensible defaults and
-  expect `children` to override where a composition needs it.
-
-## Keeping this in sync
-
-If `index.html`'s component data (the `C` object) changes:
-
-```bash
-node ../../scripts/generate-agent-files.js   # regenerates tokens.json / components.json
-node ../../scripts/generate-react-tokens.js  # regenerates src/theme/tokens.css / tokens.ts
-```
-
-Then re-check any component whose spec changed against its file here -
-token/color/spacing changes propagate automatically via the regenerated CSS
-variables, but structural changes (new variant, new prop) need a manual edit.
