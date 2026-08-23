@@ -50,10 +50,10 @@ mobile app (Kotlin Compose Multiplatform + React), sourced pixel-accurately from
 - Stronger elevation (product cards): `0 10px 30px rgba(0,0,0,0.1)`
 - Upward shadow (bottom navbar): `0 -4px 10px rgba(0,0,0,0.08)`
 
-**Components available**: Button, Icon Button, Input (text/password/dropdown/date
+**Components available** (22): Button, Icon Button, Input (text/password/dropdown/date
 picker/address/search/OTP/chat/copy-value), Chips, Radio Button, Checkbox, Toggle,
-Navbar, Tab, Banner, Badge, Callout, List, Accordion, Modal, Section, Avatar, Icon,
-Illustration, Product Image, Product Card.
+Navbar, Tab, Header, Banner, Badge, Callout, List, Accordion, Modal, Section, Avatar,
+Icon, Illustration, Product Image, Product Card.
 
 Match these values exactly rather than approximating - if a spacing/color/radius
 value you'd normally default to doesn't match one listed above, use the listed value.

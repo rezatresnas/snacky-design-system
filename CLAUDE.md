@@ -20,10 +20,15 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   silently: it once still claimed the icon set was "a starter subset" long after the
   real set shipped, and never mentioned `packages/compose-ui` at all. Re-read it
   whenever a package, a known gap, or the asset-licensing story changes.
-- The published `compose-v*` version string is hardcoded in THREE places that must be
-  bumped together when a tag is cut: `packages/compose-ui/README.md`, `llms.txt`, and
-  the "Compose Package" card on `index.html`'s home page. (`@snacky/ui`'s version is
-  not hardcoded anywhere in docs - npm always resolves `latest`.)
+- The published `compose-v*` version string is hardcoded in FIVE places that must be
+  bumped together when a tag is cut: `packages/compose-ui/README.md`, `llms.txt`,
+  `AGENTS.md`, root `README.md`, and the "Compose Package" card on `index.html`'s home
+  page. (`@snacky/ui`'s version is not hardcoded anywhere in docs - npm resolves
+  `latest`.) Grep for `compose-v` before tagging.
+- `AGENTS.md` and `stitch-prompt.md` are hand-written agent entry points and drift the
+  same way `llms.txt` does - both sat at "21 components" and omitted `Header` long
+  after it shipped, and `AGENTS.md` never mentioned `packages/compose-ui`. Re-read all
+  three whenever the component set, a package, or the licensing story changes.
 - `scripts/generate-agent-files.js` - regenerates `tokens.json` and `components.json`
   straight from `index.html`'s source (bracket-matched literal extraction, not a
   hand transcription). Run it after any change to a foundation page's token data or

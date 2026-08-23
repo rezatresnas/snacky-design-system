@@ -11,8 +11,18 @@ Read [llms.txt](llms.txt) first. It indexes:
 
 - `tokens.json` / `components.json` - every design token and component spec,
   machine-readable, generated from `index.html` (never hand-edit these).
-- `packages/react-ui` - `@snacky/ui`, a real React implementation of all 21
-  components.
+- `packages/react-ui` - `@snacky/ui` on npm, a real React implementation of all
+  22 components.
+- `packages/compose-ui` - the Kotlin Multiplatform / Compose Multiplatform
+  counterpart, all 22 components, published via JitPack
+  (`com.github.rezatresnas:snacky-design-system:compose-v1.0.1`). Generated from
+  the same source as the React package, so the two do not drift.
+
+Asset licensing: the repo's MIT LICENSE covers CODE ONLY. The bundled icon set is
+UIcons by Flaticon under CC BY 4.0 (modified). The attribution is embedded as a
+comment header in the generated icon sources and must not be stripped - see
+`NOTICE`. The illustrations are also modified stock and are deliberately NOT
+bundled; `Illustration` ships only the documented canvas size.
 
 ## Building a feature
 
