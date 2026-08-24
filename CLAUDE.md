@@ -114,6 +114,15 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `import androidx.compose.runtime.getValue` for a `by` delegate on `State<T>`, and
   a Kotlin/AGP JVM-target mismatch (11 vs default 1.8).
 
+- `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
+  added by a `/design-sync` run. These exist for the **Claude Design bundle only**,
+  wired in through `.design-sync/config.json`'s `extraFonts`. They are NOT published:
+  `package.json`'s `files` is `["dist", "NOTICE", "CHANGELOG.md"]`, and `dist/styles.css`
+  carries zero `@font-face` rules. The "neither package bundles a font" rule below
+  still holds for everything an integrator installs, so don't read that folder as a
+  reversal of it, and don't wire it into the package build without deciding that
+  deliberately (it would add ~960KB to every consumer).
+
 ## Asset licensing (important, do not regress this)
 
 The repo's MIT `LICENSE` covers CODE ONLY. The icon artwork is UIcons by Flaticon,
@@ -147,9 +156,21 @@ agent being careless; both were doc gaps, now closed - keep them closed:
   plus an explicit "never substitute emoji or a hand-drawn SVG; if no name fits,
   say so rather than inventing one".
 
+A third gap sat one level deeper and outlasted both fixes above: **the packages
+themselves defaulted to emoji.** `ProductCard` fell back to `'♥'`/`'⤴'`/`'💬'`/`'+'`
+and `ChatInput` to `'➤'` whenever an icon prop was omitted, so an agent that
+followed the docs perfectly still got emoji, and `AGENTS.md` was telling
+integrators "never substitute an emoji" while the code did exactly that. The
+compose-ui side had the quieter version of the same bug: `icon = { cartIcon?.invoke() }`
+rendered an empty slot. Both now default to the real `SnackyIcons` geometry
+(sizes from `index.html`'s verified preview: 20px for the details actions and the
+chat send button, 16px for the list card's cart). When adding a component with an
+icon slot, give it a real default, never a glyph and never nothing.
+
 General lesson for this repo: documenting that something EXISTS is not the same
 as showing how to USE it. A list of icon names reads as reference material; a
-snippet reads as an instruction. Agents copy snippets.
+snippet reads as an instruction. Agents copy snippets. And a rule the code itself
+violates will lose to the code every time.
 
 ## Key rules (don't relitigate these, they're already decided)
 

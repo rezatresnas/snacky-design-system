@@ -1,5 +1,8 @@
 import { type InputHTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
+// Real send glyph rather than the '➤' text arrow this used to fall back to.
+// 20px matches index.html's verified preview.
+import { send as SendIcon } from '../../icons/outline.js';
 import './ChatInput.css';
 
 export interface ChatInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -28,7 +31,7 @@ export function ChatInput({ value, onChange, onSend, sendIcon, className, placeh
         disabled={!value}
         aria-label="Send"
       >
-        {sendIcon ?? '➤'}
+        {sendIcon ?? <SendIcon width={20} height={20} />}
       </button>
     </div>
   );

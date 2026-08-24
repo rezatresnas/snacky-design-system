@@ -3,6 +3,13 @@ import { cx } from '../../utils/cx.js';
 import { DiscountTag } from '../Badge/Badge.js';
 import { SoldOutBadge } from '../Badge/Badge.js';
 import { IconButton } from '../IconButton/IconButton.js';
+// Real icons as the fallback for every icon slot. These used to default to
+// emoji/text glyphs, which meant a caller who omitted the prop silently got
+// an emoji instead of the design system's own set, the exact thing the docs
+// tell integrators never to do. Sizes match index.html's verified preview:
+// 20px in the details actions, 16px in the list card's cart button.
+import { cartAdd as CartAddIcon, chat as ChatIcon, heart as HeartOutlineIcon, share as ShareIcon } from '../../icons/outline.js';
+import { heart as HeartSolidIcon } from '../../icons/solid.js';
 import './ProductCard.css';
 
 interface BaseProductCardProps {
@@ -71,9 +78,10 @@ export function ProductCard(props: ProductCardProps) {
             {rating} ({ratingCount})
           </span>
           <div className="snacky-product-card__actions snacky-product-card__actions--details">
-            <IconButton variant="secondary" icon={favoriteIcon ?? '♥'} selected={favorited} onClick={onFavoriteClick} ariaLabel="Favorite" />
-            <IconButton variant="secondary" icon={shareIcon ?? '⤴'} onClick={onShareClick} ariaLabel="Share" />
-            <IconButton variant="secondary" icon={chatIcon ?? '💬'} onClick={onChatClick} ariaLabel="Chat with seller" />
+            {/* Solid heart when favorited, outline when not, mirroring index.html's fav-s/fav-o swap. */}
+            <IconButton variant="secondary" icon={favoriteIcon ?? (favorited ? <HeartSolidIcon width={20} height={20} /> : <HeartOutlineIcon width={20} height={20} />)} selected={favorited} onClick={onFavoriteClick} ariaLabel="Favorite" />
+            <IconButton variant="secondary" icon={shareIcon ?? <ShareIcon width={20} height={20} />} onClick={onShareClick} ariaLabel="Share" />
+            <IconButton variant="secondary" icon={chatIcon ?? <ChatIcon width={20} height={20} />} onClick={onChatClick} ariaLabel="Chat with seller" />
           </div>
         </div>
       </div>
@@ -109,7 +117,7 @@ export function ProductCard(props: ProductCardProps) {
         </span>
         <IconButton
           variant="primary"
-          icon={cartIcon ?? '+'}
+          icon={cartIcon ?? <CartAddIcon width={16} height={16} />}
           onClick={(e) => {
             e.stopPropagation();
             onAddToCart();

@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -102,16 +104,16 @@ fun SnackyChatInput(
                         .semantics { contentDescription = "Send" },
                     contentAlignment = Alignment.Center,
                 ) {
-                    if (sendIcon != null) {
-                        CompositionLocalProvider(
-                            // White on the accent circle, NOT the dark colour a
-                            // labelled button uses; resting glyph is textPlaceholder.
-                            LocalContentColor provides
-                                if (canSend) SnackyColor.iconOnAccent else SnackyColor.textPlaceholder,
-                        ) {
-                            Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
-                                sendIcon()
-                            }
+                    CompositionLocalProvider(
+                        // White on the accent circle, NOT the dark colour a
+                        // labelled button uses; resting glyph is textPlaceholder.
+                        LocalContentColor provides
+                            if (canSend) SnackyColor.iconOnAccent else SnackyColor.textPlaceholder,
+                    ) {
+                        Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
+                            // Falls back to the real send glyph rather than an empty
+                            // slot, matching react-ui.
+                            if (sendIcon != null) sendIcon() else SnackyIcon(SnackyIcons.Outline.Send, size = 20.dp)
                         }
                     }
                 }

@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.snacky.ui.components.badge.SnackyDiscountTag
 import com.snacky.ui.components.badge.SnackySoldOutBadge
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.components.iconbutton.IconButtonVariant
 import com.snacky.ui.components.iconbutton.SnackyIconButton
 import com.snacky.ui.theme.SnackyColor
@@ -103,7 +105,9 @@ fun SnackyProductCard(
         ) {
             RatingLabel(rating, ratingIcon)
             SnackyIconButton(
-                icon = { cartIcon?.invoke() },
+                // Falls back to the real icon rather than an empty slot, matching
+                // react-ui. Sizes come from index.html's verified preview.
+                icon = { if (cartIcon != null) cartIcon() else SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) },
                 onClick = onAddToCart,
                 contentDescription = "Add to cart",
                 variant = IconButtonVariant.Primary,
@@ -187,20 +191,31 @@ fun SnackyProductCardDetails(
                 // Compose has no blur-radius control on Modifier.shadow, so they
                 // just use SnackyIconButton's own Secondary elevation here.
                 SnackyIconButton(
-                    icon = { favoriteIcon?.invoke() },
+                    // Solid heart when favorited, outline when not, mirroring
+                    // index.html's fav-s/fav-o swap.
+                    icon = {
+                        if (favoriteIcon != null) {
+                            favoriteIcon()
+                        } else {
+                            SnackyIcon(
+                                if (favorited) SnackyIcons.Solid.Heart else SnackyIcons.Outline.Heart,
+                                size = 20.dp,
+                            )
+                        }
+                    },
                     onClick = onFavoriteClick,
                     contentDescription = "Favorite",
                     variant = IconButtonVariant.Secondary,
                     selected = favorited,
                 )
                 SnackyIconButton(
-                    icon = { shareIcon?.invoke() },
+                    icon = { if (shareIcon != null) shareIcon() else SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) },
                     onClick = onShareClick,
                     contentDescription = "Share",
                     variant = IconButtonVariant.Secondary,
                 )
                 SnackyIconButton(
-                    icon = { chatIcon?.invoke() },
+                    icon = { if (chatIcon != null) chatIcon() else SnackyIcon(SnackyIcons.Outline.Chat, size = 20.dp) },
                     onClick = onChatClick,
                     contentDescription = "Chat with seller",
                     variant = IconButtonVariant.Secondary,
