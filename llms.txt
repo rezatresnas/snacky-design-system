@@ -33,7 +33,7 @@ for reuse.
 - [packages/compose-ui](packages/compose-ui): Kotlin Multiplatform / Compose
   Multiplatform (`androidTarget` + iOS), published via JitPack. Add the
   `https://jitpack.io` repository, then
-  `implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.6")`.
+  `implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.7")`.
   Ships no image loader and no font, so image-bearing components (`Avatar`, the
   Banner family, `Illustration`, `ProductImage`, `ProductCard`) take the image as a
   `content` slot.
