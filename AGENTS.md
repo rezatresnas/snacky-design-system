@@ -15,7 +15,7 @@ Read [llms.txt](llms.txt) first. It indexes:
   22 components.
 - `packages/compose-ui` - the Kotlin Multiplatform / Compose Multiplatform
   counterpart, all 22 components, published via JitPack
-  (`com.github.rezatresnas:snacky-design-system:compose-v1.0.5`). Generated from
+  (`com.github.rezatresnas:snacky-design-system:compose-v1.0.6`). Generated from
   the same source as the React package, so the two do not drift.
 
 If you cannot read files (a prompt-only surface, not this agent), use

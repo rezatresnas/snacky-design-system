@@ -116,9 +116,11 @@ private fun resolveIconButtonColors(
     pressed: Boolean,
 ): IconButtonColors = when (variant) {
     IconButtonVariant.Primary -> when {
-        !enabled -> IconButtonColors(SnackyColor.bgActionDisabled, SnackyColor.textActionDisabled, SnackyColor.borderActionDisabled)
-        pressed -> IconButtonColors(SnackyColor.bgActionPrimaryPressed, SnackyColor.textPrimary, null)
-        else -> IconButtonColors(SnackyColor.bgActionPrimary, SnackyColor.textPrimary, null)
+        // Figma binds every icon-button glyph to an icon/* variable, not a
+        // text/* one. Same hex either way, but the icon token is the specced one.
+        !enabled -> IconButtonColors(SnackyColor.bgActionDisabled, SnackyColor.iconDisabled, SnackyColor.borderActionDisabled)
+        pressed -> IconButtonColors(SnackyColor.bgActionPrimaryPressed, SnackyColor.iconPrimary, null)
+        else -> IconButtonColors(SnackyColor.bgActionPrimary, SnackyColor.iconPrimary, null)
     }
     IconButtonVariant.Secondary -> when {
         // Disabled wins over selected even though the source CSS's cascade
@@ -127,8 +129,11 @@ private fun resolveIconButtonColors(
         // edge case, not a spec to replicate; a disabled toggle shouldn't
         // read as "on".
         !enabled -> IconButtonColors(SnackyColor.bgActionDisabled, SnackyColor.iconDisabled, null)
-        pressed -> IconButtonColors(SnackyColor.bgActionSecondaryPressed, if (selected) SnackyColor.iconActive else SnackyColor.iconSecondary, null)
-        else -> IconButtonColors(SnackyColor.bgActionSecondary, if (selected) SnackyColor.iconActive else SnackyColor.iconSecondary, null)
+        // iconPrimary (#333333), NOT iconSecondary. Figma's secondary set binds
+        // default/hovered/pressed all to icon/icon-primary; iconSecondary
+        // (#525252) appears only on the tertiary variant's hover.
+        pressed -> IconButtonColors(SnackyColor.bgActionSecondaryPressed, if (selected) SnackyColor.iconActive else SnackyColor.iconPrimary, null)
+        else -> IconButtonColors(SnackyColor.bgActionSecondary, if (selected) SnackyColor.iconActive else SnackyColor.iconPrimary, null)
     }
     IconButtonVariant.Tertiary -> when {
         !enabled -> IconButtonColors(Color.Transparent, SnackyColor.iconDisabled, null)
