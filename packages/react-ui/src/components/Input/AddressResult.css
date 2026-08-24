@@ -16,7 +16,7 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  color: var(--icon-secondary);
+  color: var(--text-placeholder);
   margin-top: 2px;
 }
 .snacky-address-result__title {

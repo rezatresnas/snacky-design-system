@@ -35,7 +35,7 @@
   flex-shrink: 0;
   width: 16px;
   height: 16px;
-  color: var(--icon-secondary);
+  color: var(--text-placeholder);
 }
 .snacky-search__clear {
   display: inline-flex;
@@ -46,5 +46,5 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--icon-secondary);
+  color: var(--text-placeholder);
 }

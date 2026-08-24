@@ -17,7 +17,7 @@
   border: none;
   border-radius: var(--radius-full);
   background: transparent;
-  color: var(--text-primary);
+  color: var(--icon-primary);
   cursor: pointer;
 }
 .snacky-header__title-row {

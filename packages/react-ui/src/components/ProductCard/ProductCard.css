@@ -86,7 +86,7 @@
 .snacky-product-card__rating-icon {
   width: 16px;
   height: 16px;
-  color: var(--color-primary-500);
+  color: var(--icon-brand);
 }
 .snacky-product-card__actions {
   display: flex;

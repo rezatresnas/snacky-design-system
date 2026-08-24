@@ -180,7 +180,8 @@ internal fun FieldIcon(
         modifier = modifier.size(size).then(if (rotated) Modifier.rotate(180f) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
-        CompositionLocalProvider(LocalContentColor provides SnackyColor.iconSecondary) {
+        // Figma binds the field glyphs to text/text-placeholder, not icon-secondary.
+        CompositionLocalProvider(LocalContentColor provides SnackyColor.textPlaceholder) {
             content()
         }
     }

@@ -134,7 +134,7 @@ private fun BackGlyph() {
         }
         drawPath(
             path = path,
-            color = SnackyColor.textPrimary,
+            color = SnackyColor.iconPrimary,
             style = Stroke(
                 width = size.minDimension * (1.5f / 24f),
                 cap = StrokeCap.Round,
@@ -160,7 +160,7 @@ private fun CloseGlyph() {
             moveTo(size.width * (18f / 24f), size.height * (6f / 24f))
             lineTo(size.width * (6f / 24f), size.height * (18f / 24f))
         }
-        drawPath(path = diagonal1, color = SnackyColor.textPrimary, style = stroke)
-        drawPath(path = diagonal2, color = SnackyColor.textPrimary, style = stroke)
+        drawPath(path = diagonal1, color = SnackyColor.iconPrimary, style = stroke)
+        drawPath(path = diagonal2, color = SnackyColor.iconPrimary, style = stroke)
     }
 }

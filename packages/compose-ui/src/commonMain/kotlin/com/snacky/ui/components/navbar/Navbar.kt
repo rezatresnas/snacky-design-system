@@ -68,7 +68,7 @@ fun SnackyNavBar(
     ) {
         items.forEachIndexed { index, item ->
             val active = index == selected
-            val iconColor = if (active) SnackyColorPrimitive.Primary.c500 else SnackyColor.iconSecondary
+            val iconColor = if (active) SnackyColor.iconBrand else SnackyColor.iconSecondary
             val labelStyle = if (active) SnackyTypography.Small.bold else SnackyTypography.Small.regular
             val labelColor = if (active) SnackyColor.textPrimary else SnackyColor.textSecondary
 

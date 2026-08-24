@@ -257,7 +257,7 @@ private fun RatingLabel(text: String, ratingIcon: (@Composable () -> Unit)?) {
                 // react-ui tints the rating star from the component, not the
                 // caller (.snacky-product-card__rating-icon), so the slot
                 // inherits that colour here rather than rendering untinted.
-                CompositionLocalProvider(LocalContentColor provides SnackyColorPrimitive.Primary.c500) {
+                CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
                     ratingIcon()
                 }
             }

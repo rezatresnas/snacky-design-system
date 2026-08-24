@@ -81,6 +81,24 @@
   vector image content with its own SVG-default font, entirely unrelated to the
   package's CSS or the Poppins question. Nothing to fix there.
 
+## Final audit pass (minor, non-visual-severity findings)
+
+- `Section.tsx` SettingsList row divider used a hardcoded `#eee` instead of the
+  real `var(--border-main)` (#cccccc) token - fixed.
+- `SoldOutBadge.tsx`'s placeholder product-image wrapper used a hand-picked
+  `borderRadius: 12` instead of `var(--radius-field)` (4px, matching
+  `ProductCard.css`'s real image-wrap radius) - fixed.
+- `ProductImage.tsx`'s `AccordionModalUsage` (payment-method logo) placeholder
+  used a ₿ (Bitcoin) symbol for an alt text of "Pay with Bank Transfer" -
+  semantically wrong emoji choice, not an icon-prop issue. Swapped for 🏦.
+- Checked all `gap`/`padding` numeric literals used as flex layout glue (13
+  files, ~30 occurrences) against the real primitive spacing scale
+  (2/4/8/12/16/24/32px) - every value used already lands exactly on the scale,
+  so nothing renders wrong. Semantic `--gap-layout-*` tokens exist and would be
+  more "correct" to reference by name, but since the pixel values already match
+  and there is zero visual difference, this was left as-is rather than doing a
+  cosmetic mechanical rewrite across every preview.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

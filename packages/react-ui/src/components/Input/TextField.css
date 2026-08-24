@@ -54,15 +54,18 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  color: var(--icon-secondary);
+  /* Figma binds the resting glyph to text/text-placeholder and the focused one
+     to text/text-primary, not icon-secondary. */
+  color: var(--text-placeholder);
 }
+.snacky-field:focus-within .snacky-field__icon { color: var(--text-primary); }
 
 .snacky-field__icon--button {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--icon-secondary);
+  color: inherit;
 }
 
 .snacky-field-label {
