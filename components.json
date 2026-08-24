@@ -462,7 +462,7 @@
             "use": "A real Figma SLOT component property (not a variant) on every Button state: absolute-positioned left, vertically centered, 24×24px, empty by default. Filled here with a functional icon (e.g. cart)."
           },
           "code": {
-            "kt": "SnackyButton(text = \"Cart\", onClick = {}, variant = ButtonVariant.Secondary, icon = { Icon(SnackyIcons.CartAdd, contentDescription = null) })",
+            "kt": "SnackyButton(text = \"Cart\", onClick = {}, variant = ButtonVariant.Secondary, icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, contentDescription = null) })",
             "tsx": "<Button onClick={() => {}} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />}>Cart</Button>"
           }
         },
@@ -523,7 +523,7 @@
               "st": "active",
               "img": "assets/images/variants/iconbtn-primary.png",
               "code": {
-                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\")",
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = \"Add to cart\")",
                 "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" />"
               }
             },
@@ -535,7 +535,7 @@
                 "fill": "#e2a72e"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\") // hover: bgActionPrimaryHover",
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = \"Add to cart\") // hover: bgActionPrimaryHover",
                 "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" /> /* :hover background uses var(--bg-action-primary-hover) */"
               }
             },
@@ -547,7 +547,7 @@
                 "fill": "#b08224"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = \"Add to cart\") // pressed: bgActionPrimaryPressed",
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = \"Add to cart\") // pressed: bgActionPrimaryPressed",
                 "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel=\"Add to cart\" /> /* :active background uses var(--bg-action-primary-pressed) */"
               }
             },
@@ -559,7 +559,7 @@
                 "fill": "#cccccc"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, enabled = false, contentDescription = \"Add to cart\")",
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, enabled = false, contentDescription = \"Add to cart\")",
                 "tsx": "<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} disabled ariaLabel=\"Add to cart\" />"
               }
             }
@@ -587,7 +587,7 @@
               "img": "assets/images/variants/iconbtn-small-default.png",
               "code": {
                 "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\")",
-                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" />"
+                "tsx": "<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel=\"Next\" />"
               }
             },
             {
@@ -599,7 +599,7 @@
               },
               "code": {
                 "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\") // hover: bgActionPrimaryHover",
-                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :hover background uses var(--bg-action-primary-hover) */"
+                "tsx": "<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :hover background uses var(--bg-action-primary-hover) */"
               }
             },
             {
@@ -611,7 +611,7 @@
               },
               "code": {
                 "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = \"Next\") // pressed: bgActionPrimaryPressed",
-                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :active background uses var(--bg-action-primary-pressed) */"
+                "tsx": "<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel=\"Next\" /> /* :active background uses var(--bg-action-primary-pressed) */"
               }
             },
             {
@@ -624,7 +624,7 @@
               },
               "code": {
                 "kt": "SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, enabled = false, contentDescription = \"Next\")",
-                "tsx": "<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} disabled ariaLabel=\"Next\" />"
+                "tsx": "<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} disabled ariaLabel=\"Next\" />"
               }
             }
           ]
@@ -650,8 +650,8 @@
               "st": null,
               "img": "assets/images/variants/iconbtn-secondary.png",
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\")",
-                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" />"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" />"
               }
             },
             {
@@ -662,8 +662,8 @@
                 "fill": "#f3f3f3"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // hover: bgActionSecondaryHover",
-                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :hover background uses var(--bg-action-secondary-hover) */"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // hover: bgActionSecondaryHover",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :hover background uses var(--bg-action-secondary-hover) */"
               }
             },
             {
@@ -674,8 +674,8 @@
                 "fill": "#e0e0e0"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // pressed: bgActionSecondaryPressed",
-                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :active background uses var(--bg-action-secondary-pressed) */"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = \"Share\") // pressed: bgActionSecondaryPressed",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant=\"secondary\" ariaLabel=\"Share\" /> /* :active background uses var(--bg-action-secondary-pressed) */"
               }
             },
             {
@@ -688,8 +688,8 @@
                 "note": "Flat fill, no elevation; icon tint uses iconDisabled (#a3a3a3)"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, enabled = false, contentDescription = \"Share\")",
-                "tsx": "<IconButton icon={<ShareIcon />} onClick={() => {}} variant=\"secondary\" disabled ariaLabel=\"Share\" />"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, enabled = false, contentDescription = \"Share\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant=\"secondary\" disabled ariaLabel=\"Share\" />"
               }
             },
             {
@@ -700,8 +700,8 @@
                 "note": "Toggled/favorited state: fill unchanged, icon swaps from outline to solid and tints with iconActive (#eb5757). This is a separate `selected` state, not a hover/pressed/disabled interaction pseudostate; only applies when the icon-button is used as a toggle control."
               },
               "code": {
-                "kt": "SnackyIconButton(icon = if (favorited) Icons.Filled.Favorite else Icons.Outlined.Favorite, onClick = { favorited = !favorited }, variant = IconButtonVariant.Secondary, tint = if (favorited) iconActive else null, contentDescription = \"Favorite\")",
-                "tsx": "<IconButton icon={favorited ? <HeartFilledIcon /> : <HeartIcon />} onClick={() => setFavorited(!favorited)} variant=\"secondary\" tint={favorited ? 'var(--icon-active)' : undefined} ariaLabel=\"Favorite\" />"
+                "kt": "SnackyIconButton(icon = if (favorited) SnackyIcons.Solid.Heart else SnackyIcons.Solid.Heart, onClick = { favorited = !favorited }, variant = IconButtonVariant.Secondary, tint = if (favorited) iconActive else null, contentDescription = \"Favorite\")",
+                "tsx": "<IconButton icon={favorited ? <SnackyIcons.solid.heart /> : <SnackyIcons.outline.heart />} onClick={() => setFavorited(!favorited)} variant=\"secondary\" tint={favorited ? 'var(--icon-active)' : undefined} ariaLabel=\"Favorite\" />"
               }
             }
           ]
@@ -726,8 +726,8 @@
               "st": null,
               "img": "assets/images/variants/iconbtn-tertiary.png",
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\")",
-                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" />"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" />"
               }
             },
             {
@@ -739,8 +739,8 @@
                 "note": "No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // hover: state-layer overlay handled automatically by Surface's ripple/indication",
-                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :hover shows a subtle rgba(0,0,0,0.08) overlay */"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // hover: state-layer overlay handled automatically by Surface's ripple/indication",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :hover shows a subtle rgba(0,0,0,0.08) overlay */"
               }
             },
             {
@@ -752,8 +752,8 @@
                 "note": "No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap"
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // pressed: state-layer overlay handled automatically by Surface's ripple/indication",
-                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :active shows a stronger rgba(0,0,0,0.12) overlay */"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = \"Close\") // pressed: state-layer overlay handled automatically by Surface's ripple/indication",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant=\"tertiary\" ariaLabel=\"Close\" /> /* :active shows a stronger rgba(0,0,0,0.12) overlay */"
               }
             },
             {
@@ -764,8 +764,8 @@
                 "note": "Tertiary never has a persistent container: Hover/Pressed only show a momentary overlay, never a resting fill. Disabled stays transparent too, matching that identity, and only the icon dims to iconDisabled (#a3a3a3)."
               },
               "code": {
-                "kt": "SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, enabled = false, contentDescription = \"Close\")",
-                "tsx": "<IconButton icon={<CloseIcon />} onClick={() => {}} variant=\"tertiary\" disabled ariaLabel=\"Close\" />"
+                "kt": "SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, enabled = false, contentDescription = \"Close\")",
+                "tsx": "<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant=\"tertiary\" disabled ariaLabel=\"Close\" />"
               }
             }
           ]
@@ -793,7 +793,7 @@
               "img": "assets/images/variants/iconbtn-upload.png",
               "code": {
                 "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") })",
-                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} />"
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} />"
               }
             },
             {
@@ -805,7 +805,7 @@
               },
               "code": {
                 "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") }) // hover: bgActionSecondaryHover",
-                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :hover background uses var(--bg-action-secondary-hover) */"
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} /> /* :hover background uses var(--bg-action-secondary-hover) */"
               }
             },
             {
@@ -817,7 +817,7 @@
               },
               "code": {
                 "kt": "SnackyUploadButton(onClick = { launcher.launch(\"image/*\") }) // pressed: bgActionSecondaryPressed",
-                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :active background uses var(--bg-action-secondary-pressed) */"
+                "tsx": "<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} /> /* :active background uses var(--bg-action-secondary-pressed) */"
               }
             }
           ]
@@ -925,7 +925,7 @@
               },
               "code": {
                 "kt": "SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = \"Password\", isPassword = true)",
-                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} />"
+                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<SnackyIcons.outline.eye />} />"
               }
             },
             {
@@ -939,7 +939,7 @@
               },
               "code": {
                 "kt": "SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = \"Password\", isPassword = true) // focused - borderInputActive",
-                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} /> /* :focus border uses var(--border-input-active) */"
+                "tsx": "<TextField value={pw} onChange={setPw} placeholder=\"Password\" type=\"password\" trailingIcon={<SnackyIcons.outline.eye />} /> /* :focus border uses var(--border-input-active) */"
               }
             },
             {
@@ -951,7 +951,7 @@
               },
               "code": {
                 "kt": "SnackyTextField(value = \"••••••••\", onValueChange = {}, placeholder = \"Password\", isPassword = true)",
-                "tsx": "<TextField value=\"••••••••\" onChange={() => {}} placeholder=\"Password\" type=\"password\" trailingIcon={<EyeIcon />} />"
+                "tsx": "<TextField value=\"••••••••\" onChange={() => {}} placeholder=\"Password\" type=\"password\" trailingIcon={<SnackyIcons.outline.eye />} />"
               }
             }
           ]
@@ -992,8 +992,8 @@
                 "color": "#7a7a7a (placeholder)"
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = Icons.Outlined.ArrowDropDown)",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<ChevronDownIcon />} />"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<SnackyIcons.outline.chevronDown />} />"
               }
             },
             {
@@ -1007,8 +1007,8 @@
                 "note": "While the dropdown is open/focused, the border becomes accent (borderInputActive), the placeholder text darkens to full-strength (same rule confirmed on Date Picker's Active state), and the chevron flips 180°."
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = Icons.Outlined.ArrowDropDown) // active: borderInputActive, chevron rotated 180°",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<ChevronDownIcon />} /> /* :focus border uses var(--border-input-active); chevron rotates 180deg */"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Select category\", trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) }) // active: borderInputActive, chevron rotated 180°",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Select category\" trailingIcon={<SnackyIcons.outline.chevronDown />} /> /* :focus border uses var(--border-input-active); chevron rotates 180deg */"
               }
             },
             {
@@ -1019,8 +1019,8 @@
                 "color": "#333333"
               },
               "code": {
-                "kt": "SnackyTextField(value = \"Snacks\", onValueChange = {}, trailingIcon = Icons.Outlined.ArrowDropDown)",
-                "tsx": "<TextField value=\"Snacks\" onChange={() => {}} trailingIcon={<ChevronDownIcon />} />"
+                "kt": "SnackyTextField(value = \"Snacks\", onValueChange = {}, trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })",
+                "tsx": "<TextField value=\"Snacks\" onChange={() => {}} trailingIcon={<SnackyIcons.outline.chevronDown />} />"
               }
             },
             {
@@ -1043,8 +1043,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"GOPAY\", onValueChange = {}, leadingIcon = painterResource(R.drawable.ic_gopay), trailingIcon = Icons.Outlined.ArrowDropDown)",
-                "tsx": "<TextField value=\"GOPAY\" onChange={() => {}} leadingIcon={<img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />} trailingIcon={<ChevronDownIcon />} />"
+                "kt": "SnackyTextField(value = \"GOPAY\", onValueChange = {}, leadingIcon = painterResource(R.drawable.ic_gopay), trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })",
+                "tsx": "<TextField value=\"GOPAY\" onChange={() => {}} leadingIcon={<img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />} trailingIcon={<SnackyIcons.outline.chevronDown />} />"
               }
             }
           ]
@@ -1084,8 +1084,8 @@
                 "color": "#7a7a7a (placeholder)"
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = Icons.Outlined.CalendarMonth)",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<CalendarIcon />} />"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) })",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<SnackyIcons.outline.calendar />} />"
               }
             },
             {
@@ -1098,8 +1098,8 @@
                 "note": "While the picker is open/focused, the border becomes accent (borderInputActive) and the placeholder text darkens to full-strength, even before a date is picked. The calendar icon does not rotate (unlike Dropdown's chevron)."
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = Icons.Outlined.CalendarMonth) // active: borderInputActive",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<CalendarIcon />} /> /* :focus border uses var(--border-input-active) */"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Date of birth\", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) }) // active: borderInputActive",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Date of birth\" trailingIcon={<SnackyIcons.outline.calendar />} /> /* :focus border uses var(--border-input-active) */"
               }
             },
             {
@@ -1110,8 +1110,8 @@
                 "color": "#333333"
               },
               "code": {
-                "kt": "SnackyTextField(value = \"June 15, 1993\", onValueChange = {}, trailingIcon = Icons.Outlined.CalendarMonth)",
-                "tsx": "<TextField value=\"June 15, 1993\" onChange={() => {}} trailingIcon={<CalendarIcon />} />"
+                "kt": "SnackyTextField(value = \"June 15, 1993\", onValueChange = {}, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) })",
+                "tsx": "<TextField value=\"June 15, 1993\" onChange={() => {}} trailingIcon={<SnackyIcons.outline.calendar />} />"
               }
             }
           ]
@@ -1150,8 +1150,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Search products...\", leadingIcon = Icons.Outlined.Search)",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Search products...\" leadingIcon={<SearchIcon />} />"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Search products...\", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) })",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Search products...\" leadingIcon={<SnackyIcons.outline.search />} />"
               }
             },
             {
@@ -1174,8 +1174,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = search, onValueChange = { search = it }, placeholder = \"Search products...\", leadingIcon = Icons.Outlined.Search, trailingIcon = Icons.Outlined.Close)",
-                "tsx": "<TextField value={search} onChange={setSearch} placeholder=\"Search products...\" leadingIcon={<SearchIcon />} trailingIcon={<ClearIcon onClick={() => setSearch('')} />} />"
+                "kt": "SnackyTextField(value = search, onValueChange = { search = it }, placeholder = \"Search products...\", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) }, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Close, size = 20.dp) })",
+                "tsx": "<TextField value={search} onChange={setSearch} placeholder=\"Search products...\" leadingIcon={<SnackyIcons.outline.search />} trailingIcon={<SnackyIcons.outline.closeInput onClick={() => setSearch('')} />} />"
               }
             }
           ]
@@ -1363,8 +1363,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Enter address\", trailingIcon = Icons.Outlined.LocationOn)",
-                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Enter address\" trailingIcon={<MarkerIcon />} />"
+                "kt": "SnackyTextField(value = \"\", onValueChange = {}, placeholder = \"Enter address\", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })",
+                "tsx": "<TextField value=\"\" onChange={() => {}} placeholder=\"Enter address\" trailingIcon={<SnackyIcons.outline.address />} />"
               }
             },
             {
@@ -1382,8 +1382,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"\", onValueChange = { address = it }, placeholder = \"Enter street name, apartment, or building\", leadingIcon = Icons.Outlined.LocationOn)",
-                "tsx": "<TextField value=\"\" onChange={setAddress} placeholder=\"Enter street name, apartment, or building\" leadingIcon={<MarkerIcon />} />"
+                "kt": "SnackyTextField(value = \"\", onValueChange = { address = it }, placeholder = \"Enter street name, apartment, or building\", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })",
+                "tsx": "<TextField value=\"\" onChange={setAddress} placeholder=\"Enter street name, apartment, or building\" leadingIcon={<SnackyIcons.outline.address />} />"
               }
             },
             {
@@ -1405,8 +1405,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"Senopati Street No.6\", onValueChange = { address = it }, leadingIcon = Icons.Outlined.LocationOn, trailingIcon = Icons.Outlined.Close)",
-                "tsx": "<TextField value=\"Senopati Street No.6\" onChange={setAddress} leadingIcon={<MarkerIcon />} trailingIcon={<ClearIcon onClick={() => setAddress('')} />} />"
+                "kt": "SnackyTextField(value = \"Senopati Street No.6\", onValueChange = { address = it }, leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) }, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Close, size = 20.dp) })",
+                "tsx": "<TextField value=\"Senopati Street No.6\" onChange={setAddress} leadingIcon={<SnackyIcons.outline.address />} trailingIcon={<SnackyIcons.outline.closeInput onClick={() => setAddress('')} />} />"
               }
             },
             {
@@ -1425,8 +1425,8 @@
                 ]
               },
               "code": {
-                "kt": "SnackyTextField(value = \"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\", onValueChange = {}, leadingIcon = Icons.Outlined.LocationOn)",
-                "tsx": "<TextField value=\"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\" onChange={() => {}} leadingIcon={<MarkerIcon />} />"
+                "kt": "SnackyTextField(value = \"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\", onValueChange = {}, leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })",
+                "tsx": "<TextField value=\"Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\" onChange={() => {}} leadingIcon={<SnackyIcons.outline.address />} />"
               }
             }
           ]
@@ -1460,8 +1460,8 @@
             ]
           },
           "code": {
-            "kt": "Row(\n    modifier = Modifier\n        .fillMaxWidth()\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .border(1.dp, borderInputDefault, RoundedCornerShape(4.dp))\n        .padding(horizontal = spacing8, vertical = spacing12),\n    horizontalArrangement = Arrangement.spacedBy(gapTextIcon)\n) {\n    Icon(Icons.Outlined.LocationOn, contentDescription = null, modifier = Modifier.size(20.dp))\n    Column {\n        Text(\"Senopati Street No.6\", style = SnackyTypography.smallBold, color = textPrimary)\n        Text(\n            \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\",\n            style = SnackyTypography.smallRegular,\n            color = textPrimary,\n            maxLines = 1,\n            overflow = TextOverflow.Ellipsis\n        )\n    }\n}",
-            "tsx": "<div style={{ display: 'flex', gap: 'var(--gap-text-icon)', padding: 'var(--spacing-12) var(--spacing-8)', border: '1px solid var(--border-input-default)', borderRadius: 4, background: 'var(--bg-surface)' }}>\n  <MarkerIcon width={20} height={20} />\n  <div>\n    <p style={{ ...typography.smallBold, margin: 0 }}>Senopati Street No.6</p>\n    <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta</p>\n  </div>\n</div>"
+            "kt": "Row(\n    modifier = Modifier\n        .fillMaxWidth()\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .border(1.dp, borderInputDefault, RoundedCornerShape(4.dp))\n        .padding(horizontal = spacing8, vertical = spacing12),\n    horizontalArrangement = Arrangement.spacedBy(gapTextIcon)\n) {\n    SnackyIcon(SnackyIcons.Outline.Address, contentDescription = null, size = 20.dp)\n    Column {\n        Text(\"Senopati Street No.6\", style = SnackyTypography.smallBold, color = textPrimary)\n        Text(\n            \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta\",\n            style = SnackyTypography.smallRegular,\n            color = textPrimary,\n            maxLines = 1,\n            overflow = TextOverflow.Ellipsis\n        )\n    }\n}",
+            "tsx": "<div style={{ display: 'flex', gap: 'var(--gap-text-icon)', padding: 'var(--spacing-12) var(--spacing-8)', border: '1px solid var(--border-input-default)', borderRadius: 4, background: 'var(--bg-surface)' }}>\n  <SnackyIcons.outline.address width={20} height={20} />\n  <div>\n    <p style={{ ...typography.smallBold, margin: 0 }}>Senopati Street No.6</p>\n    <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta</p>\n  </div>\n</div>"
           }
         }
       ]
@@ -1846,7 +1846,7 @@
               "st": null,
               "img": "assets/images/variants/header-back.png",
               "code": {
-                "kt": "SnackyHeader(title = \"Order Details\", leadingIcon = HeaderIcon.Back, onLeadingClick = onBack)",
+                "kt": "SnackyHeader(title = \"Order Details\", leadingIcon = HeaderLeadingIcon.Back, onLeadingClick = onBack)",
                 "tsx": "<Header title=\"Order Details\" leadingIcon=\"back\" onLeadingClick={onBack} />"
               }
             },
@@ -1855,7 +1855,7 @@
               "st": null,
               "img": "assets/images/variants/header-close.png",
               "code": {
-                "kt": "SnackyHeader(title = \"Cart\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss)",
+                "kt": "SnackyHeader(title = \"Cart\", leadingIcon = HeaderLeadingIcon.Close, onLeadingClick = onDismiss)",
                 "tsx": "<Header title=\"Cart\" leadingIcon=\"close\" onLeadingClick={onDismiss} />"
               }
             }
@@ -1883,8 +1883,8 @@
             "color": "#333333"
           },
           "code": {
-            "kt": "SnackyHeader(title = \"Address Details\", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss, trailingIcon = HeaderIcon.Map, onTrailingClick = onOpenMap)",
-            "tsx": "<Header title=\"Address Details\" leadingIcon=\"close\" onLeadingClick={onDismiss} trailingIcon=\"map\" onTrailingClick={onOpenMap} />"
+            "kt": "SnackyHeader(title = \"Address Details\", leadingIcon = HeaderLeadingIcon.Close, onLeadingClick = onDismiss, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Map, size = 24.dp) }, onTrailingClick = onOpenMap)",
+            "tsx": "<Header title=\"Address Details\" leadingIcon=\"close\" onLeadingClick={onDismiss} trailingIcon={<SnackyIcons.outline.map />} onTrailingClick={onOpenMap} />"
           }
         },
         {
@@ -2092,8 +2092,8 @@
             "use": "Overlay on cart/notification icon"
           },
           "code": {
-            "kt": "SnackyBadge(count = 3) { Icon(Icons.Outlined.ShoppingCart, contentDescription = \"Cart\") }",
-            "tsx": "<Badge count={3}><CartIcon width={20} height={20} aria-label=\"Cart\" /></Badge>"
+            "kt": "SnackyBadge(count = 3) { SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = \"Cart\") }",
+            "tsx": "<Badge count={3}><SnackyIcons.outline.cart width={20} height={20} aria-label=\"Cart\" /></Badge>"
           }
         },
         {
@@ -2863,8 +2863,8 @@
             "note": "Footer: outlined \"Basket\" (160px, with cart icon) + primary \"Buy Now\" (160px), gap8 pb24 pt4 px16"
           },
           "code": {
-            "kt": "SnackyBottomSheet(onDismiss = { showVariants = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        IconButton(onClick = { showVariants = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Variants\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(80.dp).padding(spacing4))\n    FlowRow(horizontalArrangement = Arrangement.spacedBy(gapCell), verticalArrangement = Arrangement.spacedBy(gapCell)) {\n        weights.forEach { w -> SnackyFilterChip(w.label, selected = w.id == selectedWeightId, { selectWeight(w.id) }) }\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyButton(\"Basket\", { addToBasket() }, variant = ButtonVariant.Secondary, icon = { Icon(Icons.Outlined.ShoppingCart, contentDescription = null) }, modifier = Modifier.width(160.dp))\n        SnackyButton(\"Buy Now\", { buyNow() }, modifier = Modifier.width(160.dp))\n    }\n}",
-            "tsx": "<BottomSheet open={showVariants} onDismiss={() => setShowVariants(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n    <button onClick={() => setShowVariants(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Variants</h2>\n  </div>\n  <img src={productImageUrl} width={80} height={80} style={{ padding: 'var(--spacing-4)', border: '1px solid var(--border-main)', borderRadius: 4 }} alt=\"\" />\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-cell)' }}>\n    {weights.map((w) => <FilterChip key={w.id} label={w.label} selected={w.id === selectedWeightId} onClick={() => selectWeight(w.id)} />)}\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <Button onClick={addToBasket} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />} style={{ width: 160 }}>Basket</Button>\n    <Button onClick={buyNow} style={{ width: 160 }}>Buy Now</Button>\n  </div>\n</BottomSheet>"
+            "kt": "SnackyBottomSheet(onDismiss = { showVariants = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        IconButton(onClick = { showVariants = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Variants\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(80.dp).padding(spacing4))\n    FlowRow(horizontalArrangement = Arrangement.spacedBy(gapCell), verticalArrangement = Arrangement.spacedBy(gapCell)) {\n        weights.forEach { w -> SnackyFilterChip(w.label, selected = w.id == selectedWeightId, { selectWeight(w.id) }) }\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyButton(\"Basket\", { addToBasket() }, variant = ButtonVariant.Secondary, icon = { SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = null) }, modifier = Modifier.width(160.dp))\n        SnackyButton(\"Buy Now\", { buyNow() }, modifier = Modifier.width(160.dp))\n    }\n}",
+            "tsx": "<BottomSheet open={showVariants} onDismiss={() => setShowVariants(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n    <button onClick={() => setShowVariants(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Variants</h2>\n  </div>\n  <img src={productImageUrl} width={80} height={80} style={{ padding: 'var(--spacing-4)', border: '1px solid var(--border-main)', borderRadius: 4 }} alt=\"\" />\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-cell)' }}>\n    {weights.map((w) => <FilterChip key={w.id} label={w.label} selected={w.id === selectedWeightId} onClick={() => selectWeight(w.id)} />)}\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <Button onClick={addToBasket} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />} style={{ width: 160 }}>Basket</Button>\n    <Button onClick={buyNow} style={{ width: 160 }}>Buy Now</Button>\n  </div>\n</BottomSheet>"
           }
         },
         {
@@ -2887,7 +2887,7 @@
           },
           "code": {
             "kt": "SnackyBottomSheet(onDismiss = { showPaymentMethods = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showPaymentMethods = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Payment Methods\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Text(\"Balance & COD\", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_money, label = \"Balance\", subtitle = \"$6.00 (Insufficient Balance)\", actionLabel = \"Top Up\", onAction = onTopUp)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_truck, label = \"COD\")\n    Text(\"E-Wallet\", style = SnackyTypography.h3Bold, color = textPrimary)\n    eWallets.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, selected = it.id == selectedId, onClick = { selectMethod(it.id) }) }\n    Text(\"Credit/Debit Card\", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_credit_card, label = \"Visa/Mastercard\", actionLabel = \"Add\", onAction = onAddCard)\n    Text(\"Virtual Account\", style = SnackyTypography.h3Bold, color = textPrimary)\n    virtualAccounts.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, onClick = { selectMethod(it.id) }) }\n}",
-            "tsx": "<BottomSheet open={showPaymentMethods} onDismiss={() => setShowPaymentMethods(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowPaymentMethods(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Payment Methods</h2>\n  </div>\n  <h3 style={typography.h3Bold}>Balance & COD</h3>\n  <PaymentMethodRow icon={<MoneyIcon />} label=\"Balance\" subtitle=\"$6.00 (Insufficient Balance)\" actionLabel=\"Top Up\" onAction={onTopUp} />\n  <PaymentMethodRow icon={<TruckIcon />} label=\"COD\" />\n  <h3 style={typography.h3Bold}>E-Wallet</h3>\n  {eWallets.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} selected={m.id === selectedId} onClick={() => selectMethod(m.id)} />)}\n  <h3 style={typography.h3Bold}>Credit/Debit Card</h3>\n  <PaymentMethodRow icon={<CreditCardIcon />} label=\"Visa/Mastercard\" actionLabel=\"Add\" onAction={onAddCard} />\n  <h3 style={typography.h3Bold}>Virtual Account</h3>\n  {virtualAccounts.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} onClick={() => selectMethod(m.id)} />)}\n</BottomSheet>"
+            "tsx": "<BottomSheet open={showPaymentMethods} onDismiss={() => setShowPaymentMethods(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowPaymentMethods(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Payment Methods</h2>\n  </div>\n  <h3 style={typography.h3Bold}>Balance & COD</h3>\n  <PaymentMethodRow icon={<SnackyIcons.outline.balance />} label=\"Balance\" subtitle=\"$6.00 (Insufficient Balance)\" actionLabel=\"Top Up\" onAction={onTopUp} />\n  <PaymentMethodRow icon={<SnackyIcons.outline.truck />} label=\"COD\" />\n  <h3 style={typography.h3Bold}>E-Wallet</h3>\n  {eWallets.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} selected={m.id === selectedId} onClick={() => selectMethod(m.id)} />)}\n  <h3 style={typography.h3Bold}>Credit/Debit Card</h3>\n  <PaymentMethodRow icon={<SnackyIcons.outline.creditCard />} label=\"Visa/Mastercard\" actionLabel=\"Add\" onAction={onAddCard} />\n  <h3 style={typography.h3Bold}>Virtual Account</h3>\n  {virtualAccounts.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} onClick={() => selectMethod(m.id)} />)}\n</BottomSheet>"
           }
         },
         {
@@ -2912,7 +2912,7 @@
           },
           "code": {
             "kt": "SnackyBottomSheet(onDismiss = { showReviews = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showReviews = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = \"Close\") }\n        Text(\"Buyer Reviews\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"4.5\", style = SnackyTypography.smallSemibold, color = textSecondary)\n        Text(\"(471 ratings)\", style = SnackyTypography.smallRegular, color = textSecondary)\n        Text(\"189 Reviews\", style = SnackyTypography.smallRegular, color = textSecondary)\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyFilterChip(\"Latest\", selected = sortBy == \"latest\", { sortBy = \"latest\" })\n        SnackyFilterChip(\"Highest Rating\", selected = sortBy == \"highest\", { sortBy = \"highest\" })\n        SnackyFilterChip(\"Lowest Rating\", selected = sortBy == \"lowest\", { sortBy = \"lowest\" })\n    }\n    reviews.forEach { review ->\n        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n            AsyncImage(review.avatarUrl, contentDescription = null, modifier = Modifier.size(32.dp).clip(CircleShape))\n            Column {\n                Text(review.author, style = SnackyTypography.smallBold, color = textPrimary)\n                SnackyRatingStars(rating = review.rating)\n            }\n        }\n        Text(review.comment, style = SnackyTypography.smallRegular, color = textPrimary)\n        Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n            review.photoUrls.forEach { AsyncImage(it, contentDescription = null, modifier = Modifier.size(40.dp)) }\n        }\n        HorizontalDivider()\n    }\n}",
-            "tsx": "<BottomSheet open={showReviews} onDismiss={() => setShowReviews(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowReviews(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Buyer Reviews</h2>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <StarIcon width={16} height={16} />\n    <span style={typography.smallSemibold}>4.5</span>\n    <span style={typography.smallRegular}>(471 ratings)</span>\n    <span style={typography.smallRegular}>189 Reviews</span>\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <FilterChip label=\"Latest\" selected={sortBy === 'latest'} onClick={() => setSortBy('latest')} />\n    <FilterChip label=\"Highest Rating\" selected={sortBy === 'highest'} onClick={() => setSortBy('highest')} />\n    <FilterChip label=\"Lowest Rating\" selected={sortBy === 'lowest'} onClick={() => setSortBy('lowest')} />\n  </div>\n  {reviews.map((review) => (\n    <div key={review.id}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n        <img src={review.avatarUrl} width={32} height={32} style={{ borderRadius: '50%' }} alt=\"\" />\n        <div>\n          <p style={{ ...typography.smallBold, margin: 0 }}>{review.author}</p>\n          <RatingStars rating={review.rating} />\n        </div>\n      </div>\n      <p style={{ ...typography.smallRegular, margin: '8px 0' }}>{review.comment}</p>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n        {review.photoUrls.map((url) => <img key={url} src={url} width={40} height={40} alt=\"\" />)}\n      </div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    </div>\n  ))}\n</BottomSheet>"
+            "tsx": "<BottomSheet open={showReviews} onDismiss={() => setShowReviews(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowReviews(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Buyer Reviews</h2>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <RatingStar width={16} height={16} />\n    <span style={typography.smallSemibold}>4.5</span>\n    <span style={typography.smallRegular}>(471 ratings)</span>\n    <span style={typography.smallRegular}>189 Reviews</span>\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <FilterChip label=\"Latest\" selected={sortBy === 'latest'} onClick={() => setSortBy('latest')} />\n    <FilterChip label=\"Highest Rating\" selected={sortBy === 'highest'} onClick={() => setSortBy('highest')} />\n    <FilterChip label=\"Lowest Rating\" selected={sortBy === 'lowest'} onClick={() => setSortBy('lowest')} />\n  </div>\n  {reviews.map((review) => (\n    <div key={review.id}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n        <img src={review.avatarUrl} width={32} height={32} style={{ borderRadius: '50%' }} alt=\"\" />\n        <div>\n          <p style={{ ...typography.smallBold, margin: 0 }}>{review.author}</p>\n          <RatingStars rating={review.rating} />\n        </div>\n      </div>\n      <p style={{ ...typography.smallRegular, margin: '8px 0' }}>{review.comment}</p>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n        {review.photoUrls.map((url) => <img key={url} src={url} width={40} height={40} alt=\"\" />)}\n      </div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    </div>\n  ))}\n</BottomSheet>"
           }
         },
         {
@@ -2958,7 +2958,7 @@
           },
           "code": {
             "kt": "SnackyBottomSheet(onDismiss = { showDriver = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text(\"Mimbar Al Risyad\", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text(\"B1112ARB\", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = \"Call\", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = \"Chat\", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text(\"Estimated arrival at\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"12:30 - 12:40\", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep(\"Driver picking up order from seller\", \"Dec 30, 11:00 AM\"),\n        TimelineStep(\"Driver delivering order to customer\", \"Dec 30, 12:00 PM\"),\n        TimelineStep(\"Order received by customer\", active = false),\n    ))\n}",
-            "tsx": "<BottomSheet open={showDriver} onDismiss={() => setShowDriver(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <OrderStatusTimeline steps={[\n    { title: 'Driver picking up order from seller', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Driver delivering order to customer', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order received by customer', active: false },\n  ]} />\n</BottomSheet>"
+            "tsx": "<BottomSheet open={showDriver} onDismiss={() => setShowDriver(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.phone width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.chat width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <OrderStatusTimeline steps={[\n    { title: 'Driver picking up order from seller', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Driver delivering order to customer', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order received by customer', active: false },\n  ]} />\n</BottomSheet>"
           }
         }
       ]
@@ -3189,7 +3189,7 @@
           },
           "code": {
             "kt": "Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapIconLabel)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_marker), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"Sent to\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"Home\", style = SnackyTypography.smallBold, color = textPrimary)\n        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n    }\n    Text(\n        text = \"Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary,\n        maxLines = 1,\n        overflow = TextOverflow.Ellipsis\n    )\n}",
-            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-icon-label)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <MarkerIcon width={16} height={16} />\n    <span style={typography.smallRegular}>Sent to</span>\n    <span style={typography.smallBold}>Home</span>\n    <ChevronDownIcon width={16} height={16} />\n  </div>\n  <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>\n    Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\n  </p>\n</div>"
+            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-icon-label)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <SnackyIcons.outline.address width={16} height={16} />\n    <span style={typography.smallRegular}>Sent to</span>\n    <span style={typography.smallBold}>Home</span>\n    <SnackyIcons.outline.chevronDown width={16} height={16} />\n  </div>\n  <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>\n    Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\n  </p>\n</div>"
           }
         },
         {
@@ -3260,7 +3260,7 @@
           },
           "code": {
             "kt": "Row(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalAlignment = Alignment.CenterVertically\n) {\n    Text(\"Payment Method\", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n    Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n    Spacer(Modifier.width(gapIconLabel))\n    Text(\"GOPAY\", style = SnackyTypography.smallSemibold, color = textPrimary)\n    Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n}",
-            "tsx": "<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', padding: 'var(--gap-layout-block) var(--spacing-24)', background: 'var(--bg-surface)' }}>\n  <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n  <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n  <span style={typography.smallSemibold}>GOPAY</span>\n  <ChevronDownIcon width={16} height={16} />\n</div>"
+            "tsx": "<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', padding: 'var(--gap-layout-block) var(--spacing-24)', background: 'var(--bg-surface)' }}>\n  <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n  <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n  <span style={typography.smallSemibold}>GOPAY</span>\n  <SnackyIcons.outline.chevronDown width={16} height={16} />\n</div>"
           }
         },
         {
@@ -3308,7 +3308,7 @@
           },
           "code": {
             "kt": "SnackySection(title = \"Driver\", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text(\"Mimbar Al Risyad\", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text(\"B1112ARB\", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = \"Call\", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = \"Chat\", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text(\"Estimated arrival at\", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text(\"12:30 - 12:40\", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyButton(\"Track Delivery\", onClick = onTrack, modifier = Modifier.fillMaxWidth())\n}",
-            "tsx": "<Section title=\"Driver\" actionLabel={undefined}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <Button onClick={onTrack} style={{ width: '100%' }}>Track Delivery</Button>\n</Section>"
+            "tsx": "<Section title=\"Driver\" actionLabel={undefined}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.phone width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.chat width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <Button onClick={onTrack} style={{ width: '100%' }}>Track Delivery</Button>\n</Section>"
           }
         },
         {
@@ -3399,7 +3399,7 @@
           },
           "code": {
             "kt": "Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(48.dp).padding(spacing4))\n        Text(\"Chicki Balls Cheeky Chicken 75 g\", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(\n        verticalAlignment = Alignment.CenterVertically,\n        horizontalArrangement = Arrangement.spacedBy(gapLayoutStack),\n        modifier = Modifier.padding(start = 60.dp)\n    ) {\n        SnackyChip(label = \"Variant: 75 Grams\", variant = ChipVariant.Product, selected = true)\n        Spacer(Modifier.weight(1f))\n        SnackyQtyStepper(quantity = 1, onIncrement = {}, onDecrement = {})\n    }\n    HorizontalDivider()\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        Icon(painterResource(R.drawable.ic_pencil), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text(\"Add Note\", style = SnackyTypography.smallBold, color = textLink)\n    }\n    HorizontalDivider()\n    Row { Text(\"Subtotal\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold) }\n    Row { Text(\"Shipping Fee\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"Rp 5,000\", style = SnackyTypography.bodySemibold, textDecoration = TextDecoration.LineThrough); Text(\"Free\", style = SnackyTypography.bodySemibold) }\n    Row { Text(\"Referral Promo\", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text(\"- Rp 2,000\", style = SnackyTypography.bodySemibold) }\n}",
-            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <img src={productImageUrl} width={48} height={48} style={{ padding: 'var(--spacing-4)' }} alt=\"\" />\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</p>\n    <span style={typography.bodySemibold}>Rp 5,000</span>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-stack)', paddingLeft: 60 }}>\n    <Chip label=\"Variant: 75 Grams\" variant=\"product\" selected />\n    <div style={{ flex: 1 }} />\n    <QtyStepper quantity={1} onIncrement={() => {}} onDecrement={() => {}} />\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <PencilIcon width={16} height={16} />\n    <span style={typography.smallBold}>Add Note</span>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Subtotal</span><span style={typography.bodySemibold}>Rp 5,000</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.bodySemibold, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.bodySemibold}>Free</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Referral Promo</span><span style={typography.bodySemibold}>- Rp 2,000</span></div>\n</div>"
+            "tsx": "<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <img src={productImageUrl} width={48} height={48} style={{ padding: 'var(--spacing-4)' }} alt=\"\" />\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</p>\n    <span style={typography.bodySemibold}>Rp 5,000</span>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-stack)', paddingLeft: 60 }}>\n    <Chip label=\"Variant: 75 Grams\" variant=\"product\" selected />\n    <div style={{ flex: 1 }} />\n    <QtyStepper quantity={1} onIncrement={() => {}} onDecrement={() => {}} />\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <SnackyIcons.outline.edit width={16} height={16} />\n    <span style={typography.smallBold}>Add Note</span>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Subtotal</span><span style={typography.bodySemibold}>Rp 5,000</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.bodySemibold, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.bodySemibold}>Free</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Referral Promo</span><span style={typography.bodySemibold}>- Rp 2,000</span></div>\n</div>"
           }
         }
       ]

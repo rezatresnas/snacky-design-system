@@ -244,6 +244,98 @@ const replacement =
   `\n${ENDMARK}`;
 
 html = html.slice(0, start) + replacement + html.slice(tail);
+
+// ── index.html Component Source blocks ────────────────────────────────────
+// The Icon page's two "Component Source" panels used to be hand-written, and
+// went stale badly: both predated the real icon set and documented SnackyIcons
+// as a thin alias over Material Icons / a swappable third-party set
+// (`val Home = Icons.Outlined.Home`, `from './icon-set' // e.g. lucide-react`).
+// Agents copy snippets, so that block was actively teaching them to reach for
+// Material. Generated from icons.json now, so it cannot drift again.
+const pascal = (n) => n.charAt(0).toUpperCase() + n.slice(1);
+const columns = (names, perLine, indent) => {
+  const out = [];
+  for (let i = 0; i < names.length; i += perLine) {
+    out.push(indent + names.slice(i, i + perLine).join(', ') + (i + perLine < names.length ? ',' : ''));
+  }
+  return out.join('\n');
+};
+const outlineNames = byStyle('outline').map((i) => i.name);
+const solidNames = byStyle('solid').map((i) => i.name);
+
+const ktSource = `// Generated from assets/icons/icons.json by scripts/generate-icons.js.
+// Ships in @snacky/ui's Compose counterpart as
+// com.snacky.ui.components.icon.SnackyIcons - import it, do not re-declare it.
+
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
+
+// Every icon is a SnackyIconSpec carrying the viewBox Figma authored it at
+// (16, 20 or 24 - the set is deliberately not uniform), rendered by the
+// SnackyIcon composable. These are filled outline shapes, NOT stroked paths:
+// the outline weight is baked into each shape, so there is no stroke width.
+
+// Outline (${outlineNames.length}) - default/inactive state:
+${columns(outlineNames.map(pascal), 6, '//   ')}
+
+// Solid (${solidNames.length}) - active/selected state:
+${columns(solidNames.map(pascal), 6, '//   ')}
+
+// Usage - size defaults to the icon's own viewBox, tint to LocalContentColor:
+SnackyIcon(SnackyIcons.Outline.Home, contentDescription = "Home")
+SnackyIcon(SnackyIcons.Solid.Home, tint = SnackyColor.iconBrand, size = 20.dp)
+
+// In a component's icon slot (the slot supplies the colour):
+SnackyIconButton(
+    icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) },
+    onClick = { share() },
+    variant = IconButtonVariant.Secondary,
+    contentDescription = "Share",
+)
+
+// If no name here fits, say so rather than inventing a glyph or substituting
+// an emoji. Never re-map these onto Material Icons.
+`;
+
+const tsxSource = `// Generated from assets/icons/icons.json by scripts/generate-icons.js.
+// Ships in @snacky/ui - import it, do not re-declare it or swap in another
+// icon library.
+
+import { SnackyIcons } from '@snacky/ui';
+
+// Each icon is a React component defaulting to its own natural size, with
+// color="currentColor" so it inherits whatever the surrounding slot sets.
+// These are filled outline shapes, NOT stroked paths: the outline weight is
+// baked into each shape, so there is no strokeWidth to set.
+
+// SnackyIcons.outline (${outlineNames.length}) - default/inactive state:
+${columns(outlineNames, 6, '//   ')}
+
+// SnackyIcons.solid (${solidNames.length}) - active/selected state:
+${columns(solidNames, 6, '//   ')}
+
+// Usage:
+<SnackyIcons.outline.home />
+<SnackyIcons.solid.home width={20} height={20} color="var(--icon-brand)" />
+
+// In a component's icon slot (the slot supplies the colour):
+<IconButton
+  icon={<SnackyIcons.outline.share width={20} height={20} />}
+  onClick={() => share()}
+  variant="secondary"
+  ariaLabel="Share"
+/>
+
+// If no name here fits, say so rather than inventing a glyph or substituting
+// an emoji. Never swap these for lucide-react, Material Icons, or similar.
+`;
+
+for (const [blockId, body] of [['code-icon', ktSource], ['code-react-icon', tsxSource]]) {
+  const re = new RegExp(`(<script type="text/plain" id="${blockId}">)([\\s\\S]*?)(</script>)`);
+  if (!re.test(html)) throw new Error(`index.html: <script id="${blockId}"> not found`);
+  html = html.replace(re, (_m, open, _old, close) => `${open}\n${body}${close}`);
+}
+
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);
 
 const o = byStyle('outline').length;

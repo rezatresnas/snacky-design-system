@@ -450,40 +450,40 @@ const C={
         {sl:'Disabled',st:'disabled',img:'assets/images/variants/btn-tertiary-danger-disabled.png',sOverride:{color:'#a3a3a3'},code:{kt:'SnackyButton(text = "Delete", onClick = {}, variant = ButtonVariant.Tertiary, danger = true, enabled = false)',tsx:'<Button onClick={() => {}} variant="tertiary" danger disabled>Delete</Button>'}},
       ]},
       {id:'btn-primary-small',name:'Primary · Small',hideOverview:true,st:'active',sl:'Default',img:'assets/images/variants/btn-primary-small.png',s:{w:376,h:40,pt:8,pb:8,pl:8,pr:8,fill:'#f8b732',r:4,font:'Poppins SemiBold',fs:12,lh:24,color:'#333333',use:'Small applies the same way across every Hierarchy × Intent combination above: identical tokens, just 8px vertical padding instead of 12px (40px tall instead of 48px). Shown once here rather than duplicating all 6 groups at both sizes.'},code:{kt:'SnackyButton(text = "Login", onClick = {}, size = ButtonSize.Small)',tsx:'<Button onClick={() => {}} size="small">Login</Button>'}},
-      {id:'btn-with-icon',name:'With Icon',st:null,sl:'With Icon',img:'assets/images/variants/btn-slot-with-icon.png',s:{w:376,h:48,pt:12,pb:12,pl:8,pr:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins SemiBold',fs:12,lh:24,color:'#333333',icon:'24×24px, from the Icon-outline component set',use:'A real Figma SLOT component property (not a variant) on every Button state: absolute-positioned left, vertically centered, 24×24px, empty by default. Filled here with a functional icon (e.g. cart).'},code:{kt:'SnackyButton(text = "Cart", onClick = {}, variant = ButtonVariant.Secondary, icon = { Icon(SnackyIcons.CartAdd, contentDescription = null) })',tsx:'<Button onClick={() => {}} variant="secondary" icon={<SnackyIcons.outline.cartAdd />}>Cart</Button>'}},
+      {id:'btn-with-icon',name:'With Icon',st:null,sl:'With Icon',img:'assets/images/variants/btn-slot-with-icon.png',s:{w:376,h:48,pt:12,pb:12,pl:8,pr:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins SemiBold',fs:12,lh:24,color:'#333333',icon:'24×24px, from the Icon-outline component set',use:'A real Figma SLOT component property (not a variant) on every Button state: absolute-positioned left, vertically centered, 24×24px, empty by default. Filled here with a functional icon (e.g. cart).'},code:{kt:'SnackyButton(text = "Cart", onClick = {}, variant = ButtonVariant.Secondary, icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, contentDescription = null) })',tsx:'<Button onClick={() => {}} variant="secondary" icon={<SnackyIcons.outline.cartAdd />}>Cart</Button>'}},
       {id:'btn-with-social',name:'With Social',st:null,sl:'With Social',img:'assets/images/variants/btn-slot-with-social.png',s:{w:376,h:48,pt:12,pb:12,pl:8,pr:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins SemiBold',fs:12,lh:24,color:'#333333',icon:'24×24px, Google Logo component (brand colors, not a themeable icon)',use:'The same SLOT property as With Icon, filled instead with a brand/social logo: same slot, same 24×24 constraint, just different content. This is the "social icon" case: content, not a separate component or variant.'},code:{kt:'SnackyButton(text = "Login with Google", onClick = {}, variant = ButtonVariant.Secondary, icon = { Image(painterResource(R.drawable.logo_google), contentDescription = null, modifier = Modifier.size(24.dp)) })',tsx:'<Button onClick={() => {}} variant="secondary" icon={<img src="/logos/google.svg" width={24} height={24} alt="" />}>Login with Google</Button>'}},
     ]},
   'icon-button':{name:'Icon Button',cat:'Actions',desc:'Compact touch targets containing only an icon.',usage:'Use in toolbars and navigation where space is limited. Primary for the most important action, Secondary/Tertiary for alternatives. Upload variant serves as an image drop zone.',cover:'assets/images/icon-button.png',
     v:[
       {id:'iconbtn-primary',name:'Primary',s:{w:32,h:32,pt:8,pb:8,pl:8,pr:8,fill:'#f8b732',r:100,icon:'16×16px'},states:[
-        {sl:'Active',st:'active',img:'assets/images/variants/iconbtn-primary.png',code:{kt:'SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = "Add to cart")',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" />'}},
-        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-primary-hover.png',sOverride:{fill:'#e2a72e'},code:{kt:'SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = "Add to cart") // hover: bgActionPrimaryHover',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" /> /* :hover background uses var(--bg-action-primary-hover) */'}},
-        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-primary-pressed.png',sOverride:{fill:'#b08224'},code:{kt:'SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, contentDescription = "Add to cart") // pressed: bgActionPrimaryPressed',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" /> /* :active background uses var(--bg-action-primary-pressed) */'}},
-        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-disabled.png',sOverride:{fill:'#cccccc'},code:{kt:'SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = {}, enabled = false, contentDescription = "Add to cart")',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} disabled ariaLabel="Add to cart" />'}},
+        {sl:'Active',st:'active',img:'assets/images/variants/iconbtn-primary.png',code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = "Add to cart")',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" />'}},
+        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-primary-hover.png',sOverride:{fill:'#e2a72e'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = "Add to cart") // hover: bgActionPrimaryHover',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" /> /* :hover background uses var(--bg-action-primary-hover) */'}},
+        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-primary-pressed.png',sOverride:{fill:'#b08224'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, contentDescription = "Add to cart") // pressed: bgActionPrimaryPressed',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" /> /* :active background uses var(--bg-action-primary-pressed) */'}},
+        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-disabled.png',sOverride:{fill:'#cccccc'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = {}, enabled = false, contentDescription = "Add to cart")',tsx:'<IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} disabled ariaLabel="Add to cart" />'}},
       ]},
       {id:'iconbtn-small',name:'Small',s:{w:24,h:24,pt:4,pb:4,pl:4,pr:4,fill:'#f8b732',r:100,icon:'16×16px',use:'Compact circular action button, e.g. carousel/pagination next arrow'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-small-default.png',code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next")',tsx:'<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel="Next" />'}},
-        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-small-hover.png',sOverride:{fill:'#e2a72e'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next") // hover: bgActionPrimaryHover',tsx:'<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel="Next" /> /* :hover background uses var(--bg-action-primary-hover) */'}},
-        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-small-pressed.png',sOverride:{fill:'#b08224'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next") // pressed: bgActionPrimaryPressed',tsx:'<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} ariaLabel="Next" /> /* :active background uses var(--bg-action-primary-pressed) */'}},
-        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-small-disabled.png',sOverride:{fill:'#cccccc',note:'Icon tint uses iconDisabled (#a3a3a3)'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, enabled = false, contentDescription = "Next")',tsx:'<IconButton icon={<ChevronRightIcon />} onClick={() => {}} size={24} disabled ariaLabel="Next" />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-small-default.png',code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next")',tsx:'<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel="Next" />'}},
+        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-small-hover.png',sOverride:{fill:'#e2a72e'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next") // hover: bgActionPrimaryHover',tsx:'<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel="Next" /> /* :hover background uses var(--bg-action-primary-hover) */'}},
+        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-small-pressed.png',sOverride:{fill:'#b08224'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, contentDescription = "Next") // pressed: bgActionPrimaryPressed',tsx:'<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} ariaLabel="Next" /> /* :active background uses var(--bg-action-primary-pressed) */'}},
+        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-small-disabled.png',sOverride:{fill:'#cccccc',note:'Icon tint uses iconDisabled (#a3a3a3)'},code:{kt:'SnackyIconButton(icon = Icons.AutoMirrored.Filled.ChevronRight, onClick = {}, size = 24.dp, enabled = false, contentDescription = "Next")',tsx:'<IconButton icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} size={24} disabled ariaLabel="Next" />'}},
       ]},
       {id:'iconbtn-secondary',name:'Secondary',s:{w:40,h:40,pt:8,pb:8,pl:8,pr:8,fill:'#ffffff',shadow:'0 4px 8px rgba(0,0,0,0.08)',r:100,icon:'20×20px'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-secondary.png',code:{kt:'SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share")',tsx:'<IconButton icon={<ShareIcon />} onClick={() => {}} variant="secondary" ariaLabel="Share" />'}},
-        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-secondary-hover.png',sOverride:{fill:'#f3f3f3'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share") // hover: bgActionSecondaryHover',tsx:'<IconButton icon={<ShareIcon />} onClick={() => {}} variant="secondary" ariaLabel="Share" /> /* :hover background uses var(--bg-action-secondary-hover) */'}},
-        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-secondary-pressed.png',sOverride:{fill:'#e0e0e0'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share") // pressed: bgActionSecondaryPressed',tsx:'<IconButton icon={<ShareIcon />} onClick={() => {}} variant="secondary" ariaLabel="Share" /> /* :active background uses var(--bg-action-secondary-pressed) */'}},
-        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-secondary-disabled.png',sOverride:{fill:'#cccccc',shadow:'none',note:'Flat fill, no elevation; icon tint uses iconDisabled (#a3a3a3)'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Share, onClick = {}, variant = IconButtonVariant.Secondary, enabled = false, contentDescription = "Share")',tsx:'<IconButton icon={<ShareIcon />} onClick={() => {}} variant="secondary" disabled ariaLabel="Share" />'}},
-        {sl:'Selected',st:'active',img:'assets/images/variants/iconbtn-secondary-active.png',sOverride:{note:'Toggled/favorited state: fill unchanged, icon swaps from outline to solid and tints with iconActive (#eb5757). This is a separate `selected` state, not a hover/pressed/disabled interaction pseudostate; only applies when the icon-button is used as a toggle control.'},code:{kt:'SnackyIconButton(icon = if (favorited) Icons.Filled.Favorite else Icons.Outlined.Favorite, onClick = { favorited = !favorited }, variant = IconButtonVariant.Secondary, tint = if (favorited) iconActive else null, contentDescription = "Favorite")',tsx:'<IconButton icon={favorited ? <HeartFilledIcon /> : <HeartIcon />} onClick={() => setFavorited(!favorited)} variant="secondary" tint={favorited ? \'var(--icon-active)\' : undefined} ariaLabel="Favorite" />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-secondary.png',code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share")',tsx:'<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant="secondary" ariaLabel="Share" />'}},
+        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-secondary-hover.png',sOverride:{fill:'#f3f3f3'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share") // hover: bgActionSecondaryHover',tsx:'<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant="secondary" ariaLabel="Share" /> /* :hover background uses var(--bg-action-secondary-hover) */'}},
+        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-secondary-pressed.png',sOverride:{fill:'#e0e0e0'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, contentDescription = "Share") // pressed: bgActionSecondaryPressed',tsx:'<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant="secondary" ariaLabel="Share" /> /* :active background uses var(--bg-action-secondary-pressed) */'}},
+        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-secondary-disabled.png',sOverride:{fill:'#cccccc',shadow:'none',note:'Flat fill, no elevation; icon tint uses iconDisabled (#a3a3a3)'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = {}, variant = IconButtonVariant.Secondary, enabled = false, contentDescription = "Share")',tsx:'<IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant="secondary" disabled ariaLabel="Share" />'}},
+        {sl:'Selected',st:'active',img:'assets/images/variants/iconbtn-secondary-active.png',sOverride:{note:'Toggled/favorited state: fill unchanged, icon swaps from outline to solid and tints with iconActive (#eb5757). This is a separate `selected` state, not a hover/pressed/disabled interaction pseudostate; only applies when the icon-button is used as a toggle control.'},code:{kt:'SnackyIconButton(icon = if (favorited) SnackyIcons.Solid.Heart else SnackyIcons.Solid.Heart, onClick = { favorited = !favorited }, variant = IconButtonVariant.Secondary, tint = if (favorited) iconActive else null, contentDescription = "Favorite")',tsx:'<IconButton icon={favorited ? <SnackyIcons.solid.heart /> : <SnackyIcons.outline.heart />} onClick={() => setFavorited(!favorited)} variant="secondary" tint={favorited ? \'var(--icon-active)\' : undefined} ariaLabel="Favorite" />'}},
       ]},
       {id:'iconbtn-tertiary',name:'Tertiary',s:{w:40,h:40,pt:8,pb:8,pl:8,pr:8,fill:'transparent',r:100,icon:'24×24px'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-tertiary.png',code:{kt:'SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close")',tsx:'<IconButton icon={<CloseIcon />} onClick={() => {}} variant="tertiary" ariaLabel="Close" />'}},
-        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-tertiary-hover.png',sOverride:{fill:'rgba(0,0,0,0.08)',note:'No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close") // hover: state-layer overlay handled automatically by Surface\'s ripple/indication',tsx:'<IconButton icon={<CloseIcon />} onClick={() => {}} variant="tertiary" ariaLabel="Close" /> /* :hover shows a subtle rgba(0,0,0,0.08) overlay */'}},
-        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-tertiary-pressed.png',sOverride:{fill:'rgba(0,0,0,0.12)',note:'No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close") // pressed: state-layer overlay handled automatically by Surface\'s ripple/indication',tsx:'<IconButton icon={<CloseIcon />} onClick={() => {}} variant="tertiary" ariaLabel="Close" /> /* :active shows a stronger rgba(0,0,0,0.12) overlay */'}},
-        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-tertiary-disabled.png',sOverride:{note:'Tertiary never has a persistent container: Hover/Pressed only show a momentary overlay, never a resting fill. Disabled stays transparent too, matching that identity, and only the icon dims to iconDisabled (#a3a3a3).'},code:{kt:'SnackyIconButton(icon = Icons.Outlined.Close, onClick = {}, variant = IconButtonVariant.Tertiary, enabled = false, contentDescription = "Close")',tsx:'<IconButton icon={<CloseIcon />} onClick={() => {}} variant="tertiary" disabled ariaLabel="Close" />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-tertiary.png',code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close")',tsx:'<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant="tertiary" ariaLabel="Close" />'}},
+        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-tertiary-hover.png',sOverride:{fill:'rgba(0,0,0,0.08)',note:'No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close") // hover: state-layer overlay handled automatically by Surface\'s ripple/indication',tsx:'<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant="tertiary" ariaLabel="Close" /> /* :hover shows a subtle rgba(0,0,0,0.08) overlay */'}},
+        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-tertiary-pressed.png',sOverride:{fill:'rgba(0,0,0,0.12)',note:'No semantic fill token in Figma for this state: a translucent neutral state-layer overlay over the transparent base, not a solid color swap'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, contentDescription = "Close") // pressed: state-layer overlay handled automatically by Surface\'s ripple/indication',tsx:'<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant="tertiary" ariaLabel="Close" /> /* :active shows a stronger rgba(0,0,0,0.12) overlay */'}},
+        {sl:'Disabled',st:'disabled',img:'assets/images/variants/iconbtn-tertiary-disabled.png',sOverride:{note:'Tertiary never has a persistent container: Hover/Pressed only show a momentary overlay, never a resting fill. Disabled stays transparent too, matching that identity, and only the icon dims to iconDisabled (#a3a3a3).'},code:{kt:'SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = {}, variant = IconButtonVariant.Tertiary, enabled = false, contentDescription = "Close")',tsx:'<IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant="tertiary" disabled ariaLabel="Close" />'}},
       ]},
       {id:'iconbtn-upload',name:'Upload',s:{w:72,h:72,pt:24,pb:24,pl:24,pr:24,fill:'#ffffff',bdr:'1px dashed #cccccc',r:100,icon:'24×24px',use:'Image upload zone'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-upload.png',code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") })',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} />'}},
-        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-upload-hover.png',sOverride:{fill:'#f3f3f3'},code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") }) // hover: bgActionSecondaryHover',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :hover background uses var(--bg-action-secondary-hover) */'}},
-        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-upload-pressed.png',sOverride:{fill:'#e0e0e0'},code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") }) // pressed: bgActionSecondaryPressed',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} /> /* :active background uses var(--bg-action-secondary-pressed) */'}},
+        {sl:'Default',st:null,img:'assets/images/variants/iconbtn-upload.png',code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") })',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} />'}},
+        {sl:'Hover',st:'active',img:'assets/images/variants/iconbtn-upload-hover.png',sOverride:{fill:'#f3f3f3'},code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") }) // hover: bgActionSecondaryHover',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} /> /* :hover background uses var(--bg-action-secondary-hover) */'}},
+        {sl:'Pressed',st:'active',img:'assets/images/variants/iconbtn-upload-pressed.png',sOverride:{fill:'#e0e0e0'},code:{kt:'SnackyUploadButton(onClick = { launcher.launch("image/*") }) // pressed: bgActionSecondaryPressed',tsx:'<UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} /> /* :active background uses var(--bg-action-secondary-pressed) */'}},
       ]},
     ]},
   input:{name:'Input',cat:'Forms',desc:'Text fields, dropdowns, date pickers, OTP, search, chat, and copy-value inputs.',usage:'All standard inputs share a 312×48px frame with 12px T/B and 8px L/R padding. Use the variant that matches the interaction type. Search and Chat inputs use reduced heights.',cover:'assets/images/input.png',
@@ -494,24 +494,24 @@ const C={
         {sl:'Filled',st:'active',img:'assets/images/variants/input-text-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "johndoe", onValueChange = {}, placeholder = "Username")',tsx:'<TextField value="johndoe" onChange={() => {}} placeholder="Username" />'}},
       ]},
       {id:'input-texticon',name:'Text+Icon',s:{w:312,h:48,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins Regular',fs:12,lh:24,icon:'20×20px (right)',gapAnchor:'text-icon-h',gapZones:[{leftPct:88.46,widthPct:2.56}]},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/input-texticon-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = "Password", isPassword = true)',tsx:'<TextField value={pw} onChange={setPw} placeholder="Password" type="password" trailingIcon={<EyeIcon />} />'}},
-        {sl:'Active',st:'active',img:'assets/images/variants/input-texticon-active.png',sOverride:{color:'#333333',bdr:'1px solid #f8b732',note:'Focused - accent border (borderInputActive), cursor visible'},code:{kt:'SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = "Password", isPassword = true) // focused - borderInputActive',tsx:'<TextField value={pw} onChange={setPw} placeholder="Password" type="password" trailingIcon={<EyeIcon />} /> /* :focus border uses var(--border-input-active) */'}},
-        {sl:'Filled',st:'active',img:'assets/images/variants/input-texticon-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "••••••••", onValueChange = {}, placeholder = "Password", isPassword = true)',tsx:'<TextField value="••••••••" onChange={() => {}} placeholder="Password" type="password" trailingIcon={<EyeIcon />} />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/input-texticon-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = "Password", isPassword = true)',tsx:'<TextField value={pw} onChange={setPw} placeholder="Password" type="password" trailingIcon={<SnackyIcons.outline.eye />} />'}},
+        {sl:'Active',st:'active',img:'assets/images/variants/input-texticon-active.png',sOverride:{color:'#333333',bdr:'1px solid #f8b732',note:'Focused - accent border (borderInputActive), cursor visible'},code:{kt:'SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = "Password", isPassword = true) // focused - borderInputActive',tsx:'<TextField value={pw} onChange={setPw} placeholder="Password" type="password" trailingIcon={<SnackyIcons.outline.eye />} /> /* :focus border uses var(--border-input-active) */'}},
+        {sl:'Filled',st:'active',img:'assets/images/variants/input-texticon-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "••••••••", onValueChange = {}, placeholder = "Password", isPassword = true)',tsx:'<TextField value="••••••••" onChange={() => {}} placeholder="Password" type="password" trailingIcon={<SnackyIcons.outline.eye />} />'}},
       ]},
       {id:'input-dropdown',name:'Dropdown',s:{w:312,h:48,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins Regular',fs:12,lh:24,icon:'Chevron 20×20px right',note:'Chevron rotated 180° when open',gapAnchor:'text-icon-h',gapZones:[{leftPct:88.46,widthPct:2.56}]},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/input-dropdown-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Select category", trailingIcon = Icons.Outlined.ArrowDropDown)',tsx:'<TextField value="" onChange={() => {}} placeholder="Select category" trailingIcon={<ChevronDownIcon />} />'}},
-        {sl:'Active',st:'active',img:'assets/images/variants/input-dropdown-active.png',sOverride:{bdr:'1px solid #f8b732',color:'#333333',icon:'Chevron 20×20px right, rotated 180°',note:'While the dropdown is open/focused, the border becomes accent (borderInputActive), the placeholder text darkens to full-strength (same rule confirmed on Date Picker\'s Active state), and the chevron flips 180°.'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Select category", trailingIcon = Icons.Outlined.ArrowDropDown) // active: borderInputActive, chevron rotated 180°',tsx:'<TextField value="" onChange={() => {}} placeholder="Select category" trailingIcon={<ChevronDownIcon />} /> /* :focus border uses var(--border-input-active); chevron rotates 180deg */'}},
-        {sl:'Filled',st:'active',img:'assets/images/variants/input-dropdown-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "Snacks", onValueChange = {}, trailingIcon = Icons.Outlined.ArrowDropDown)',tsx:'<TextField value="Snacks" onChange={() => {}} trailingIcon={<ChevronDownIcon />} />'}},
-        {sl:'With Icon',st:'active',img:'assets/images/variants/input-dropdown-icon.png',sOverride:{color:'#333333',icon:'24×24px logo (left) + Chevron 20×20px (right)',note:'Leading brand/payment logo, e.g. payment method selector. Figma also exposes this exact combination under a separate "Accordion+Icon" property value on the Input page, pixel-identical to this state; likely a duplicate left in the file rather than a distinct variant, so it is not documented as its own row here.',gapZones:[{leftPct:10.26,widthPct:2.56},{leftPct:88.46,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "GOPAY", onValueChange = {}, leadingIcon = painterResource(R.drawable.ic_gopay), trailingIcon = Icons.Outlined.ArrowDropDown)',tsx:'<TextField value="GOPAY" onChange={() => {}} leadingIcon={<img src={gopayLogo} width={24} height={24} alt="GoPay" />} trailingIcon={<ChevronDownIcon />} />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/input-dropdown-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Select category", trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })',tsx:'<TextField value="" onChange={() => {}} placeholder="Select category" trailingIcon={<SnackyIcons.outline.chevronDown />} />'}},
+        {sl:'Active',st:'active',img:'assets/images/variants/input-dropdown-active.png',sOverride:{bdr:'1px solid #f8b732',color:'#333333',icon:'Chevron 20×20px right, rotated 180°',note:'While the dropdown is open/focused, the border becomes accent (borderInputActive), the placeholder text darkens to full-strength (same rule confirmed on Date Picker\'s Active state), and the chevron flips 180°.'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Select category", trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) }) // active: borderInputActive, chevron rotated 180°',tsx:'<TextField value="" onChange={() => {}} placeholder="Select category" trailingIcon={<SnackyIcons.outline.chevronDown />} /> /* :focus border uses var(--border-input-active); chevron rotates 180deg */'}},
+        {sl:'Filled',st:'active',img:'assets/images/variants/input-dropdown-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "Snacks", onValueChange = {}, trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })',tsx:'<TextField value="Snacks" onChange={() => {}} trailingIcon={<SnackyIcons.outline.chevronDown />} />'}},
+        {sl:'With Icon',st:'active',img:'assets/images/variants/input-dropdown-icon.png',sOverride:{color:'#333333',icon:'24×24px logo (left) + Chevron 20×20px (right)',note:'Leading brand/payment logo, e.g. payment method selector. Figma also exposes this exact combination under a separate "Accordion+Icon" property value on the Input page, pixel-identical to this state; likely a duplicate left in the file rather than a distinct variant, so it is not documented as its own row here.',gapZones:[{leftPct:10.26,widthPct:2.56},{leftPct:88.46,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "GOPAY", onValueChange = {}, leadingIcon = painterResource(R.drawable.ic_gopay), trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) })',tsx:'<TextField value="GOPAY" onChange={() => {}} leadingIcon={<img src={gopayLogo} width={24} height={24} alt="GoPay" />} trailingIcon={<SnackyIcons.outline.chevronDown />} />'}},
       ]},
       {id:'input-datepicker',name:'Date Picker',s:{w:312,h:48,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins Regular',fs:12,lh:24,icon:'20×20px (right)',gapAnchor:'text-icon-h',gapZones:[{leftPct:88.46,widthPct:2.56}]},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/input-datepicker-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Date of birth", trailingIcon = Icons.Outlined.CalendarMonth)',tsx:'<TextField value="" onChange={() => {}} placeholder="Date of birth" trailingIcon={<CalendarIcon />} />'}},
-        {sl:'Active',st:'active',img:'assets/images/variants/input-datepicker-active.png',sOverride:{bdr:'1px solid #f8b732',color:'#333333',note:'While the picker is open/focused, the border becomes accent (borderInputActive) and the placeholder text darkens to full-strength, even before a date is picked. The calendar icon does not rotate (unlike Dropdown\'s chevron).'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Date of birth", trailingIcon = Icons.Outlined.CalendarMonth) // active: borderInputActive',tsx:'<TextField value="" onChange={() => {}} placeholder="Date of birth" trailingIcon={<CalendarIcon />} /> /* :focus border uses var(--border-input-active) */'}},
-        {sl:'Filled',st:'active',img:'assets/images/variants/input-datepicker-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "June 15, 1993", onValueChange = {}, trailingIcon = Icons.Outlined.CalendarMonth)',tsx:'<TextField value="June 15, 1993" onChange={() => {}} trailingIcon={<CalendarIcon />} />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/input-datepicker-default.png',sOverride:{color:'#7a7a7a (placeholder)'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Date of birth", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) })',tsx:'<TextField value="" onChange={() => {}} placeholder="Date of birth" trailingIcon={<SnackyIcons.outline.calendar />} />'}},
+        {sl:'Active',st:'active',img:'assets/images/variants/input-datepicker-active.png',sOverride:{bdr:'1px solid #f8b732',color:'#333333',note:'While the picker is open/focused, the border becomes accent (borderInputActive) and the placeholder text darkens to full-strength, even before a date is picked. The calendar icon does not rotate (unlike Dropdown\'s chevron).'},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Date of birth", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) }) // active: borderInputActive',tsx:'<TextField value="" onChange={() => {}} placeholder="Date of birth" trailingIcon={<SnackyIcons.outline.calendar />} /> /* :focus border uses var(--border-input-active) */'}},
+        {sl:'Filled',st:'active',img:'assets/images/variants/input-datepicker-filled.png',sOverride:{color:'#333333'},code:{kt:'SnackyTextField(value = "June 15, 1993", onValueChange = {}, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) })',tsx:'<TextField value="June 15, 1993" onChange={() => {}} trailingIcon={<SnackyIcons.outline.calendar />} />'}},
       ]},
       {id:'input-search',name:'Search',s:{h:40,pt:8,pb:8,pl:12,pr:12,gap:12,fill:'#f3f3f3',r:4,font:'Poppins Regular',fs:12,icon:'16×16px (left)',gapAnchor:'text-icon-h'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/input-search-default.png',sOverride:{w:260,fill:'#f3f3f3',note:'Compact, shorter width - leading search icon only',gapZones:[{leftPct:10.77,widthPct:4.62}]},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Search products...", leadingIcon = Icons.Outlined.Search)',tsx:'<TextField value="" onChange={() => {}} placeholder="Search products..." leadingIcon={<SearchIcon />} />'}},
-        {sl:'Active',st:'active',img:'assets/images/variants/input-search-active.png',sOverride:{w:312,bdr:'1px solid #f8b732',note:'Compact height 40px - leading search icon + trailing clear icon (16×16px)',gapZones:[{leftPct:8.97,widthPct:3.85},{leftPct:87.18,widthPct:3.85}]},code:{kt:'SnackyTextField(value = search, onValueChange = { search = it }, placeholder = "Search products...", leadingIcon = Icons.Outlined.Search, trailingIcon = Icons.Outlined.Close)',tsx:"<TextField value={search} onChange={setSearch} placeholder=\"Search products...\" leadingIcon={<SearchIcon />} trailingIcon={<ClearIcon onClick={() => setSearch('')} />} />"}},
+        {sl:'Default',st:null,img:'assets/images/variants/input-search-default.png',sOverride:{w:260,fill:'#f3f3f3',note:'Compact, shorter width - leading search icon only',gapZones:[{leftPct:10.77,widthPct:4.62}]},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Search products...", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) })',tsx:'<TextField value="" onChange={() => {}} placeholder="Search products..." leadingIcon={<SnackyIcons.outline.search />} />'}},
+        {sl:'Active',st:'active',img:'assets/images/variants/input-search-active.png',sOverride:{w:312,bdr:'1px solid #f8b732',note:'Compact height 40px - leading search icon + trailing clear icon (16×16px)',gapZones:[{leftPct:8.97,widthPct:3.85},{leftPct:87.18,widthPct:3.85}]},code:{kt:'SnackyTextField(value = search, onValueChange = { search = it }, placeholder = "Search products...", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) }, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Close, size = 20.dp) })',tsx:"<TextField value={search} onChange={setSearch} placeholder=\"Search products...\" leadingIcon={<SnackyIcons.outline.search />} trailingIcon={<SnackyIcons.outline.closeInput onClick={() => setSearch('')} />} />"}},
       ]},
       {id:'input-otp',name:'Number',s:{w:360,h:48,fill:'#f3f3f3 (per-cell)',r:4,font:'Poppins Bold (h3Bold)',fs:16,cell:'48×48px, no border (except the focused cell, which gets an accent border), 4px spacing between cells'},states:[
         {sl:'Default',st:null,img:'assets/images/variants/input-otp-default.png',sOverride:{note:'6 empty cells, equal 4px spacing, no border'},code:{kt:'SnackyOtpField(value = otp, onValueChange = { otp = it })',tsx:'<OtpField value={otp} onChange={setOtp} />'}},
@@ -527,12 +527,12 @@ const C={
         {sl:'Active',st:'active',img:'assets/images/variants/input-chat-active.png',sOverride:{note:'Typing cursor visible'},code:{kt:'SnackyTextField(value = message, onValueChange = { message = it }, placeholder = "Write your message here")',tsx:'<TextField value={message} onChange={setMessage} placeholder="Write your message here" />'}},
       ]},
       {id:'input-address',name:'Address',s:{w:312,h:48,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins Regular',fs:12,lh:24,icon:'20×20px (marker)',gapAnchor:'text-icon-h'},states:[
-        {sl:'Default',st:null,img:'assets/images/variants/input-address-default.png',sOverride:{color:'#7a7a7a (placeholder)',icon:'20×20px marker - trailing (right)',note:'Trigger field - opens address search',gapZones:[{leftPct:88.46,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Enter address", trailingIcon = Icons.Outlined.LocationOn)',tsx:'<TextField value="" onChange={() => {}} placeholder="Enter address" trailingIcon={<MarkerIcon />} />'}},
-        {sl:'Search - Inactive',st:null,img:'assets/images/variants/input-address-search-inactive.png',sOverride:{color:'#7a7a7a (placeholder)',icon:'20×20px marker - leading (left)',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "", onValueChange = { address = it }, placeholder = "Enter street name, apartment, or building", leadingIcon = Icons.Outlined.LocationOn)',tsx:'<TextField value="" onChange={setAddress} placeholder="Enter street name, apartment, or building" leadingIcon={<MarkerIcon />} />'}},
-        {sl:'Search - Active',st:'active',img:'assets/images/variants/input-address-search-active.png',sOverride:{color:'#333333',icon:'20×20px marker (left) + 16×16px clear (right)',gapZones:[{leftPct:8.97,widthPct:2.56},{leftPct:89.74,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "Senopati Street No.6", onValueChange = { address = it }, leadingIcon = Icons.Outlined.LocationOn, trailingIcon = Icons.Outlined.Close)',tsx:"<TextField value=\"Senopati Street No.6\" onChange={setAddress} leadingIcon={<MarkerIcon />} trailingIcon={<ClearIcon onClick={() => setAddress('')} />} />"}},
-        {sl:'Search - Filled',st:'active',img:'assets/images/variants/input-address-search-filled.png',sOverride:{color:'#333333',icon:'20×20px marker - leading (left)',note:'Single-line truncated full address, no trailing icon',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta", onValueChange = {}, leadingIcon = Icons.Outlined.LocationOn)',tsx:'<TextField value="Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta" onChange={() => {}} leadingIcon={<MarkerIcon />} />'}},
+        {sl:'Default',st:null,img:'assets/images/variants/input-address-default.png',sOverride:{color:'#7a7a7a (placeholder)',icon:'20×20px marker - trailing (right)',note:'Trigger field - opens address search',gapZones:[{leftPct:88.46,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "", onValueChange = {}, placeholder = "Enter address", trailingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })',tsx:'<TextField value="" onChange={() => {}} placeholder="Enter address" trailingIcon={<SnackyIcons.outline.address />} />'}},
+        {sl:'Search - Inactive',st:null,img:'assets/images/variants/input-address-search-inactive.png',sOverride:{color:'#7a7a7a (placeholder)',icon:'20×20px marker - leading (left)',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "", onValueChange = { address = it }, placeholder = "Enter street name, apartment, or building", leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })',tsx:'<TextField value="" onChange={setAddress} placeholder="Enter street name, apartment, or building" leadingIcon={<SnackyIcons.outline.address />} />'}},
+        {sl:'Search - Active',st:'active',img:'assets/images/variants/input-address-search-active.png',sOverride:{color:'#333333',icon:'20×20px marker (left) + 16×16px clear (right)',gapZones:[{leftPct:8.97,widthPct:2.56},{leftPct:89.74,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "Senopati Street No.6", onValueChange = { address = it }, leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) }, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Close, size = 20.dp) })',tsx:"<TextField value=\"Senopati Street No.6\" onChange={setAddress} leadingIcon={<SnackyIcons.outline.address />} trailingIcon={<SnackyIcons.outline.closeInput onClick={() => setAddress('')} />} />"}},
+        {sl:'Search - Filled',st:'active',img:'assets/images/variants/input-address-search-filled.png',sOverride:{color:'#333333',icon:'20×20px marker - leading (left)',note:'Single-line truncated full address, no trailing icon',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'SnackyTextField(value = "Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta", onValueChange = {}, leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) })',tsx:'<TextField value="Senopati Street No.6 Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta" onChange={() => {}} leadingIcon={<SnackyIcons.outline.address />} />'}},
       ]},
-      {id:'input-address-result',name:'Address - Search Result',st:null,sl:null,img:'assets/images/variants/input-address-search-selected.png',s:{w:312,h:72,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins SemiBold 12px (title) · Regular 12px (subtitle, truncated)',icon:'20×20px marker (left)',use:'Selected address search-result row, shown in the results list below the Address/Search input',gapAnchor:'text-icon-h',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'Row(\n    modifier = Modifier\n        .fillMaxWidth()\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .border(1.dp, borderInputDefault, RoundedCornerShape(4.dp))\n        .padding(horizontal = spacing8, vertical = spacing12),\n    horizontalArrangement = Arrangement.spacedBy(gapTextIcon)\n) {\n    Icon(Icons.Outlined.LocationOn, contentDescription = null, modifier = Modifier.size(20.dp))\n    Column {\n        Text("Senopati Street No.6", style = SnackyTypography.smallBold, color = textPrimary)\n        Text(\n            "Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta",\n            style = SnackyTypography.smallRegular,\n            color = textPrimary,\n            maxLines = 1,\n            overflow = TextOverflow.Ellipsis\n        )\n    }\n}',tsx:"<div style={{ display: 'flex', gap: 'var(--gap-text-icon)', padding: 'var(--spacing-12) var(--spacing-8)', border: '1px solid var(--border-input-default)', borderRadius: 4, background: 'var(--bg-surface)' }}>\n  <MarkerIcon width={20} height={20} />\n  <div>\n    <p style={{ ...typography.smallBold, margin: 0 }}>Senopati Street No.6</p>\n    <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta</p>\n  </div>\n</div>"}},
+      {id:'input-address-result',name:'Address - Search Result',st:null,sl:null,img:'assets/images/variants/input-address-search-selected.png',s:{w:312,h:72,pt:12,pb:12,pl:8,pr:8,gap:8,fill:'#ffffff',bdr:'1px solid #cccccc',r:4,font:'Poppins SemiBold 12px (title) · Regular 12px (subtitle, truncated)',icon:'20×20px marker (left)',use:'Selected address search-result row, shown in the results list below the Address/Search input',gapAnchor:'text-icon-h',gapZones:[{leftPct:8.97,widthPct:2.56}]},code:{kt:'Row(\n    modifier = Modifier\n        .fillMaxWidth()\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .border(1.dp, borderInputDefault, RoundedCornerShape(4.dp))\n        .padding(horizontal = spacing8, vertical = spacing12),\n    horizontalArrangement = Arrangement.spacedBy(gapTextIcon)\n) {\n    SnackyIcon(SnackyIcons.Outline.Address, contentDescription = null, size = 20.dp)\n    Column {\n        Text("Senopati Street No.6", style = SnackyTypography.smallBold, color = textPrimary)\n        Text(\n            "Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta",\n            style = SnackyTypography.smallRegular,\n            color = textPrimary,\n            maxLines = 1,\n            overflow = TextOverflow.Ellipsis\n        )\n    }\n}',tsx:"<div style={{ display: 'flex', gap: 'var(--gap-text-icon)', padding: 'var(--spacing-12) var(--spacing-8)', border: '1px solid var(--border-input-default)', borderRadius: 4, background: 'var(--bg-surface)' }}>\n  <SnackyIcons.outline.address width={20} height={20} />\n  <div>\n    <p style={{ ...typography.smallBold, margin: 0 }}>Senopati Street No.6</p>\n    <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta, Special Capital Region of Jakarta</p>\n  </div>\n</div>"}},
     ]},
   chips:{name:'Chips',cat:'Forms',desc:'Selectable filter and product category tags.',usage:'Product chips include a thumbnail image. Filter chips are text-only. Both use 100px border-radius (pill shape) and switch to accent fill when selected. The static "Variant: 75 Grams" label seen on product screens is documented under Badge, not here: Figma\'s own file places that node on the Badge page, not the Chips page, and it has no unselected/clickable state, unlike a real chip.',cover:'assets/images/chips.png',
     v:[
@@ -581,10 +581,10 @@ const C={
   header:{name:'Header',cat:'Navigation',desc:'Page header bar with an optional leading back/close icon and an optional trailing action icon.',usage:'Back drills deeper into a flow and returns to the previous screen; Close dismisses the flow entirely. Right Action only ever pairs with Close, never Back. Title always centers in the remaining space - with a leading icon present, the title row gets matching right padding so the text stays optically centered against the whole bar, not just the leftover space next to the icon.',cover:'assets/images/variants/header-back.png',
     v:[
       {id:'header-leading',name:'Leading Icon',s:{w:360,h:72,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',icon:'24×24px',note:'Leading icon sits in a 40×40px tappable circle. Back and Close are the same slot with different icon content, not two structurally different variants - see Usage.',font:'Poppins Bold',fs:16,lh:36,color:'#333333'},states:[
-        {sl:'Back',st:null,img:'assets/images/variants/header-back.png',code:{kt:'SnackyHeader(title = "Order Details", leadingIcon = HeaderIcon.Back, onLeadingClick = onBack)',tsx:'<Header title="Order Details" leadingIcon="back" onLeadingClick={onBack} />'}},
-        {sl:'Close',st:null,img:'assets/images/variants/header-close.png',code:{kt:'SnackyHeader(title = "Cart", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss)',tsx:'<Header title="Cart" leadingIcon="close" onLeadingClick={onDismiss} />'}},
+        {sl:'Back',st:null,img:'assets/images/variants/header-back.png',code:{kt:'SnackyHeader(title = "Order Details", leadingIcon = HeaderLeadingIcon.Back, onLeadingClick = onBack)',tsx:'<Header title="Order Details" leadingIcon="back" onLeadingClick={onBack} />'}},
+        {sl:'Close',st:null,img:'assets/images/variants/header-close.png',code:{kt:'SnackyHeader(title = "Cart", leadingIcon = HeaderLeadingIcon.Close, onLeadingClick = onDismiss)',tsx:'<Header title="Cart" leadingIcon="close" onLeadingClick={onDismiss} />'}},
       ]},
-      {id:'header-close-action',name:'Leading + Right Action',st:null,sl:null,img:'assets/images/variants/header-close-action.png',s:{w:360,h:72,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',icon:'24×24px',note:'Leading and trailing icons each sit in their own 40×40px tappable circle. Right Action only ever pairs with Close, never Back.',font:'Poppins Bold',fs:16,lh:36,color:'#333333'},code:{kt:'SnackyHeader(title = "Address Details", leadingIcon = HeaderIcon.Close, onLeadingClick = onDismiss, trailingIcon = HeaderIcon.Map, onTrailingClick = onOpenMap)',tsx:'<Header title="Address Details" leadingIcon="close" onLeadingClick={onDismiss} trailingIcon="map" onTrailingClick={onOpenMap} />'}},
+      {id:'header-close-action',name:'Leading + Right Action',st:null,sl:null,img:'assets/images/variants/header-close-action.png',s:{w:360,h:72,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',icon:'24×24px',note:'Leading and trailing icons each sit in their own 40×40px tappable circle. Right Action only ever pairs with Close, never Back.',font:'Poppins Bold',fs:16,lh:36,color:'#333333'},code:{kt:'SnackyHeader(title = "Address Details", leadingIcon = HeaderLeadingIcon.Close, onLeadingClick = onDismiss, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Map, size = 24.dp) }, onTrailingClick = onOpenMap)',tsx:'<Header title="Address Details" leadingIcon="close" onLeadingClick={onDismiss} trailingIcon={<SnackyIcons.outline.map />} onTrailingClick={onOpenMap} />'}},
       {id:'header-none',name:'None',st:null,sl:null,img:'assets/images/variants/header-none.png',s:{w:360,h:68,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',font:'Poppins Bold',fs:16,lh:36,color:'#333333',note:'No leading or trailing icon - title fills the full width'},code:{kt:'SnackyHeader(title = "Snacky")',tsx:'<Header title="Snacky" />'}},
     ]},
   banner:{name:'Banner',cat:'Content',desc:'Promotional and informational banners throughout the app.',usage:'Hero banners appear in a carousel at the top of the home screen. Square banners show featured categories. Alert banner communicates system messages. Point balance strip shows loyalty data.',cover:'assets/images/banner.png',
@@ -599,7 +599,7 @@ const C={
     ]},
   badge:{name:'Badge',cat:'Content',desc:'Small count and tag indicators: notification pill, discount tag, sold-out overlay, and a static variant label.',usage:'Use Notification as an absolute overlay on cart/notification icons to show a numeric count. Use Discount as an inline tag (e.g. on Product Card) to show a percentage-off label. Use Sold Out as an absolute overlay on product images to indicate stock unavailability. Use Variant as a static, non-interactive label showing the currently selected product variant (e.g. "Variant: 75 Grams") - it lives in Figma\'s Badge frame, not Chips, and has no unselected/clickable state.',cover:'assets/images/badge.png',
     v:[
-      {id:'badge-notification',name:'Notification',st:null,sl:null,img:'assets/images/badge.png',s:{w:28,h:19,pt:2,pb:2,pl:4,pr:4,fill:'#eb5757',r:999,font:'Poppins SemiBold',fs:10,color:'#ffffff',use:'Overlay on cart/notification icon'},code:{kt:'SnackyBadge(count = 3) { Icon(Icons.Outlined.ShoppingCart, contentDescription = "Cart") }',tsx:'<Badge count={3}><CartIcon width={20} height={20} aria-label="Cart" /></Badge>'}},
+      {id:'badge-notification',name:'Notification',st:null,sl:null,img:'assets/images/badge.png',s:{w:28,h:19,pt:2,pb:2,pl:4,pr:4,fill:'#eb5757',r:999,font:'Poppins SemiBold',fs:10,color:'#ffffff',use:'Overlay on cart/notification icon'},code:{kt:'SnackyBadge(count = 3) { SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart") }',tsx:'<Badge count={3}><SnackyIcons.outline.cart width={20} height={20} aria-label="Cart" /></Badge>'}},
       {id:'badge-discount',name:'Discount',st:null,sl:null,img:'assets/images/variants/badge-discount.png',s:{w:36,h:24,pt:2,pb:2,pl:4,pr:4,fill:'#eb5757',r:6,font:'Poppins SemiBold',fs:10,lh:24,color:'#ffffff',use:'Inline discount/promo tag - e.g. "-50%" on Product Card'},code:{kt:'SnackyDiscountTag(label = "-50%")',tsx:'<DiscountTag label="-50%" />'}},
       {id:'badge-soldout',name:'Sold Out',st:null,sl:null,img:'assets/images/variants/badge-soldout.png',s:{w:65,h:48,pt:12,pb:12,pl:7,pr:7,fill:'rgba(51,51,51,0.8)',r:100,font:'Poppins Regular',fs:12,lh:24,color:'#ffffff',use:'Absolute overlay on product image - indicates item is out of stock'},code:{kt:'SnackySoldOutBadge()',tsx:'<SoldOutBadge />'}},
       {id:'badge-variant',name:'Variant',st:null,sl:null,img:'assets/images/variants/badge-variant.png',s:{w:113,h:32,pt:8,pb:8,pl:8,pr:8,fill:'#fef8eb',bdr:'1px solid #f8b732',r:4,font:'Poppins Regular',fs:10,lh:16,color:'#333333',use:'Static label showing the currently selected product variant, non-interactive, always shown in the accent-highlighted style. Documented as a Badge, not a Chip: Figma\'s own file places this node on the Badge page, and unlike Produk/Filter chips it has no unselected/clickable state.'},code:{kt:'SnackyVariantBadge(label = "Variant: 75 Grams")',tsx:'<VariantBadge label="Variant: 75 Grams" />'}},
@@ -641,10 +641,10 @@ const C={
       {id:'modal-confirmation',name:'Confirmation',st:null,sl:null,img:'assets/images/variants/modal-confirmation.png',s:{w:360,h:200,pt:24,pl:24,pr:24,gap:32,gapAnchor:'block-gap',gapBands:[{topPct:45.75,heightPct:16}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins Bold 16px lh36 (title) · Regular 12px lh24 (subtitle) · SemiBold 12px (buttons)',color:'#333333',align:'Center',use:'Yes/no compact prompt',note:'Footer row: No (secondary, 164px) + Log Out (primary), gap 14px, pt:4 pb:24 pl:8 pr:8'},code:{kt:'SnackyBottomSheet(onDismiss = { showConfirm = false }) {\n    Text("Are you sure you want to log out?", style = SnackyTypography.h3Bold, color = textPrimary, textAlign = TextAlign.Center)\n    Text("You need to log in again to access your account", style = SnackyTypography.smallRegular, color = textPrimary, textAlign = TextAlign.Center)\n    Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {\n        SnackyButton("No", { showConfirm = false }, variant = ButtonVariant.Secondary, modifier = Modifier.width(164.dp))\n        SnackyButton("Log Out", { logout() })\n    }\n}',tsx:"<BottomSheet open={showConfirm} onDismiss={() => setShowConfirm(false)}>\n  <h2 style={{ ...typography.h3Bold, textAlign: 'center' }}>Are you sure you want to log out?</h2>\n  <p style={{ ...typography.smallRegular, textAlign: 'center' }}>You need to log in again to access your account</p>\n  <div style={{ display: 'flex', gap: 14 }}>\n    <Button onClick={() => setShowConfirm(false)} variant=\"secondary\" style={{ width: 164 }}>No</Button>\n    <Button onClick={logout}>Log Out</Button>\n  </div>\n</BottomSheet>"}},
       {id:'modal-onboarding',name:'Onboarding',st:null,sl:null,img:'assets/images/variants/modal-onboarding.png',s:{w:325,h:160,pt:12,pb:12,pl:12,pr:12,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:50,heightPct:10}],fill:'#ffffff',r:4,font:'Poppins SemiBold 12px (title) · Regular 12px (body/step) · SemiBold 12px (button)',color:'#333333 (title/body) · #7a7a7a (step counter)',use:'Feature intro coachmark/tooltip - plain card, not a bottom sheet',note:'Footer row gap:19 - "1 of 5" step counter + primary "Continue" button'},code:{kt:'Column(\n    modifier = Modifier\n        .width(325.dp)\n        .background(bgSurface, RoundedCornerShape(4.dp))\n        .padding(spacing12),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Text("Shipping Address", style = SnackyTypography.smallBold, color = textPrimary)\n    Text("Your delivery destination can be easily accessed here", style = SnackyTypography.smallRegular, color = textPrimary)\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(19.dp)) {\n        Text("1 of 5", style = SnackyTypography.smallRegular, color = textSecondary)\n        Spacer(Modifier.weight(1f))\n        SnackyButton("Continue", onClick = onNextTip)\n    }\n}',tsx:"<div style={{ width: 325, background: 'var(--bg-surface)', borderRadius: 4, padding: 'var(--spacing-12)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <p style={{ ...typography.smallBold, margin: 0 }}>Shipping Address</p>\n  <p style={{ ...typography.smallRegular, margin: 0 }}>Your delivery destination can be easily accessed here</p>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 19 }}>\n    <span style={{ ...typography.smallRegular, color: 'var(--text-secondary)' }}>1 of 5</span>\n    <div style={{ flex: 1 }} />\n    <Button onClick={onNextTip}>Continue</Button>\n  </div>\n</div>"}},
       {id:'modal-calendar',name:'Calendar',st:null,sl:null,img:'assets/images/variants/modal-calendar.png',s:{w:360,h:505,pt:24,pb:24,pl:24,pr:24,gap:24,gapAnchor:'block-gap',gapBands:[{topPct:11.83,heightPct:4.75},{topPct:79.83,heightPct:4.75}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins Bold 16px lh36 (month title) · Regular 12px (weekday labels) · Bold/Regular 16px lh36 (day numbers) · SemiBold 12px (button)',color:'#333333 (in-month) · #a3a3a3 (out-of-month)',use:'Full date picker sheet - month nav, day grid, range selection highlight'},code:{kt:'SnackyBottomSheet(onDismiss = { showCalendar = false }) {\n    DatePicker(\n        state = datePickerState,\n        title = null,\n        headline = null,\n        showModeToggle = false,\n        colors = DatePickerDefaults.colors(\n            selectedDayContainerColor = bgActionPrimary,\n            todayDateBorderColor = bgActionPrimary\n        )\n    )\n    SnackyButton("Select Date", onClick = { showCalendar = false }, modifier = Modifier.fillMaxWidth())\n}',tsx:'<BottomSheet open={showCalendar} onDismiss={() => setShowCalendar(false)}>\n  <DatePicker value={date} onChange={setDate} />\n  <Button onClick={() => setShowCalendar(false)} style={{ width: \'100%\' }}>Select Date</Button>\n</BottomSheet>'}},
-      {id:'modal-variants',name:'Variants Selector',st:null,sl:null,img:'assets/images/variants/modal-variants.png',s:{w:360,h:356,pt:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:10.43,heightPct:4.49},{topPct:42.59,heightPct:4.49},{topPct:76.93,heightPct:4.49}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · Regular 12px (chip label)',icon:'24×24px close',thumb:'80×80px, border 1px #ccc, p4 r4',chip:'Selected: fill #fef8eb border 1px #f8b732 · Unselected: border 1px #ccc, r100, p8',use:'Product variant/weight selector - preview image, weight chip rows, Basket + Buy Now footer',note:'Footer: outlined "Basket" (160px, with cart icon) + primary "Buy Now" (160px), gap8 pb24 pt4 px16'},code:{kt:'SnackyBottomSheet(onDismiss = { showVariants = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        IconButton(onClick = { showVariants = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Variants", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(80.dp).padding(spacing4))\n    FlowRow(horizontalArrangement = Arrangement.spacedBy(gapCell), verticalArrangement = Arrangement.spacedBy(gapCell)) {\n        weights.forEach { w -> SnackyFilterChip(w.label, selected = w.id == selectedWeightId, { selectWeight(w.id) }) }\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyButton("Basket", { addToBasket() }, variant = ButtonVariant.Secondary, icon = { Icon(Icons.Outlined.ShoppingCart, contentDescription = null) }, modifier = Modifier.width(160.dp))\n        SnackyButton("Buy Now", { buyNow() }, modifier = Modifier.width(160.dp))\n    }\n}',tsx:"<BottomSheet open={showVariants} onDismiss={() => setShowVariants(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n    <button onClick={() => setShowVariants(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Variants</h2>\n  </div>\n  <img src={productImageUrl} width={80} height={80} style={{ padding: 'var(--spacing-4)', border: '1px solid var(--border-main)', borderRadius: 4 }} alt=\"\" />\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-cell)' }}>\n    {weights.map((w) => <FilterChip key={w.id} label={w.label} selected={w.id === selectedWeightId} onClick={() => selectWeight(w.id)} />)}\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <Button onClick={addToBasket} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />} style={{ width: 160 }}>Basket</Button>\n    <Button onClick={buyNow} style={{ width: 160 }}>Buy Now</Button>\n  </div>\n</BottomSheet>"}},
-      {id:'modal-payment-methods',name:'Payment Methods',st:null,sl:null,img:'assets/images/variants/modal-payment-methods.png',s:{w:360,h:904,pt:16,pb:16,fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · Bold 16px lh36 (section titles) · SemiBold 12px (method name) · Regular 12px (balance subtext) · Bold 12px (Top Up/Add links)',color:'#333333 (header/section titles/method name) · #7a7a7a (balance subtext) · #88651c (Top Up/Add links)',icon:'24×24px (close + payment logos)',use:'Payment method picker - Balance/COD, E-Wallet, Credit/Debit Card, Virtual Account groups'},code:{kt:'SnackyBottomSheet(onDismiss = { showPaymentMethods = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showPaymentMethods = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Payment Methods", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Text("Balance & COD", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_money, label = "Balance", subtitle = "$6.00 (Insufficient Balance)", actionLabel = "Top Up", onAction = onTopUp)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_truck, label = "COD")\n    Text("E-Wallet", style = SnackyTypography.h3Bold, color = textPrimary)\n    eWallets.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, selected = it.id == selectedId, onClick = { selectMethod(it.id) }) }\n    Text("Credit/Debit Card", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_credit_card, label = "Visa/Mastercard", actionLabel = "Add", onAction = onAddCard)\n    Text("Virtual Account", style = SnackyTypography.h3Bold, color = textPrimary)\n    virtualAccounts.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, onClick = { selectMethod(it.id) }) }\n}',tsx:"<BottomSheet open={showPaymentMethods} onDismiss={() => setShowPaymentMethods(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowPaymentMethods(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Payment Methods</h2>\n  </div>\n  <h3 style={typography.h3Bold}>Balance & COD</h3>\n  <PaymentMethodRow icon={<MoneyIcon />} label=\"Balance\" subtitle=\"$6.00 (Insufficient Balance)\" actionLabel=\"Top Up\" onAction={onTopUp} />\n  <PaymentMethodRow icon={<TruckIcon />} label=\"COD\" />\n  <h3 style={typography.h3Bold}>E-Wallet</h3>\n  {eWallets.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} selected={m.id === selectedId} onClick={() => selectMethod(m.id)} />)}\n  <h3 style={typography.h3Bold}>Credit/Debit Card</h3>\n  <PaymentMethodRow icon={<CreditCardIcon />} label=\"Visa/Mastercard\" actionLabel=\"Add\" onAction={onAddCard} />\n  <h3 style={typography.h3Bold}>Virtual Account</h3>\n  {virtualAccounts.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} onClick={() => selectMethod(m.id)} />)}\n</BottomSheet>"}},
-      {id:'modal-reviews',name:'Buyer Reviews',st:null,sl:null,img:'assets/images/variants/modal-reviews.png',s:{w:360,h:656,pt:16,pb:16,fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · SemiBold 12px (rating) · Regular 12px (rating count/review body) · Bold 12px (reviewer name)',color:'#333333 (header/reviewer name/review body) · #7a7a7a (rating count)',chip:'Filter chips - Selected: fill #fef8eb border 1px #f8b732 · Unselected: fill #ffffff border 1px #cccccc, r100',avatar:'32×32px circle',thumb:'40×40px, border 1px #ccc, r4',use:'Buyer reviews list - rating summary, sort filter chips, reviewer cards with photo thumbnails'},code:{kt:'SnackyBottomSheet(onDismiss = { showReviews = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showReviews = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Buyer Reviews", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("4.5", style = SnackyTypography.smallSemibold, color = textSecondary)\n        Text("(471 ratings)", style = SnackyTypography.smallRegular, color = textSecondary)\n        Text("189 Reviews", style = SnackyTypography.smallRegular, color = textSecondary)\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyFilterChip("Latest", selected = sortBy == "latest", { sortBy = "latest" })\n        SnackyFilterChip("Highest Rating", selected = sortBy == "highest", { sortBy = "highest" })\n        SnackyFilterChip("Lowest Rating", selected = sortBy == "lowest", { sortBy = "lowest" })\n    }\n    reviews.forEach { review ->\n        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n            AsyncImage(review.avatarUrl, contentDescription = null, modifier = Modifier.size(32.dp).clip(CircleShape))\n            Column {\n                Text(review.author, style = SnackyTypography.smallBold, color = textPrimary)\n                SnackyRatingStars(rating = review.rating)\n            }\n        }\n        Text(review.comment, style = SnackyTypography.smallRegular, color = textPrimary)\n        Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n            review.photoUrls.forEach { AsyncImage(it, contentDescription = null, modifier = Modifier.size(40.dp)) }\n        }\n        HorizontalDivider()\n    }\n}',tsx:"<BottomSheet open={showReviews} onDismiss={() => setShowReviews(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowReviews(false)} style={{ background: 'none', border: 'none' }}><CloseIcon width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Buyer Reviews</h2>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <StarIcon width={16} height={16} />\n    <span style={typography.smallSemibold}>4.5</span>\n    <span style={typography.smallRegular}>(471 ratings)</span>\n    <span style={typography.smallRegular}>189 Reviews</span>\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <FilterChip label=\"Latest\" selected={sortBy === 'latest'} onClick={() => setSortBy('latest')} />\n    <FilterChip label=\"Highest Rating\" selected={sortBy === 'highest'} onClick={() => setSortBy('highest')} />\n    <FilterChip label=\"Lowest Rating\" selected={sortBy === 'lowest'} onClick={() => setSortBy('lowest')} />\n  </div>\n  {reviews.map((review) => (\n    <div key={review.id}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n        <img src={review.avatarUrl} width={32} height={32} style={{ borderRadius: '50%' }} alt=\"\" />\n        <div>\n          <p style={{ ...typography.smallBold, margin: 0 }}>{review.author}</p>\n          <RatingStars rating={review.rating} />\n        </div>\n      </div>\n      <p style={{ ...typography.smallRegular, margin: '8px 0' }}>{review.comment}</p>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n        {review.photoUrls.map((url) => <img key={url} src={url} width={40} height={40} alt=\"\" />)}\n      </div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    </div>\n  ))}\n</BottomSheet>"}},
-      {id:'modal-driver',name:'Driver Tracking',st:null,sl:null,img:'assets/images/variants/modal-driver.png',s:{w:360,h:456,pt:8,pb:24,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:24.48,heightPct:3.51},{topPct:30.59,heightPct:3.51},{topPct:42.93,heightPct:3.51},{topPct:47.40,heightPct:3.51}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA/step title) · Regular 12px (timestamp)',color:'#333333 (name/ETA/active step) · #7a7a7a (plate/label/timestamp) · #a3a3a3 (disabled step)',handle:'Material3 ModalBottomSheet default drag handle',avatar:'56×56px circle (size/avatar/md)',use:'Driver card + partial order status timeline (3 steps) - order tracking bottom sheet'},code:{kt:'SnackyBottomSheet(onDismiss = { showDriver = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text("Mimbar Al Risyad", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = "Call", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = "Chat", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text("Estimated arrival at", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("12:30 - 12:40", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep("Driver picking up order from seller", "Dec 30, 11:00 AM"),\n        TimelineStep("Driver delivering order to customer", "Dec 30, 12:00 PM"),\n        TimelineStep("Order received by customer", active = false),\n    ))\n}',tsx:"<BottomSheet open={showDriver} onDismiss={() => setShowDriver(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <OrderStatusTimeline steps={[\n    { title: 'Driver picking up order from seller', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Driver delivering order to customer', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order received by customer', active: false },\n  ]} />\n</BottomSheet>"}},
+      {id:'modal-variants',name:'Variants Selector',st:null,sl:null,img:'assets/images/variants/modal-variants.png',s:{w:360,h:356,pt:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:10.43,heightPct:4.49},{topPct:42.59,heightPct:4.49},{topPct:76.93,heightPct:4.49}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · Regular 12px (chip label)',icon:'24×24px close',thumb:'80×80px, border 1px #ccc, p4 r4',chip:'Selected: fill #fef8eb border 1px #f8b732 · Unselected: border 1px #ccc, r100, p8',use:'Product variant/weight selector - preview image, weight chip rows, Basket + Buy Now footer',note:'Footer: outlined "Basket" (160px, with cart icon) + primary "Buy Now" (160px), gap8 pb24 pt4 px16'},code:{kt:'SnackyBottomSheet(onDismiss = { showVariants = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        IconButton(onClick = { showVariants = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Variants", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(80.dp).padding(spacing4))\n    FlowRow(horizontalArrangement = Arrangement.spacedBy(gapCell), verticalArrangement = Arrangement.spacedBy(gapCell)) {\n        weights.forEach { w -> SnackyFilterChip(w.label, selected = w.id == selectedWeightId, { selectWeight(w.id) }) }\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyButton("Basket", { addToBasket() }, variant = ButtonVariant.Secondary, icon = { SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = null) }, modifier = Modifier.width(160.dp))\n        SnackyButton("Buy Now", { buyNow() }, modifier = Modifier.width(160.dp))\n    }\n}',tsx:"<BottomSheet open={showVariants} onDismiss={() => setShowVariants(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n    <button onClick={() => setShowVariants(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Variants</h2>\n  </div>\n  <img src={productImageUrl} width={80} height={80} style={{ padding: 'var(--spacing-4)', border: '1px solid var(--border-main)', borderRadius: 4 }} alt=\"\" />\n  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-cell)' }}>\n    {weights.map((w) => <FilterChip key={w.id} label={w.label} selected={w.id === selectedWeightId} onClick={() => selectWeight(w.id)} />)}\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <Button onClick={addToBasket} variant=\"secondary\" icon={<SnackyIcons.outline.cartAdd />} style={{ width: 160 }}>Basket</Button>\n    <Button onClick={buyNow} style={{ width: 160 }}>Buy Now</Button>\n  </div>\n</BottomSheet>"}},
+      {id:'modal-payment-methods',name:'Payment Methods',st:null,sl:null,img:'assets/images/variants/modal-payment-methods.png',s:{w:360,h:904,pt:16,pb:16,fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · Bold 16px lh36 (section titles) · SemiBold 12px (method name) · Regular 12px (balance subtext) · Bold 12px (Top Up/Add links)',color:'#333333 (header/section titles/method name) · #7a7a7a (balance subtext) · #88651c (Top Up/Add links)',icon:'24×24px (close + payment logos)',use:'Payment method picker - Balance/COD, E-Wallet, Credit/Debit Card, Virtual Account groups'},code:{kt:'SnackyBottomSheet(onDismiss = { showPaymentMethods = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showPaymentMethods = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Payment Methods", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Text("Balance & COD", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_money, label = "Balance", subtitle = "$6.00 (Insufficient Balance)", actionLabel = "Top Up", onAction = onTopUp)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_truck, label = "COD")\n    Text("E-Wallet", style = SnackyTypography.h3Bold, color = textPrimary)\n    eWallets.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, selected = it.id == selectedId, onClick = { selectMethod(it.id) }) }\n    Text("Credit/Debit Card", style = SnackyTypography.h3Bold, color = textPrimary)\n    SnackyPaymentMethodRow(icon = R.drawable.ic_credit_card, label = "Visa/Mastercard", actionLabel = "Add", onAction = onAddCard)\n    Text("Virtual Account", style = SnackyTypography.h3Bold, color = textPrimary)\n    virtualAccounts.forEach { SnackyPaymentMethodRow(iconUrl = it.logoUrl, label = it.name, onClick = { selectMethod(it.id) }) }\n}',tsx:"<BottomSheet open={showPaymentMethods} onDismiss={() => setShowPaymentMethods(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowPaymentMethods(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Payment Methods</h2>\n  </div>\n  <h3 style={typography.h3Bold}>Balance & COD</h3>\n  <PaymentMethodRow icon={<SnackyIcons.outline.balance />} label=\"Balance\" subtitle=\"$6.00 (Insufficient Balance)\" actionLabel=\"Top Up\" onAction={onTopUp} />\n  <PaymentMethodRow icon={<SnackyIcons.outline.truck />} label=\"COD\" />\n  <h3 style={typography.h3Bold}>E-Wallet</h3>\n  {eWallets.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} selected={m.id === selectedId} onClick={() => selectMethod(m.id)} />)}\n  <h3 style={typography.h3Bold}>Credit/Debit Card</h3>\n  <PaymentMethodRow icon={<SnackyIcons.outline.creditCard />} label=\"Visa/Mastercard\" actionLabel=\"Add\" onAction={onAddCard} />\n  <h3 style={typography.h3Bold}>Virtual Account</h3>\n  {virtualAccounts.map((m) => <PaymentMethodRow key={m.id} iconUrl={m.logoUrl} label={m.name} onClick={() => selectMethod(m.id)} />)}\n</BottomSheet>"}},
+      {id:'modal-reviews',name:'Buyer Reviews',st:null,sl:null,img:'assets/images/variants/modal-reviews.png',s:{w:360,h:656,pt:16,pb:16,fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (header) · SemiBold 12px (rating) · Regular 12px (rating count/review body) · Bold 12px (reviewer name)',color:'#333333 (header/reviewer name/review body) · #7a7a7a (rating count)',chip:'Filter chips - Selected: fill #fef8eb border 1px #f8b732 · Unselected: fill #ffffff border 1px #cccccc, r100',avatar:'32×32px circle',thumb:'40×40px, border 1px #ccc, r4',use:'Buyer reviews list - rating summary, sort filter chips, reviewer cards with photo thumbnails'},code:{kt:'SnackyBottomSheet(onDismiss = { showReviews = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        IconButton(onClick = { showReviews = false }) { Icon(painterResource(R.drawable.ic_close), contentDescription = "Close") }\n        Text("Buyer Reviews", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_star_filled), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("4.5", style = SnackyTypography.smallSemibold, color = textSecondary)\n        Text("(471 ratings)", style = SnackyTypography.smallRegular, color = textSecondary)\n        Text("189 Reviews", style = SnackyTypography.smallRegular, color = textSecondary)\n    }\n    Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n        SnackyFilterChip("Latest", selected = sortBy == "latest", { sortBy = "latest" })\n        SnackyFilterChip("Highest Rating", selected = sortBy == "highest", { sortBy = "highest" })\n        SnackyFilterChip("Lowest Rating", selected = sortBy == "lowest", { sortBy = "lowest" })\n    }\n    reviews.forEach { review ->\n        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n            AsyncImage(review.avatarUrl, contentDescription = null, modifier = Modifier.size(32.dp).clip(CircleShape))\n            Column {\n                Text(review.author, style = SnackyTypography.smallBold, color = textPrimary)\n                SnackyRatingStars(rating = review.rating)\n            }\n        }\n        Text(review.comment, style = SnackyTypography.smallRegular, color = textPrimary)\n        Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n            review.photoUrls.forEach { AsyncImage(it, contentDescription = null, modifier = Modifier.size(40.dp)) }\n        }\n        HorizontalDivider()\n    }\n}',tsx:"<BottomSheet open={showReviews} onDismiss={() => setShowReviews(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <button onClick={() => setShowReviews(false)} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.close width={24} height={24} /></button>\n    <h2 style={{ ...typography.bodySemibold, margin: 0 }}>Buyer Reviews</h2>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <RatingStar width={16} height={16} />\n    <span style={typography.smallSemibold}>4.5</span>\n    <span style={typography.smallRegular}>(471 ratings)</span>\n    <span style={typography.smallRegular}>189 Reviews</span>\n  </div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n    <FilterChip label=\"Latest\" selected={sortBy === 'latest'} onClick={() => setSortBy('latest')} />\n    <FilterChip label=\"Highest Rating\" selected={sortBy === 'highest'} onClick={() => setSortBy('highest')} />\n    <FilterChip label=\"Lowest Rating\" selected={sortBy === 'lowest'} onClick={() => setSortBy('lowest')} />\n  </div>\n  {reviews.map((review) => (\n    <div key={review.id}>\n      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-block)' }}>\n        <img src={review.avatarUrl} width={32} height={32} style={{ borderRadius: '50%' }} alt=\"\" />\n        <div>\n          <p style={{ ...typography.smallBold, margin: 0 }}>{review.author}</p>\n          <RatingStars rating={review.rating} />\n        </div>\n      </div>\n      <p style={{ ...typography.smallRegular, margin: '8px 0' }}>{review.comment}</p>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n        {review.photoUrls.map((url) => <img key={url} src={url} width={40} height={40} alt=\"\" />)}\n      </div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    </div>\n  ))}\n</BottomSheet>"}},
+      {id:'modal-driver',name:'Driver Tracking',st:null,sl:null,img:'assets/images/variants/modal-driver.png',s:{w:360,h:456,pt:8,pb:24,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:24.48,heightPct:3.51},{topPct:30.59,heightPct:3.51},{topPct:42.93,heightPct:3.51},{topPct:47.40,heightPct:3.51}],fill:'#ffffff',r:'20px (top corners)',font:'Poppins SemiBold 14px (name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA/step title) · Regular 12px (timestamp)',color:'#333333 (name/ETA/active step) · #7a7a7a (plate/label/timestamp) · #a3a3a3 (disabled step)',handle:'Material3 ModalBottomSheet default drag handle',avatar:'56×56px circle (size/avatar/md)',use:'Driver card + partial order status timeline (3 steps) - order tracking bottom sheet'},code:{kt:'SnackyBottomSheet(onDismiss = { showDriver = false }) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text("Mimbar Al Risyad", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = "Call", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = "Chat", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text("Estimated arrival at", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("12:30 - 12:40", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep("Driver picking up order from seller", "Dec 30, 11:00 AM"),\n        TimelineStep("Driver delivering order to customer", "Dec 30, 12:00 PM"),\n        TimelineStep("Order received by customer", active = false),\n    ))\n}',tsx:"<BottomSheet open={showDriver} onDismiss={() => setShowDriver(false)}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-12)' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: '50%' }} alt=\"\" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: 'var(--text-secondary)' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.phone width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: 'none', border: 'none' }}><SnackyIcons.outline.chat width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <OrderStatusTimeline steps={[\n    { title: 'Driver picking up order from seller', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Driver delivering order to customer', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order received by customer', active: false },\n  ]} />\n</BottomSheet>"}},
     ]},
   section:{name:'Section',cat:'Content',desc:'Composite content sections used on product and order screens.',usage:'Each section type serves a different layout purpose: variant selector, product description, buyer reviews, horizontal product scroll, banner+product grid, and a full vertical product list.',cover:'assets/images/section.png',
     v:[
@@ -660,12 +660,12 @@ const C={
         {sl:'Delivered',st:'active',img:'assets/images/variants/section-order-status-delivered.png',code:{kt:'SnackySection(title = "Order Status", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep("Payment Received", "Dec 30, 11:00 AM"),\n        TimelineStep("Order Processing", "Dec 30, 12:00 PM"),\n        TimelineStep("Order Delivered", "Dec 30, 12:00 PM"),\n        TimelineStep("Order Received", active = false),\n    ))\n}',tsx:"<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Payment Received', timestamp: 'Dec 30, 11:00 AM' },\n    { title: 'Order Processing', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Delivered', timestamp: 'Dec 30, 12:00 PM' },\n    { title: 'Order Received', active: false },\n  ]} />\n</Section>"}},
         {sl:'Cancelled',st:'danger',img:'assets/images/variants/section-order-status-cancelled.png',code:{kt:'SnackySection(title = "Order Status", actionLabel = null) {\n    SnackyOrderStatusTimeline(steps = listOf(\n        TimelineStep("Order Cancelled", "Dec 30, 11:00 AM", isError = true),\n        TimelineStep("Order Processing", active = false),\n        TimelineStep("Order Delivered", active = false),\n        TimelineStep("Order Received", active = false),\n    ))\n}',tsx:"<Section title=\"Order Status\" actionLabel={undefined}>\n  <OrderStatusTimeline steps={[\n    { title: 'Order Cancelled', timestamp: 'Dec 30, 11:00 AM', isError: true },\n    { title: 'Order Processing', active: false },\n    { title: 'Order Delivered', active: false },\n    { title: 'Order Received', active: false },\n  ]} />\n</Section>"}},
       ]},
-      {id:'section-destination',name:'Destination - Compact',st:null,sl:null,img:'assets/images/variants/section-destination.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:4,gapAnchor:'block-gap',gapBands:[{topPct:42.86,heightPct:14.29}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (label) · Bold 12px (address tag)',icon:'16×16px marker + chevron',color:'#333333',use:'Compact destination address summary - cart/checkout header, single-line truncated address'},code:{kt:'Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapIconLabel)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_marker), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("Sent to", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("Home", style = SnackyTypography.smallBold, color = textPrimary)\n        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n    }\n    Text(\n        text = "Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary,\n        maxLines = 1,\n        overflow = TextOverflow.Ellipsis\n    )\n}',tsx:"<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-icon-label)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <MarkerIcon width={16} height={16} />\n    <span style={typography.smallRegular}>Sent to</span>\n    <span style={typography.smallBold}>Home</span>\n    <ChevronDownIcon width={16} height={16} />\n  </div>\n  <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>\n    Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\n  </p>\n</div>"}},
+      {id:'section-destination',name:'Destination - Compact',st:null,sl:null,img:'assets/images/variants/section-destination.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:4,gapAnchor:'block-gap',gapBands:[{topPct:42.86,heightPct:14.29}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (label) · Bold 12px (address tag)',icon:'16×16px marker + chevron',color:'#333333',use:'Compact destination address summary - cart/checkout header, single-line truncated address'},code:{kt:'Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapIconLabel)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {\n        Icon(painterResource(R.drawable.ic_marker), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("Sent to", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("Home", style = SnackyTypography.smallBold, color = textPrimary)\n        Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n    }\n    Text(\n        text = "Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary,\n        maxLines = 1,\n        overflow = TextOverflow.Ellipsis\n    )\n}',tsx:"<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-icon-label)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>\n    <SnackyIcons.outline.address width={16} height={16} />\n    <span style={typography.smallRegular}>Sent to</span>\n    <span style={typography.smallBold}>Home</span>\n    <SnackyIcons.outline.chevronDown width={16} height={16} />\n  </div>\n  <p style={{ ...typography.smallRegular, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>\n    Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta\n  </p>\n</div>"}},
       {id:'section-destination-description',name:'Destination - Full',st:null,sl:null,img:'assets/images/variants/section-destination-description.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:23.13,heightPct:19.73},{topPct:49.66,heightPct:10.20}],fill:'#ffffff',r:4,font:'Poppins SemiBold 14px (title) · Bold 12px (label) · Regular 12px (address, multi-line)',color:'#333333',use:'Full destination address card - order detail page'},code:{kt:'SnackySection(title = "Destination Location", actionLabel = null) {\n    Text("Home", style = SnackyTypography.smallBold, color = textPrimary)\n    Text(\n        "Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta",\n        style = SnackyTypography.smallRegular,\n        color = textPrimary\n    )\n}',tsx:'<Section title="Destination Location" actionLabel={undefined}>\n  <p style={{ ...typography.smallBold, margin: 0 }}>Home</p>\n  <p style={{ ...typography.smallRegular, margin: \'4px 0 0\' }}>Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta</p>\n</Section>'}},
-      {id:'section-payment',name:'Payment Method Row',st:null,sl:null,img:'assets/images/variants/section-payment.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:4,gapAnchor:'icon-label',gapZones:[{leftPct:73.06,widthPct:2.78},{leftPct:87.50,widthPct:2.22}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (label) · SemiBold 12px (method name)',icon:'24×24px logo + 16×16px chevron',color:'#333333',use:'Payment method selector row - checkout'},code:{kt:'Row(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalAlignment = Alignment.CenterVertically\n) {\n    Text("Payment Method", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n    Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n    Spacer(Modifier.width(gapIconLabel))\n    Text("GOPAY", style = SnackyTypography.smallSemibold, color = textPrimary)\n    Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n}',tsx:"<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', padding: 'var(--gap-layout-block) var(--spacing-24)', background: 'var(--bg-surface)' }}>\n  <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n  <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n  <span style={typography.smallSemibold}>GOPAY</span>\n  <ChevronDownIcon width={16} height={16} />\n</div>"}},
-      {id:'section-driver',name:'Driver',st:null,sl:null,img:'assets/images/variants/section-driver.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:11.97,heightPct:7.75},{topPct:40.85,heightPct:5.28},{topPct:46.83,heightPct:7.39},{topPct:66.55,heightPct:7.75},{topPct:75.00,heightPct:5.28}],fill:'#ffffff',r:4,font:'Poppins SemiBold 14px (title/name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA) · SemiBold 12px (button)',avatar:'56×56px circle (size/avatar/md)',cta:'Full-width button, fill #f8b732, r4, p8',use:'Driver info card with contact actions and live ETA - order tracking'},code:{kt:'SnackySection(title = "Driver", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text("Mimbar Al Risyad", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = "Call", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = "Chat", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text("Estimated arrival at", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("12:30 - 12:40", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyButton("Track Delivery", onClick = onTrack, modifier = Modifier.fillMaxWidth())\n}',tsx:'<Section title="Driver" actionLabel={undefined}>\n  <div style={{ display: \'flex\', alignItems: \'center\', gap: \'var(--spacing-12)\' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: \'50%\' }} alt="" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: \'var(--text-secondary)\' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: \'none\', border: \'none\' }}><CallIcon width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: \'none\', border: \'none\' }}><ChatIcon width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: \'none\', borderTop: \'1px solid var(--border-main)\' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: \'none\', borderTop: \'1px solid var(--border-main)\' }} />\n  <Button onClick={onTrack} style={{ width: \'100%\' }}>Track Delivery</Button>\n</Section>'}},
+      {id:'section-payment',name:'Payment Method Row',st:null,sl:null,img:'assets/images/variants/section-payment.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:4,gapAnchor:'icon-label',gapZones:[{leftPct:73.06,widthPct:2.78},{leftPct:87.50,widthPct:2.22}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (label) · SemiBold 12px (method name)',icon:'24×24px logo + 16×16px chevron',color:'#333333',use:'Payment method selector row - checkout'},code:{kt:'Row(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalAlignment = Alignment.CenterVertically\n) {\n    Text("Payment Method", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n    Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n    Spacer(Modifier.width(gapIconLabel))\n    Text("GOPAY", style = SnackyTypography.smallSemibold, color = textPrimary)\n    Icon(painterResource(R.drawable.ic_chevron_down), contentDescription = null, modifier = Modifier.size(16.dp))\n}',tsx:"<div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', padding: 'var(--gap-layout-block) var(--spacing-24)', background: 'var(--bg-surface)' }}>\n  <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n  <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n  <span style={typography.smallSemibold}>GOPAY</span>\n  <SnackyIcons.outline.chevronDown width={16} height={16} />\n</div>"}},
+      {id:'section-driver',name:'Driver',st:null,sl:null,img:'assets/images/variants/section-driver.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:11.97,heightPct:7.75},{topPct:40.85,heightPct:5.28},{topPct:46.83,heightPct:7.39},{topPct:66.55,heightPct:7.75},{topPct:75.00,heightPct:5.28}],fill:'#ffffff',r:4,font:'Poppins SemiBold 14px (title/name) · Regular 10px (plate) · Regular 12px (label) · Bold 12px (ETA) · SemiBold 12px (button)',avatar:'56×56px circle (size/avatar/md)',cta:'Full-width button, fill #f8b732, r4, p8',use:'Driver info card with contact actions and live ETA - order tracking'},code:{kt:'SnackySection(title = "Driver", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spacing12)) {\n        AsyncImage(driverPhotoUrl, contentDescription = null, modifier = Modifier.size(sizeAvatarMd).clip(CircleShape))\n        Column(modifier = Modifier.weight(1f)) {\n            Text("Mimbar Al Risyad", style = SnackyTypography.bodySemibold, color = textPrimary)\n            Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)\n        }\n        IconButton(onClick = onCall) { Icon(painterResource(R.drawable.ic_call), contentDescription = "Call", modifier = Modifier.size(24.dp)) }\n        IconButton(onClick = onChat) { Icon(painterResource(R.drawable.ic_chat), contentDescription = "Chat", modifier = Modifier.size(24.dp)) }\n    }\n    HorizontalDivider()\n    Column {\n        Text("Estimated arrival at", style = SnackyTypography.smallRegular, color = textPrimary)\n        Text("12:30 - 12:40", style = SnackyTypography.smallBold, color = textPrimary)\n    }\n    HorizontalDivider()\n    SnackyButton("Track Delivery", onClick = onTrack, modifier = Modifier.fillMaxWidth())\n}',tsx:'<Section title="Driver" actionLabel={undefined}>\n  <div style={{ display: \'flex\', alignItems: \'center\', gap: \'var(--spacing-12)\' }}>\n    <img src={driverPhotoUrl} width={56} height={56} style={{ borderRadius: \'50%\' }} alt="" />\n    <div style={{ flex: 1 }}>\n      <p style={{ ...typography.bodySemibold, margin: 0 }}>Mimbar Al Risyad</p>\n      <p style={{ ...typography.captionRegular, margin: 0, color: \'var(--text-secondary)\' }}>B1112ARB</p>\n    </div>\n    <button onClick={onCall} style={{ background: \'none\', border: \'none\' }}><SnackyIcons.outline.phone width={24} height={24} /></button>\n    <button onClick={onChat} style={{ background: \'none\', border: \'none\' }}><SnackyIcons.outline.chat width={24} height={24} /></button>\n  </div>\n  <hr style={{ border: \'none\', borderTop: \'1px solid var(--border-main)\' }} />\n  <div>\n    <p style={{ ...typography.smallRegular, margin: 0 }}>Estimated arrival at</p>\n    <p style={{ ...typography.smallBold, margin: 0 }}>12:30 - 12:40</p>\n  </div>\n  <hr style={{ border: \'none\', borderTop: \'1px solid var(--border-main)\' }} />\n  <Button onClick={onTrack} style={{ width: \'100%\' }}>Track Delivery</Button>\n</Section>'}},
       {id:'section-order-summary',name:'Order Summary',st:null,sl:null,img:'assets/images/variants/section-order-summary.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:24,gapAnchor:'block-gap',gapBands:[{topPct:12.61,heightPct:5.88},{topPct:23.53,heightPct:6.30}],fill:'#ffffff',r:4,font:'Poppins SemiBold 14px (title) · SemiBold 12px (invoice id) · Bold 12px (Copy/labels) · Regular 12px (body)',use:'Full order receipt - invoice, payment method, line items, notes, totals (order detail page)'},code:{kt:'SnackySection(title = "Order", actionLabel = null) {\n    Row(verticalAlignment = Alignment.CenterVertically) {\n        Text("INV/KK/20220911/112/846226/2395144", style = SnackyTypography.smallSemibold, color = textSecondary, modifier = Modifier.weight(1f))\n        Text("Copy", style = SnackyTypography.smallBold, color = textLink, modifier = Modifier.clickable(onClick = onCopyInvoice))\n    }\n    Row {\n        Text("Payment Method", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Image(painterResource(R.drawable.ic_gopay), contentDescription = null, modifier = Modifier.size(24.dp))\n        Text("GOPAY", style = SnackyTypography.smallSemibold, color = textPrimary)\n    }\n    Column(verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {\n        orderItems.forEach { item ->\n            Row(horizontalArrangement = Arrangement.spacedBy(gapCell)) {\n                Text("${item.qty}x", style = SnackyTypography.smallRegular, color = textPrimary)\n                Text(item.name, style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n                Text(item.price, style = SnackyTypography.smallSemibold, color = textPrimary)\n            }\n            HorizontalDivider()\n        }\n        Column {\n            Text("Notes", style = SnackyTypography.smallRegular, color = textSecondary)\n            Text("Lorem ipsum dolor sit amet", style = SnackyTypography.smallRegular, color = textPrimary)\n        }\n        HorizontalDivider()\n        Column(verticalArrangement = Arrangement.spacedBy(gapCell)) {\n            Row { Text("Subtotal", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text("Rp 10,000", style = SnackyTypography.smallSemibold) }\n            Row { Text("Shipping Fee", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text("Rp 5,000", style = SnackyTypography.smallRegular, textDecoration = TextDecoration.LineThrough); Text("Free", style = SnackyTypography.smallRegular) }\n            Row { Text("Referral Promo", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text("- Rp 2,000", style = SnackyTypography.smallRegular) }\n            HorizontalDivider()\n            Row { Text("Total", Modifier.weight(1f), style = SnackyTypography.smallRegular); Text("Rp 8,000", style = SnackyTypography.smallSemibold) }\n        }\n    }\n}',tsx:"<Section title=\"Order\" actionLabel={undefined}>\n  <div style={{ display: 'flex', alignItems: 'center' }}>\n    <p style={{ ...typography.smallSemibold, margin: 0, flex: 1, color: 'var(--text-secondary)' }}>INV/KK/20220911/112/846226/2395144</p>\n    <button onClick={onCopyInvoice} style={{ ...typography.smallBold, background: 'none', border: 'none', color: 'var(--text-link)' }}>Copy</button>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center' }}>\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Payment Method</p>\n    <img src={gopayLogo} width={24} height={24} alt=\"GoPay\" />\n    <span style={typography.smallSemibold}>GOPAY</span>\n  </div>\n  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n    {orderItems.map((item) => (\n      <div key={item.id}>\n        <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}>\n          <span style={typography.smallRegular}>{item.qty}x</span>\n          <span style={{ ...typography.smallRegular, flex: 1 }}>{item.name}</span>\n          <span style={typography.smallSemibold}>{item.price}</span>\n        </div>\n        <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n      </div>\n    ))}\n    <div>\n      <p style={{ ...typography.smallRegular, margin: 0, color: 'var(--text-secondary)' }}>Notes</p>\n      <p style={{ ...typography.smallRegular, margin: 0 }}>Lorem ipsum dolor sit amet</p>\n    </div>\n    <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-cell)' }}>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Subtotal</span><span style={typography.smallSemibold}>Rp 10,000</span></div>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.smallRegular, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.smallRegular}>Free</span></div>\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Referral Promo</span><span style={typography.smallRegular}>- Rp 2,000</span></div>\n      <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n      <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.smallRegular, flex: 1 }}>Total</span><span style={typography.smallSemibold}>Rp 8,000</span></div>\n    </div>\n  </div>\n</Section>"}},
-      {id:'section-order-details',name:'Order Details - Line Item',st:null,sl:null,img:'assets/images/variants/section-order-details.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:19.94,heightPct:4.11},{topPct:34.18,heightPct:4.75},{topPct:39.56,heightPct:6.01},{topPct:50.63,heightPct:6.01},{topPct:57.28,heightPct:6.65},{topPct:68.67,heightPct:7.91},{topPct:81.33,heightPct:7.91}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (product/labels) · SemiBold 14px (price) · Regular 10px (variant chip) · SemiBold 10px (qty count) · Bold 12px (Add Note link)',thumb:'48×48px',variantChip:'fill #fef8eb, border 1px #f8b732, r4, p8',qtyStepper:'circular +/- buttons, fill #f8b732, r100, p8',use:'Single product line-item with variant chip, qty stepper, note link, and price breakdown - cart/order edit'},code:{kt:'Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(48.dp).padding(spacing4))\n        Text("Chicki Balls Cheeky Chicken 75 g", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Text("Rp 5,000", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(\n        verticalAlignment = Alignment.CenterVertically,\n        horizontalArrangement = Arrangement.spacedBy(gapLayoutStack),\n        modifier = Modifier.padding(start = 60.dp)\n    ) {\n        SnackyChip(label = "Variant: 75 Grams", variant = ChipVariant.Product, selected = true)\n        Spacer(Modifier.weight(1f))\n        SnackyQtyStepper(quantity = 1, onIncrement = {}, onDecrement = {})\n    }\n    HorizontalDivider()\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        Icon(painterResource(R.drawable.ic_pencil), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("Add Note", style = SnackyTypography.smallBold, color = textLink)\n    }\n    HorizontalDivider()\n    Row { Text("Subtotal", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("Rp 5,000", style = SnackyTypography.bodySemibold) }\n    Row { Text("Shipping Fee", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("Rp 5,000", style = SnackyTypography.bodySemibold, textDecoration = TextDecoration.LineThrough); Text("Free", style = SnackyTypography.bodySemibold) }\n    Row { Text("Referral Promo", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("- Rp 2,000", style = SnackyTypography.bodySemibold) }\n}',tsx:"<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <img src={productImageUrl} width={48} height={48} style={{ padding: 'var(--spacing-4)' }} alt=\"\" />\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</p>\n    <span style={typography.bodySemibold}>Rp 5,000</span>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-stack)', paddingLeft: 60 }}>\n    <Chip label=\"Variant: 75 Grams\" variant=\"product\" selected />\n    <div style={{ flex: 1 }} />\n    <QtyStepper quantity={1} onIncrement={() => {}} onDecrement={() => {}} />\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <PencilIcon width={16} height={16} />\n    <span style={typography.smallBold}>Add Note</span>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Subtotal</span><span style={typography.bodySemibold}>Rp 5,000</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.bodySemibold, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.bodySemibold}>Free</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Referral Promo</span><span style={typography.bodySemibold}>- Rp 2,000</span></div>\n</div>"}},
+      {id:'section-order-details',name:'Order Details - Line Item',st:null,sl:null,img:'assets/images/variants/section-order-details.png',s:{w:360,pt:16,pb:16,pl:24,pr:24,gap:16,gapAnchor:'block-gap',gapBands:[{topPct:19.94,heightPct:4.11},{topPct:34.18,heightPct:4.75},{topPct:39.56,heightPct:6.01},{topPct:50.63,heightPct:6.01},{topPct:57.28,heightPct:6.65},{topPct:68.67,heightPct:7.91},{topPct:81.33,heightPct:7.91}],fill:'#ffffff',r:4,font:'Poppins Regular 12px (product/labels) · SemiBold 14px (price) · Regular 10px (variant chip) · SemiBold 10px (qty count) · Bold 12px (Add Note link)',thumb:'48×48px',variantChip:'fill #fef8eb, border 1px #f8b732, r4, p8',qtyStepper:'circular +/- buttons, fill #f8b732, r100, p8',use:'Single product line-item with variant chip, qty stepper, note link, and price breakdown - cart/order edit'},code:{kt:'Column(\n    modifier = Modifier.fillMaxWidth().background(bgSurface).padding(horizontal = spacing24, vertical = spacing16),\n    verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)\n) {\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        AsyncImage(productImageUrl, contentDescription = null, modifier = Modifier.size(48.dp).padding(spacing4))\n        Text("Chicki Balls Cheeky Chicken 75 g", style = SnackyTypography.smallRegular, color = textPrimary, modifier = Modifier.weight(1f))\n        Text("Rp 5,000", style = SnackyTypography.bodySemibold, color = textPrimary)\n    }\n    Row(\n        verticalAlignment = Alignment.CenterVertically,\n        horizontalArrangement = Arrangement.spacedBy(gapLayoutStack),\n        modifier = Modifier.padding(start = 60.dp)\n    ) {\n        SnackyChip(label = "Variant: 75 Grams", variant = ChipVariant.Product, selected = true)\n        Spacer(Modifier.weight(1f))\n        SnackyQtyStepper(quantity = 1, onIncrement = {}, onDecrement = {})\n    }\n    HorizontalDivider()\n    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapTextIcon)) {\n        Icon(painterResource(R.drawable.ic_pencil), contentDescription = null, modifier = Modifier.size(16.dp))\n        Text("Add Note", style = SnackyTypography.smallBold, color = textLink)\n    }\n    HorizontalDivider()\n    Row { Text("Subtotal", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("Rp 5,000", style = SnackyTypography.bodySemibold) }\n    Row { Text("Shipping Fee", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("Rp 5,000", style = SnackyTypography.bodySemibold, textDecoration = TextDecoration.LineThrough); Text("Free", style = SnackyTypography.bodySemibold) }\n    Row { Text("Referral Promo", Modifier.weight(1f), style = SnackyTypography.bodyRegular); Text("- Rp 2,000", style = SnackyTypography.bodySemibold) }\n}',tsx:"<div style={{ background: 'var(--bg-surface)', padding: 'var(--gap-layout-block) var(--spacing-24)', display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)' }}>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <img src={productImageUrl} width={48} height={48} style={{ padding: 'var(--spacing-4)' }} alt=\"\" />\n    <p style={{ ...typography.smallRegular, margin: 0, flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</p>\n    <span style={typography.bodySemibold}>Rp 5,000</span>\n  </div>\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-layout-stack)', paddingLeft: 60 }}>\n    <Chip label=\"Variant: 75 Grams\" variant=\"product\" selected />\n    <div style={{ flex: 1 }} />\n    <QtyStepper quantity={1} onIncrement={() => {}} onDecrement={() => {}} />\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-text-icon)' }}>\n    <SnackyIcons.outline.edit width={16} height={16} />\n    <span style={typography.smallBold}>Add Note</span>\n  </div>\n  <hr style={{ border: 'none', borderTop: '1px solid var(--border-main)' }} />\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Subtotal</span><span style={typography.bodySemibold}>Rp 5,000</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Shipping Fee</span><span style={{ ...typography.bodySemibold, textDecoration: 'line-through' }}>Rp 5,000</span><span style={typography.bodySemibold}>Free</span></div>\n  <div style={{ display: 'flex', gap: 'var(--gap-cell)' }}><span style={{ ...typography.bodyRegular, flex: 1 }}>Referral Promo</span><span style={typography.bodySemibold}>- Rp 2,000</span></div>\n</div>"}},
     ]},
   avatar:{name:'Avatar',cat:'Assets',desc:'Circular profile photo in three fixed sizes.',usage:'Use size/avatar/sm for compact list rows (reviewer photos), size/avatar/md for contact/driver cards, and size/avatar/lg for larger profile contexts. Always a perfect circle - no border by default.',cover:'assets/images/variants/avatar-md.png',
     v:[
@@ -832,8 +832,8 @@ const PG={
     component:'BadgeDemo',initialProps:{type:'notification'},
     controls:[{id:'type',label:'Type',type:'select',options:['notification','discount','sold','variant']}],
     impl:`const BadgeDemo=({type})=>{const h=React.createElement;const F='Poppins,sans-serif';if(type==='notification')return h('span',{style:{display:'inline-flex',padding:'2px 4px',borderRadius:100,background:'#eb5757',color:'#ffffff',fontFamily:F,fontSize:10,fontWeight:600,letterSpacing:'0.1px'}},'99+');if(type==='discount')return h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',height:24,padding:'2px 4px',borderRadius:6,background:'#eb5757',color:'#ffffff',fontFamily:F,fontSize:10,fontWeight:600,lineHeight:'24px',letterSpacing:'0.1px'}},'-50%');if(type==='sold')return h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',height:48,padding:'12px 7px',borderRadius:100,background:'rgba(51,51,51,0.8)',color:'#ffffff',fontFamily:F,fontSize:12,fontWeight:400,lineHeight:'24px'}},'Sold Out');return h('span',{style:{display:'inline-flex',alignItems:'center',width:113,boxSizing:'border-box',padding:8,borderRadius:4,background:'#fef8eb',border:'1px solid #f8b732',color:'#333333',fontFamily:F,fontSize:10,fontWeight:400,lineHeight:'16px',letterSpacing:'0.1px'}},'Variant: 75 Grams');};`,
-    getReact:p=>({notification:'<Badge count={99}>\n  <CartIcon width={20} height={20} />\n</Badge>',discount:'<DiscountTag label="-50%" />',sold:'<SoldOutBadge />',variant:'<VariantBadge label="Variant: 75 Grams" />'})[p.type],
-    getKotlin:p=>({notification:'SnackyBadge(count = 99) {\n  Icon(Icons.Outlined.ShoppingCart, contentDescription = "Cart")\n}',discount:'SnackyDiscountTag(label = "-50%")',sold:'SnackySoldOutBadge()',variant:'SnackyVariantBadge(label = "Variant: 75 Grams")'})[p.type]
+    getReact:p=>({notification:'<Badge count={99}>\n  <SnackyIcons.outline.cart width={20} height={20} />\n</Badge>',discount:'<DiscountTag label="-50%" />',sold:'<SoldOutBadge />',variant:'<VariantBadge label="Variant: 75 Grams" />'})[p.type],
+    getKotlin:p=>({notification:'SnackyBadge(count = 99) {\n  SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart")\n}',discount:'SnackyDiscountTag(label = "-50%")',sold:'SnackySoldOutBadge()',variant:'SnackyVariantBadge(label = "Variant: 75 Grams")'})[p.type]
   },
   chips:{
     component:'ChipDemo',demoSrc:'assets/images/product-image.png',demoAlt:'Product',
@@ -874,7 +874,7 @@ const PG={
     ],
     impl:`const GoogleLogo=()=>React.createElement('svg',{width:24,height:24,viewBox:'0 0 24 24',fill:'none',style:{display:'block',flexShrink:0}},[React.createElement('path',{key:0,d:'M23.745 12.27C23.745 11.48 23.675 10.73 23.555 10H12.255V14.51H18.725C18.435 15.99 17.585 17.24 16.325 18.09V21.09H20.185C22.445 19 23.745 15.92 23.745 12.27Z',fill:'#4285F4'}),React.createElement('path',{key:1,d:'M12.255 24C15.495 24 18.205 22.92 20.185 21.09L16.325 18.09C15.245 18.81 13.875 19.25 12.255 19.25C9.12501 19.25 6.47501 17.14 5.52501 14.29H1.54501V17.38C3.51501 21.3 7.56501 24 12.255 24Z',fill:'#34A853'}),React.createElement('path',{key:2,d:'M5.52501 14.29C5.27501 13.57 5.145 12.8 5.145 12C5.145 11.2 5.28501 10.43 5.52501 9.71V6.62H1.545C0.725004 8.24 0.255005 10.06 0.255005 12C0.255005 13.94 0.725004 15.76 1.545 17.38L5.52501 14.29Z',fill:'#FBBC05'}),React.createElement('path',{key:3,d:'M12.255 4.75C14.025 4.75 15.605 5.36 16.855 6.55L20.275 3.13C18.205 1.19 15.495 0 12.255 0C7.56501 0 3.51501 2.7 1.54501 6.62L5.52501 9.71C6.47501 6.86 9.12501 4.75 12.255 4.75Z',fill:'#EA4335'})]);const SnackyButton=({label,variant,danger,size,iconSlot,disabled})=>{const h=React.createElement;const[hov,setHov]=useState(false);const[prs,setPrs]=useState(false);const v=variant||'primary';const sm=size==='small';const i=prs?2:hov?1:0;const bg=v==='tertiary'?'transparent':v==='secondary'?['#ffffff','#f3f3f3','#e0e0e0'][disabled?0:i]:disabled?'#cccccc':(danger?['#eb5757','#d64f4f','#a73e3e']:['#f8b732','#e2a72e','#b08224'])[i];const fg=disabled?'#a3a3a3':v==='tertiary'?(danger?['#d64f4f','#a73e3e','#813030']:['#b08224','#88651c','#684d15'])[i]:(v==='secondary'&&danger)?'#d64f4f':'#333333';const border=v==='tertiary'?'none':v==='secondary'?'1px solid '+(disabled?'#cccccc':danger?'#eb5757':'#cccccc'):(v==='primary'&&danger&&disabled)?'1px solid #cccccc':'none';const icon=iconSlot==='icon'?ic('add-to-cart',24,fg):iconSlot==='social'?h(GoogleLogo):null;return h('button',{disabled,onMouseEnter:()=>setHov(true),onMouseLeave:()=>{setHov(false);setPrs(false);},onMouseDown:()=>setPrs(true),onMouseUp:()=>setPrs(false),style:{position:'relative',display:'flex',alignItems:'center',justifyContent:'center',width:376,height:sm?40:48,boxSizing:'border-box',padding:sm?'8px':'12px 8px',fontSize:12,fontWeight:600,lineHeight:'24px',fontFamily:'Poppins,sans-serif',background:bg,color:fg,border:border,borderRadius:4,cursor:disabled?'not-allowed':'pointer',outline:'none',transition:'background .15s'}},icon?h('span',{style:{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)',display:'flex'}},icon):null,label||'Button');};`,
     getReact:p=>`<Button variant="${p.variant}"${p.danger?' danger':''}${p.size==='small'?' size="small"':''}${p.iconSlot==='icon'?' icon={<SnackyIcons.outline.cartAdd />}':p.iconSlot==='social'?' icon={<img src="/logos/google.svg" width={24} height={24} alt="" />}':''}${p.disabled?' disabled':''} onClick={() => {}}>\n  ${p.label}\n</Button>`,
-    getKotlin:p=>`SnackyButton(\n  text = "${p.label}",\n  onClick = {},\n  variant = ButtonVariant.${p.variant[0].toUpperCase()+p.variant.slice(1)}${p.danger?',\n  danger = true':''}${p.size==='small'?',\n  size = ButtonSize.Small':''}${p.iconSlot==='icon'?',\n  icon = { Icon(SnackyIcons.CartAdd, null) }':p.iconSlot==='social'?',\n  icon = { Image(painterResource(R.drawable.logo_google), contentDescription = null, modifier = Modifier.size(24.dp)) }':''}${p.disabled?',\n  enabled = false':''}\n)`
+    getKotlin:p=>`SnackyButton(\n  text = "${p.label}",\n  onClick = {},\n  variant = ButtonVariant.${p.variant[0].toUpperCase()+p.variant.slice(1)}${p.danger?',\n  danger = true':''}${p.size==='small'?',\n  size = ButtonSize.Small':''}${p.iconSlot==='icon'?',\n  icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, null) }':p.iconSlot==='social'?',\n  icon = { Image(painterResource(R.drawable.logo_google), contentDescription = null, modifier = Modifier.size(24.dp)) }':''}${p.disabled?',\n  enabled = false':''}\n)`
   },
   'icon-button':{
     component:'SnackyIconBtn',
@@ -885,8 +885,8 @@ const PG={
       {id:'disabled',label:'Disabled',type:'toggle',def:false,show:p=>p.variant!=='upload'}
     ],
     impl:`const SnackyIconBtn=({variant,selected,disabled})=>{const h=React.createElement;const[hov,setHov]=useState(false);const[prs,setPrs]=useState(false);const v=variant||'primary';const dis=!!disabled&&v!=='upload';const i=prs?2:hov?1:0;const P=['#f8b732','#e2a72e','#b08224'];const S=['#ffffff','#f3f3f3','#e0e0e0'];let sz=32,bg='transparent',border='none',shadow='none',iconEl=null;if(v==='primary'){sz=32;bg=dis?'#cccccc':P[i];border=dis?'1px solid #cccccc':'none';iconEl=ic('add-to-cart',16,dis?'#a3a3a3':'#333333');}else if(v==='small'){sz=24;bg=dis?'#cccccc':P[i];iconEl=h('span',{style:{display:'inline-flex',transform:'rotate(-90deg)'}},ic('dropdown',16,dis?'#a3a3a3':'#333333'));}else if(v==='secondary'){sz=40;bg=dis?'#cccccc':S[i];shadow=dis?'none':'0 4px 8px rgba(0,0,0,0.08)';iconEl=dis?ic('fav-o',20,'#a3a3a3'):(selected?ic('fav-s',20,'#eb5757'):ic('fav-o',20,'#333333'));}else if(v==='tertiary'){sz=40;bg='transparent';iconEl=ic('back',24,dis?'#a3a3a3':(hov&&!prs?'#525252':'#333333'));}else{sz=72;bg=S[i];border='1px dashed #cccccc';iconEl=ic('picture',24,'#525252');}return h('button',{disabled:dis,onMouseEnter:()=>setHov(true),onMouseLeave:()=>{setHov(false);setPrs(false);},onMouseDown:()=>setPrs(true),onMouseUp:()=>setPrs(false),style:{width:sz,height:sz,boxSizing:'border-box',borderRadius:'50%',background:bg,border:border,boxShadow:shadow,display:'inline-flex',alignItems:'center',justifyContent:'center',padding:0,cursor:dis?'not-allowed':'pointer',outline:'none',transition:'background .15s'}},iconEl);};`,
-    getReact:p=>{const ic={primary:'<SnackyIcons.outline.cartAdd />',small:'<ChevronRightIcon />',secondary:p.selected?'<HeartFilledIcon />':'<HeartIcon />',tertiary:'<ArrowBackIcon />',upload:'<CameraIcon />'}[p.variant];const lbl={primary:'Add to cart',small:'Next',secondary:'Favorite',tertiary:'Back',upload:'Upload photo'}[p.variant];return`<IconButton variant="${p.variant==='small'?'primary':p.variant}"${p.variant==='small'?' size={24}':''} icon={${ic}}${p.variant==='secondary'&&p.selected?' tint="var(--icon-active)"':''}${p.disabled&&p.variant!=='upload'?' disabled':''} onClick={() => {}} ariaLabel="${lbl}" />`;},
-    getKotlin:p=>{const ic={primary:'SnackyIcons.CartAdd',small:'Icons.AutoMirrored.Filled.ChevronRight',secondary:'Icons.Outlined.FavoriteBorder',tertiary:'Icons.AutoMirrored.Outlined.ArrowBack',upload:'Icons.Outlined.PhotoCamera'}[p.variant];const vn={primary:'Primary',small:'Primary',secondary:'Secondary',tertiary:'Tertiary',upload:'Upload'}[p.variant];const lbl={primary:'Add to cart',small:'Next',secondary:'Favorite',tertiary:'Back',upload:'Upload photo'}[p.variant];return`SnackyIconButton(\n  icon = ${ic},\n  onClick = {},\n  contentDescription = "${lbl}",\n  variant = IconButtonVariant.${vn}${p.variant==='small'?',\n  size = 24.dp':''}${p.variant==='secondary'&&p.selected?',\n  tint = iconActive':''}${p.disabled&&p.variant!=='upload'?',\n  enabled = false':''}\n)`;}
+    getReact:p=>{const ic={primary:'<SnackyIcons.outline.cartAdd />',small:'<SnackyIcons.outline.chevronRight />',secondary:p.selected?'<SnackyIcons.solid.heart />':'<SnackyIcons.outline.heart />',tertiary:'<SnackyIcons.outline.back />',upload:'<SnackyIcons.outline.camera />'}[p.variant];const lbl={primary:'Add to cart',small:'Next',secondary:'Favorite',tertiary:'Back',upload:'Upload photo'}[p.variant];return`<IconButton variant="${p.variant==='small'?'primary':p.variant}"${p.variant==='small'?' size={24}':''} icon={${ic}}${p.variant==='secondary'&&p.selected?' tint="var(--icon-active)"':''}${p.disabled&&p.variant!=='upload'?' disabled':''} onClick={() => {}} ariaLabel="${lbl}" />`;},
+    getKotlin:p=>{const ic={primary:'SnackyIcons.Outline.CartAdd',small:'Icons.AutoMirrored.Filled.ChevronRight',secondary:'SnackyIcons.Outline.Heart',tertiary:'Icons.AutoMirrored.Outlined.ArrowBack',upload:'SnackyIcons.Outline.Camera'}[p.variant];const vn={primary:'Primary',small:'Primary',secondary:'Secondary',tertiary:'Tertiary',upload:'Upload'}[p.variant];const lbl={primary:'Add to cart',small:'Next',secondary:'Favorite',tertiary:'Back',upload:'Upload photo'}[p.variant];return`SnackyIconButton(\n  icon = ${ic},\n  onClick = {},\n  contentDescription = "${lbl}",\n  variant = IconButtonVariant.${vn}${p.variant==='small'?',\n  size = 24.dp':''}${p.variant==='secondary'&&p.selected?',\n  tint = iconActive':''}${p.disabled&&p.variant!=='upload'?',\n  enabled = false':''}\n)`;}
   },
   input:{
     component:'SnackyInput',
@@ -898,8 +898,8 @@ const PG={
       {id:'otpValue',label:'OTP Value',type:'text',def:'248135',show:p=>p.type==='otp'}
     ],
     impl:`const SnackyInput=({type,placeholder,filled,otpValue})=>{const h=React.createElement;const[val,setVal]=useState('');const[foc,setFoc]=useState(false);const[show,setShow]=useState(false);const[copied,setCopied]=useState(false);const[ddOpen,setDdOpen]=useState(false);const[otpFocus,setOtpFocus]=useState(-1);const seedOtp=v=>{const d=(v||'').replace(/[^0-9]/g,'').slice(0,6).split('');while(d.length<6)d.push('');return d;};const[otpVals,setOtpVals]=useState(seedOtp(otpValue));useEffect(()=>{setOtpVals(seedOtp(otpValue));},[otpValue]);const t=type||'text';const ph=placeholder||'Username';const sic=(name,sz,color)=>{var reg={eye:'password-active',eyeoff:'password-o',chev:'dropdown',cal:'calendar',pin:'address',clear:'close-input',send:'send',search:'search'};return reg[name]?ic(reg[name],sz,color):null;};const css=h('style',{key:'css'},'input{font-family:Poppins,sans-serif}input::placeholder{color:#7a7a7a;opacity:1}');const inp=(extra)=>h('input',Object.assign({key:'inp',type:(t==='password'&&!show)?'password':'text',value:val,placeholder:ph,onChange:e=>setVal(e.target.value),onFocus:()=>setFoc(true),onBlur:()=>setFoc(false),style:{flex:1,minWidth:0,border:'none',outline:'none',background:'transparent',fontSize:12,lineHeight:'24px',height:24,padding:0,color:'#333333'}},extra||{}));const box=(children,style,extra)=>h('div',Object.assign({style:Object.assign({display:'flex',alignItems:'center',gap:8,width:312,boxSizing:'border-box',padding:'12px 8px',background:'#ffffff',border:'1px solid '+(foc?'#f8b732':'#cccccc'),borderRadius:4,fontFamily:'Poppins,sans-serif',fontSize:12,lineHeight:'24px',transition:'border .15s',outline:'none'},style||{})},extra||{}),css,children);if(t==='text')return h(Inp,{placeholder:ph});if(t==='password')return h(Inp,{placeholder:ph,type:'password'});if(t==='dropdown')return box([h('span',{key:'ph',style:{flex:1,color:filled?'#333333':'#7a7a7a'}},filled?ph:ph),h('span',{key:'chev',style:{display:'inline-flex',transform:ddOpen?'rotate(180deg)':'none',transition:'transform .15s'}},sic('chev',20,'#7a7a7a'))],{border:'1px solid '+(ddOpen?'#f8b732':'#cccccc'),cursor:'pointer'},{tabIndex:0,onClick:()=>setDdOpen(o=>!o),onBlur:()=>setDdOpen(false)});if(t==='date-picker')return box([h('span',{key:'ph',style:{flex:1,color:(filled||foc)?'#333333':'#7a7a7a'}},filled?'June 15, 1993':ph),sic('cal',20,'#7a7a7a')],{cursor:'pointer'},{tabIndex:0,onClick:()=>setFoc(f=>!f),onBlur:()=>setFoc(false)});if(t==='address')return h(Inp,{placeholder:ph,leadingIcon:ic('address',20,'#7a7a7a'),clearable:true});if(t==='search')return h(Inp,{placeholder:ph,variant:'search',leadingIcon:ic('search',16,'#7a7a7a')});if(t==='otp'){const otpInputs=[];const setOtpDigit=(i,d)=>{const next=otpVals.slice();next[i]=d;setOtpVals(next);if(d&&otpInputs[i+1])otpInputs[i+1].focus();};const boxes=[];for(let i=0;i<6;i++){boxes.push(h('input',{key:i,ref:el=>{otpInputs[i]=el;},value:otpVals[i]||'',maxLength:1,inputMode:'numeric',pattern:'[0-9]*',onChange:e=>{const d=e.target.value.replace(/[^0-9]/g,'').slice(-1);setOtpDigit(i,d);},onKeyDown:e=>{if(e.key==='Backspace'&&!otpVals[i]&&otpInputs[i-1])otpInputs[i-1].focus();},onFocus:()=>setOtpFocus(i),onBlur:()=>setOtpFocus(f=>f===i?-1:f),style:{width:48,height:48,background:'#f3f3f3',border:'1px solid '+(otpFocus===i?'#f8b732':'transparent'),borderRadius:4,textAlign:'center',fontFamily:'Poppins,sans-serif',fontWeight:700,fontSize:16,lineHeight:'46px',color:'#333333',letterSpacing:'0.16px',outline:'none',padding:0,boxSizing:'border-box',transition:'border .1s'}}));}return h('div',{style:{display:'flex',gap:4}},boxes);}if(t==='chat'){const act=val.length>0;return h('div',{style:{display:'flex',alignItems:'center',gap:8,width:360,boxSizing:'border-box',padding:12,background:'#ffffff',borderRadius:4,fontFamily:'Poppins,sans-serif',fontSize:12,lineHeight:'24px'}},css,inp({placeholder:ph}),h('button',{key:'send',onClick:()=>setVal(''),style:{width:48,height:48,borderRadius:'50%',border:'none',background:act?'#f8b732':'transparent',display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:act?'pointer':'default',flexShrink:0,padding:0,transition:'background .15s'}},sic('send',20,act?'#ffffff':'#7a7a7a')));}if(t==='copy-value')return h('div',{style:{display:'flex',alignItems:'center',width:312,boxSizing:'border-box',padding:12,background:'#f3f3f3',borderRadius:4,fontFamily:'Poppins,sans-serif'}},h('span',{key:'v',style:{flex:1,fontWeight:600,fontSize:14,lineHeight:'24px',color:'#333333'}},'7008123912039102'),h('span',{key:'c',onClick:()=>{if(!copied){setCopied(true);setTimeout(()=>setCopied(false),2000);}},style:{fontWeight:700,fontSize:12,lineHeight:'24px',letterSpacing:'0.12px',color:copied?'#7a7a7a':'#88651c',cursor:'pointer'}},copied?'Copied':'Copy'));return null;};`,
-    getReact:p=>{const m={text:`<TextField placeholder="${p.placeholder}" value={value} onChange={setValue} />`,password:`<TextField placeholder="${p.placeholder}" type="password" value={value} onChange={setValue} trailingIcon={<EyeIcon />} />`,dropdown:`<TextField placeholder="${p.placeholder}" value={value} onChange={() => {}} trailingIcon={<ChevronDownIcon />} />`,'date-picker':`<TextField placeholder="${p.placeholder}" value={value} onChange={() => {}} trailingIcon={<CalendarIcon />} />`,address:`<TextField placeholder="${p.placeholder}" value={query} onChange={setQuery} leadingIcon={<MarkerIcon />} trailingIcon={<ClearIcon onClick={() => setQuery('')} />} />`,search:`<TextField placeholder="${p.placeholder}" value={query} onChange={setQuery} leadingIcon={<SearchIcon />} />`,otp:`<OtpField value={otp} onChange={setOtp} />`,chat:`<TextField placeholder="${p.placeholder==='Username'?'Write your message here':p.placeholder}" value={message} onChange={setMessage} />`,'copy-value':`<CopyField value="7008123912039102" onCopy={handleCopy} />`};return m[p.type]||m.text;},
-    getKotlin:p=>{const m={text:`SnackyTextField(\n  value = value,\n  onValueChange = { value = it },\n  placeholder = "${p.placeholder}"\n)`,password:`SnackyTextField(\n  value = value,\n  onValueChange = { value = it },\n  placeholder = "${p.placeholder}",\n  isPassword = true\n)`,dropdown:`SnackyTextField(\n  value = value,\n  onValueChange = {},\n  placeholder = "${p.placeholder}",\n  trailingIcon = Icons.Outlined.ArrowDropDown\n)`,'date-picker':`SnackyTextField(\n  value = value,\n  onValueChange = {},\n  placeholder = "${p.placeholder}",\n  trailingIcon = Icons.Outlined.CalendarMonth\n)`,address:`SnackyTextField(\n  value = query,\n  onValueChange = { query = it },\n  placeholder = "${p.placeholder}",\n  leadingIcon = Icons.Outlined.LocationOn,\n  trailingIcon = Icons.Outlined.Close\n)`,search:`SnackyTextField(\n  value = query,\n  onValueChange = { query = it },\n  placeholder = "${p.placeholder}",\n  leadingIcon = Icons.Outlined.Search\n)`,otp:`SnackyOtpField(\n  value = otp,\n  onValueChange = { otp = it }\n)`,chat:`SnackyTextField(\n  value = message,\n  onValueChange = { message = it },\n  placeholder = "${p.placeholder==='Username'?'Write your message here':p.placeholder}"\n)`,'copy-value':`SnackyCopyField(\n  value = "7008123912039102",\n  onCopy = { /* copied */ }\n)`};return m[p.type]||m.text;}
+    getReact:p=>{const m={text:`<TextField placeholder="${p.placeholder}" value={value} onChange={setValue} />`,password:`<TextField placeholder="${p.placeholder}" type="password" value={value} onChange={setValue} trailingIcon={<SnackyIcons.outline.eye />} />`,dropdown:`<TextField placeholder="${p.placeholder}" value={value} onChange={() => {}} trailingIcon={<SnackyIcons.outline.chevronDown />} />`,'date-picker':`<TextField placeholder="${p.placeholder}" value={value} onChange={() => {}} trailingIcon={<SnackyIcons.outline.calendar />} />`,address:`<TextField placeholder="${p.placeholder}" value={query} onChange={setQuery} leadingIcon={<SnackyIcons.outline.address />} trailingIcon={<SnackyIcons.outline.closeInput onClick={() => setQuery('')} />} />`,search:`<TextField placeholder="${p.placeholder}" value={query} onChange={setQuery} leadingIcon={<SnackyIcons.outline.search />} />`,otp:`<OtpField value={otp} onChange={setOtp} />`,chat:`<TextField placeholder="${p.placeholder==='Username'?'Write your message here':p.placeholder}" value={message} onChange={setMessage} />`,'copy-value':`<CopyField value="7008123912039102" onCopy={handleCopy} />`};return m[p.type]||m.text;},
+    getKotlin:p=>{const m={text:`SnackyTextField(\n  value = value,\n  onValueChange = { value = it },\n  placeholder = "${p.placeholder}"\n)`,password:`SnackyTextField(\n  value = value,\n  onValueChange = { value = it },\n  placeholder = "${p.placeholder}",\n  isPassword = true\n)`,dropdown:`SnackyTextField(\n  value = value,\n  onValueChange = {},\n  placeholder = "${p.placeholder}",\n  trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) }\n)`,'date-picker':`SnackyTextField(\n  value = value,\n  onValueChange = {},\n  placeholder = "${p.placeholder}",\n  trailingIcon = { SnackyIcon(SnackyIcons.Outline.Calendar, size = 20.dp) }\n)`,address:`SnackyTextField(\n  value = query,\n  onValueChange = { query = it },\n  placeholder = "${p.placeholder}",\n  leadingIcon = { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) },\n  trailingIcon = { SnackyIcon(SnackyIcons.Outline.Close, size = 20.dp) }\n)`,search:`SnackyTextField(\n  value = query,\n  onValueChange = { query = it },\n  placeholder = "${p.placeholder}",\n  leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) }\n)`,otp:`SnackyOtpField(\n  value = otp,\n  onValueChange = { otp = it }\n)`,chat:`SnackyTextField(\n  value = message,\n  onValueChange = { message = it },\n  placeholder = "${p.placeholder==='Username'?'Write your message here':p.placeholder}"\n)`,'copy-value':`SnackyCopyField(\n  value = "7008123912039102",\n  onCopy = { /* copied */ }\n)`};return m[p.type]||m.text;}
   },
   tab:{
     component:'TabDemo',
@@ -939,7 +939,7 @@ const PG={
     controls:[{id:'withIcon',label:'With Icon',type:'toggle',def:true},{id:'open',label:'Expanded',type:'toggle',def:true}],
     impl:`const AccordionDemo=({withIcon,open,src})=>{const h=React.createElement;const os=useState(!!open),o=os[0],setO=os[1];useEffect(()=>{setO(!!open);},[open]);const wi=withIcon;return h(Acc,{title:wi?'BCA Virtual Account':'Accordion',titleSize:wi?12:14,open:o,onToggle:()=>setO(v=>!v),leadingIcon:wi&&src?h('img',{src:src,alt:'BCA',style:{maxWidth:24,maxHeight:24,objectFit:'contain',display:'block'}}):null,content:h('ul',{style:{margin:0,paddingLeft:21,color:'#333333',fontSize:14,lineHeight:'24px',fontWeight:400}},h('li',null,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacus nunc,'),h('li',null,'efficitur ultrices varius sit amet, imperdiet nec massa. Integer congue luctus purus, nec accumsan erat dignissim quis.'),h('li',null,'Aliquam sed sapien ornare magna ultricies convallis. Nunc semper risus semper tellus iaculis rdiet erat efficitur ut. Duis non imperdiet mi.'))});};`,
     getReact:p=>`<SnackyAccordion\n  title="${p.withIcon?'BCA Virtual Account':'Accordion'}"${p.withIcon?'\n  leadingIcon={Icons.Wallet}':''}\n  expanded={isExpanded}\n  onToggle={() => setExpanded(!isExpanded)}\n>\n  <BulletList items={contentItems} />\n</SnackyAccordion>`,
-    getKotlin:p=>`SnackyAccordion(\n  title = "${p.withIcon?'BCA Virtual Account':'Accordion'}",${p.withIcon?'\n  leadingIcon = Icons.Outlined.Wallet,':''}\n  expanded = isExpanded,\n  onToggle = { isExpanded = !isExpanded }\n) {\n  BulletList(items = contentItems)\n}`
+    getKotlin:p=>`SnackyAccordion(\n  title = "${p.withIcon?'BCA Virtual Account':'Accordion'}",${p.withIcon?'\n  leadingIcon = { SnackyIcon(SnackyIcons.Outline.Balance, size = 20.dp) },':''}\n  expanded = isExpanded,\n  onToggle = { isExpanded = !isExpanded }\n) {\n  BulletList(items = contentItems)\n}`
   },
   navbar:{
     component:'SnackyNavbar',
@@ -957,8 +957,8 @@ const PG={
       {id:'title',label:'Title',type:'text',def:'Title'}
     ],
     impl:`const SnackyHeader=({variant,title})=>{const h=React.createElement;const icon=variant==='Back'?'back':(variant==='None'?null:'close');const hasRight=variant==='Close + Right Action';const t=title||'Title';return h('div',{style:{display:'flex',alignItems:'center',width:360,boxSizing:'border-box',padding:'16px 8px',background:'#ffffff',fontFamily:'Poppins,sans-serif'}},icon?h('button',{onClick:()=>{},style:{width:40,height:40,borderRadius:100,border:'none',background:'transparent',display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:'pointer',outline:'none',flexShrink:0,padding:0}},ic(icon,24,'#333333')):null,h('div',{style:{flex:1,minWidth:0,display:'flex',justifyContent:'center',paddingRight:icon&&!hasRight?40:0}},h('span',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px',color:'#333333',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},t)),hasRight?h('button',{onClick:()=>{},style:{width:40,height:40,borderRadius:100,border:'none',background:'transparent',display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:'pointer',outline:'none',flexShrink:0,padding:0}},ic('map',24,'#333333')):null);};`,
-    getReact:p=>{let s='<Header\n  title="'+(p.title||'Title')+'"';if(p.variant!=='None'){s+='\n  leadingIcon="'+(p.variant==='Back'?'back':'close')+'"\n  onLeadingClick={onBack}';}if(p.variant==='Close + Right Action'){s+='\n  trailingIcon="map"\n  onTrailingClick={onOpenMap}';}return s+'\n/>';},
-    getKotlin:p=>{let s='SnackyHeader(\n  title = "'+(p.title||'Title')+'"';if(p.variant!=='None'){s+=',\n  leadingIcon = HeaderIcon.'+(p.variant==='Back'?'Back':'Close')+',\n  onLeadingClick = onBack';}if(p.variant==='Close + Right Action'){s+=',\n  trailingIcon = HeaderIcon.Map,\n  onTrailingClick = onOpenMap';}return s+'\n)';}
+    getReact:p=>{let s='<Header\n  title="'+(p.title||'Title')+'"';if(p.variant!=='None'){s+='\n  leadingIcon="'+(p.variant==='Back'?'back':'close')+'"\n  onLeadingClick={onBack}';}if(p.variant==='Close + Right Action'){s+='\n  trailingIcon={<SnackyIcons.outline.map />}\n  onTrailingClick={onOpenMap}';}return s+'\n/>';},
+    getKotlin:p=>{let s='SnackyHeader(\n  title = "'+(p.title||'Title')+'"';if(p.variant!=='None'){s+=',\n  leadingIcon = HeaderLeadingIcon.'+(p.variant==='Back'?'Back':'Close')+',\n  onLeadingClick = onBack';}if(p.variant==='Close + Right Action'){s+=',\n  trailingIcon = { SnackyIcon(SnackyIcons.Outline.Map, size = 24.dp) },\n  onTrailingClick = onOpenMap';}return s+'\n)';}
   },
   icon:{
     component:'IconGallery',
@@ -968,7 +968,7 @@ const PG={
       {id:'size',label:'Size',type:'select',options:['24','20','16']}
     ],
     impl:`const IconGallery=({size,variant})=>{const h=React.createElement;const sz=parseInt(size)||24;const names=(variant==='solid'?ICON_SET.solid:ICON_SET.outline);const label=function(n){return n.replace(/-solid$/,'').replace(/([a-z])([A-Z])/g,'$1 $2').toLowerCase();};return h('div',{style:{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:12,fontFamily:'Poppins,sans-serif',width:'100%',maxWidth:520}},names.map(function(n){return h('div',{key:n,style:{display:'flex',flexDirection:'column',alignItems:'center',gap:8,padding:'14px 6px',borderRadius:8,background:'#ffffff',border:'1px solid #eeeeee'}},h('div',{style:{height:26,display:'flex',alignItems:'center',justifyContent:'center'}},ic(n,sz,'#333333')),h('span',{style:{fontSize:9.5,color:'#7a7a7a',textAlign:'center',lineHeight:'12px',wordBreak:'break-word'}},label(n)));}));};`,
-    getReact:p=>`// ${p.variant} icons @ ${p.size}px\nconst { cart: CartIcon } = SnackyIcons.${p.variant};\n<CartIcon width={${p.size}} height={${p.size}} color="#333333" />`,
+    getReact:p=>`// ${p.variant} icons @ ${p.size}px\nconst { cart: CartIcon } = SnackyIcons.${p.variant};\n<SnackyIcons.outline.cart width={${p.size}} height={${p.size}} color="#333333" />`,
     getKotlin:p=>`// ${p.variant} icons @ ${p.size}dp\nIcon(\n  imageVector = SnackyIcons.${p.variant==='solid'?'CartSolid':'Cart'},\n  contentDescription = "Cart",\n  modifier = Modifier.size(${p.size}.dp),\n  tint = iconPrimary\n)`
   },
   section:{
@@ -2562,7 +2562,7 @@ fun SnackyButton(
 // SnackyButton(text = "Skip", onClick = {}, variant = ButtonVariant.Tertiary)
 // SnackyButton(text = "Continue", onClick = {}, enabled = false)
 // SnackyButton(text = "Photo", onClick = {}, size = ButtonSize.Small)
-// SnackyButton(text = "Cart", onClick = {}, icon = { Icon(SnackyIcons.CartAdd, contentDescription = null) })
+// SnackyButton(text = "Cart", onClick = {}, icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, contentDescription = null) })
 // SnackyButton(text = "Login with Google", onClick = {}, variant = ButtonVariant.Secondary, icon = { Image(painterResource(R.drawable.logo_google), contentDescription = null, modifier = Modifier.size(24.dp)) })
 </script>
 
@@ -2650,21 +2650,21 @@ fun SnackyUploadButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         IconButton(onClick = onClick) {
-            Icon(Icons.Outlined.PhotoCamera, contentDescription = "Upload",
+            SnackyIcon(SnackyIcons.Outline.Camera, contentDescription = "Upload",
                  tint = iconSecondary)
         }
     }
 }
 
 // Usage:
-// SnackyIconButton(icon = SnackyIcons.CartAdd, onClick = { }, contentDescription = "Add to cart")
-// SnackyIconButton(icon = Icons.Outlined.Share, onClick = { }, variant = IconButtonVariant.Secondary)
-// SnackyIconButton(icon = Icons.Outlined.Close, onClick = { }, variant = IconButtonVariant.Tertiary)
+// SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, size = 16.dp) }, onClick = { }, contentDescription = "Add to cart")
+// SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) }, onClick = { }, variant = IconButtonVariant.Secondary)
+// SnackyIconButton(icon = { SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp) }, onClick = { }, variant = IconButtonVariant.Tertiary)
 //
 // Toggled/favorited state - swap the icon and tint to iconActive when selected:
 // var favorited by remember { mutableStateOf(false) }
 // SnackyIconButton(
-//     icon     = if (favorited) Icons.Filled.Favorite else Icons.Outlined.Favorite,
+//     icon     = if (favorited) SnackyIcons.Solid.Heart else SnackyIcons.Solid.Heart,
 //     onClick  = { favorited = !favorited },
 //     variant  = IconButtonVariant.Secondary,
 //     tint     = if (favorited) iconActive else null
@@ -2804,7 +2804,7 @@ fun SnackyOtpField(value: String, onValueChange: (String) -> Unit) {
 // SnackyTextField(value = username, onValueChange = { username = it }, placeholder = "Username")
 // SnackyTextField(value = pw, onValueChange = { pw = it }, placeholder = "Password", isPassword = true)
 // SnackyTextField(value = search, onValueChange = { search = it },
-//                 trailingIcon = Icons.Outlined.Search, placeholder = "Search products...")
+//                 trailingIcon = { SnackyIcon(SnackyIcons.Outline.Search, size = 20.dp) }, placeholder = "Search products...")
 //
 // Dropdown: SnackyTextField already shows an accent border on focus for free
 // (focusedBorderColor = borderInputActive above). The chevron flip is caller-owned,
@@ -2817,7 +2817,7 @@ fun SnackyOtpField(value: String, onValueChange: (String) -> Unit) {
 //     modifier = Modifier
 //         .clickable { expanded = !expanded }
 //         .onFocusChanged { if (!it.isFocused) expanded = false },
-//     trailingIcon = Icons.Outlined.ArrowDropDown,
+//     trailingIcon = { SnackyIcon(SnackyIcons.Outline.ChevronDown, size = 20.dp) },
 //     // pass modifier = Modifier.rotate(rotation) down to the Icon() slot in your fork
 //     // of SnackyTextField if you need the icon itself, not just the field, to rotate
 // )
@@ -3155,11 +3155,11 @@ fun SnackyNavBar(
 
 // Wire up in Scaffold:
 // val navItems = listOf(
-//     NavBarItem("Home",     Icons.Filled.Home,          Icons.Outlined.Home),
-//     NavBarItem("Category", Icons.Filled.Category,      Icons.Outlined.Category),
-//     NavBarItem("Cart",     Icons.Filled.ShoppingCart,  Icons.Outlined.ShoppingCart),
-//     NavBarItem("History",  Icons.Filled.History,       Icons.Outlined.History),
-//     NavBarItem("Account",  Icons.Filled.Person,        Icons.Outlined.Person)
+//     NavBarItem("Home",     SnackyIcons.Outline.Home,          SnackyIcons.Outline.Home),
+//     NavBarItem("Category", SnackyIcons.Outline.Category,      SnackyIcons.Outline.Category),
+//     NavBarItem("Cart",     SnackyIcons.Outline.Cart,  SnackyIcons.Outline.Cart),
+//     NavBarItem("History",  SnackyIcons.Outline.History,       SnackyIcons.Outline.History),
+//     NavBarItem("Account",  SnackyIcons.Outline.Account,        SnackyIcons.Outline.Account)
 // )
 // var selectedTab by remember { mutableStateOf(0) }
 // Scaffold(
@@ -3341,13 +3341,13 @@ fun SnackyBadge(
 
 // Usage - cart icon with badge in Navbar:
 // SnackyBadge(count = cartItemCount) {
-//     Icon(Icons.Outlined.ShoppingCart, contentDescription = "Cart",
-//          modifier = Modifier.size(sizeIconMd))
+//     SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart",
+//          size = sizeIconMd)
 // }
 //
 // Notification bell:
 // SnackyBadge(count = unreadNotifications) {
-//     Icon(Icons.Outlined.Notifications, contentDescription = "Notifications")
+//     SnackyIcon(SnackyIcons.Outline.Bell, contentDescription = "Notifications")
 // }
 
 @Composable
@@ -3418,6 +3418,9 @@ fun SnackyVariantBadge(
 // SnackyCallout.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/components/SnackyCallout.kt
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 package com.snacky.ui.components
 
 import androidx.compose.foundation.background
@@ -3477,9 +3480,9 @@ fun SnackyCallout(
                 // Sent shows a checkmark (delivered); Pending shows a clock (still sending);
                 // Received has no trailing icon.
                 if (isSent) {
-                    Icon(Icons.Outlined.Check, contentDescription = null, tint = iconSecondary, modifier = Modifier.size(sizeIconSm))
+                    Icon(statusSentIcon, contentDescription = null, tint = iconSecondary, modifier = Modifier.size(sizeIconSm))
                 } else if (isPending) {
-                    Icon(Icons.Outlined.AccessTime, contentDescription = null, tint = iconSecondary, modifier = Modifier.size(sizeIconSm))
+                    Icon(statusPendingIcon, contentDescription = null, tint = iconSecondary, modifier = Modifier.size(sizeIconSm))
                 }
             }
         }
@@ -3783,6 +3786,9 @@ fun SnackyAccordion(
 // SnackyBottomSheet.kt + SnackyModal.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/components/SnackyBottomSheet.kt
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 package com.snacky.ui.components
 
 import androidx.compose.foundation.background
@@ -3961,11 +3967,11 @@ private fun CalendarContent(onSelectDate: () -> Unit) {
     var range by remember { mutableStateOf(15 to (19 as Int?)) }
 
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-        SnackyIconButton(SnackyIcons.Back, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Back, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
         Text("June 2021", style = SnackyTypography.h3Bold, textAlign = TextAlign.Center, modifier = Modifier.weight(1f))
         // Reuses the Back glyph mirrored 180° rather than a separate "forward" icon -
         // there is no dedicated forward-chevron asset in the icon set.
-        SnackyIconButton(SnackyIcons.Back, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp,
+        SnackyIconButton(SnackyIcons.Outline.Back, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp,
                          modifier = Modifier.rotate(180f))
     }
     Row(modifier = Modifier.fillMaxWidth()) {
@@ -4015,7 +4021,7 @@ private fun CalendarContent(onSelectDate: () -> Unit) {
 @Composable
 private fun VariantsContent(productImageUrl: String, onClose: () -> Unit, onBuyNow: () -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        SnackyIconButton(SnackyIcons.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
         Spacer(Modifier.width(gapLayoutBlock))
         Text("Variants", style = SnackyTypography.smallSemibold, color = textPrimary)
     }
@@ -4044,7 +4050,7 @@ private fun VariantsContent(productImageUrl: String, onClose: () -> Unit, onBuyN
     Row(horizontalArrangement = Arrangement.spacedBy(spacing8)) {
         SnackyButton(
             "Cart", onClick = { /* add to cart */ }, variant = ButtonVariant.Secondary,
-            icon = { Icon(SnackyIcons.CartAdd, contentDescription = null) },
+            icon = { SnackyIcon(SnackyIcons.Outline.CartAdd, contentDescription = null) },
             modifier = Modifier.width(160.dp)
         )
         SnackyButton("Buy Now", onBuyNow, modifier = Modifier.weight(1f))
@@ -4067,13 +4073,13 @@ private val sampleReviews = List(3) {
 @Composable
 private fun ReviewsContent(onClose: () -> Unit, reviews: List<ReviewItem> = sampleReviews) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        SnackyIconButton(SnackyIcons.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
         Spacer(Modifier.width(gapTextIcon))
         Text("Buyer Reviews", style = SnackyTypography.smallSemibold, color = textPrimary, modifier = Modifier.weight(1f))
     }
     Spacer(Modifier.height(gapLayoutBlock))
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Filled.Star, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
+        Icon(ratingStarFilled, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
         Spacer(Modifier.width(spacing4))
         Text("4.5", style = SnackyTypography.smallSemibold, color = textSecondary)
         Text(" (471 ratings) • 189 Reviews", style = SnackyTypography.smallRegular, color = textSecondary)
@@ -4095,7 +4101,7 @@ private fun ReviewsContent(onClose: () -> Unit, reviews: List<ReviewItem> = samp
                 Row {
                     repeat(5) { i ->
                         Icon(
-                            if (i < review.rating) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                            if (i < review.rating) ratingStarFilled else ratingStarOutline,
                             contentDescription = null,
                             tint     = if (i < review.rating) bgActionPrimary else borderMain,
                             modifier = Modifier.size(16.dp)
@@ -4148,20 +4154,20 @@ private fun PaymentRow(name: String, icon: ImageVector? = null, logoUrl: String?
 @Composable
 private fun PaymentMethodsContent(onClose: () -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        SnackyIconButton(SnackyIcons.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Close, onClick = onClose, variant = IconButtonVariant.Tertiary, size = 24.dp)
         Spacer(Modifier.width(gapTextIcon))
         Text("Payment Methods", style = SnackyTypography.smallSemibold, color = textPrimary)
     }
     PaymentSectionTitle("Balance & COD")
-    PaymentRow(icon = SnackyIcons.Cash, name = "Balance", subtitle = "$6.00 (Insufficient Balance)", actionLabel = "Top Up")
-    PaymentRow(icon = SnackyIcons.Truck, name = "COD")
+    PaymentRow(icon = { SnackyIcon(SnackyIcons.Outline.Balance, size = 20.dp) }, name = "Balance", subtitle = "$6.00 (Insufficient Balance)", actionLabel = "Top Up")
+    PaymentRow(icon = { SnackyIcon(SnackyIcons.Outline.Truck, size = 20.dp) }, name = "COD")
     PaymentSectionTitle("E-Wallet")
     listOf("GOPAY" to "gopay_logo", "OVO" to "ovo_logo", "ShopeePay" to "shopeepay_logo",
            "DANA" to "dana_logo", "Link AjA" to "linkaja_logo").forEach { (name, logo) ->
         PaymentRow(name = name, logoUrl = logo)
     }
     PaymentSectionTitle("Credit/Debit Card")
-    PaymentRow(icon = SnackyIcons.CreditCard, name = "Visa/Mastercard", actionLabel = "Add")
+    PaymentRow(icon = { SnackyIcon(SnackyIcons.Outline.CreditCard, size = 20.dp) }, name = "Visa/Mastercard", actionLabel = "Add")
     PaymentSectionTitle("Virtual Account")
     listOf("BCA Virtual Account" to "bca_logo", "Mandiri Virtual Account" to "mandiri_logo",
            "BRI Virtual Account" to "bri_logo").forEach { (name, logo) ->
@@ -4185,8 +4191,8 @@ private fun ColumnScope.DriverContent() {
             Text("Mimbar Al Risyad", style = SnackyTypography.smallSemibold, color = textPrimary)
             Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)
         }
-        SnackyIconButton(SnackyIcons.Phone, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
-        SnackyIconButton(SnackyIcons.Chat, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Phone, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
+        SnackyIconButton(SnackyIcons.Outline.Chat, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
     }
     Spacer(Modifier.height(gapLayoutBlock))
     HorizontalDivider(color = borderMain)
@@ -4216,6 +4222,9 @@ private fun ColumnScope.DriverContent() {
 // SnackySection.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/components/SnackySection.kt
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 package com.snacky.ui.components
 
 import androidx.compose.foundation.BorderStroke
@@ -4402,7 +4411,7 @@ fun SnackySection(
 private fun SectionHeader(title: String, onSeeAll: () -> Unit, style: TextStyle = SnackyTypography.smallSemibold) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
         Text(title, style = style, color = textPrimary, modifier = Modifier.weight(1f))
-        SnackyIconButton(SnackyIcons.ChevronDown, onClick = onSeeAll, size = 24.dp,
+        SnackyIconButton(SnackyIcons.Outline.ChevronDown, onClick = onSeeAll, size = 24.dp,
                          modifier = Modifier.rotate(-90f), contentDescription = "See all")
     }
 }
@@ -4446,7 +4455,7 @@ private fun ReviewSection() {
     Column(Modifier.padding(vertical = spacing16), verticalArrangement = Arrangement.spacedBy(gapLayoutBlock)) {
         Box(Modifier.padding(horizontal = spacing24)) { SectionHeader("Buyer Reviews", onSeeAll = { }) }
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = spacing24)) {
-            Icon(Icons.Filled.Star, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
+            Icon(ratingStarFilled, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
             Spacer(Modifier.width(spacing4))
             Text("4.5", style = SnackyTypography.smallSemibold, color = textSecondary)
             Text(" (471 ratings) • 189 Reviews", style = SnackyTypography.smallRegular, color = textSecondary)
@@ -4458,7 +4467,7 @@ private fun ReviewSection() {
                 Text("Debora Maryanti", style = SnackyTypography.smallBold, color = textPrimary)
                 Row {
                     repeat(5) { i ->
-                        Icon(if (i < 4) Icons.Filled.Star else Icons.Outlined.StarBorder, contentDescription = null,
+                        Icon(if (i < 4) ratingStarFilled else ratingStarOutline, contentDescription = null,
                              tint = if (i < 4) bgActionPrimary else borderMain, modifier = Modifier.size(16.dp))
                     }
                 }
@@ -4543,7 +4552,7 @@ private fun SeeOtherProductsCard(onClick: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            SnackyIconButton(SnackyIcons.ChevronDown, onClick = onClick, size = 24.dp,
+            SnackyIconButton(SnackyIcons.Outline.ChevronDown, onClick = onClick, size = 24.dp,
                              modifier = Modifier.rotate(-90f), contentDescription = "See other products")
             Spacer(Modifier.height(spacing4))
             Text("See other products", style = SnackyTypography.smallBold, color = textLink, textAlign = TextAlign.Center)
@@ -4699,8 +4708,8 @@ private fun DriverSection() {
                 Text("Mimbar Al Risyad", style = SnackyTypography.smallSemibold, color = textPrimary)
                 Text("B1112ARB", style = SnackyTypography.captionRegular, color = textSecondary)
             }
-            SnackyIconButton(SnackyIcons.Phone, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
-            SnackyIconButton(SnackyIcons.Chat, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
+            SnackyIconButton(SnackyIcons.Outline.Phone, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
+            SnackyIconButton(SnackyIcons.Outline.Chat, onClick = { }, variant = IconButtonVariant.Tertiary, size = 24.dp)
         }
         HorizontalDivider(color = borderMain)
         Column {
@@ -4719,12 +4728,12 @@ private fun DestinationSection() {
         verticalArrangement = Arrangement.spacedBy(gapIconLabel)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(SnackyIcons.Location, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
+            SnackyIcon(SnackyIcons.Outline.Address, contentDescription = null, tint = bgActionPrimary, size = 16.dp)
             Spacer(Modifier.width(spacing4))
             Text("Sent to", style = SnackyTypography.smallRegular, color = textPrimary)
             Spacer(Modifier.width(spacing8))
             Text("Home", style = SnackyTypography.smallBold, color = textPrimary)
-            Icon(SnackyIcons.ChevronDown, contentDescription = null, tint = textPrimary, modifier = Modifier.size(16.dp))
+            SnackyIcon(SnackyIcons.Outline.ChevronDown, contentDescription = null, tint = textPrimary, size = 16.dp)
         }
         Text(
             "Senopati Street, RT.6/RW.3, Senayan, South Jakarta City, Special Capital Region of Jakarta",
@@ -4757,15 +4766,15 @@ private fun OrderDetailsSection(productImageUrl: String) {
                          modifier = Modifier.padding(spacing8))
                 }
                 Spacer(Modifier.weight(1f))
-                SnackyIconButton(SnackyIcons.Minus, onClick = { qty = (qty - 1).coerceAtLeast(1) }, size = 24.dp)
+                SnackyIconButton(SnackyIcons.Outline.Minus, onClick = { qty = (qty - 1).coerceAtLeast(1) }, size = 24.dp)
                 Text(qty.toString(), style = SnackyTypography.captionSemibold, color = textPrimary,
                      modifier = Modifier.padding(horizontal = spacing8))
-                SnackyIconButton(SnackyIcons.Plus, onClick = { qty += 1 }, size = 24.dp)
+                SnackyIconButton(SnackyIcons.Outline.Plus, onClick = { qty += 1 }, size = 24.dp)
             }
         }
         HorizontalDivider(color = borderMain)
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(SnackyIcons.Edit, contentDescription = null, tint = textLink, modifier = Modifier.size(16.dp))
+            SnackyIcon(SnackyIcons.Outline.Edit, contentDescription = null, tint = textLink, size = 16.dp)
             Spacer(Modifier.width(gapTextIcon))
             Text("Add Note", style = SnackyTypography.smallBold, color = textLink)
         }
@@ -4797,7 +4806,7 @@ private fun PaymentSection() {
         AsyncImage(model = "gopay_logo", contentDescription = "GoPay", modifier = Modifier.size(24.dp))
         Spacer(Modifier.width(gapTextIcon))
         Text("GOPAY", style = SnackyTypography.smallSemibold, color = textPrimary)
-        Icon(SnackyIcons.ChevronDown, contentDescription = null, tint = textPrimary, modifier = Modifier.size(16.dp))
+        SnackyIcon(SnackyIcons.Outline.ChevronDown, contentDescription = null, tint = textPrimary, size = 16.dp)
     }
 }
 
@@ -4846,90 +4855,45 @@ fun SnackyAvatar(
 </script>
 
 <script type="text/plain" id="code-icon">
-// SnackyIcons.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyIcons.kt
+// Generated from assets/icons/icons.json by scripts/generate-icons.js.
+// Ships in @snacky/ui's Compose counterpart as
+// com.snacky.ui.components.icon.SnackyIcons - import it, do not re-declare it.
 
-package com.snacky.ui.theme
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 
-// Icon sizing guide:
-//   Navbar    - 20×20dp (line default / filled active)
-//   General   - 24×24dp (notifications, balance, points)
-//   Button    - 24×24dp (back, close, map, favourite, delete, share)
-//   Input     - 20–24dp (password toggle, dropdown, calendar, address)
+// Every icon is a SnackyIconSpec carrying the viewBox Figma authored it at
+// (16, 20 or 24 - the set is deliberately not uniform), rendered by the
+// SnackyIcon composable. These are filled outline shapes, NOT stroked paths:
+// the outline weight is baked into each shape, so there is no stroke width.
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*
+// Outline (42) - default/inactive state:
+//   Account, Address, Back, Balance, Bell, Calendar,
+//   Camera, Cart, CartAdd, Category, Chat, ChevronDown,
+//   ChevronRight, ChevronUp, Close, CloseInput, CreditCard, Document,
+//   Edit, Eye, EyeOff, Heart, Help, History,
+//   Home, Key, Lock, Logout, Map, MessageSquare,
+//   Minus, Phone, Plus, Referral, Search, Send,
+//   Sent, Share, Smartphone, Trash, Truck, Unsent
 
-object SnackyIcons {
-    // ── Solid - active/selected state. Only icons that need emphasis get a Solid
-    //    counterpart (Navbar items, Favourite, the Gift promo badge); everything else
-    //    uses Outline at every state. ─────────────────────────────────────────────────
-    val HomeSolid         = Icons.Filled.Home
-    val CategorySolid     = Icons.Filled.Category
-    val CartSolid         = Icons.Filled.ShoppingCart
-    val DocumentSolid     = Icons.Filled.Description
-    val AccountSolid      = Icons.Filled.Person
-    val NotificationSolid = Icons.Filled.Notifications
-    val TruckSolid        = Icons.Filled.LocalShipping
-    val CashSolid         = Icons.Filled.Payments
-    val GiftSolid         = Icons.Filled.CardGiftcard
-    val FavouriteSolid    = Icons.Filled.Favorite
+// Solid (10) - active/selected state:
+//   Account, Balance, Bell, Cart, Category, Heart,
+//   History, Home, Points, Truck
 
-    // ── Outline - default/inactive state. Full 41-icon set. ─────────────────────────
-    val Home          = Icons.Outlined.Home
-    val Category      = Icons.Outlined.Category
-    val Cart           = Icons.Outlined.ShoppingCart
-    val Document       = Icons.Outlined.Description
-    val Account        = Icons.Outlined.Person
-    val Notification   = Icons.Outlined.Notifications
-    val Favourite      = Icons.Outlined.FavoriteBorder
-    val Truck          = Icons.Outlined.LocalShipping
-    val Cash           = Icons.Outlined.Payments
-    val Check          = Icons.Outlined.Check
-    val Clock          = Icons.Outlined.AccessTime
-    val Lock           = Icons.Outlined.Lock
-    val Receipt        = Icons.Outlined.Receipt
-    val Logout         = Icons.Outlined.Logout
-    val Help           = Icons.Outlined.HelpOutline
-    val Smartphone     = Icons.Outlined.Smartphone
-    val Key            = Icons.Outlined.Key
-    val Edit           = Icons.Outlined.Edit
-    val CreditCard     = Icons.Outlined.CreditCard
-    val Phone          = Icons.Outlined.Call
-    val Chat           = Icons.Outlined.ChatBubbleOutline
-    val Send           = Icons.Outlined.Send
-    val Search         = Icons.Outlined.TravelExplore
-    val Delete         = Icons.Outlined.DeleteOutline
-    val ChevronRight   = Icons.Outlined.ChevronRight
-    val Share          = Icons.Outlined.Share
-    val MessageSquare  = Icons.Outlined.Sms
-    val CloseCircle    = Icons.Outlined.Cancel
-    val CartAdd        = Icons.Outlined.AddShoppingCart
-    val Plus           = Icons.Outlined.Add
-    val Minus          = Icons.Outlined.Remove
-    val EyeOff         = Icons.Outlined.VisibilityOff
-    val Eye            = Icons.Outlined.Visibility
-    val Back           = Icons.Outlined.ArrowBack
-    val Close          = Icons.Outlined.Close
-    val Pin            = Icons.Outlined.PinDrop
-    val ChevronDown    = Icons.Outlined.KeyboardArrowDown
-    val ChevronUp      = Icons.Outlined.KeyboardArrowUp
-    val Calendar       = Icons.Outlined.CalendarToday
-    val Location       = Icons.Outlined.LocationOn
-    val Camera         = Icons.Outlined.PhotoCamera
-    val Copy           = Icons.Outlined.ContentCopy
-}
+// Usage - size defaults to the icon's own viewBox, tint to LocalContentColor:
+SnackyIcon(SnackyIcons.Outline.Home, contentDescription = "Home")
+SnackyIcon(SnackyIcons.Solid.Home, tint = SnackyColor.iconBrand, size = 20.dp)
 
-// Usage:
-// Icon(imageVector        = SnackyIcons.Home,       // Outline - default/inactive
-//      contentDescription = "Home",
-//      tint               = iconSecondary,
-//      modifier           = Modifier.size(sizeIconMd))
-// Icon(imageVector        = SnackyIcons.HomeSolid,   // Solid - active/selected
-//      contentDescription = "Home",
-//      tint               = iconBrand,
-//      modifier           = Modifier.size(sizeIconMd))
+// In a component's icon slot (the slot supplies the colour):
+SnackyIconButton(
+    icon = { SnackyIcon(SnackyIcons.Outline.Share, size = 20.dp) },
+    onClick = { share() },
+    variant = IconButtonVariant.Secondary,
+    contentDescription = "Share",
+)
+
+// If no name here fits, say so rather than inventing a glyph or substituting
+// an emoji. Never re-map these onto Material Icons.
 </script>
 
 <script type="text/plain" id="code-illustration">
@@ -5108,6 +5072,9 @@ fun SnackyProductImage(
 // SnackyProductCard.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/components/SnackyProductCard.kt
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 package com.snacky.ui.components
 
 import androidx.compose.foundation.background
@@ -5201,7 +5168,7 @@ fun SnackyProductCard(
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(gapIconLabel)) {
-                        Icon(Icons.Filled.Star, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
+                        Icon(ratingStarFilled, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
                         Text(rating?.toString() ?: "0.0", style = SnackyTypography.smallSemibold, color = textSecondary)
                         if (ratingCount != null) {
                             Text("($ratingCount)", style = SnackyTypography.smallRegular, color = textSecondary)
@@ -5209,14 +5176,14 @@ fun SnackyProductCard(
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                         SnackyIconButton(
-                            icon               = if (favorited) SnackyIcons.FavouriteSolid else SnackyIcons.Favourite,
+                            icon               = if (favorited) SnackyIcons.Solid.Heart else SnackyIcons.Outline.Heart,
                             onClick            = { onFavoriteClick?.invoke() },
                             variant            = IconButtonVariant.Secondary,
                             contentDescription = "Favorite"
                         )
-                        SnackyIconButton(SnackyIcons.Share, onClick = { onShareClick?.invoke() },
+                        SnackyIconButton(SnackyIcons.Outline.Share, onClick = { onShareClick?.invoke() },
                                          variant = IconButtonVariant.Secondary, contentDescription = "Share")
-                        SnackyIconButton(SnackyIcons.Chat, onClick = { onChatClick?.invoke() },
+                        SnackyIconButton(SnackyIcons.Outline.Chat, onClick = { onChatClick?.invoke() },
                                          variant = IconButtonVariant.Secondary, contentDescription = "Chat")
                     }
                 }
@@ -5275,14 +5242,14 @@ fun SnackyProductCard(
             }
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-                Icon(Icons.Filled.Star, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
+                Icon(ratingStarFilled, contentDescription = null, tint = bgActionPrimary, modifier = Modifier.size(16.dp))
                 Spacer(Modifier.width(spacing4))
                 Text(rating?.toString() ?: "0.0", style = SnackyTypography.captionSemibold, color = textSecondary,
                      modifier = Modifier.weight(1f))
                 if (onAddToCart != null) {
                     // Default Primary variant already renders a dark icon on the
                     // yellow circle - confirmed against Figma Dev Mode, no tint override needed.
-                    SnackyIconButton(SnackyIcons.CartAdd, onClick = onAddToCart, size = 32.dp,
+                    SnackyIconButton(SnackyIcons.Outline.CartAdd, onClick = onAddToCart, size = 32.dp,
                                      contentDescription = "Add to cart")
                 }
             }
@@ -5815,14 +5782,14 @@ export function UploadButton({ onClick, icon }: UploadButtonProps) {
 
 // Usage:
 // <IconButton icon={<SnackyIcons.outline.cartAdd />} onClick={() => {}} ariaLabel="Add to cart" />
-// <IconButton icon={<ShareIcon />} onClick={() => {}} variant="secondary" ariaLabel="Share" />
-// <IconButton icon={<CloseIcon />} onClick={() => {}} variant="tertiary" ariaLabel="Close" />
-// <UploadButton onClick={() => fileInputRef.current?.click()} icon={<PlusIcon />} />
+// <IconButton icon={<SnackyIcons.outline.share />} onClick={() => {}} variant="secondary" ariaLabel="Share" />
+// <IconButton icon={<SnackyIcons.outline.close />} onClick={() => {}} variant="tertiary" ariaLabel="Close" />
+// <UploadButton onClick={() => fileInputRef.current?.click()} icon={<SnackyIcons.outline.plus />} />
 //
 // Toggled/favorited state - swap the icon and tint to var(--icon-active) when selected:
 // const [favorited, setFavorited] = useState(false);
 // <IconButton
-//   icon={favorited ? <HeartFilledIcon /> : <HeartIcon />}
+//   icon={favorited ? <SnackyIcons.solid.heart /> : <SnackyIcons.outline.heart />}
 //   onClick={() => setFavorited(!favorited)}
 //   variant="secondary"
 //   tint={favorited ? 'var(--icon-active)' : undefined}
@@ -5988,7 +5955,7 @@ export function OtpField({ value, onChange }: OtpFieldProps) {
 // const [username, setUsername] = useState('');
 // <TextField value={username} onChange={setUsername} placeholder="Username" />
 // <TextField value={pw} onChange={setPw} placeholder="Password" type="password" />
-// <TextField value={search} onChange={setSearch} placeholder="Search products..." trailingIcon={<SearchIcon />} />
+// <TextField value={search} onChange={setSearch} placeholder="Search products..." trailingIcon={<SnackyIcons.outline.search />} />
 //
 // Dropdown: TextField already shows an accent border on focus for free (its :focus
 // style uses var(--border-input-active)). The chevron flip is caller-owned, since
@@ -5998,7 +5965,7 @@ export function OtpField({ value, onChange }: OtpFieldProps) {
 //   value={category} onChange={() => {}} placeholder="Select category"
 //   onClick={() => setOpen((o) => !o)}
 //   onBlur={() => setOpen(false)}
-//   trailingIcon={<ChevronDownIcon style={{ transform: open ? 'rotate(180deg)' : undefined, transition: 'transform .15s' }} />}
+//   trailingIcon={<SnackyIcons.outline.chevronDown style={{ transform: open ? 'rotate(180deg)' : undefined, transition: 'transform .15s' }} />}
 // />
 </script>
 
@@ -6432,12 +6399,12 @@ export function Badge({ count, children }: BadgeProps) {
 
 // Usage - cart icon with badge in NavBar:
 // <Badge count={cartItemCount}>
-//   <CartIcon width={20} height={20} aria-label="Cart" />
+//   <SnackyIcons.outline.cart width={20} height={20} aria-label="Cart" />
 // </Badge>
 //
 // Notification bell:
 // <Badge count={unreadNotifications}>
-//   <BellIcon aria-label="Notifications" />
+//   <SnackyIcons.outline.bell aria-label="Notifications" />
 // </Badge>
 
 interface DiscountTagProps {
@@ -6523,7 +6490,9 @@ export function VariantBadge({ label }: VariantBadgeProps) {
 // src/components/Callout.tsx
 
 import { typography } from '../styles/typography';
-import { CheckIcon, ClockIcon } from './icon-set'; // swap for your icon library, e.g. lucide-react
+// The delivered/sending glyphs are NOT part of the Snacky icon set (see
+// assets/icons/legacy-extras.json) - supply them from your own assets.
+import { StatusSent, StatusPending } from './app-icons';
 
 export type CalloutVariant = 'sent' | 'pending' | 'received';
 
@@ -6544,8 +6513,8 @@ export function Callout({ message, timestamp, variant }: CalloutProps) {
         <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)', alignSelf: 'flex-end' }}>
           <span style={{ ...typography.captionRegular, color: 'var(--text-primary)', opacity: 0.6 }}>{timestamp}</span>
           {/* Sent shows a checkmark (delivered); Pending shows a clock (still sending); Received has no trailing icon. */}
-          {isSent && <CheckIcon width={16} height={16} color="var(--icon-secondary)" />}
-          {isPending && <ClockIcon width={16} height={16} color="var(--icon-secondary)" />}
+          {isSent && <StatusSent width={16} height={16} color="var(--icon-secondary)" />}
+          {isPending && <StatusPending width={16} height={16} color="var(--icon-secondary)" />}
         </span>
       </div>
     </div>
@@ -6758,6 +6727,9 @@ export function Accordion({ title, children, leadingIcon, expanded, onToggle }: 
 // BottomSheet.tsx
 // src/components/BottomSheet.tsx
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 import { ReactNode, useState } from 'react';
 import { typography } from '../styles/typography';
 import { Button } from './Button';
@@ -7027,7 +6999,7 @@ function ReviewsContent({ onClose, reviews = SAMPLE_REVIEWS }: { onClose: () => 
         <span style={{ ...typography.smallSemibold, flex: 1 }}>Buyer Reviews</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-        <StarIcon filled />
+        <RatingStar filled />
         <span style={{ ...typography.smallSemibold, color: 'var(--text-secondary)' }}>4.5</span>
         <span style={{ ...typography.smallRegular, color: 'var(--text-secondary)' }}>(471 ratings) • 189 Reviews</span>
       </div>
@@ -7044,7 +7016,7 @@ function ReviewsContent({ onClose, reviews = SAMPLE_REVIEWS }: { onClose: () => 
               <p style={{ ...typography.smallBold, margin: 0 }}>{review.reviewerName}</p>
               <div style={{ display: 'flex' }}>
                 {Array.from({ length: 5 }).map((_, si) => (
-                  <StarIcon key={si} filled={si < review.rating} />
+                  <RatingStar key={si} filled={si < review.rating} />
                 ))}
               </div>
             </div>
@@ -7150,6 +7122,9 @@ function DriverContent() {
 // Section.tsx
 // src/components/Section.tsx
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 import { ReactNode, useState } from 'react';
 import { typography } from '../styles/typography';
 import { Button } from './Button';
@@ -7334,7 +7309,7 @@ function ReviewSection() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-layout-block)', padding: 'var(--spacing-16) 0' }}>
       <div style={{ padding: '0 var(--spacing-24)' }}><SectionHeader title="Buyer Reviews" onSeeAll={() => {}} /></div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '0 var(--spacing-24)' }}>
-        <StarIcon filled />
+        <RatingStar filled />
         <span style={{ ...typography.smallSemibold, color: 'var(--text-secondary)' }}>4.5</span>
         <span style={{ ...typography.smallRegular, color: 'var(--text-secondary)' }}>(471 ratings) • 189 Reviews</span>
       </div>
@@ -7343,7 +7318,7 @@ function ReviewSection() {
         <div>
           <p style={{ ...typography.smallBold, margin: 0 }}>Debora Maryanti</p>
           <div style={{ display: 'flex' }}>
-            {Array.from({ length: 5 }).map((_, i) => <StarIcon key={i} filled={i < 4} />)}
+            {Array.from({ length: 5 }).map((_, i) => <RatingStar key={i} filled={i < 4} />)}
           </div>
         </div>
       </div>
@@ -7675,60 +7650,44 @@ export function Avatar({ src, alt, size = 'md' }: AvatarProps) {
 </script>
 
 <script type="text/plain" id="code-react-icon">
-// icons.tsx
-// src/theme/icons.tsx
+// Generated from assets/icons/icons.json by scripts/generate-icons.js.
+// Ships in @snacky/ui - import it, do not re-declare it or swap in another
+// icon library.
 
-// Icon sizing guide:
-// navbar: 20x20px - home, category, cart, account
-// general: 24x24px - notification, balance, gift, sent
-// button: 24x24px - back, close, share, delete, edit...
-// input: 16-24px - eye, chevronDown, calendar, location
-//
-// Two style families, mirroring the Figma "Icon outline" / "Icon solid" frames:
-//   outline - default/inactive state, full 41-icon set
-//   solid   - active/selected state, 10-icon subset (+ gift, which has no outline twin)
+import { SnackyIcons } from '@snacky/ui';
 
-import {
-  HomeIcon, HomeSolidIcon,
-  CategoryIcon, CategorySolidIcon,
-  CartIcon, CartSolidIcon,
-  DocumentIcon, DocumentSolidIcon,
-  PersonIcon, PersonSolidIcon,
-  BellIcon, BellSolidIcon,
-  TruckIcon, TruckSolidIcon,
-  CashIcon, CashSolidIcon,
-  GiftSolidIcon,
-  HeartIcon, HeartSolidIcon,
-  CheckIcon, ClockIcon, LockIcon, ReceiptIcon, LogoutIcon, HelpIcon, SmartphoneIcon,
-  KeyIcon, EditIcon, CreditCardIcon, PhoneIcon, ChatIcon, SendIcon, SearchIcon, TrashIcon,
-  ChevronRightIcon, ShareIcon, MessageSquareIcon, CloseCircleIcon, CartAddIcon, PlusIcon, MinusIcon,
-  EyeOffIcon, EyeIcon, ArrowLeftIcon, CloseIcon, PinIcon, ChevronDownIcon, ChevronUpIcon,
-  CalendarIcon, MapPinIcon, CameraIcon, CopyIcon,
-} from './icon-set'; // swap for your icon library, e.g. lucide-react
+// Each icon is a React component defaulting to its own natural size, with
+// color="currentColor" so it inherits whatever the surrounding slot sets.
+// These are filled outline shapes, NOT stroked paths: the outline weight is
+// baked into each shape, so there is no strokeWidth to set.
 
-export const SnackyIcons = {
-  outline: {
-    home: HomeIcon, category: CategoryIcon, cart: CartIcon, document: DocumentIcon,
-    person: PersonIcon, bell: BellIcon, heart: HeartIcon, truck: TruckIcon, cash: CashIcon,
-    check: CheckIcon, clock: ClockIcon, lock: LockIcon, receipt: ReceiptIcon, logout: LogoutIcon,
-    help: HelpIcon, smartphone: SmartphoneIcon, key: KeyIcon, edit: EditIcon, creditCard: CreditCardIcon,
-    phone: PhoneIcon, chat: ChatIcon, send: SendIcon, search: SearchIcon, trash: TrashIcon,
-    chevronRight: ChevronRightIcon, share: ShareIcon, messageSquare: MessageSquareIcon,
-    closeCircle: CloseCircleIcon, cartAdd: CartAddIcon, plus: PlusIcon, minus: MinusIcon,
-    eyeOff: EyeOffIcon, eye: EyeIcon, back: ArrowLeftIcon, close: CloseIcon, pin: PinIcon,
-    chevronDown: ChevronDownIcon, chevronUp: ChevronUpIcon, calendar: CalendarIcon,
-    location: MapPinIcon, camera: CameraIcon, copy: CopyIcon,
-  },
-  solid: {
-    home: HomeSolidIcon, category: CategorySolidIcon, cart: CartSolidIcon, document: DocumentSolidIcon,
-    person: PersonSolidIcon, bell: BellSolidIcon, truck: TruckSolidIcon, cash: CashSolidIcon,
-    gift: GiftSolidIcon, heart: HeartSolidIcon,
-  },
-} as const;
+// SnackyIcons.outline (42) - default/inactive state:
+//   account, address, back, balance, bell, calendar,
+//   camera, cart, cartAdd, category, chat, chevronDown,
+//   chevronRight, chevronUp, close, closeInput, creditCard, document,
+//   edit, eye, eyeOff, heart, help, history,
+//   home, key, lock, logout, map, messageSquare,
+//   minus, phone, plus, referral, search, send,
+//   sent, share, smartphone, trash, truck, unsent
+
+// SnackyIcons.solid (10) - active/selected state:
+//   account, balance, bell, cart, category, heart,
+//   history, home, points, truck
 
 // Usage:
-// <SnackyIcons.outline.home width={20} height={20} color="var(--icon-secondary)" />  // default / inactive
-// <SnackyIcons.solid.home width={20} height={20} color="var(--icon-brand)" />        // active / selected
+<SnackyIcons.outline.home />
+<SnackyIcons.solid.home width={20} height={20} color="var(--icon-brand)" />
+
+// In a component's icon slot (the slot supplies the colour):
+<IconButton
+  icon={<SnackyIcons.outline.share width={20} height={20} />}
+  onClick={() => share()}
+  variant="secondary"
+  ariaLabel="Share"
+/>
+
+// If no name here fits, say so rather than inventing a glyph or substituting
+// an emoji. Never swap these for lucide-react, Material Icons, or similar.
 </script>
 
 <script type="text/plain" id="code-react-illustration">
@@ -7829,6 +7788,9 @@ export function ProductImage({ src, alt, usage = 'product-card', sold = false }:
 // ProductCard.tsx
 // src/components/ProductCard.tsx
 
+// Note: the rating star and delivered/sending glyphs are NOT part of the
+// Snacky icon set (see assets/icons/legacy-extras.json) - they come from
+// your own assets, unlike everything under SnackyIcons.
 import { typography } from '../styles/typography';
 import { IconButton } from './IconButton';
 import { SnackyIcons } from '../theme/icons';
@@ -7893,7 +7855,7 @@ export function ProductCard({
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--gap-icon-label)' }}>
-              <StarIcon />
+              <RatingStar />
               <span style={{ ...typography.smallSemibold, color: 'var(--text-secondary)' }}>{(rating ?? 0).toFixed(1)}</span>
               {ratingCount != null && <span style={{ ...typography.smallRegular, color: 'var(--text-secondary)' }}>({ratingCount})</span>}
             </span>
@@ -7946,7 +7908,7 @@ export function ProductCard({
       </div>
       <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
         <span style={{ ...typography.captionSemibold, flex: 1, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4 }}>
-          <StarIcon /> {(rating ?? 0).toFixed(1)}
+          <RatingStar /> {(rating ?? 0).toFixed(1)}
         </span>
         {onAddToCart && (
           <span onClick={stop()}>
