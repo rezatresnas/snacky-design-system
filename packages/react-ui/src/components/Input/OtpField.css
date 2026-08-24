@@ -25,3 +25,11 @@
 .snacky-otp__cell:focus {
   border-color: var(--border-input-active);
 }
+/* Figma defines no disabled OTP variant (only default/active/filled), so this
+   is not a spec value: it reuses the disabled text colour TextField already
+   uses, so the prop is at least visible. Without it a disabled field rendered
+   identically to an enabled one and the prop looked broken. */
+.snacky-otp__cell:disabled {
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
