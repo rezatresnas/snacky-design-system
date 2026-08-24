@@ -5,7 +5,7 @@
   "globalName": "SnackyUI",
   "cssEntry": "dist/index.css",
   "tokensGlob": "src/theme/tokens.css",
-  "runtimeFontPrefixes": ["Poppins"],
+  "extraFonts": ["src/fonts/fonts.css"],
   "componentSrcMap": {
     "SnackyIcons": null
   },

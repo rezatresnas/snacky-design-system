@@ -8,9 +8,21 @@
 - `componentSrcMap: {"SnackyIcons": null}` excludes the icon-set export (`SnackyIcons`)
   from the component scan - it's an object of icon components, not a component itself,
   and tripped `[BUNDLE_EXPORT]` until excluded.
-- `runtimeFontPrefixes: ["Poppins"]` - the package's CSS references Poppins by name but
-  ships no `@font-face`; the host app is expected to load it via Google Fonts (as
-  `index.html` does with a `<link>` tag). This suppressed `[FONT_MISSING]` correctly.
+- **Poppins is now self-hosted, not runtime-loaded.** Originally `runtimeFontPrefixes:
+  ["Poppins"]` suppressed `[FONT_MISSING]` on the assumption the host app loads Google
+  Fonts itself. On the 2026-08-24 re-sync, the actual Poppins `.ttf` files (400/500/
+  600/700/800 + italic, OFL-licensed) turned up already uploaded in the claude.ai/design
+  project under `fonts/` - real files, not something this sync produced - but `styles.css`
+  never `@import`ed them, so they were dead weight in the project the whole time. Pulled
+  them into the repo at `packages/react-ui/src/fonts/` (`fonts.css` + the 6 `.ttf` files +
+  `OFL.txt`), replaced `runtimeFontPrefixes` with
+  `"extraFonts": ["src/fonts/fonts.css"]`, rebuilt - `styles.css` now correctly emits
+  `@import "./fonts/fonts.css";` ahead of `_ds_bundle.css`, and `[FONT_MISSING]` no longer
+  fires at all (not suppressed - genuinely resolved). Every design built with this system
+  now gets real Poppins with zero network dependency. **If `packages/react-ui/src/fonts/`
+  goes missing on a fresh clone**, re-fetch the 6 `.ttf` files from the live project
+  (`fonts/Poppins-*.ttf`) via `DesignSync(get_file)` before rebuilding, or the build falls
+  back to `[FONT_MISSING]` again.
 - `overrides` for 4 components flagged `[GRID_OVERFLOW]` on first full validate:
   `Button` and `Section` and `AddressResult` → `cardMode: "column"` (a wide story
   cropped in the grid), `BottomSheet` → `cardMode: "single", primaryStory: "Default"`
@@ -108,16 +120,34 @@
   CSS gap, not a preview-composition problem). Worth fixing in
   `packages/react-ui/src/components/Input/OtpField.css` separately.
 
+## Files in the project this sync does not own - never delete them
+
+- `support.js` at the project root is the claude.ai/design platform's own runtime
+  helper (its header says "GENERATED from dc-runtime/src/*.ts"). Not produced by this
+  sync, not related to it. Never touch it, never include it in a delete pass.
+- `components/tokens/Typography/Typography.html` is a token-showcase card, also not
+  produced by this sync's build (the package shape has no `tokens/**` output). Left
+  alone on the 2026-08-24 re-sync's reconciliation pass rather than deleted, since it
+  isn't an orphan from a prior run of this same sync - its origin is unknown but it
+  isn't ours to remove.
+- **On any future re-sync's reconciliation-delete step**: before deleting anything
+  under `fonts/`, `tokens/`, or the project root that this build doesn't produce,
+  check whether it's actually orphaned output from a PRIOR run of this same sync
+  (safe to delete) versus something else added it (not safe - ask the user or skip
+  the delete). The default delete-everything-not-in-this-build assumption only holds
+  when the project's entire history is this sync's own uploads, which stopped being
+  true once real Poppins fonts and other content showed up from elsewhere.
+
 ## Re-sync risks
 
-- **HeroBanner/SquareBanner/FullWidthBanner text renders in a serif fallback font
-  locally.** Headless Chromium in this sandbox has no network access to Google Fonts,
-  so `Poppins` (declared via `runtimeFontPrefixes`, not shipped) falls back to the
-  browser's serif default rather than a sans-serif system font in the local
-  `.review.html`/screenshots. This is expected and not a bug - claude.ai/design's
-  actual rendering environment has network access and/or its own font substitution.
-  Don't chase this on a re-sync; only investigate if it also renders wrong in the
-  live claude.ai/design project itself.
+- **HeroBanner/SquareBanner/FullWidthBanner placeholder text still renders in a serif
+  font, and that's fine.** This is unrelated to the Poppins fix above: that text is
+  baked into an `<svg><text>` inside a data-URI `<img>` placeholder, which has its own
+  SVG-default font and never participates in the page's CSS/font-family cascade at
+  all. Now that Poppins is genuinely self-hosted, every REAL component text element
+  (button labels, field text, headings) renders true Poppins even in this sandbox's
+  offline headless Chromium - only the fake placeholder-image text stays serif, by
+  construction. Don't chase it.
 - All 36 previews are authored (no floor cards remain). A re-sync only needs to
   re-verify components whose source or preview `.tsx` actually changed - the anchor
   (`_ds_sync.json`) carries the rest forward automatically.
