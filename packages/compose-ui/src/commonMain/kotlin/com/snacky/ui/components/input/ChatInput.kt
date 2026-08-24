@@ -104,8 +104,10 @@ fun SnackyChatInput(
                 ) {
                     if (sendIcon != null) {
                         CompositionLocalProvider(
+                            // White on the accent circle, NOT the dark colour a
+                            // labelled button uses; resting glyph is textPlaceholder.
                             LocalContentColor provides
-                                if (canSend) SnackyColor.textOnActionPrimary else SnackyColor.iconSecondary,
+                                if (canSend) SnackyColor.iconOnAccent else SnackyColor.textPlaceholder,
                         ) {
                             Box(modifier = Modifier.size(20.dp), contentAlignment = Alignment.Center) {
                                 sendIcon()

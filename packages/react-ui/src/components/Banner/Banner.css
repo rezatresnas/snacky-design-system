@@ -36,9 +36,13 @@
   gap: var(--gap-icon-label);
 }
 .snacky-banner-point-balance__icon {
-  width: 24px;
-  height: 24px;
+  /* Figma binds both icons to icon/icon-brand and draws them at 16x16. Without
+     an explicit colour the icons render currentColor, which inherits the row's
+     dark label colour instead of the accent. */
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
+  color: var(--icon-brand);
 }
 .snacky-banner-point-balance__label {
   margin: 0;

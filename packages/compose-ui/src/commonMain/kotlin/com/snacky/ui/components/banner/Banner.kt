@@ -16,7 +16,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -163,7 +165,14 @@ private fun PointBalanceItem(
         horizontalArrangement = Arrangement.spacedBy(SnackyGap.iconLabel),
     ) {
         if (icon != null) {
-            Box(modifier = Modifier.size(24.dp), contentAlignment = Alignment.Center) { icon() }
+            // Figma binds both icons to icon/icon-brand and draws them at 16x16.
+            // Providing the tint here means a caller's SnackyIcon picks up the accent
+            // instead of inheriting the row's dark label colour.
+            Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
+                CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
+                    icon()
+                }
+            }
         }
         Column {
             BasicText(text = label, style = bannerStyle(SnackyTypography.Small.regular, SnackyColor.textPrimary))

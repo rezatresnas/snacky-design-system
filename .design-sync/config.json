@@ -1,0 +1,19 @@
+{
+  "projectId": "093df583-240a-4cb9-8a44-eddc244aa483",
+  "shape": "package",
+  "pkg": "@snacky/ui",
+  "globalName": "SnackyUI",
+  "cssEntry": "dist/index.css",
+  "tokensGlob": "src/theme/tokens.css",
+  "runtimeFontPrefixes": ["Poppins"],
+  "componentSrcMap": {
+    "SnackyIcons": null
+  },
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "Button": { "cardMode": "column" },
+    "Section": { "cardMode": "column" },
+    "AddressResult": { "cardMode": "column" },
+    "BottomSheet": { "cardMode": "single", "primaryStory": "Default" }
+  }
+}

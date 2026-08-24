@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.1")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.2")
 ```
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
