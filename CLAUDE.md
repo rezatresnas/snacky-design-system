@@ -126,6 +126,31 @@ artwork into a file that lacks it. The illustrations and favicon are also
 stock-derived; confirm their licence before bundling either into a package (the
 `Illustration` component deliberately ships no artwork today).
 
+## Two gaps that make AI agents improvise (found in a real import)
+
+A Claude Design sync produced emoji icons and unstyled text. Neither was the
+agent being careless; both were doc gaps, now closed - keep them closed:
+
+- **Neither package bundles a font.** Type resolves through
+  `var(--font-*-family)` / a caller-supplied `FontFamily`, so the host must load
+  Poppins. `packages/react-ui/README.md` never said so at all (zero mentions
+  before this), and the bundle has zero `@font-face` rules, so an integrator had
+  no way to know. It is now documented as step 1 of Usage, including the point
+  that text authored AROUND a component needs the token too - that is what
+  actually broke, in hand-written glue text next to Section/Accordion/
+  BottomSheet/Toggle.
+- **No copy-paste icon example existed.** The icon set was well documented as a
+  list of names, but the Usage sample used `TextField`/`Checkbox`/`Button` with
+  no icon prop, so there was no canonical "here is how you pass an icon"
+  snippet. An agent with no pattern to copy reaches for emoji. Both package
+  READMEs, `AGENTS.md` and `design-system-prompt.md` now carry a real example
+  plus an explicit "never substitute emoji or a hand-drawn SVG; if no name fits,
+  say so rather than inventing one".
+
+General lesson for this repo: documenting that something EXISTS is not the same
+as showing how to USE it. A list of icon names reads as reference material; a
+snippet reads as an instruction. Agents copy snippets.
+
 ## Key rules (don't relitigate these, they're already decided)
 
 - Screen margin is 16px on every screen (`spacing.margin.screen`), content is Fill

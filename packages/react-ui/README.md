@@ -26,6 +26,27 @@ npm run build
 
 ## Usage
 
+### 1. Load the font
+
+**This package ships no `@font-face`.** Every component resolves its type
+through `var(--font-*-family)`, which is `"Poppins", sans-serif` - so if the
+host app does not load Poppins, everything silently falls back to the browser
+default and nothing looks right. Add this once, in your HTML head:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+```
+
+Any text you write **around** the components needs the token too, or it will
+not match them:
+
+```tsx
+<h2 style={{ fontFamily: 'var(--font-h3-bold-family)' }}>Order summary</h2>
+```
+
+### 2. Import the stylesheet and the components
+
 ```tsx
 import '@snacky/ui/styles.css'; // required - the compiled bundle does not inject this for you
 import { Button, TextField, Checkbox } from '@snacky/ui';
@@ -43,6 +64,35 @@ function SignupForm() {
   );
 }
 ```
+
+### 3. Use the real icons
+
+**Never substitute an emoji or a hand-drawn SVG.** The package ships the full
+set as `SnackyIcons`, and every icon slot takes a node:
+
+```tsx
+import { SnackyIcons, TextField, Button, IconButton } from '@snacky/ui';
+
+<TextField
+  value={q}
+  onChange={setQ}
+  placeholder="Search products"
+  leadingIcon={<SnackyIcons.outline.search />}
+/>
+
+<Button icon={<SnackyIcons.outline.cartAdd />}>Add to cart</Button>
+
+<IconButton icon={<SnackyIcons.outline.heart />} onClick={fav} ariaLabel="Favourite" />
+```
+
+Icons inherit their colour from the slot they sit in (`currentColor`), so you
+normally pass no colour. To tint one deliberately, use `color`:
+
+```tsx
+<SnackyIcons.solid.heart color="var(--icon-active)" />
+```
+
+Names are listed under **What's here** below. `outline` has 42, `solid` has 10.
 
 ## What's here
 

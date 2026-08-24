@@ -39,8 +39,30 @@ npm install @snacky/ui
 
 ```tsx
 import '@snacky/ui/styles.css';
-import { Button, TextField, Checkbox } from '@snacky/ui';
+import { Button, TextField, Checkbox, SnackyIcons } from '@snacky/ui';
 ```
+
+Two things that are easy to miss and both look like the design system is
+broken when you skip them:
+
+- **The package ships no `@font-face`.** Type resolves through
+  `var(--font-*-family)` = `"Poppins", sans-serif`, so the host page must load
+  Poppins or everything falls back to the browser default:
+  `https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap`.
+  Any text you author *around* a component needs the token too
+  (`fontFamily: 'var(--font-h3-bold-family)'`), otherwise your glue text will
+  not match the components next to it.
+- **Never substitute an emoji or a hand-drawn SVG for an icon.** The real set
+  ships as `SnackyIcons.outline.*` (42) and `SnackyIcons.solid.*` (10). Every
+  icon slot takes a node, and icons inherit their colour from the slot:
+
+  ```tsx
+  <TextField leadingIcon={<SnackyIcons.outline.search />} value={q} onChange={setQ} />
+  <Button icon={<SnackyIcons.outline.cartAdd />}>Add to cart</Button>
+  ```
+
+  If you cannot find a matching name, check `assets/icons/icons.json` before
+  drawing anything - inventing a glyph is never the right fallback.
 
 See that same README for the full component list, known gaps, and
 verification status.

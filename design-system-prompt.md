@@ -85,5 +85,15 @@ IllustrationVariant, OrderStatus, ProductImageUsage.
 In Compose, every image-bearing component takes the image as a `content` slot
 (the package ships no image loader), and no font is bundled.
 
+**Icons** - use the named icons above. Do NOT substitute emoji, and do not draw
+your own SVG glyphs: this set is the design system's own artwork and a
+hand-drawn stand-in will not match it. If no name fits, say so rather than
+inventing one.
+
+**Font** - Poppins must actually be loaded, or everything falls back to the
+browser default. In HTML:
+`<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">`.
+Apply it to every text element you write, not just the components.
+
 Match these values exactly rather than approximating - if a spacing/color/radius
 value you'd normally default to doesn't match one listed above, use the listed value.

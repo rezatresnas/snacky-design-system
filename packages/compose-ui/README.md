@@ -47,6 +47,39 @@ dependencyResolutionManagement {
 implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.3")
 ```
 
+### Using the icons
+
+**Never substitute an emoji or a hand-drawn shape for an icon.** The real set
+ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (10), rendered
+through `SnackyIcon`:
+
+```kotlin
+SnackyIcon(SnackyIcons.Outline.Search, contentDescription = "Search")
+
+// tint defaults to LocalContentColor, so an icon dropped into a component's
+// slot picks up that component's own resolved colour
+SnackyTextField(
+    value = query,
+    onValueChange = { query = it },
+    leadingIcon = { SnackyIcon(SnackyIcons.Outline.Search) },
+)
+
+// tint deliberately when you need to
+SnackyIcon(SnackyIcons.Solid.Heart, tint = SnackyColor.iconActive)
+```
+
+Each icon carries its own viewBox (16, 20 or 24), and `size` defaults to that
+natural size. If no name fits what you need, check
+`../../assets/icons/icons.json` before drawing anything - inventing a glyph is
+never the right fallback.
+
+### Supplying the font
+
+The package bundles no font, so text renders in the ambient one until you give
+it Poppins. Build the `TextStyle` with a `FontFamily` you supply (see the
+Typography note further down), and apply it to any text you author around the
+components too, not just to the components themselves.
+
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
 form, not the module-qualified `User.Repo:Module` form) via JitPack's own
 generated snippet. Check [jitpack.io/#rezatresnas/snacky-design-system](https://jitpack.io/#rezatresnas/snacky-design-system)
