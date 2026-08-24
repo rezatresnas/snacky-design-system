@@ -111,6 +111,21 @@
   and there is zero visual difference, this was left as-is rather than doing a
   cosmetic mechanical rewrite across every preview.
 
+## Re-sync log
+
+- **2026-08-25**: `@snacky/ui` 0.4.6. Upstream fixed the last two icon-default gaps
+  at the source: `ChatInput`'s `sendIcon` and `ProductCard`'s `cartIcon`/
+  `favoriteIcon`/`shareIcon`/`chatIcon` now default to real `SnackyIcons` instead
+  of emoji/text glyphs when the prop is omitted (previously `'➤'`/`'♥'`/`'⤴'`/
+  `'💬'`/`'+'`). `IconButton`'s glyph color was also fixed against Figma. Spot-
+  checked all three - `ChatInput`'s `Empty`/`Disabled`/`CustomPlaceholder` cells
+  (which don't pass an icon prop) now show the real send icon instead of the old
+  text arrow. `ProductCard`'s own preview stories already passed explicit icons
+  from an earlier fix, so no visible change there, just confirms the safer
+  default now exists for other consumers. Bundle-only diff (component prop
+  contracts unchanged, so `sourceKeys` stayed the same) - pushed just
+  `_ds_bundle.js`/`_ds_bundle.css`, not a full re-upload.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
