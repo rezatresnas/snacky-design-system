@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.7")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.8")
 ```
 
 ### Using the icons
