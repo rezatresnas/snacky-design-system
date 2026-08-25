@@ -1,5 +1,11 @@
 .snacky-illustration {
   display: block;
   max-width: 100%;
-  height: auto;
+  /* The per-variant canvas is the spec, so the artwork is fitted into it rather
+     than allowed to set its own height. `height: auto` let the file's aspect win,
+     and two of the shipped PNGs do not match their canvas
+     (illus-discount-referral is 1076x892, i.e. 1.206, against a 268x200 / 1.340
+     canvas), which rendered discountReferral 22px too tall. contain keeps the
+     canvas exact without distorting the artwork. */
+  object-fit: contain;
 }
