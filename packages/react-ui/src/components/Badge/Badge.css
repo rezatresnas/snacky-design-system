@@ -22,6 +22,8 @@
   letter-spacing: var(--font-caption-semibold-letter-spacing);
 }
 .snacky-discount-tag {
+  /* Figma: 24 tall. The 16px caption line box plus 2/4 padding only made 20. */
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +54,8 @@
 .snacky-variant-badge {
   display: inline-flex;
   align-items: center;
+  /* Figma: 32 tall with the stroke inside; the 1px border was stacking on top. */
+  height: 32px;
   padding: var(--spacing-8);
   border-radius: var(--radius-field);
   background: var(--bg-surface-highlight);

@@ -831,7 +831,11 @@ const PG={
   badge:{
     component:'BadgeDemo',initialProps:{type:'notification'},
     controls:[{id:'type',label:'Type',type:'select',options:['notification','discount','sold','variant']}],
-    impl:`const BadgeDemo=({type})=>{const h=React.createElement;const F='Poppins,sans-serif';if(type==='notification')return h('span',{style:{display:'inline-flex',padding:'2px 4px',borderRadius:100,background:'#eb5757',color:'#ffffff',fontFamily:F,fontSize:10,fontWeight:600,letterSpacing:'0.1px'}},'99+');if(type==='discount')return h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',height:24,padding:'2px 4px',borderRadius:6,background:'#eb5757',color:'#ffffff',fontFamily:F,fontSize:10,fontWeight:600,lineHeight:'24px',letterSpacing:'0.1px'}},'-50%');if(type==='sold')return h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',height:48,padding:'12px 7px',borderRadius:100,background:'rgba(51,51,51,0.8)',color:'#ffffff',fontFamily:F,fontSize:12,fontWeight:400,lineHeight:'24px'}},'Sold Out');return h('span',{style:{display:'inline-flex',alignItems:'center',width:113,boxSizing:'border-box',padding:8,borderRadius:4,background:'#fef8eb',border:'1px solid #f8b732',color:'#333333',fontFamily:F,fontSize:10,fontWeight:400,lineHeight:'16px',letterSpacing:'0.1px'}},'Variant: 75 Grams');};`,
+    impl:`const BadgeDemo=({type})=>{const h=React.createElement;const U=SnackyUI;const I=U.SnackyIcons;
+      if(type==='notification')return h(U.NotificationBadge,{count:100,max:99},h(I.outline.cart,{width:24,height:24,color:'#ffffff'}));
+      if(type==='discount')return h(U.DiscountTag,{label:'-50%'});
+      if(type==='sold')return h(U.SoldOutBadge,null);
+      return h(U.VariantBadge,{label:'Variant: 75 Grams'});};`,
     getReact:p=>({notification:'<Badge count={99}>\n  <SnackyIcons.outline.cart width={20} height={20} />\n</Badge>',discount:'<DiscountTag label="-50%" />',sold:'<SoldOutBadge />',variant:'<VariantBadge label="Variant: 75 Grams" />'})[p.type],
     getKotlin:p=>({notification:'SnackyBadge(count = 99) {\n  SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart")\n}',discount:'SnackyDiscountTag(label = "-50%")',sold:'SnackySoldOutBadge()',variant:'SnackyVariantBadge(label = "Variant: 75 Grams")'})[p.type]
   },
@@ -927,7 +931,7 @@ const PG={
     component:'TabDemo',
     initialProps:{active:'Explore'},
     controls:[{id:'active',label:'Active Tab',type:'select',options:['Explore','Category','Wishlist']}],
-    impl:`const TabDemo=({active})=>{const h=React.createElement;const tabs=['Explore','Category','Wishlist'];const[sel,setSel]=useState(active);useEffect(()=>{setSel(active);},[active]);return h('div',{style:{display:'flex',gap:24,borderBottom:'1px solid #e4e4e7',fontFamily:'Poppins,sans-serif'}},tabs.map((t,i)=>{const on=t===sel;return h('button',{key:i,onClick:()=>setSel(t),style:{padding:'0 0 12px',border:'none',borderBottom:'2px solid '+(on?'#f8b732':'transparent'),marginBottom:-1,background:'transparent',color:on?'#b08224':'#333333',fontFamily:'Poppins,sans-serif',fontSize:14,lineHeight:'24px',fontWeight:on?600:400,cursor:'pointer',outline:'none',transition:'color .15s'}},t);}));};`,
+    impl:`const TabDemo=({active})=>{const h=React.createElement;const U=SnackyUI;const tabs=['Explore','Category','Wishlist'];const[sel,setSel]=useState(Math.max(0,tabs.indexOf(active)));useEffect(()=>{const i=tabs.indexOf(active);if(i>=0)setSel(i);},[active]);return h(U.TabRow,{tabs:tabs,selected:sel,onSelect:setSel});};`,
     getReact:p=>`<TabRow\n  tabs={["Explore", "Category", "Wishlist"]}\n  selected={${['Explore','Category','Wishlist'].indexOf(p.active)}}\n  onSelect={setSelectedTab}\n/>`,
     getKotlin:p=>`SnackyTabRow(\n  tabs = listOf("Explore", "Category", "Wishlist"),\n  selected = ${['Explore','Category','Wishlist'].indexOf(p.active)},\n  onSelect = { selectedTab = it }\n)`
   },
@@ -935,7 +939,11 @@ const PG={
     component:'CalloutDemo',
     initialProps:{type:'received'},
     controls:[{id:'type',label:'Type',type:'select',options:['received','sent','pending']}],
-    impl:`const CalloutDemo=({type})=>{const h=React.createElement;const t=type||'received';const isRec=t==='received';const txt=isRec?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus';const time=isRec?'09:00':'09:10';const icon=t==='sent'?ic('check',16,'#333333'):t==='pending'?ic('clock',16,'#333333'):null;return h('div',{style:{display:'flex',flexDirection:'column',alignItems:'flex-end',justifyContent:'center',gap:4,padding:'12px 8px',borderRadius:8,width:200,boxSizing:'border-box',background:isRec?'#ffffff':'#f8b732',fontFamily:'Poppins,sans-serif'}},h('p',{style:{margin:0,width:'100%',fontSize:14,lineHeight:'24px',color:'#333333',fontWeight:400}},txt),h('div',{style:{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:4,width:'100%'}},h('span',{style:{flex:1,fontSize:10,lineHeight:'16px',color:'#333333',textAlign:'right',letterSpacing:'0.1px'}},time),icon));};`,
+    impl:`const CalloutDemo=({type})=>{const h=React.createElement;const U=SnackyUI;const t=type||'received';const isRec=t==='received';
+      /* check/clock are app-supplied glyphs, not part of the Snacky icon set
+         (see assets/icons/legacy-extras.json), so they come from ic() here. */
+      const icon=t==='sent'?ic('check',16,'#333333'):t==='pending'?ic('clock',16,'#333333'):null;
+      return h('div',{style:{width:200}},h(U.Callout,{message:isRec?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus',timestamp:isRec?'09:00':'09:10',variant:t,statusIcon:icon}));};`,
     getReact:p=>`<Callout\n  message="${p.type==='received'?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus'}"\n  timestamp="${p.type==='received'?'09:00':'09:10'}"\n  variant="${p.type}"\n/>`,
     getKotlin:p=>`SnackyCallout(\n  message = "${p.type==='received'?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus'}",\n  timestamp = "${p.type==='received'?'09:00':'09:10'}",\n  variant = CalloutVariant.${p.type[0].toUpperCase()+p.type.slice(1)}\n)`
   },
@@ -961,7 +969,10 @@ const PG={
     component:'AccordionDemo',demoSrc:'assets/images/bca-logo.png',demoAlt:'BCA',
     initialProps:{withIcon:true,open:true},
     controls:[{id:'withIcon',label:'With Icon',type:'toggle',def:true},{id:'open',label:'Expanded',type:'toggle',def:true}],
-    impl:`const AccordionDemo=({withIcon,open,src})=>{const h=React.createElement;const os=useState(!!open),o=os[0],setO=os[1];useEffect(()=>{setO(!!open);},[open]);const wi=withIcon;return h(Acc,{title:wi?'BCA Virtual Account':'Accordion',titleSize:wi?12:14,open:o,onToggle:()=>setO(v=>!v),leadingIcon:wi&&src?h('img',{src:src,alt:'BCA',style:{maxWidth:24,maxHeight:24,objectFit:'contain',display:'block'}}):null,content:h('ul',{style:{margin:0,paddingLeft:21,color:'#333333',fontSize:14,lineHeight:'24px',fontWeight:400}},h('li',null,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacus nunc,'),h('li',null,'efficitur ultrices varius sit amet, imperdiet nec massa. Integer congue luctus purus, nec accumsan erat dignissim quis.'),h('li',null,'Aliquam sed sapien ornare magna ultricies convallis. Nunc semper risus semper tellus iaculis rdiet erat efficitur ut. Duis non imperdiet mi.'))});};`,
+    impl:`const AccordionDemo=({withIcon,open,src})=>{const h=React.createElement;const U=SnackyUI;
+      /* Accordion is uncontrolled (defaultOpen only), so the Expanded control
+         remounts it via key rather than driving an open prop that does not exist. */
+      return h('div',{style:{width:312}},h(U.Accordion,{key:String(!!open),title:withIcon?'BCA Virtual Account':'Accordion',defaultOpen:!!open,leadingIcon:withIcon&&src?h('img',{src:src,alt:'BCA',style:{maxWidth:24,maxHeight:24,objectFit:'contain',display:'block'}}):undefined},h('ul',{style:{margin:0,paddingLeft:21}},h('li',null,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacus nunc,'),h('li',null,'efficitur ultrices varius sit amet, imperdiet nec massa. Integer congue luctus purus, nec accumsan erat dignissim quis.'),h('li',null,'Aliquam sed sapien ornare magna ultricies convallis. Nunc semper risus semper tellus iaculis rdiet erat efficitur ut. Duis non imperdiet mi.'))));};`,
     getReact:p=>`<SnackyAccordion\n  title="${p.withIcon?'BCA Virtual Account':'Accordion'}"${p.withIcon?'\n  leadingIcon={Icons.Wallet}':''}\n  expanded={isExpanded}\n  onToggle={() => setExpanded(!isExpanded)}\n>\n  <BulletList items={contentItems} />\n</SnackyAccordion>`,
     getKotlin:p=>`SnackyAccordion(\n  title = "${p.withIcon?'BCA Virtual Account':'Accordion'}",${p.withIcon?'\n  leadingIcon = { SnackyIcon(SnackyIcons.Outline.Balance, size = 20.dp) },':''}\n  expanded = isExpanded,\n  onToggle = { isExpanded = !isExpanded }\n) {\n  BulletList(items = contentItems)\n}`
   },
@@ -969,7 +980,7 @@ const PG={
     component:'SnackyNavbar',
     initialProps:{active:'Home'},
     controls:[{id:'active',label:'Active Tab',type:'select',options:['Home','Category','Cart','History','Account']}],
-    impl:`const SnackyNavbar=({active})=>{const h=React.createElement;const items=[{n:'home',l:'Home'},{n:'category',l:'Category'},{n:'cart',l:'Cart'},{n:'history',l:'History'},{n:'account',l:'Account'}];const initIdx=Math.max(0,items.findIndex(it=>it.l===active));const[sel,setSel]=useState(initIdx);useEffect(()=>{const i=items.findIndex(it=>it.l===active);if(i>=0)setSel(i);},[active]);return h('div',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',background:'#ffffff',boxShadow:'0 -4px 10px rgba(0,0,0,0.08)',fontFamily:'Poppins,sans-serif'}},items.map((it,i)=>{const act=i===sel;return h('button',{key:i,onClick:()=>setSel(i),style:{width:72,height:72,display:'inline-flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:4,border:'none',background:'transparent',cursor:'pointer',outline:'none',padding:0}},ic(it.n+(act?'-s':'-o'),20,act?'#f8b732':'#525252'),h('span',{style:{fontSize:12,lineHeight:'normal',fontWeight:act?700:400,color:act?'#333333':'#7a7a7a',letterSpacing:act?'0.12px':'0'}},it.l));}));};`,
+    impl:`const SnackyNavbar=({active})=>{const h=React.createElement;const U=SnackyUI;const I=U.SnackyIcons;const names=['home','category','cart','history','account'];const labels=['Home','Category','Cart','History','Account'];const items=names.map(function(n,i){return {label:labels[i],icon:h(I.outline[n],{width:20,height:20}),activeIcon:h(I.solid[n],{width:20,height:20})};});const initIdx=Math.max(0,labels.indexOf(active));const[sel,setSel]=useState(initIdx);useEffect(()=>{const i=labels.indexOf(active);if(i>=0)setSel(i);},[active]);return h('div',{style:{width:360}},h(U.NavBar,{items:items,selected:sel,onSelect:setSel}));};`,
     getReact:p=>`<NavBar\n  items={navItems}\n  selected={${['Home','Category','Cart','History','Account'].indexOf(p.active)}}\n  onSelect={setSelectedTab}\n/>`,
     getKotlin:p=>`SnackyNavBar(\n  items = navItems,\n  selected = ${['Home','Category','Cart','History','Account'].indexOf(p.active)},\n  onSelect = { selectedTab = it }\n)`
   },

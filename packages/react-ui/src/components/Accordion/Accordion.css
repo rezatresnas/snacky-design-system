@@ -59,10 +59,13 @@
   background: var(--bg-surface);
   border-radius: var(--radius-field);
   box-shadow: var(--shadow-md);
-  font-family: var(--font-small-regular-family);
-  font-size: var(--font-small-regular-size);
+  /* Figma's "Content Text" is 14/24 (body-regular), not the 12px small-regular
+     the header uses. At 12px the copy re-wrapped and the expanded card came out
+     292 tall instead of 340. */
+  font-family: var(--font-body-regular-family);
+  font-size: var(--font-body-regular-size);
   color: var(--text-primary);
-  font-weight: var(--font-small-regular-weight);
-  line-height: var(--font-small-regular-line-height);
-  letter-spacing: var(--font-small-regular-letter-spacing);
+  font-weight: var(--font-body-regular-weight);
+  line-height: var(--font-body-regular-line-height);
+  letter-spacing: var(--font-body-regular-letter-spacing);
 }
