@@ -24,7 +24,11 @@
   justify-content: space-between;
   width: 100%;
   padding: var(--spacing-8) var(--spacing-16);
-  gap: var(--spacing-12);
+  /* 8px, per Figma's `Property 1=point-balance` frame. Primitive rather than a
+     semantic gap token because none covers this: gap.text-icon is also 8px but
+     is documented as a field row's text-to-icon gap, not the split between the
+     banner's two halves. */
+  gap: var(--spacing-8);
   background: var(--bg-surface-highlight);
   border: 1px solid var(--color-primary-500);
   border-radius: var(--radius-card);
@@ -33,7 +37,11 @@
 .snacky-banner-point-balance__item {
   display: flex;
   align-items: center;
-  gap: var(--gap-icon-label);
+  /* 12px, per Figma's "Points and Balance Container". This was gap.icon-label
+     (4px), which is documented as a *vertical* navbar/menu icon-to-label gap,
+     so it was wrong on both the axis and the value and left the icon jammed
+     against the text. No semantic gap token is 12px, hence the primitive. */
+  gap: var(--spacing-12);
 }
 .snacky-banner-point-balance__icon {
   /* Figma binds both icons to icon/icon-brand and draws them at 16x16. Without

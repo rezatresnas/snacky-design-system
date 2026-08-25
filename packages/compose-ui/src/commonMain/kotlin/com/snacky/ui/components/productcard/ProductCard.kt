@@ -171,7 +171,18 @@ fun SnackyProductCardDetails(
         ) {
             image()
             if (soldOut) {
-                SnackySoldOutBadge(modifier = Modifier.align(Alignment.TopEnd))
+                // Sold Out is a centred scrim over the whole image, not a corner
+                // tag. This used to align the badge to TopEnd with no scrim,
+                // which is DiscountTag's placement, not this one's.
+                Box(
+                    modifier = Modifier
+                        .matchParentSize()
+                        .padding(horizontal = SnackySpacingPrimitive.space8, vertical = SnackySpacingPrimitive.space12)
+                        .background(SnackyColor.bgSurface.copy(alpha = 0.46f)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    SnackySoldOutBadge()
+                }
             }
         }
         BasicText(

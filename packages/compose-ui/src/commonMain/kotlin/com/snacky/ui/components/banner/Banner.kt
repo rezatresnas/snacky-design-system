@@ -162,7 +162,12 @@ private fun PointBalanceItem(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(SnackyGap.iconLabel),
+        // 12dp, per Figma's "Points and Balance Container". This was
+        // SnackyGap.iconLabel (4dp), which the token documents as a *vertical*
+        // navbar/menu icon-to-label gap, so it was wrong on both axis and value
+        // and left the icon jammed against the text. No semantic gap token is
+        // 12dp, hence the primitive.
+        horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space12),
     ) {
         if (icon != null) {
             // Figma binds both icons to icon/icon-brand and draws them at 16x16.

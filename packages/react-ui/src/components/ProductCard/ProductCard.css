@@ -39,6 +39,19 @@
   top: 0;
   right: 0;
 }
+/* Sold Out is a centred scrim over the whole image, not a corner tag. It used
+   to reuse __discount above, which pinned the pill to the top-right with no
+   scrim at all. index.html's preview and ProductImage's
+   .snacky-product-image-sold-overlay both centre it; this matches them. */
+.snacky-product-card__sold-overlay {
+  position: absolute;
+  inset: 0;
+  margin: var(--spacing-12) var(--spacing-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.46);
+}
 .snacky-product-card__name {
   margin: 0;
   font-family: var(--font-small-regular-family);

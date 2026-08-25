@@ -61,7 +61,7 @@ export function ProductCard(props: ProductCardProps) {
         <div className="snacky-product-card__image-wrap" onClick={onClick}>
           <img className="snacky-product-card__image" src={imageUrl} alt={productName} />
           {sold && (
-            <span className="snacky-product-card__discount">
+            <span className="snacky-product-card__sold-overlay">
               <SoldOutBadge />
             </span>
           )}
