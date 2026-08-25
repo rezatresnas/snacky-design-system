@@ -1,0 +1,21 @@
+/* Base rules every Snacky component depends on.
+ *
+ * The docs site (../../index.html) opens with a global
+ * `*,*::before,*::after{box-sizing:border-box}` reset, so its Live Preview has
+ * always rendered components at their spec sizes. The package ships no reset,
+ * and only some of its own selectors set the property, so on a host page
+ * without one every fixed-size component with padding came out oversized:
+ * `.snacky-product-card--list` measured 168px instead of 152, and
+ * `.snacky-iconbtn--primary` 48px instead of 32.
+ *
+ * Scoped to `snacky-*` rather than `*` so it never touches the host page's own
+ * elements, or the content a caller passes into a component's slot.
+ */
+[class^='snacky-'],
+[class*=' snacky-'],
+[class^='snacky-']::before,
+[class^='snacky-']::after,
+[class*=' snacky-']::before,
+[class*=' snacky-']::after {
+  box-sizing: border-box;
+}

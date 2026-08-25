@@ -5,6 +5,7 @@
 //   import '@snacky/ui/styles.css';
 //
 import './theme/tokens.css';
+import './theme/base.css';
 
 export { typography } from './theme/tokens.js';
 

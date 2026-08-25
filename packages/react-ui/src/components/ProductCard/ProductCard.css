@@ -11,6 +11,10 @@
 }
 .snacky-product-card--list {
   width: 152px;
+  /* 152px is a spec width, not a hint. This card's documented home is a
+     horizontal carousel, where a flex parent would otherwise shrink it below
+     spec rather than letting the row scroll. */
+  flex-shrink: 0;
   padding: var(--spacing-12) var(--spacing-8);
   border-radius: var(--radius-field);
   box-shadow: var(--shadow-lg);

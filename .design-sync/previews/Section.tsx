@@ -10,27 +10,25 @@ export function ProductGrid() {
   return (
     <div style={{ width: 360 }}>
       <Section title="Popular snacks" onAction={() => {}}>
+        {/* No fixed-width wrapper here: the list card is a spec 152px wide and
+            sizes itself. Wrapping it in a narrower box made the cards overlap. */}
         <div style={{ display: 'flex', gap: 12, overflowX: 'auto' }}>
-          <div style={{ width: 140 }}>
-            <ProductCard
-              variant="list"
-              productName="Choco Chip Cookies 200g"
-              imageUrl={IMG}
-              price="Rp 24.000"
-              rating={4.8}
-              onAddToCart={() => {}}
-            />
-          </div>
-          <div style={{ width: 140 }}>
-            <ProductCard
-              variant="list"
-              productName="Salted Caramel Wafers"
-              imageUrl={IMG}
-              price="Rp 18.500"
-              rating={4.6}
-              onAddToCart={() => {}}
-            />
-          </div>
+          <ProductCard
+            variant="list"
+            productName="Choco Chip Cookies 200g"
+            imageUrl={IMG}
+            price="Rp 24.000"
+            rating={4.8}
+            onAddToCart={() => {}}
+          />
+          <ProductCard
+            variant="list"
+            productName="Salted Caramel Wafers"
+            imageUrl={IMG}
+            price="Rp 18.500"
+            rating={4.6}
+            onAddToCart={() => {}}
+          />
         </div>
       </Section>
     </div>
