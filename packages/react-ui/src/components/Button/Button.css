@@ -3,6 +3,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Figma gives every variant a fixed 48 (large) / 40 (small) height and draws
+     Secondary's stroke INSIDE it. Without an explicit height the box grew from
+     padding alone, so Secondary's 1px border pushed it to 50 while every other
+     variant sat at 48. */
+  height: 48px;
   padding: var(--spacing-12) var(--spacing-8);
   border-radius: var(--radius-field);
   border: none;
@@ -21,6 +26,7 @@
 }
 
 .snacky-btn--small {
+  height: 40px;
   padding: var(--spacing-8) var(--spacing-8);
 }
 
