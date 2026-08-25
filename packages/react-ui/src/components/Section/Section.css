@@ -18,6 +18,8 @@
   font-size: var(--font-h3-bold-size);
   font-weight: var(--font-h3-bold-weight);
   color: var(--text-primary);
+  line-height: var(--font-h3-bold-line-height);
+  letter-spacing: var(--font-h3-bold-letter-spacing);
 }
 .snacky-section__action {
   display: inline-flex;

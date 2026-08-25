@@ -29,3 +29,6 @@ ds-bundle/
 .design-sync/.cache/
 .design-sync/learnings/
 .design-sync/node_modules
+
+# Pre-migration snapshot used when diffing the Live Preview against the package
+.ref/

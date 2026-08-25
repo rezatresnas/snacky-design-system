@@ -25,6 +25,8 @@
   font-size: var(--font-small-bold-size);
   font-weight: var(--font-small-bold-weight);
   color: var(--text-primary);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
 }
 .snacky-address-result__subtitle {
   margin: 0;
@@ -34,4 +36,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }

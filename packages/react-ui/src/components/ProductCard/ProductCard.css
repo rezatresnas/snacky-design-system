@@ -19,10 +19,25 @@
   border-radius: var(--radius-field);
   box-shadow: var(--shadow-lg);
 }
+/* Figma node "Property 1=details": the card itself has no padding and no gap.
+   Its two child frames carry all of it. */
 .snacky-product-card--details {
   width: 100%;
-  padding: var(--spacing-12) 0 var(--spacing-16);
+  padding: 0;
+  gap: 0;
+}
+/* "Image" frame - 12/8 padding around the 200px image, 224 tall. */
+.snacky-product-card__image-block {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-12) var(--spacing-8);
+}
+/* "Product details container" - 16/24 padding, 8px gap, 148 tall. */
+.snacky-product-card__details-body {
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-8);
+  padding: var(--spacing-16) var(--spacing-24);
 }
 .snacky-product-card__image-wrap {
   position: relative;
@@ -57,23 +72,40 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-primary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-product-card--details .snacky-product-card__name {
   font-size: 14px;
 }
 .snacky-product-card__price-row {
   display: flex;
-  align-items: baseline;
-  gap: var(--spacing-4);
+  /* Figma's "Price container" is CENTER with a 5px gap, and 5 is not on the
+     spacing scale, so this is a literal on purpose. Was baseline + 4px, which
+     made the row 25px instead of the specced 24px. */
+  align-items: center;
+  gap: 5px;
+}
+.snacky-product-card--details .snacky-product-card__price-row {
+  align-items: flex-start;
+  gap: var(--spacing-8);
 }
 .snacky-product-card__price {
   font-family: var(--font-small-bold-family);
   font-weight: var(--font-small-bold-weight);
   color: var(--text-primary);
+  font-size: var(--font-small-bold-size);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
 }
 .snacky-product-card--details .snacky-product-card__price {
+  /* Figma: 20px on a 36px line, which is what makes the price row 36 tall.
+     Without the line-height it inherited small-bold's 24 and the row came out
+     27. */
   font-size: 20px;
   font-weight: 700;
+  line-height: 36px;
 }
 .snacky-product-card__original-price {
   font-family: var(--font-small-bold-family);
@@ -81,10 +113,15 @@
   font-size: 10px;
   color: var(--text-secondary);
   text-decoration: line-through;
+  /* Figma authors this one at AUTO line height, not the token's 24px - it is
+     the only text in the card that does, so it stays a literal. */
+  line-height: normal;
+  letter-spacing: var(--font-small-bold-letter-spacing);
 }
 .snacky-product-card--details .snacky-product-card__original-price {
   font-size: 16px;
   font-weight: 700;
+  line-height: 36px;
 }
 .snacky-product-card__footer-row {
   display: flex;
@@ -99,6 +136,9 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-secondary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-product-card__rating-icon {
   width: 16px;

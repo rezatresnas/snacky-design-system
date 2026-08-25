@@ -17,11 +17,17 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-secondary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-navbar__item--active {
   font-family: var(--font-small-bold-family);
   font-weight: var(--font-small-bold-weight);
   color: var(--text-primary);
+  font-size: var(--font-small-bold-size);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
 }
 .snacky-navbar__icon {
   display: inline-flex;

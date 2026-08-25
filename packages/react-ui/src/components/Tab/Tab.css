@@ -15,6 +15,8 @@
   line-height: var(--font-body-regular-line-height);
   color: var(--text-primary);
   transition: color 0.15s ease;
+  font-weight: var(--font-body-regular-weight);
+  letter-spacing: var(--font-body-regular-letter-spacing);
 }
 .snacky-tab--active {
   font-family: var(--font-body-semibold-family);
@@ -30,4 +32,7 @@
      --color-primary-500 instead of adopting a misleading token name. */
   color: var(--text-on-action-tertiary);
   border-bottom-color: var(--color-primary-500);
+  font-size: var(--font-body-semibold-size);
+  line-height: var(--font-body-semibold-line-height);
+  letter-spacing: var(--font-body-semibold-letter-spacing);
 }

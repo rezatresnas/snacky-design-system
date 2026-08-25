@@ -58,14 +58,21 @@ export function ProductCard(props: ProductCardProps) {
     const { productName, imageUrl, price, rating, originalPrice, discountLabel, ratingCount, favorited, onFavoriteClick, onShareClick, onChatClick, sold, ratingIcon, favoriteIcon, shareIcon, chatIcon, onClick, className } = props;
     return (
       <div className={cx('snacky-product-card', 'snacky-product-card--details', className)}>
-        <div className="snacky-product-card__image-wrap" onClick={onClick}>
-          <img className="snacky-product-card__image" src={imageUrl} alt={productName} />
-          {sold && (
-            <span className="snacky-product-card__sold-overlay">
-              <SoldOutBadge />
-            </span>
-          )}
+        {/* Figma's details component is two stacked frames, not one flat column:
+            an "Image" frame padded 12/8 (224 tall) and a "Product details
+            container" padded 16/24 with an 8px gap (148 tall). Flattening them
+            lost both paddings and came out 29px short. */}
+        <div className="snacky-product-card__image-block">
+          <div className="snacky-product-card__image-wrap" onClick={onClick}>
+            <img className="snacky-product-card__image" src={imageUrl} alt={productName} />
+            {sold && (
+              <span className="snacky-product-card__sold-overlay">
+                <SoldOutBadge />
+              </span>
+            )}
+          </div>
         </div>
+        <div className="snacky-product-card__details-body">
         <p className="snacky-product-card__name">{productName}</p>
         <div className="snacky-product-card__price-row">
           <span className="snacky-product-card__price">{price}</span>
@@ -83,6 +90,7 @@ export function ProductCard(props: ProductCardProps) {
             <IconButton variant="secondary" icon={shareIcon ?? <ShareIcon width={20} height={20} />} onClick={onShareClick} ariaLabel="Share" />
             <IconButton variant="secondary" icon={chatIcon ?? <ChatIcon width={20} height={20} />} onClick={onChatClick} ariaLabel="Chat with seller" />
           </div>
+        </div>
         </div>
       </div>
     );

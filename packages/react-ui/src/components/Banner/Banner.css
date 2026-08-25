@@ -57,12 +57,18 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-primary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-banner-point-balance__value {
   margin: 0;
   font-family: var(--font-small-bold-family);
   font-weight: var(--font-small-bold-weight);
   color: var(--text-primary);
+  font-size: var(--font-small-bold-size);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
 }
 .snacky-banner-point-balance__divider {
   width: 1px;
@@ -86,10 +92,16 @@
   font-family: var(--font-body-regular-family);
   font-size: var(--font-body-regular-size);
   color: var(--text-inverse);
+  font-weight: var(--font-body-regular-weight);
+  line-height: var(--font-body-regular-line-height);
+  letter-spacing: var(--font-body-regular-letter-spacing);
 }
 .snacky-banner-alert__countdown {
   margin: 0;
   font-family: var(--font-body-semibold-family);
   font-weight: var(--font-body-semibold-weight);
   color: var(--text-inverse);
+  font-size: var(--font-body-semibold-size);
+  line-height: var(--font-body-semibold-line-height);
+  letter-spacing: var(--font-body-semibold-letter-spacing);
 }

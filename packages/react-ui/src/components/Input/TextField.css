@@ -36,6 +36,7 @@
   font-weight: var(--font-small-regular-weight);
   line-height: var(--font-small-regular-line-height);
   color: var(--text-primary);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 
 .snacky-field__input::placeholder {
@@ -74,6 +75,9 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-primary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 
 .snacky-field-error {
@@ -82,4 +86,7 @@
   font-family: var(--font-caption-regular-family);
   font-size: var(--font-caption-regular-size);
   color: var(--text-error);
+  font-weight: var(--font-caption-regular-weight);
+  line-height: var(--font-caption-regular-line-height);
+  letter-spacing: var(--font-caption-regular-letter-spacing);
 }

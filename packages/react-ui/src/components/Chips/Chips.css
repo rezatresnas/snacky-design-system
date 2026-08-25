@@ -11,6 +11,9 @@
   color: var(--text-primary);
   cursor: pointer;
   white-space: nowrap;
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-chip--selected {
   background: var(--bg-surface-highlight);

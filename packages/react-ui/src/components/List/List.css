@@ -46,6 +46,7 @@
   font-size: var(--font-small-semibold-size);
   line-height: 24px;
   color: var(--text-primary);
+  letter-spacing: var(--font-small-semibold-letter-spacing);
 }
 .snacky-order-item__status--cancelled {
   color: var(--text-error);
@@ -58,6 +59,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: var(--font-small-regular-weight);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-order-item__details {
   display: flex;
@@ -72,6 +75,8 @@
   font-size: var(--font-small-regular-size);
   line-height: 24px;
   color: var(--text-secondary);
+  font-weight: var(--font-small-regular-weight);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-order-item__total {
   flex: 1;
@@ -81,10 +86,15 @@
   color: var(--text-primary);
   text-align: right;
   white-space: nowrap;
+  font-weight: var(--font-small-regular-weight);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-order-item__total b {
   font-weight: var(--font-small-bold-weight);
   letter-spacing: 0.12px;
+  font-family: var(--font-small-bold-family);
+  font-size: var(--font-small-bold-size);
+  line-height: var(--font-small-bold-line-height);
 }
 .snacky-order-item__total--cod {
   flex: 0 1 auto;
@@ -113,6 +123,8 @@
   font-size: var(--font-small-regular-size);
   line-height: 24px;
   color: var(--text-primary);
+  font-weight: var(--font-small-regular-weight);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
 .snacky-order-item__action-row {
   display: flex;
@@ -141,6 +153,7 @@
   font-size: var(--font-small-semibold-size);
   line-height: 24px;
   color: var(--text-primary);
+  letter-spacing: var(--font-small-semibold-letter-spacing);
 }
 .snacky-notif-item__message {
   font-family: var(--font-small-regular-family);
@@ -150,4 +163,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: var(--font-small-regular-weight);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }

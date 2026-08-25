@@ -28,11 +28,15 @@
   font-family: var(--font-body-semibold-family);
   font-size: 14px;
   font-weight: var(--font-body-semibold-weight);
+  line-height: var(--font-body-semibold-line-height);
+  letter-spacing: var(--font-body-semibold-letter-spacing);
 }
 .snacky-accordion--icon .snacky-accordion__title {
   font-family: var(--font-small-semibold-family);
   font-size: var(--font-small-semibold-size);
   font-weight: var(--font-small-semibold-weight);
+  line-height: var(--font-small-semibold-line-height);
+  letter-spacing: var(--font-small-semibold-letter-spacing);
 }
 .snacky-accordion__chevron {
   width: 20px;
@@ -58,4 +62,7 @@
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
   color: var(--text-primary);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
 }
