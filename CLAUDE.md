@@ -201,16 +201,25 @@ rendered an empty slot. Both now default to the real `SnackyIcons` geometry
 chat send button, 16px for the list card's cart). When adding a component with an
 icon slot, give it a real default, never a glyph and never nothing.
 
-**Two known-suspect fixes, worth re-checking before trusting them.** Completing the
-partially-applied typography tokens (33 of 47 CSS rules pulled only some of a
-token's five properties, so weight/line-height/letter-spacing fell back to the
-browser default) fixed a lot, but blanket-applying the token's `line-height` is
-wrong wherever Figma authors a different one. Two are confirmed and now carry
-explicit overrides with comments: ProductCard's `original-price` (Figma uses AUTO,
-not 24) and PointBalanceBanner's label (Figma's node is 20 tall, and 20 + the
-value's 24 is exactly what makes that banner 60). Both were caught by measuring
-after migration, so treat the other filled-in line-heights as plausible rather than
-verified.
+**The typography completion has since been checked.** Filling in the partially-
+applied typography tokens (33 of 47 CSS rules pulled only some of a token's five
+properties, so weight/line-height/letter-spacing fell back to the browser default)
+was right in every case but two, both of which now carry explicit overrides with
+comments: ProductCard's `original-price` (Figma uses AUTO, not 24) and
+PointBalanceBanner's label (Figma's node is 20 tall, and 20 + the value's 24 is
+exactly what makes that banner 60).
+
+The remaining 35 token-driven line-heights split into two groups, neither of which
+is still open. Where the value drives a rendered height - ProductCard's name and
+price, the Accordion title and panel, Callout's meta, Header's title - the
+component's total was measured against its Figma node and matched, which it could
+not have done with a wrong line-height. Everywhere else the text sits in a
+flex-centred box whose height is pinned (Button, Chips, the badges, every Input
+field, the Navbar item), so the value cannot move the layout at all.
+
+Note the shape of that argument: a wrong line-height is only ever a metrics bug -
+elements come out slightly too tall - never a font that fails to render. Worth
+remembering before treating this class of finding as urgent.
 
 **Artwork that does not match its documented canvas.** Two illustration PNGs are
 exported at the wrong aspect - `illus-discount-referral.png` is 1076x892 (1.206)
