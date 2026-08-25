@@ -1,0 +1,100 @@
+.snacky-stepper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* Figma "Order status progress": VERTICAL, 32 between steps. */
+  gap: var(--spacing-32);
+}
+
+.snacky-stepper__step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  /* Figma "Order status step": HORIZONTAL, gap 16, height 48. */
+  gap: var(--gap-layout-block);
+  min-height: 48px;
+}
+
+/* The connector is one -90deg-rotated dashed LINE spanning the whole stepper in
+   Figma. Drawing it per-step instead survives any number of steps, and the
+   dashes line up either way. Starts below the 24px dot and runs into the 32px
+   gap to the next one. */
+.snacky-stepper__step::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  bottom: calc(-1 * var(--spacing-32));
+  border-left: 1px dashed var(--border-main);
+}
+.snacky-stepper__step--last::before {
+  content: none;
+}
+
+/* 24x24 slot holding a 16x16 circle, per Figma's "Progress dot/*" frames. */
+.snacky-stepper__dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+.snacky-stepper__dot::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+}
+.snacky-stepper__dot--done::before {
+  background: var(--icon-brand);
+}
+.snacky-stepper__dot--pending::before {
+  background: var(--bg-action-disabled);
+}
+.snacky-stepper__dot--cancelled::before {
+  background: var(--bg-surface-accent);
+}
+/* The X only appears on the cancelled dot, drawn on the accent circle. */
+.snacky-stepper__dot--cancelled svg {
+  position: relative;
+  z-index: 1;
+  color: var(--icon-on-accent);
+}
+
+.snacky-stepper__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.snacky-stepper__label {
+  font-family: var(--font-small-bold-family);
+  font-size: var(--font-small-bold-size);
+  font-weight: var(--font-small-bold-weight);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
+}
+.snacky-stepper__label--done {
+  color: var(--text-primary);
+}
+.snacky-stepper__label--pending {
+  color: var(--text-secondary);
+}
+.snacky-stepper__label--cancelled {
+  color: var(--text-error);
+}
+
+.snacky-stepper__time {
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
+  color: var(--text-secondary);
+}
