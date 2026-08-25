@@ -99,6 +99,17 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   the height is explicit. That single mistake accounted for seven of the bugs found
   (Button Secondary, five Input fields, the COD chip, Chips, DiscountTag,
   VariantBadge, PointBalanceBanner). Check it first on anything bordered.
+- **`Stepper` and `Calendar` were missing components, not app composition.** Both
+  were added after the question "why isn't this a component?" turned out to have
+  a better answer than the one this file used to imply. Stepper had 19 hand-drawn
+  copies in Figma across 5 documented variants, under two different frame names
+  (`Order status step` in Section, `Driver Order Status Item` in Modal), with the
+  dot already named like a component variant (`Progress dot/active`). Calendar was
+  already a COMPONENT in Figma (360x505) and the Input family already shipped a
+  Date Picker *field* - so the field existed while the panel it opens did not.
+  General lesson: "the package has no component for this" is evidence the design
+  system may be missing one, not proof the pattern is app-level. Count the
+  copies in Figma before concluding.
 - `assets/images/` - exported PNGs, one per documented variant/state, at 2x-4x scale
   depending on the component. Re-export from the matching Figma node (`download_assets`,
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than

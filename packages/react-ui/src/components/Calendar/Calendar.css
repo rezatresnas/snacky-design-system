@@ -1,0 +1,127 @@
+/* Figma "Property 1=Calendar": 360 wide, VERTICAL, 24 gap, 24 padding. */
+.snacky-calendar {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  padding: var(--spacing-24);
+  background: var(--bg-surface);
+  box-sizing: border-box;
+}
+
+/* "Calendar Header Container": 312x36, prev/next 24x24 either side of the label. */
+.snacky-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+}
+.snacky-calendar__nav {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--icon-primary);
+  cursor: pointer;
+}
+/* One back glyph serves both arrows - the set has no forward twin, and Figma
+   uses the same instance mirrored. */
+.snacky-calendar__nav--next {
+  transform: scaleX(-1);
+}
+.snacky-calendar__label {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-h3-bold-family);
+  font-size: var(--font-h3-bold-size);
+  font-weight: var(--font-h3-bold-weight);
+  line-height: var(--font-h3-bold-line-height);
+  letter-spacing: var(--font-h3-bold-letter-spacing);
+  color: var(--text-primary);
+}
+
+/* Figma hugs each date cell, so its row gaps vary (39/36/33/30/29). A seven
+   column grid is the faithful translation: same even distribution, no
+   per-row magic numbers. */
+.snacky-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  align-items: center;
+  /* Figma's row pitch is 59: a 36-tall date row plus a 23 gap. The cell here is
+     40 rather than 36 because the selected day's circle is 40 (Figma's
+     "selected" frame) and would otherwise overflow its row, so the gap is
+     59 - 40 = 19 to keep the same pitch. Not a token: 59 is not on the scale. */
+  row-gap: 19px;
+}
+
+.snacky-calendar__weekday {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-small-regular-family);
+  font-size: var(--font-small-regular-size);
+  font-weight: var(--font-small-regular-weight);
+  line-height: var(--font-small-regular-line-height);
+  letter-spacing: var(--font-small-regular-letter-spacing);
+  color: var(--text-primary);
+}
+
+.snacky-calendar__day {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-h3-regular-family, var(--font-h3-bold-family));
+  font-size: 16px;
+  line-height: 36px;
+  color: var(--text-primary);
+}
+.snacky-calendar__day--outside {
+  color: var(--text-disabled);
+  cursor: default;
+}
+
+/* The range band sits behind the row; the two ends get the filled circle. */
+.snacky-calendar__day--in-range {
+  background: var(--bg-surface-highlight);
+}
+.snacky-calendar__day-number {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+}
+.snacky-calendar__day--selected .snacky-calendar__day-number {
+  background: var(--bg-action-primary);
+  font-weight: 700;
+}
+.snacky-calendar__day--selected {
+  background: var(--bg-surface-highlight);
+}
+
+/* Figma "Ellipse 38": an 8px accent dot under a marked day. */
+.snacky-calendar__marker {
+  position: absolute;
+  bottom: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-action-primary);
+}

@@ -43,7 +43,7 @@ import { Button, TextField, Checkbox } from '@snacky/ui';
 maven("https://jitpack.io")
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.11")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.0")
 ```
 
 See [`packages/react-ui/README.md`](packages/react-ui/README.md) for the full
