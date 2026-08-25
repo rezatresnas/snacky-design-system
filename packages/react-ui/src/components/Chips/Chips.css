@@ -2,6 +2,9 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-4);
+  /* Figma gives both chip types a fixed 40 with the stroke inside. Without an
+     explicit height the 1px border stacked on 8 + 24 + 8 and made it 42. */
+  height: 40px;
   padding: var(--spacing-8);
   border-radius: var(--radius-full);
   background: var(--bg-surface);
