@@ -201,25 +201,54 @@ rendered an empty slot. Both now default to the real `SnackyIcons` geometry
 chat send button, 16px for the list card's cart). When adding a component with an
 icon slot, give it a real default, never a glyph and never nothing.
 
-**The typography completion has since been checked.** Filling in the partially-
-applied typography tokens (33 of 47 CSS rules pulled only some of a token's five
-properties, so weight/line-height/letter-spacing fell back to the browser default)
-was right in every case but two, both of which now carry explicit overrides with
-comments: ProductCard's `original-price` (Figma uses AUTO, not 24) and
-PointBalanceBanner's label (Figma's node is 20 tall, and 20 + the value's 24 is
-exactly what makes that banner 60).
+**The typography completion has since been checked, component by component.**
+Filling in the partially-applied typography tokens (33 of 47 CSS rules pulled only
+some of a token's five properties, so weight/line-height/letter-spacing fell back
+to the browser default) was right everywhere except two, both now carrying
+explicit overrides with comments: ProductCard's `original-price` (Figma uses AUTO,
+not 24) and PointBalanceBanner's label (Figma's node is 20 tall, and 20 + the
+value's 24 is exactly what makes that banner 60).
 
-The remaining 35 token-driven line-heights split into two groups, neither of which
-is still open. Where the value drives a rendered height - ProductCard's name and
-price, the Accordion title and panel, Callout's meta, Header's title - the
-component's total was measured against its Figma node and matched, which it could
-not have done with a wrong line-height. Everywhere else the text sits in a
-flex-centred box whose height is pinned (Button, Chips, the badges, every Input
-field, the Navbar item), so the value cannot move the layout at all.
+That audit found three more real bugs along the way, none of them actually a
+line-height problem. `AddressResult` was the first: no playground exercises it at
+all (the Input playground's "address" type is a `TextField` with a leading icon,
+not this component), and a real border pushed it to 74 against Figma's declared
+72 (stroke INSIDE, the same mistake found seven times elsewhere in the package).
+Fixed with a pinned height and an inset shadow. The other two are the same
+"nothing ever rendered this" shape:
+
+- **Tab's padding used `--spacing-12` where Figma's own token for this is
+  `gap.text-underline` (16px, documented for exactly this: "Text -> underline
+  indicator gap (Tab)").** A real 2px border-bottom then added its own height on
+  top of that wrong padding, so the tab measured 38 against Figma's declared 40.
+  Fixed on both platforms by painting the accent line without adding to the box
+  (`box-shadow: inset` in CSS, `drawBehind` in Compose) so the 16px gap plus text
+  lands exactly on 40, matching the row's own border-main line, which already used
+  the same "drawn behind" technique.
+- **`Section`'s own shell (`.snacky-section`, `.snacky-section__title`,
+  h3-bold, the chevron `__action` button) was never rendered by any preview at
+  all.** The Section playground's `SectionDemo` built its own literal-styled
+  `grpHeader` instead of calling the real `Section` component, for all three
+  "Group-Products-*" types. Measuring `.snacky-section__title` in isolation
+  showed h3-bold itself was already correct (36/16/700, no bug), so this wasn't a
+  value problem - just the same "package's own component, never in the render
+  path" gap as AddressResult. Wired `SnackyUI.Section` into those three types in
+  place of `grpHeader`; total heights were unchanged (`.snacky-section`'s own
+  padding/gap already matched what the hand-rolled wrapper was doing by
+  coincidence), and `grpHeader` was deleted rather than left as dead code.
+
+Everywhere else the token-driven line-height either drives a component total that
+was measured against its Figma node and matched (ProductCard's name/price, the
+Accordion title/panel, Callout's meta, Header's title, and now Tab and Section's
+title) - which could not happen with a wrong value - or sits in a box whose height
+is pinned regardless of the text inside it (Button, Chips, the badges, every Input
+field, the Navbar item), where the value cannot move the layout at all.
 
 Note the shape of that argument: a wrong line-height is only ever a metrics bug -
-elements come out slightly too tall - never a font that fails to render. Worth
-remembering before treating this class of finding as urgent.
+elements come out slightly too tall - never a font that fails to render. The two
+real bugs this pass found were a wrong padding token and an unexercised component,
+not a line-height at all - worth remembering that "check the line-heights" and
+"the bugs are in the line-heights" are not the same claim.
 
 **Artwork that does not match its documented canvas.** Two illustration PNGs are
 exported at the wrong aspect - `illus-discount-referral.png` is 1076x892 (1.206)

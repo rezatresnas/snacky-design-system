@@ -6,9 +6,15 @@
 .snacky-tab {
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  padding: 0 0 var(--spacing-12) 0;
+  /* Figma's own token for this exact gap is gap.text-underline (16px,
+     documented as "Text → underline indicator gap (Tab)"), not spacing-12.
+     The accent line is painted as an inset box-shadow rather than a real
+     border so it doesn't add its own 2px on top - a real border pushed the
+     tab to 38 against Figma's declared 40 (24 text + 16 gap, no extra). The
+     transparent/coloured swap below still reserves the same space either
+     way, so switching tabs causes no layout shift. */
+  box-shadow: inset 0 -2px 0 0 transparent;
+  padding: 0 0 var(--gap-text-underline) 0;
   cursor: pointer;
   font-family: var(--font-body-regular-family);
   font-size: 14px;
@@ -31,7 +37,7 @@
      rather than an intentional shared role, so this keeps the primitive
      --color-primary-500 instead of adopting a misleading token name. */
   color: var(--text-on-action-tertiary);
-  border-bottom-color: var(--color-primary-500);
+  box-shadow: inset 0 -2px 0 0 var(--color-primary-500);
   font-size: var(--font-body-semibold-size);
   line-height: var(--font-body-semibold-line-height);
   letter-spacing: var(--font-body-semibold-letter-spacing);

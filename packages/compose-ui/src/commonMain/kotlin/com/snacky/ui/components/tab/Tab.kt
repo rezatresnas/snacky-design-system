@@ -1,9 +1,7 @@
 package com.snacky.ui.components.tab
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,12 +14,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyColorPrimitive
+import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
 
@@ -72,13 +70,32 @@ fun SnackyTabRow(
             val color = if (active) SnackyColor.textOnActionTertiary else SnackyColor.textPrimary
 
             Column(
-                modifier = Modifier.selectable(
-                    selected = active,
-                    onClick = { onSelect(index) },
-                    role = Role.Tab,
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null,
-                ),
+                modifier = Modifier
+                    .selectable(
+                        selected = active,
+                        onClick = { onSelect(index) },
+                        role = Role.Tab,
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    )
+                    // Figma's real gap here is gap.text-underline (16dp, its own
+                    // token documented for exactly this: "Text -> underline
+                    // indicator gap (Tab)"), not space12, and the accent line is
+                    // drawn behind the column rather than as its own Box so it
+                    // doesn't add height on top - a real 2dp Box after a 16dp
+                    // spacer measured 24+16+2=42 against Figma's declared 40
+                    // (24 text + 16 gap, line overlaid at the boundary, the same
+                    // technique the row's own border above already uses).
+                    .drawBehind {
+                        if (active) {
+                            drawLine(
+                                color = SnackyColorPrimitive.Primary.c500,
+                                start = Offset(0f, size.height),
+                                end = Offset(size.width, size.height),
+                                strokeWidth = 2.dp.toPx(),
+                            )
+                        }
+                    },
             ) {
                 BasicText(
                     text = tab,
@@ -90,13 +107,7 @@ fun SnackyTabRow(
                         letterSpacing = style.letterSpacing,
                     ),
                 )
-                Spacer(Modifier.height(SnackySpacingPrimitive.space12))
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(2.dp)
-                        .background(if (active) SnackyColorPrimitive.Primary.c500 else Color.Transparent),
-                )
+                Spacer(Modifier.height(SnackyGap.textUnderline))
             }
         }
     }
