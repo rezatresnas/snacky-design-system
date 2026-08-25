@@ -126,6 +126,20 @@
   contracts unchanged, so `sourceKeys` stayed the same) - pushed just
   `_ds_bundle.js`/`_ds_bundle.css`, not a full re-upload.
 
+- **2026-08-25 (later same day)**: `@snacky/ui` 0.4.7. Fixed a real "overlapping
+  product cards" bug reported from the live claude.ai/design project - two causes,
+  both real: (1) the package set `box-sizing: border-box` on only 18 of 30 selectors
+  and shipped no reset, so every fixed-size padded component (ProductCard's list
+  variant, IconButton, Toggle, UploadButton, NotificationBadge, Header/Section icon
+  buttons) rendered oversized on a host page without its own reset - fixed via a new
+  scoped `theme/base.css` (`[class^='snacky-']` etc., never `*`) plus
+  `flex-shrink: 0` on the list card so a flex parent can't squeeze it below spec;
+  (2) `.design-sync/previews/Section.tsx`'s `ProductGrid` story wrapped each card in
+  a 140px div, narrower than the card's own 152px spec width - real cause of the
+  visible overlap, wrapper removed (the card sizes itself). Spot-checked all 6
+  box-sizing-affected components plus `Section` itself; all render correctly at
+  spec size now.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
