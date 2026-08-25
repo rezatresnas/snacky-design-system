@@ -212,10 +212,23 @@ value's 24 is exactly what makes that banner 60).
 That audit found three more real bugs along the way, none of them actually a
 line-height problem. `AddressResult` was the first: no playground exercises it at
 all (the Input playground's "address" type is a `TextField` with a leading icon,
-not this component), and a real border pushed it to 74 against Figma's declared
-72 (stroke INSIDE, the same mistake found seven times elsewhere in the package).
-Fixed with a pinned height and an inset shadow. The other two are the same
-"nothing ever rendered this" shape:
+not this component), and without a pinned height its border pushed it to 74
+against Figma's declared 72. Fixed by pinning `height: 72px` - with
+`box-sizing: border-box` already on the rule, that absorbs a plain 1px border
+into the 72 total.
+
+**Reach for `box-shadow: inset` only when there is no explicit height to absorb
+the border.** An earlier pass over-applied it: `AddressResult` and
+`PointBalanceBanner` both got inset shadows on the theory that a real border
+always adds 2px, but that is only true without a fixed height. AddressResult has
+one, so a plain border there is both correct and more portable - the shadow
+version rendered as a black border in Claude Design, because tools that read
+computed styles look at `border-color` and find the unset default (`#000`) when
+the line is actually painted by a shadow. AddressResult is back on a real border;
+PointBalanceBanner keeps the shadow because it genuinely has no explicit height,
+and so does Tab. If a component has a pinned height, use `border`.
+
+The other two bugs are the same "nothing ever rendered this" shape:
 
 - **Tab's padding used `--spacing-12` where Figma's own token for this is
   `gap.text-underline` (16px, documented for exactly this: "Text -> underline

@@ -4,13 +4,14 @@
   gap: var(--gap-text-icon);
   width: 100%;
   /* Figma's "Address, Search (Selected)" is 72: 12/12 padding around a 24 title
-     and a 24 subtitle, with the stroke drawn INSIDE. A real border pushed it to
-     74, so the line is painted as an inset shadow instead - the same fix
-     PointBalanceBanner needed. */
+     and a 24 subtitle, with the stroke drawn INSIDE. box-sizing:border-box
+     plus this explicit height already absorbs a real border into the 72px
+     total (verified: both render 72px), so a plain border is correct here -
+     unlike Tab, which has no explicit height for box-sizing to apply to. */
   height: 72px;
   padding: var(--spacing-12) var(--spacing-8);
   background: var(--bg-surface);
-  box-shadow: inset 0 0 0 1px var(--border-input-default);
+  border: 1px solid var(--border-input-default);
   border-radius: var(--radius-field);
   box-sizing: border-box;
   cursor: pointer;

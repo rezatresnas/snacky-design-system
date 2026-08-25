@@ -34,10 +34,12 @@
      banner's two halves. */
   gap: var(--spacing-8);
   background: var(--bg-surface-highlight);
-  /* Figma draws this stroke INSIDE a 60-tall frame, where it overlaps the
-     padding rather than adding to the box. A real border would push the banner
-     to 62; an inset shadow paints the same 1px line without taking layout
-     space. */
+  /* Figma draws this stroke INSIDE a 60-tall frame. There's no explicit height
+     on this rule, so box-sizing:border-box alone can't absorb a real border -
+     unlike AddressResult, which has a fixed height and uses a plain border.
+     An inset shadow paints the same 1px line without adding to the box, so the
+     row's own content (56px: 20 padding + 36 item) plus this 8+8 padding
+     still lands on 60 rather than 62. */
   box-shadow: inset 0 0 0 1px var(--color-primary-500);
   border-radius: var(--radius-card);
   box-sizing: border-box;
