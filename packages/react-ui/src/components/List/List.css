@@ -67,6 +67,9 @@
   align-items: center;
   gap: var(--spacing-8);
   width: 100%;
+  /* Figma's "Details Container" is padded 8/0. Without it every order variant
+     came out exactly 16px short. */
+  padding: var(--spacing-8) 0;
 }
 .snacky-order-item__count {
   flex: 1;
@@ -104,6 +107,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Figma's "COD Container" is 24 tall with its stroke inside. Without an
+     explicit height the 1px border stacked on the 24px line box and pushed the
+     whole card to 122 instead of 120. */
+  height: 24px;
   padding: 0 var(--spacing-8);
   border-radius: var(--radius-field);
   border: 1px solid var(--border-main);
