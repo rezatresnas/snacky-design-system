@@ -140,6 +140,17 @@
   box-sizing-affected components plus `Section` itself; all render correctly at
   spec size now.
 
+- **2026-08-25 (later still)**: `@snacky/ui` 0.4.8. Fixed "missing rating star" -
+  `ProductCard`'s rating row had never had a real default icon (`{ratingIcon &&
+  ...}`, no fallback), because the star glyph (`fi-ss-star`, Figma node 46:1411)
+  was never filed inside the `Icon-solid` component set the original icon export
+  walked - it only existed as a hand-kept copy in `legacy-extras.json` that never
+  reached the packages. Now shipped as real `solid.star` (53 icons total: 42
+  outline + 11 solid), and `ratingIcon` defaults to it (matching the emoji-default
+  pattern already used for cart/favorite/share/chat). Spot-checked `ProductCard` -
+  the star now renders next to every rating in all three story variants, where it
+  previously rendered nothing at all. Bundle-only diff (prop contract unchanged).
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
