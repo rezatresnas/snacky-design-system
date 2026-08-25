@@ -115,7 +115,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
   leaving a screenshot showing an old value.
 - `packages/react-ui/` - installable `@snacky/ui` npm package: real React
-  implementations of all 22 documented components (not just doc samples), so an AI
+  implementations of all 24 documented components (not just doc samples), so an AI
   tool building a new feature can `import` them instead of regenerating similar
   markup. `src/theme/tokens.css`/`tokens.ts` are generated from `tokens.json` by
   `scripts/generate-react-tokens.js` - run it after `generate-agent-files.js`
@@ -128,7 +128,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   generated CSS custom properties, so token-only changes propagate automatically.
   See `packages/react-ui/README.md` for known gaps (Illustration ships no artwork, etc).
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 22 of 22 components ported
+  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 24 of 24 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,
   `SnackyToggle`, `SnackyAvatar`, the Badge family, `SnackyCallout`, Chips, `SnackyNavBar`,
   `SnackyTabRow`, `SnackyAccordion`, `SnackyHeader`, List, `SnackyBottomSheet`,

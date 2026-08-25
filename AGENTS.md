@@ -12,10 +12,10 @@ Read [llms.txt](llms.txt) first. It indexes:
 - `tokens.json` / `components.json` - every design token and component spec,
   machine-readable, generated from `index.html` (never hand-edit these).
 - `packages/react-ui` - `@snacky/ui` on npm, a real React implementation of all
-  22 components.
+  24 components.
 - `packages/compose-ui` - the Kotlin Multiplatform / Compose Multiplatform
-  counterpart, all 22 components, published via JitPack
-  (`com.github.rezatresnas:snacky-design-system:compose-v1.1.0`). Generated from
+  counterpart, all 24 components, published via JitPack
+  (`com.github.rezatresnas:snacky-design-system:compose-v1.1.1`). Generated from
   the same source as the React package, so the two do not drift.
 
 If you cannot read files (a prompt-only surface, not this agent), use

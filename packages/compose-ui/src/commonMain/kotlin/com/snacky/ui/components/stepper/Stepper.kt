@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
@@ -61,8 +60,10 @@ fun SnackyStepper(
         steps.forEachIndexed { index, step ->
             val isLast = index == steps.lastIndex
             Row(
-                modifier = Modifier.defaultMinSize(minHeight = 48.dp),
-                // Figma "Order status step": HORIZONTAL, gap 16.
+                // Figma "Order status step": HORIZONTAL, gap 16. The height
+                // follows the content - 48 with a timestamp, 24 without - which
+                // is what makes the four documented progress frames land on
+                // 288 / 264 / 216 / 216. Forcing 48 on every step made all 288.
                 horizontalArrangement = Arrangement.spacedBy(SnackyLayout.block),
             ) {
                 StepDot(step.state, drawConnector = !isLast)

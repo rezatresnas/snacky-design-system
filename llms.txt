@@ -2,7 +2,7 @@
 
 > Design system for Snacky, a snack e-commerce mobile app, targeting Kotlin Compose Multiplatform and React. Source of truth is a Figma file, extracted pixel-accurately; every value below traces back to a real Figma node, not an estimate.
 
-This is a single-page interactive site (`index.html`) documenting 22 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). It also ships two generated, machine-readable files specifically for AI tools/agents - read those instead of scraping the HTML.
+This is a single-page interactive site (`index.html`) documenting 24 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). It also ships two generated, machine-readable files specifically for AI tools/agents - read those instead of scraping the HTML.
 
 ## Machine-readable files (read these first)
 
@@ -21,7 +21,7 @@ Both files are generated from `index.html` by `scripts/generate-agent-files.js` 
 
 ## Installable component libraries (use these to build, not just read)
 
-Both implement all 22 components below and are generated from the same source, so
+Both implement all 24 components below and are generated from the same source, so
 they do not drift from each other or from Figma. If you're building a feature,
 import from the package for your platform instead of writing new markup from the
 code samples in `components.json` - the samples are for reference, the packages are
@@ -33,7 +33,7 @@ for reuse.
 - [packages/compose-ui](packages/compose-ui): Kotlin Multiplatform / Compose
   Multiplatform (`androidTarget` + iOS), published via JitPack. Add the
   `https://jitpack.io` repository, then
-  `implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.0")`.
+  `implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.1")`.
   Ships no image loader and no font, so image-bearing components (`Avatar`, the
   Banner family, `Illustration`, `ProductImage`, `ProductCard`) take the image as a
   `content` slot.

@@ -11,11 +11,11 @@ Compose Multiplatform and React.
 
 | Path | What it is |
 |---|---|
-| [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 22 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
+| [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 24 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
 | [`tokens.json`](tokens.json) | All design tokens in [W3C Design Tokens](https://design-tokens.github.io/community-group/format/) format. |
 | [`components.json`](components.json) | Every component's variants/states with real spec values and working Kotlin (Compose Multiplatform) + React (TSX) code samples. |
-| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 22 components, styled entirely from the tokens above. |
-| [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 22 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
+| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 24 components, styled entirely from the tokens above. |
+| [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 24 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
 | [`llms.txt`](llms.txt) / [`AGENTS.md`](AGENTS.md) | Entry points for AI coding tools - point an agent here instead of scraping the HTML. |
 | [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste version of the above for tools that take a text prompt instead of reading files (Stitch, v0, Bolt, Claude Artifacts). |
 
@@ -43,7 +43,7 @@ import { Button, TextField, Checkbox } from '@snacky/ui';
 maven("https://jitpack.io")
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.1")
 ```
 
 See [`packages/react-ui/README.md`](packages/react-ui/README.md) for the full

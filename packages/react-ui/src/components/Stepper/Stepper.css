@@ -12,9 +12,11 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  /* Figma "Order status step": HORIZONTAL, gap 16, height 48. */
+  /* Figma "Order status step": HORIZONTAL, gap 16. The height follows the
+     content - 48 with a timestamp, 24 without - which is what makes the four
+     documented progress frames land on 288 / 264 / 216 / 216. Forcing 48 on
+     every step made all four 288. */
   gap: var(--gap-layout-block);
-  min-height: 48px;
 }
 
 /* The connector is one -90deg-rotated dashed LINE spanning the whole stepper in

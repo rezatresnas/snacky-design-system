@@ -5,7 +5,7 @@ design system, the Compose counterpart to `@snacky/ui`
 ([packages/react-ui](../react-ui)). Sourced from the same
 `../../tokens.json` / `../../components.json`.
 
-## Status: 22 of 22 components - complete
+## Status: 24 of 24 components - complete
 
 Every documented component is ported: design tokens, plus `Button`,
 `IconButton`, `Checkbox`, `RadioButton`, `Toggle`, `Avatar`, the `Badge`
@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.1")
 ```
 
 ### Using the icons

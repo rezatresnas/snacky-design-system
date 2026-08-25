@@ -2177,6 +2177,114 @@
         }
       ]
     },
+    "stepper": {
+      "name": "Stepper",
+      "cat": "Content",
+      "desc": "Vertical progress timeline for order status and delivery tracking.",
+      "usage": "Use for any ordered sequence of states the user follows over time: the four order-status screens and the driver-tracking sheet. Each step is done, pending, or cancelled - read the state from what the step actually is, not from a label. Steps are 48 tall with a 32 gap, joined by a dashed connector.",
+      "cover": "assets/images/variants/stepper-received.png",
+      "v": [
+        {
+          "id": "stepper-waiting",
+          "name": "Waiting",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/stepper-waiting.png",
+          "s": {
+            "w": 180,
+            "h": 216,
+            "gap": 32,
+            "use": "First step done, the rest pending. Dot 24x24 holding a 16x16 circle: icon-brand when done, bg-action-disabled when pending."
+          },
+          "code": {
+            "kt": "SnackyStepper(steps = listOf(\n  Step(\"Waiting for payment\", \"Pay before Dec 30, 11:00\", StepState.Done),\n  Step(\"Order Processed\", state = StepState.Pending),\n))",
+            "tsx": "<Stepper steps={[\n  { label: 'Waiting for payment', timestamp: 'Pay before Dec 30, 11:00', state: 'done' },\n  { label: 'Order Processed', state: 'pending' },\n]} />"
+          }
+        },
+        {
+          "id": "stepper-delivered",
+          "name": "Delivered",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/stepper-delivered.png",
+          "s": {
+            "w": 158,
+            "h": 264,
+            "gap": 32,
+            "use": "Three done, last still pending. Done labels use text-primary, pending labels text-secondary."
+          },
+          "code": {
+            "kt": "SnackyStepper(steps = listOf(\n  Step(\"Order Delivered\", \"Dec 30, 12:00 PM\", StepState.Done),\n  Step(\"Order Received\", state = StepState.Pending),\n))",
+            "tsx": "<Stepper steps={[\n  { label: 'Order Delivered', timestamp: 'Dec 30, 12:00 PM', state: 'done' },\n  { label: 'Order Received', state: 'pending' },\n]} />"
+          }
+        },
+        {
+          "id": "stepper-received",
+          "name": "Received",
+          "st": "active",
+          "sl": "Complete",
+          "img": "assets/images/variants/stepper-received.png",
+          "s": {
+            "w": 158,
+            "h": 288,
+            "gap": 32,
+            "use": "Every step done. Note Figma names one of these dots \"disabled\" while filling it icon-brand - the state comes from the fill, not the layer name."
+          },
+          "code": {
+            "kt": "SnackyStepper(steps = allDone)",
+            "tsx": "<Stepper steps={allDone} />"
+          }
+        },
+        {
+          "id": "stepper-cancelled",
+          "name": "Cancelled",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/stepper-cancelled.png",
+          "s": {
+            "w": 148,
+            "h": 216,
+            "gap": 32,
+            "use": "First step cancelled: bg-surface-accent circle with a white close glyph, label in text-error. Remaining steps stay pending."
+          },
+          "code": {
+            "kt": "SnackyStepper(steps = listOf(\n  Step(\"Order Cancelled\", \"Dec 30, 11:00 AM\", StepState.Cancelled),\n  Step(\"Order Processing\", state = StepState.Pending),\n))",
+            "tsx": "<Stepper steps={[\n  { label: 'Order Cancelled', timestamp: 'Dec 30, 11:00 AM', state: 'cancelled' },\n  { label: 'Order Processing', state: 'pending' },\n]} />"
+          }
+        }
+      ]
+    },
+    "calendar": {
+      "name": "Calendar",
+      "cat": "Forms",
+      "desc": "Month grid for picking a single date or a range.",
+      "usage": "The panel the Date Picker field opens. 360x505 with 24 padding and a 24 gap: header with month label and prev/next arrows, weekday row, the date grid, then a confirm button. Renders only the weeks the month needs, so a five-week month is 505 tall and a six-week one grows by one row.",
+      "cover": "assets/images/variants/calendar-default.png",
+      "v": [
+        {
+          "id": "calendar-default",
+          "name": "Default",
+          "st": null,
+          "sl": null,
+          "img": "assets/images/variants/calendar-default.png",
+          "s": {
+            "w": 360,
+            "h": 505,
+            "pt": 24,
+            "pb": 24,
+            "pl": 24,
+            "pr": 24,
+            "gap": 24,
+            "fill": "#ffffff",
+            "use": "Header 312x36, grid 312x325, button 312x48. Selected days get a 40px bg-action-primary circle; days between the two ends get a bg-surface-highlight band. An 8px accent dot marks a day with activity."
+          },
+          "code": {
+            "kt": "SnackyCalendar(\n  label = \"June 2021\",\n  weeks = weeks,\n  onPrevMonth = { },\n  onNextMonth = { },\n  onSelect = { day -> select(day) },\n  onAction = { confirm() },\n)",
+            "tsx": "<Calendar\n  month={new Date(2021, 5, 1)}\n  selected={[from, to]}\n  marked={[new Date(2021, 5, 8)]}\n  onPrevMonth={prev}\n  onNextMonth={next}\n  onSelect={setDay}\n  onAction={confirm}\n/>"
+          }
+        }
+      ]
+    },
     "callout": {
       "name": "Callout",
       "cat": "Content",

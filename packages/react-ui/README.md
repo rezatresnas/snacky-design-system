@@ -96,7 +96,7 @@ Names are listed under **What's here** below. `outline` has 42, `solid` has 11.
 
 ## What's here
 
-All 22 documented components, each matching its `code.tsx` sample's prop
+All 24 documented components, each matching its `code.tsx` sample's prop
 shape from `components.json` (padding, colors, radius, states - all sourced
 directly from the design tokens, not eyeballed):
 
