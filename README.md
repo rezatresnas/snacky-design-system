@@ -43,7 +43,7 @@ import { Button, TextField, Checkbox } from '@snacky/ui';
 maven("https://jitpack.io")
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.8")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.9")
 ```
 
 See [`packages/react-ui/README.md`](packages/react-ui/README.md) for the full
@@ -65,7 +65,7 @@ component list, verification status, and known gaps.
 
 - [x] Publish `@snacky/ui` to npm
 - [x] Kotlin Compose Multiplatform component package, published via JitPack
-- [x] Full icon set - all 42 Outline + 10 Solid, exported from Figma's real
+- [x] Full icon set - all 42 Outline + 11 Solid, exported from Figma's real
       icon components (CC BY 4.0, see [NOTICE](NOTICE))
 
 ## License

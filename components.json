@@ -3497,8 +3497,8 @@
           "s": {
             "w": 24,
             "h": 24,
-            "use": "10 icons: account, balance, bell, cart, category, heart, history, home, points, truck",
-            "note": "Active/selected state - filled counterpart of the Outline icon of the same name. Authored at 20px for the navbar set and 24px for truck/balance/points. `points` renders as a gift box and has no Outline counterpart (loyalty/promo contexts only)."
+            "use": "11 icons: account, balance, bell, cart, category, heart, history, home, points, star, truck",
+            "note": "Active/selected state - filled counterpart of the Outline icon of the same name. Authored at 20px for the navbar set and 24px for truck/balance/points/star. `points` (a gift box) and `star` (the ratings glyph) have no Outline counterpart. `star` sits in Figma as the `fi-ss-star` component (node 46:1411) rather than inside the Icon-solid set, so the first export missed it and the packages could not draw their own rating row."
           },
           "code": {
             "kt": "SnackyIcon(SnackyIcons.Solid.Home, contentDescription = \"Home\", tint = iconBrand, size = sizeIconMd)",

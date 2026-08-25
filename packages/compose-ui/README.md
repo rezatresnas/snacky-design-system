@@ -44,13 +44,13 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.8")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.0.9")
 ```
 
 ### Using the icons
 
 **Never substitute an emoji or a hand-drawn shape for an icon.** The real set
-ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (10), rendered
+ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (11), rendered
 through `SnackyIcon`:
 
 ```kotlin
@@ -488,7 +488,7 @@ that credit with them.
 
 - The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
   `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace:
-  **42 Outline + 10 Solid, exported from the real Figma icon components**
+  **42 Outline + 11 Solid, exported from the real Figma icon components**
   (`Icon-outline` node `55:2062`, `Icon-solid` node `8772:5851`).
 
   `SnackyIcons.kt` is generated from `../../assets/icons/icons.json` by

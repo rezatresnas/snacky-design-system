@@ -9,7 +9,7 @@ import { IconButton } from '../IconButton/IconButton.js';
 // tell integrators never to do. Sizes match index.html's verified preview:
 // 20px in the details actions, 16px in the list card's cart button.
 import { cartAdd as CartAddIcon, chat as ChatIcon, heart as HeartOutlineIcon, share as ShareIcon } from '../../icons/outline.js';
-import { heart as HeartSolidIcon } from '../../icons/solid.js';
+import { heart as HeartSolidIcon, star as StarIcon } from '../../icons/solid.js';
 import './ProductCard.css';
 
 interface BaseProductCardProps {
@@ -74,7 +74,7 @@ export function ProductCard(props: ProductCardProps) {
         </div>
         <div className="snacky-product-card__footer-row">
           <span className="snacky-product-card__rating">
-            {ratingIcon && <span className="snacky-product-card__rating-icon">{ratingIcon}</span>}
+            <span className="snacky-product-card__rating-icon">{ratingIcon ?? <StarIcon width={16} height={16} />}</span>
             {rating} ({ratingCount})
           </span>
           <div className="snacky-product-card__actions snacky-product-card__actions--details">
@@ -112,7 +112,7 @@ export function ProductCard(props: ProductCardProps) {
       </div>
       <div className="snacky-product-card__footer-row">
         <span className="snacky-product-card__rating">
-          {ratingIcon && <span className="snacky-product-card__rating-icon">{ratingIcon}</span>}
+          <span className="snacky-product-card__rating-icon">{ratingIcon ?? <StarIcon width={16} height={16} />}</span>
           {rating}
         </span>
         <IconButton

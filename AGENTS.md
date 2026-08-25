@@ -15,7 +15,7 @@ Read [llms.txt](llms.txt) first. It indexes:
   22 components.
 - `packages/compose-ui` - the Kotlin Multiplatform / Compose Multiplatform
   counterpart, all 22 components, published via JitPack
-  (`com.github.rezatresnas:snacky-design-system:compose-v1.0.8`). Generated from
+  (`com.github.rezatresnas:snacky-design-system:compose-v1.0.9`). Generated from
   the same source as the React package, so the two do not drift.
 
 If you cannot read files (a prompt-only surface, not this agent), use
@@ -53,7 +53,7 @@ broken when you skip them:
   (`fontFamily: 'var(--font-h3-bold-family)'`), otherwise your glue text will
   not match the components next to it.
 - **Never substitute an emoji or a hand-drawn SVG for an icon.** The real set
-  ships as `SnackyIcons.outline.*` (42) and `SnackyIcons.solid.*` (10). Every
+  ships as `SnackyIcons.outline.*` (42) and `SnackyIcons.solid.*` (11). Every
   icon slot takes a node, and icons inherit their colour from the slot:
 
   ```tsx

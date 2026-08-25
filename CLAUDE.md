@@ -48,7 +48,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Treat this as a required step, not optional cleanup - if `index.html` changes and
   this isn't re-run, the two JSON files silently go stale.
 - `assets/icons/icons.json` - the real icon geometry exported from Figma's `Icon-outline`
-  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 10 solid,
+  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 11 solid,
   each with its own viewBox (the set is 16/20/24px, not uniform) and its SVG path data.
   **Never hand-edit.** `scripts/generate-icons.js` turns it into BOTH
   `packages/react-ui/src/icons/outline.tsx`/`solid.tsx` and compose-ui's
@@ -58,10 +58,16 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   ```
   Note these are FILLED outline shapes, not stroked paths - the outline weight is baked
   into each shape, so there is no stroke width to set.
+  The 11th solid icon, `star`, does NOT live in the `Icon-solid` set: it sits in Figma as
+  the standalone `fi-ss-star` component (node `46:1411`) that Product Card and the review
+  rows instance, bound to `icon/icon-brand`. The first export only walked the two
+  component sets, so it missed the star, and both packages rendered their own documented
+  rating row with no glyph at all. If another icon turns up in a component but not in a
+  set, it belongs in `icons.json` the same way, not in `legacy-extras.json`.
   The generator ALSO rewrites `index.html`'s own `const ICONS={...}` registry and the
   `const ICON_SET={...}` index the Icon playground gallery enumerates, so the site renders
   the same geometry the packages ship. Playground-only glyphs that are not part of the
-  Figma icon sets (ratings star, timeline check/clock, deals, chat-driver) live in
+  Figma icon sets (timeline check/clock, deals, chat-driver) live in
   `assets/icons/legacy-extras.json` and are merged back in, and the older key names the
   playgrounds already pass to `ic()` (`fav-o`, `add-to-cart`, `dropdown`, `cod`, `saldo`,
   ...) are kept working as aliases - so never hand-edit that registry either.

@@ -92,7 +92,7 @@ normally pass no colour. To tint one deliberately, use `color`:
 <SnackyIcons.solid.heart color="var(--icon-active)" />
 ```
 
-Names are listed under **What's here** below. `outline` has 42, `solid` has 10.
+Names are listed under **What's here** below. `outline` has 42, `solid` has 11.
 
 ## What's here
 
@@ -108,7 +108,7 @@ Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
 Illustration, ProductImage, ProductCard.
 
 Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (42
-Outline, 10 Solid). Two things to know: they are **filled** shapes rather than
+Outline, 11 Solid). Two things to know: they are **filled** shapes rather than
 stroked paths, so there is no `strokeWidth` to set, and the set is **not
 uniform** - each icon is authored at 16, 20 or 24px and defaults to its own
 natural size, so pass `width`/`height` if you need them to match.

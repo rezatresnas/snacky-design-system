@@ -430,6 +430,13 @@ object SnackyIcons {
             ),
         )
 
+        val Star = SnackyIconSpec(
+            viewBox = 24f,
+            paths = listOf(
+            SnackyIconPath("M19.53 23.194L12.063 17.706L4.596 23.194L7.463 14.331L0 8.878L9.214 8.878L12.063 0L14.912 8.878L24.125 8.878L16.663 14.331L19.53 23.194Z"),
+            ),
+        )
+
         val Truck = SnackyIconSpec(
             viewBox = 24f,
             paths = listOf(

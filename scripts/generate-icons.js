@@ -171,6 +171,10 @@ const ALIASES = {
   'add-to-cart': 'cartAdd', 'dropdown': 'chevronDown', 'picture': 'camera',
   'password-o': 'eyeOff', 'password-active': 'eye', 'close-input': 'closeInput',
   'call': 'phone', 'credit': 'creditCard', 'cod': 'truck', 'saldo': 'balance',
+  // `star` used to come from legacy-extras under that bare key. It is a real
+  // solid icon now, which the registry keys as `star-solid`, so the playgrounds'
+  // existing ic('star') calls need the alias to keep drawing anything.
+  'star': 'star-solid',
 };
 
 const legacyExtras = JSON.parse(

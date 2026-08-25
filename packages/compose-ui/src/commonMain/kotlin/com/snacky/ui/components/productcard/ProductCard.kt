@@ -267,14 +267,14 @@ private fun RatingLabel(text: String, ratingIcon: (@Composable () -> Unit)?) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(SnackyGap.iconLabel),
     ) {
-        if (ratingIcon != null) {
-            Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
-                // react-ui tints the rating star from the component, not the
-                // caller (.snacky-product-card__rating-icon), so the slot
-                // inherits that colour here rather than rendering untinted.
-                CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
-                    ratingIcon()
-                }
+        Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
+            // react-ui tints the rating star from the component, not the
+            // caller (.snacky-product-card__rating-icon), so the slot
+            // inherits that colour here rather than rendering untinted.
+            CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
+                // Defaults to the real star rather than an empty slot: the
+                // rating row is never specced without one.
+                if (ratingIcon != null) ratingIcon() else SnackyIcon(SnackyIcons.Solid.Star, size = 16.dp)
             }
         }
         BasicText(text = text, style = cardStyle(SnackyTypography.Small.regular, SnackyColor.textSecondary))
