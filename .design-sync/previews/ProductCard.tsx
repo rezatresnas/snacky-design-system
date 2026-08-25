@@ -28,7 +28,13 @@ export function ListVariant() {
 export function DetailsVariant() {
   const [favorited, setFavorited] = useState(true);
   return (
-    <div style={{ width: 260 }}>
+    // Details is a product-detail-page component, not a narrow card - CLAUDE.md's
+    // own convention is full-width content with a 16px screen margin, so this
+    // uses a realistic 343px (375px mobile screen minus 16px margins) rather than
+    // an arbitrary narrow box. At 260px the Figma-accurate 24px padding and 20px
+    // price font wrap the price row onto two lines, which is a preview-width
+    // artifact, not a real component bug.
+    <div style={{ width: 343 }}>
       <ProductCard
         variant="details"
         productName="Choco Chip Cookies 200g"
@@ -52,7 +58,7 @@ export function DetailsVariant() {
 
 export function SoldOut() {
   return (
-    <div style={{ width: 260 }}>
+    <div style={{ width: 343 }}>
       <ProductCard
         variant="details"
         productName="Limited Matcha Wafers"

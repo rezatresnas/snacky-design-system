@@ -151,6 +151,26 @@
   the star now renders next to every rating in all three story variants, where it
   previously rendered nothing at all. Bundle-only diff (prop contract unchanged).
 
+- **2026-08-25 (large migration)**: `@snacky/ui` 0.5.7. The docs site
+  (`index.html`) migrated its Live Preview playgrounds to render every component
+  from the real package instead of parallel hand-rolled markup, which surfaced a
+  broad sweep of real Figma-verification fixes across nearly every component's
+  CSS (typography, INSIDE-vs-CENTER stroke handling, spacing) plus a structural
+  fix to `ProductCard`'s details variant (Figma is two stacked frames with their
+  own padding, not one flattened column - the flattened version was 29px short).
+  All 36 components' prop contracts stayed stable (`sourceKeys` unchanged), so
+  this was a bundle/CSS-only push, not a component re-author.
+  **Preview bug found and fixed during review**: `ProductCard`'s `DetailsVariant`/
+  `SoldOut` stories wrapped the card in an arbitrary 260px box. With the now-
+  correct 24px padding and 20px price font, the price row ("Rp 24.000 Rp 30.000
+  20%") no longer fit and wrapped onto two lines with the discount badge
+  orphaned - NOT a component bug, a preview-width artifact. Fixed by widening
+  both stories to 343px (a realistic mobile content width - 375px screen minus
+  the documented 16px margins - matching CLAUDE.md's "content is Fill container,
+  not a fixed width" convention). Always sanity-check an arbitrary preview
+  wrapper width against the component's real Figma-accurate content size before
+  assuming a layout glitch is a component bug.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
