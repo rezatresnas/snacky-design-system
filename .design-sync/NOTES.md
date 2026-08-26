@@ -23,10 +23,16 @@
   goes missing on a fresh clone**, re-fetch the 6 `.ttf` files from the live project
   (`fonts/Poppins-*.ttf`) via `DesignSync(get_file)` before rebuilding, or the build falls
   back to `[FONT_MISSING]` again.
-- `overrides` for 4 components flagged `[GRID_OVERFLOW]` on first full validate:
-  `Button` and `Section` and `AddressResult` → `cardMode: "column"` (a wide story
-  cropped in the grid), `BottomSheet` → `cardMode: "single", primaryStory: "Default"`
-  (fixed/portal-positioned overlay, no grid layout can present it).
+- `overrides` (current, as of the 2026-08-25 Stepper/Calendar re-sync): `Button`,
+  `Section`, `AddressResult`, `BottomSheet`, `ProductCard`, `Stepper` all use
+  `cardMode: "column"` (their stories render wider than a grid cell, so each gets
+  the full card width, one story per row). `BottomSheet` was originally
+  `cardMode: "single", primaryStory: "Default"` when it only had one story - once
+  its preview grew to 6 distinct documented Modal variants (Welcome/Success/
+  Confirmation/VariantSelector/PaymentMethods/WithHandle), `single` would have
+  hidden 5 of them, so it moved to `column` like the others. If a component's
+  preview grows past one meaningfully-different story, re-check whether `single`
+  is still the right override.
 
 ## Known render warns
 
@@ -170,6 +176,39 @@
   not a fixed width" convention). Always sanity-check an arbitrary preview
   wrapper width against the component's real Figma-accurate content size before
   assuming a layout glitch is a component bug.
+
+## Re-sync log (continued)
+
+- **2026-08-25 (Stepper & Calendar)**: `@snacky/ui` 0.6.0 → 0.6.1. Two entirely new
+  components shipped - `Stepper` (order-status/progress timeline: dot + label +
+  timestamp per step, dashed connector, done/pending/cancelled states) and
+  `Calendar` (the real date-picker panel the Input family's date field opens:
+  header nav, weekday row, month grid with single/range selection, Select Date
+  button). Both were previously "app composition" (19 hand-drawn Stepper copies
+  across 5 Figma variants, Calendar drawn fresh by every screen that needed one)
+  until counting the Figma copies showed they were real extracted components the
+  design system had just never shipped. `.design-sync/config.json`'s
+  `componentSrcMap`/`overrides` needed no changes for the new components
+  themselves (auto-discovered from the package's exports) - only `overrides` grew
+  by two entries (`ProductCard`, `Stepper` → `cardMode: "column"`) for
+  `[GRID_OVERFLOW]`. Someone (not this agent) had already authored full previews
+  for both (`.design-sync/previews/Stepper.tsx`, `Calendar.tsx`) plus
+  significantly expanded `Section.tsx` (8 documented Section variants, up from 3)
+  and rewrote `BottomSheet.tsx` from a single generic story into all 6 documented
+  Modal variants using real package components throughout - all graded good on
+  first read, no fixes needed. Also verified and updated two stale claims in
+  `.design-sync/conventions.md`: the token count (180 → 184, new tokens shipped
+  with Stepper/Calendar) and the font-loading instructions (still described the
+  old "host app loads Google Fonts" setup, superseded by the self-hosted-font fix
+  from the previous re-sync) - also added a one-line mention of both new
+  components to the composition-patterns list.
+- Also folded in from the same period: `Banner.css`/`AddressResult.css`/`Tab.css`
+  fixes (icon colors bound to `text/text-placeholder` not `icon-secondary` in the
+  Input family; `Tab`'s padding token corrected from `--spacing-12` to the real
+  `gap.text-underline`, with the accent line painted via `box-shadow: inset` so it
+  doesn't add to the box) - all CSS-only, no prop contracts changed, verified via
+  the driver's `unchanged` list (sourceKeys stable) plus a visual scan of the
+  contact sheets.
 
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 

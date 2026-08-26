@@ -14,6 +14,8 @@
     "Button": { "cardMode": "column" },
     "Section": { "cardMode": "column" },
     "AddressResult": { "cardMode": "column" },
-    "BottomSheet": { "cardMode": "single", "primaryStory": "Default" }
+    "BottomSheet": { "cardMode": "column" },
+    "ProductCard": { "cardMode": "column" },
+    "Stepper": { "cardMode": "column" }
   }
 }
