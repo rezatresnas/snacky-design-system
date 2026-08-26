@@ -53,9 +53,9 @@ icons. The illustrations are also modified stock and are deliberately NOT bundle
 ## Components
 
 - **Actions**: Button, Icon Button
-- **Forms**: Input (text, password, dropdown, date picker, address, search, OTP, chat, copy-value), Chips, Radio Button, Checkbox, Toggle
+- **Forms**: Input (text, password, dropdown, date picker, address, search, OTP, chat, copy-value), Chips, Radio Button, Checkbox, Toggle, Calendar
 - **Navigation**: Navbar, Tab, Header
-- **Content**: Banner, Badge, Callout, List, Accordion, Modal, Section
+- **Content**: Banner, Badge, Callout, List, Stepper, Accordion, Modal, Section
 - **Assets**: Avatar, Icon, Illustration, Product Image, Product Card
 
 ## Key rules an agent should not violate
