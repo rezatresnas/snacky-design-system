@@ -15,7 +15,7 @@ const FIGMA_LINKS = {
   'icon-button': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8771',
 
   // Forms
-  'calendar': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=149-798',
+  'calendar': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=10049-170',
   'input': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=55-1980',
   'chips': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8846',
   'radio-button': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8872',
@@ -31,7 +31,7 @@ const FIGMA_LINKS = {
   'banner': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8879',
   'badge': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8880',
   'callout': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8881',
-  'stepper': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8693-6044',
+  'stepper': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=10046-2',
   'list': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8882',
   'accordion': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8883',
   'modal': 'https://www.figma.com/design/4Uh4Y1fPQXu2hwq0vEXHXd/Snacky-App?node-id=8877-8884',
