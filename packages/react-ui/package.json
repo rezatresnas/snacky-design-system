@@ -1,6 +1,6 @@
 {
   "name": "@snacky/ui",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Snacky App design system - React component library. Generated from the source-of-truth design system at ../../index.html (tokens.json / components.json), pixel-accurate to Figma.",
   "license": "MIT",
   "author": "rezatresnas",

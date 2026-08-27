@@ -91,3 +91,16 @@ unverified - see the README's Verification status.
   not: tsup extracts the CSS to a standalone `dist/index.css` and never
   re-injects it into the JS entry, so anyone following the snippet verbatim got
   unstyled components. The correct import is `@snacky/ui/styles.css`.
+- **PointBalanceBanner stretched to fill its container (0.6.2).** Figma's frame
+  hugs its content at 312px, it was never meant to fill full-bleed, but the
+  component set `width: 100%` plus `justify-content: space-between` anyway.
+  Inside any container wider than 312px (which is most of them), the Points and
+  Balance groups spread apart across the extra width instead of staying grouped
+  on the left like Figma. Switched to `display: inline-flex` (hugs by default)
+  with an explicit `gap`, matching the value already recorded in
+  `components.json`'s spec for this variant.
+- **AlertBanner clipped a long message (0.6.2).** The row had a fixed
+  `height: 40px`, Figma's single-line sample height, not a cap. A message long
+  enough to wrap onto a second line got clipped instead of growing the banner.
+  Changed to `min-height: 40px` and let the message text take `flex: 1` so it
+  shrinks and wraps within the row instead of overflowing sideways.

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -131,15 +132,19 @@ fun SnackyPointBalanceBanner(
     balanceIcon: (@Composable () -> Unit)? = null,
 ) {
     Row(
+        // Figma's frame hugs its content at 312dp, it is not filled full-bleed -
+        // fillMaxWidth() + SpaceBetween was stretching the two item groups apart
+        // across whatever width the caller gave it instead of keeping them
+        // grouped on the left like Figma. No fillMaxWidth() lets the Row hug by
+        // default, matching react-ui's move to `display: inline-flex`.
         modifier = modifier
-            .fillMaxWidth()
             .height(IntrinsicSize.Min) // lets the divider below actually stretch
             .clip(RoundedCornerShape(SnackyRadius.card))
             .background(SnackyColor.bgSurfaceHighlight)
             .border(1.dp, SnackyColorPrimitive.Primary.c500, RoundedCornerShape(SnackyRadius.card))
             .padding(horizontal = SnackySpacingPrimitive.space16, vertical = SnackySpacingPrimitive.space8),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space8),
     ) {
         PointBalanceItem(pointsLabel, points, pointsIcon)
         // react-ui's divider is `align-self: stretch`, so it spans the row's
@@ -200,13 +205,21 @@ fun SnackyAlertBanner(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(40.dp)
+            // 40dp is Figma's single-line sample, not a cap - a fixed height
+            // clipped any message long enough to wrap onto a second line.
+            // heightIn(min) keeps the 40dp default and lets the row grow for
+            // taller wrapped content instead, matching react-ui's min-height.
+            .heightIn(min = 40.dp)
             .background(SnackyColor.bgSurfaceAccent)
             .padding(horizontal = SnackySpacingPrimitive.space24, vertical = SnackySpacingPrimitive.space8),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        BasicText(text = message, style = bannerStyle(SnackyTypography.Body.regular, SnackyColor.textInverse))
+        BasicText(
+            text = message,
+            modifier = Modifier.weight(1f),
+            style = bannerStyle(SnackyTypography.Body.regular, SnackyColor.textInverse),
+        )
         if (countdown != null) {
             BasicText(
                 text = countdown,

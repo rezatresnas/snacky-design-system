@@ -210,6 +210,41 @@
   the driver's `unchanged` list (sourceKeys stable) plus a visual scan of the
   contact sheets.
 
+- **2026-08-27 (bug sweep from the live project)**: `@snacky/ui` 0.6.1 → 0.6.2.
+  Four issues reported directly from the claude.ai/design gallery, all real:
+  1. `IconButton.tsx`'s `SecondaryFavorite` story passed `SnackyIcons.outline.heart`
+     for BOTH `selected={false}` and `selected={true}`, so the "favorited" state
+     only tinted the heart red without ever filling it - `selected` tints color,
+     it never owns the icon shape (that's the caller's job, by design), and this
+     preview never did its job. Fixed to pass `solid.heart` when selected, matching
+     Figma's documented Selected state (filled red heart).
+  2. `ProductCard.tsx`'s `DetailsVariant` story hardcoded `favoriteIcon={outline.heart}`
+     even though `favorited` starts `true` and toggles - same root bug as #1, and it
+     defeated the component's own correct default (`favorited ? solid : outline`).
+     Fixed by dropping the override and letting the default do its job.
+  3. `PointBalanceBanner` real component bug (not a preview bug): `width: 100%` +
+     `justify-content: space-between` on a component whose Figma frame hugs its
+     content at 312px, not a container-filling banner. Inside Claude Design's wider
+     card layout this stretched the Points/Balance groups apart instead of keeping
+     them grouped left like Figma. Fixed in `Banner.css` (`display: inline-flex`,
+     explicit `gap`) and ported to `SnackyPointBalanceBanner` in compose-ui
+     (dropped `fillMaxWidth()`, `SpaceBetween` → `spacedBy`).
+  4. `AlertBanner` real component bug: fixed `height: 40px` (Figma's single-line
+     sample, not a cap) clipped any message long enough to wrap. Fixed to
+     `min-height: 40px` plus `flex: 1` on the message text in react-ui, and
+     `.height(40.dp)` → `.heightIn(min = 40.dp)` plus `Modifier.weight(1f)` on the
+     message in compose-ui.
+  Also, separately: every preview file's product/avatar/banner photo placeholder
+  swapped its emoji-on-a-colored-rect for a neutral `#f3f3f3` fill + the package's
+  own `camera` outline icon in `#a3a3a3` (`icon-disabled`) - the same "no real
+  photography to substitute" exception this file used to carve out for emoji is
+  no longer taken; a generic empty-state-style placeholder reads as obviously
+  fake artwork without reaching for a glyph at all. 12 files touched: `Avatar`,
+  `BottomSheet`, `FullWidthBanner`, `HeroBanner`, `Illustration`, `OrderListItem`,
+  `ProductCard`, `ProductChip`, `ProductImage`, `Section`, `SoldOutBadge`,
+  `SquareBanner`. Bundle + prop-contract diff only where it touched real
+  component CSS (#3, #4); the rest is preview-file-only.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

@@ -14,7 +14,9 @@ export function SecondaryFavorite() {
   return (
     <div style={{ display: 'flex', gap: 12 }}>
       <IconButton variant="secondary" icon={<SnackyIcons.outline.heart />} ariaLabel="Add to favorites" selected={false} />
-      <IconButton variant="secondary" icon={<SnackyIcons.outline.heart />} ariaLabel="Remove from favorites" selected={true} />
+      {/* `selected` only tints color; swapping outline -> solid on favorite is the
+          consumer's job (the icon is a slot, not owned by the component). */}
+      <IconButton variant="secondary" icon={<SnackyIcons.solid.heart />} ariaLabel="Remove from favorites" selected={true} />
     </div>
   );
 }
