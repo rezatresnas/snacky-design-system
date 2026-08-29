@@ -235,11 +235,19 @@
      `.height(40.dp)` → `.heightIn(min = 40.dp)` plus `Modifier.weight(1f)` on the
      message in compose-ui.
   Also, separately: every preview file's product/avatar/banner photo placeholder
-  swapped its emoji-on-a-colored-rect for a neutral `#f3f3f3` fill + the package's
-  own `camera` outline icon in `#a3a3a3` (`icon-disabled`) - the same "no real
-  photography to substitute" exception this file used to carve out for emoji is
-  no longer taken; a generic empty-state-style placeholder reads as obviously
-  fake artwork without reaching for a glyph at all. 12 files touched: `Avatar`,
+  swapped its emoji-on-a-colored-rect for a neutral `#f3f3f3` fill + a generic
+  "missing image" glyph (frame/circle/mountain outline, `#a3a3a3` = `icon-disabled`)
+  in `#a3a3a3` - the universal broken-image icon, not one of `SnackyIcons`. It's
+  standalone decorative artwork for preview placeholders only, never a real icon
+  prop, so it doesn't need to come from the design system's own set the way a
+  component's icon prop does. First pass reached for the package's own `camera`
+  icon instead, on the theory that "at least it's a real SnackyIcons glyph" -
+  the user pointed out that reads as "take a photo," not "no image here," and
+  asked for the standard picture-frame/mountain/sun glyph instead, which is what
+  shipped. The same "no real photography to substitute" exception this file used
+  to carve out for emoji is retired either way; a generic empty-state-style
+  placeholder reads as obviously fake artwork without reaching for a glyph at
+  all. 12 files touched: `Avatar`,
   `BottomSheet`, `FullWidthBanner`, `HeroBanner`, `Illustration`, `OrderListItem`,
   `ProductCard`, `ProductChip`, `ProductImage`, `Section`, `SoldOutBadge`,
   `SquareBanner`. Bundle + prop-contract diff only where it touched real
