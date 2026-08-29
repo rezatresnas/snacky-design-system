@@ -15,7 +15,7 @@ Read [llms.txt](llms.txt) first. It indexes:
   24 components.
 - `packages/compose-ui` - the Kotlin Multiplatform / Compose Multiplatform
   counterpart, all 24 components, published via JitPack
-  (`com.github.rezatresnas:snacky-design-system:compose-v1.1.2`). Generated from
+  (`com.github.rezatresnas:snacky-design-system:compose-v1.2.0`). Generated from
   the same source as the React package, so the two do not drift.
 
 If you cannot read files (a prompt-only surface, not this agent), use
@@ -42,7 +42,7 @@ import '@snacky/ui/styles.css';
 import { Button, TextField, Checkbox, SnackyIcons } from '@snacky/ui';
 ```
 
-Two things that are easy to miss and both look like the design system is
+Three things that are easy to miss and all look like the design system is
 broken when you skip them:
 
 - **The package ships no `@font-face`.** Type resolves through
@@ -63,6 +63,19 @@ broken when you skip them:
 
   If you cannot find a matching name, check `assets/icons/icons.json` before
   drawing anything - inventing a glyph is never the right fallback.
+- **Every image prop is required, with no fallback.** `ProductCard.imageUrl`,
+  `ProductImage.src`, `Avatar.src`, the Banner family's `imageUrl` - none of
+  them are optional, because this package ships no photography to fall back
+  to. Skip one and it is a compile error, not a silent placeholder. For a
+  genuinely empty state, pass `ImagePlaceholder` explicitly instead of
+  inventing your own:
+
+  ```tsx
+  <ImagePlaceholder width={152} height={128} />
+  ```
+
+  This is a standalone utility, not one of the 24 documented components -
+  there is no Figma node for it.
 
 See that same README for the full component list, known gaps, and
 verification status.

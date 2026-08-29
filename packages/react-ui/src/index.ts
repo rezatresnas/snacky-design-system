@@ -32,6 +32,7 @@ export * from './components/Avatar/index.js';
 export * from './components/Illustration/index.js';
 export * from './components/ProductImage/index.js';
 export * from './components/ProductCard/index.js';
+export * from './components/ImagePlaceholder/index.js';
 
 export { SnackyIcons } from './icons/index.js';
 export type { IconProps } from './icons/index.js';

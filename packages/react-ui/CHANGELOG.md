@@ -4,6 +4,28 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## ImagePlaceholder added, a non-Figma utility (0.7.0)
+
+Every image prop (`ProductCard.imageUrl`, `ProductImage.src`, `Avatar.src`,
+the Banner family's `imageUrl`) has always been required, deliberately - this
+package ships no photography, so there was never anything to default to.
+That was correct as far as it went, but it left a real gap: a consumer with a
+genuinely empty state (a new product with no photo yet) had no sanctioned way
+to say so, and either left `src` empty (silently falling through to the
+browser's own broken-image icon) or invented their own placeholder, which is
+exactly the kind of gap that produced emoji fallbacks elsewhere in this
+project's history.
+
+`ImagePlaceholder` closes it: a neutral `bg-surface-variant` box with a
+generic "no image" glyph in `icon-disabled`. The glyph is hand-drawn
+(frame/circle/mountain outline), not one of `SnackyIcons` - it is decorative
+placeholder artwork, not a real icon prop, and the first instinct (reuse the
+package's own `camera` icon, reasoning "at least it's a real glyph") read as
+"take a photo" rather than "no image here" once someone actually looked at
+it. This is a standalone utility, not the 25th documented component - there
+is no Figma node for it, and the README says so explicitly rather than
+letting the count quietly drift.
+
 ## Icon set replaced with the real Figma artwork (0.3.0)
 
 The package originally shipped a hand-drawn "starter" icon set: roughly 30

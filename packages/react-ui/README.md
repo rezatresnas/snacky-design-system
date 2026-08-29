@@ -94,6 +94,32 @@ normally pass no colour. To tint one deliberately, use `color`:
 
 Names are listed under **What's here** below. `outline` has 42, `solid` has 11.
 
+### 4. Handle a missing image
+
+Every image slot (`ProductCard`'s `imageUrl`, `ProductImage`'s `src`,
+`Avatar`'s `src`, the Banner family's `imageUrl`) is a **required** prop, on
+purpose - this package ships no photography, so there is no fallback to fall
+back to. If you leave one out anyway, you get the browser's own broken-image
+icon, not anything from this design system.
+
+For a genuinely empty state (a new product with no photo yet, a user with no
+avatar), pass `ImagePlaceholder` explicitly instead of inventing your own:
+
+```tsx
+import { ImagePlaceholder, ProductCard } from '@snacky/ui';
+
+{photo ? (
+  <ProductCard imageUrl={photo} ... />
+) : (
+  <ImagePlaceholder width={152} height={128} />
+)}
+```
+
+It renders a neutral `bg-surface-variant` box with a generic "no image" glyph
+in `icon-disabled` - not a `SnackyIcons` icon, since this is decorative
+placeholder artwork rather than a real icon prop. Apply your own
+`className`/border radius to match whatever slot it fills.
+
 ## What's here
 
 All 24 documented components, each matching its `code.tsx` sample's prop
@@ -117,6 +143,9 @@ The design system documents ~9 Modal and ~13 Section "variants", but each is
 the same shell with different `children`, so you get two components rather
 than 22 near-duplicates. Their spacing varies per variant in Figma, so the
 shells ship sensible defaults and expect `children` to override it.
+
+Plus `ImagePlaceholder`, a standalone utility (see **Handle a missing image**
+above) - not one of the 24, there is no Figma node for it.
 
 ## Verification status
 

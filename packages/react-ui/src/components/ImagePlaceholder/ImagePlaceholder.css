@@ -1,0 +1,8 @@
+.snacky-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg-surface-variant);
+  color: var(--icon-disabled);
+}

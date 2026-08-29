@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.1.2")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.2.0")
 ```
 
 ### Using the icons
@@ -72,6 +72,27 @@ Each icon carries its own viewBox (16, 20 or 24), and `size` defaults to that
 natural size. If no name fits what you need, check
 `../../assets/icons/icons.json` before drawing anything - inventing a glyph is
 never the right fallback.
+
+### Handling a missing image
+
+Every image `content` slot (`SnackyAvatar`, the Banner family,
+`SnackyProductImage`, `SnackyProductCard`) is a **required** parameter with no
+default, on purpose - this package ships no photography, so there is nothing
+to fall back to. For a genuinely empty state (a new product with no photo
+yet), pass `SnackyImagePlaceholder` explicitly instead of inventing your own:
+
+```kotlin
+if (photo != null) {
+    SnackyProductCard(imageUrl = photo, ...)
+} else {
+    SnackyImagePlaceholder(width = 152.dp, height = 128.dp)
+}
+```
+
+It renders a neutral `bgSurfaceVariant` box with a generic "no image" glyph
+in `iconDisabled` - not a `SnackyIcons` icon, since this is decorative
+placeholder artwork rather than a real icon parameter. Clip `modifier`
+yourself to match whatever slot it fills.
 
 ### Supplying the font
 
@@ -601,6 +622,13 @@ that credit with them.
   the details variant's three action buttons use `SnackyIconButton`'s own
   Secondary elevation, since react-ui's slightly softer `0 4px 4px` shadow has
   no equivalent in Compose's blur-less `Modifier.shadow`.
+
+- `SnackyImagePlaceholder`
+  (`src/commonMain/kotlin/com/snacky/ui/components/imageplaceholder/ImagePlaceholder.kt`),
+  a standalone utility, not one of the 24 - there is no Figma node for it. A
+  neutral `bgSurfaceVariant` box with a generic "no image" glyph drawn in
+  `iconDisabled`, for the genuinely empty state on any required image slot
+  above. See **Handling a missing image**.
 
 ### Theme tokens
 
