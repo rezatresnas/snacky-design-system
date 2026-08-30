@@ -253,6 +253,24 @@
   `SquareBanner`. Bundle + prop-contract diff only where it touched real
   component CSS (#3, #4); the rest is preview-file-only.
 
+- **2026-08-30 (PointBalanceBanner width, corrected)**: `@snacky/ui` 0.7.0 →
+  0.7.1. The 0.6.2 fix above (`display: inline-flex`, hug content, no
+  `width: 100%`) was a correct read of Figma's own frame in isolation, but
+  wrong once seen next to its sibling in the live gallery: the "Default" and
+  "LowBalance" stories sit side by side, and hugging made LowBalance's short
+  "0" / "Rp 0" content collapse the banner to a fraction of Default's width,
+  visibly stranded inside its card. User flagged it directly from the
+  claude.ai/design gallery screenshot. Fixed by going back to `width: 100%`
+  (`fillMaxWidth()` in compose-ui) so the banner is a consistent width
+  regardless of content length, while keeping `justify-content` at its
+  flex-start default (not `space-between`) so the two item groups still stay
+  grouped on the left with a plain `gap` - the original 0.6.2 bug was
+  `space-between` spreading them apart, not the fill-width itself, and this
+  keeps that part of the fix while dropping the hug-width part that turned
+  out to look wrong in practice. Verified both stories render at identical
+  computed widths in the Live Preview iframe (189.84px each, at two
+  different content lengths) before shipping.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

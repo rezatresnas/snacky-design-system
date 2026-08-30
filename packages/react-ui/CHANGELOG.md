@@ -126,3 +126,12 @@ unverified - see the README's Verification status.
   enough to wrap onto a second line got clipped instead of growing the banner.
   Changed to `min-height: 40px` and let the message text take `flex: 1` so it
   shrinks and wraps within the row instead of overflowing sideways.
+- **PointBalanceBanner's 0.6.2 fix corrected again (0.7.1).** Hugging content
+  was a correct read of Figma's own frame in isolation, but wrong once placed
+  next to a sibling with different content: the docs gallery's "Default" and
+  "LowBalance" stories sit side by side, and a low "0" / "Rp 0" collapsed to a
+  fraction of the other's width, visibly stranded inside its card. Back to
+  `width: 100%`, but `justify-content` stays at its flex-start default (not
+  `space-between`) - the original 0.6.2 bug was the groups spreading apart,
+  not the fill-width itself, so this keeps that part of the fix while
+  dropping the part that looked wrong once seen with real sibling content.

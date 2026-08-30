@@ -23,11 +23,19 @@
   object-fit: cover;
 }
 .snacky-banner-point-balance {
-  /* Figma's frame is 312 wide, hugging its content, not filled full-bleed -
-     `width:100%` plus `justify-content:space-between` was stretching the two
-     item groups apart across whatever width the host page gave it instead of
-     keeping them grouped on the left like Figma. inline-flex hugs by default. */
-  display: inline-flex;
+  /* Figma's own frame is 312 wide and hugs its content, which is why this was
+     briefly `display: inline-flex` with no width. That reads fine in
+     isolation, but real usage sits this next to a sibling of the same width
+     (the "Default"/"LowBalance" pair in the docs gallery), and hugging made a
+     low-balance "0" / "Rp 0" row collapse to a fraction of the width its
+     sibling used, stranded inside whatever wider container held it. Filling
+     the container keeps the banner a consistent width regardless of content
+     length; `justify-content` stays at its flex-start default (not
+     space-between) so the two item groups still stay grouped on the left
+     with a plain `gap`, they just no longer get spread across the full
+     width the way the original space-between bug did. */
+  display: flex;
+  width: 100%;
   align-items: center;
   padding: var(--spacing-8) var(--spacing-16);
   /* 8px, per Figma's `Property 1=point-balance` frame. Primitive rather than a

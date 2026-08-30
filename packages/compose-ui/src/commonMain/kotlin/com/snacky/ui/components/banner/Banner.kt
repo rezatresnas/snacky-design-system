@@ -132,12 +132,18 @@ fun SnackyPointBalanceBanner(
     balanceIcon: (@Composable () -> Unit)? = null,
 ) {
     Row(
-        // Figma's frame hugs its content at 312dp, it is not filled full-bleed -
-        // fillMaxWidth() + SpaceBetween was stretching the two item groups apart
-        // across whatever width the caller gave it instead of keeping them
-        // grouped on the left like Figma. No fillMaxWidth() lets the Row hug by
-        // default, matching react-ui's move to `display: inline-flex`.
+        // Figma's own frame is 312dp and hugs its content, which is why this was
+        // briefly hug-width (no fillMaxWidth()). That reads fine in isolation,
+        // but real usage sits this next to a sibling of the same width (a
+        // "Default"/"LowBalance" pair), and hugging made a low-balance "0" /
+        // "Rp 0" row collapse to a fraction of its sibling's width, stranded
+        // inside whatever wider container held it. fillMaxWidth() keeps the
+        // banner a consistent width regardless of content length;
+        // horizontalArrangement stays spacedBy (not SpaceBetween) so the two
+        // item groups still stay grouped on the left instead of spreading
+        // across the full width the way the original SpaceBetween bug did.
         modifier = modifier
+            .fillMaxWidth()
             .height(IntrinsicSize.Min) // lets the divider below actually stretch
             .clip(RoundedCornerShape(SnackyRadius.card))
             .background(SnackyColor.bgSurfaceHighlight)
