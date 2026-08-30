@@ -271,6 +271,29 @@
   computed widths in the Live Preview iframe (189.84px each, at two
   different content lengths) before shipping.
 
+- **2026-08-30**: `@snacky/ui` 0.6.2 -> 0.7.1 across two commits, re-synced together.
+  1. `ImagePlaceholder` (0.7.0): a genuinely new component - not a Figma-sourced
+     one (no node for it), a standalone utility closing the "no image yet" gap
+     left by every image prop being required. Had shipped with zero authored
+     preview (floor card only, "Preview not yet authored"), caught by this
+     re-sync's `added` diff. Authored `.design-sync/previews/ImagePlaceholder.tsx`
+     (ProductThumbnail 152x128, AvatarSlot 56x56 circle-clipped via a wrapping
+     div since the component itself ships no radius by design, BannerSlot
+     312x128, AllSizes at 24/56/90/152px) and graded all four good - neutral
+     `bg-surface-variant` box + `icon-disabled` glyph, scales consistently.
+  2. `PointBalanceBanner` (0.7.1): the 0.6.2 fix from the previous entry (hug
+     content, no `width:100%`) was corrected again after the user saw it live -
+     hugging was right for Figma's frame in isolation but wrong once the docs
+     gallery's Default/LowBalance stories sat side by side: LowBalance's short
+     "0" content collapsed to a fraction of Default's width, stranded in its
+     card. Back to `width: 100%` / `fillMaxWidth()`, but `justify-content`
+     stays flex-start (not `space-between`) - keeps the 0.6.2 fix's actual
+     point (groups no longer spread apart) while dropping the hug-width part
+     that looked wrong in practice. Verified both stories compute to the same
+     width (189.84px) despite very different content length. Prop contract
+     unchanged (CSS-only), so this one carried forward as "unchanged" in the
+     driver's diff - included in the push anyway since the bundle/CSS rebuilt.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
