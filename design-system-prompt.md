@@ -7,11 +7,6 @@ exactly that case - if the tool can read files directly or has a design-system
 config (Figma import, GitHub connection, `npm install`), use `tokens.json` and
 `components.json` instead, they're more complete and won't drift from this file.
 
-Google Stitch specifically now has a more precise path than this prompt: paste
-[DESIGN.md](DESIGN.md) directly, or point Stitch at this repo's GitHub URL, in
-either case Stitch reads Google's own [DESIGN.md format](https://github.com/google-labs-code/design.md)
-rather than free text.
-
 ---
 
 Use this design system for all UI you generate. It's for Snacky, a snack e-commerce

@@ -17,7 +17,7 @@ Compose Multiplatform and React.
 | [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 24 components, styled entirely from the tokens above. |
 | [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 24 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
 | [`llms.txt`](llms.txt) / [`AGENTS.md`](AGENTS.md) | Entry points for AI coding tools - point an agent here instead of scraping the HTML. |
-| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste version of the above for tools that take a text prompt instead of reading files (Stitch, v0, Bolt, Claude Artifacts). |
+| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste version of the above for tools that take a text prompt instead of reading files (v0, Bolt, Claude Artifacts). |
 
 `tokens.json` and `components.json` are generated from `index.html` by
 [`scripts/generate-agent-files.js`](scripts/generate-agent-files.js) - never
@@ -57,8 +57,8 @@ component list, verification status, and known gaps.
   convention some agents look for by default) - it lists the machine-readable
   token/component data and the installable packages, so the agent builds real
   UI instead of re-deriving values from screenshots.
-- **Takes a prompt but can't read files** (Google Stitch, v0, Bolt, Lovable's
-  chat box, Claude Artifacts): paste [`design-system-prompt.md`](design-system-prompt.md)
+- **Takes a prompt but can't read files** (v0, Bolt, Lovable's chat box,
+  Claude Artifacts): paste [`design-system-prompt.md`](design-system-prompt.md)
   into its prompt/system-context box instead.
 
 ## Roadmap

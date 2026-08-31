@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generates tokens.json and components.json from index.html.
 // These are the machine-readable companions to the human-facing site - AI tools
-// (Claude, Google Stitch, etc.) should read these instead of scraping the rendered HTML.
+// should read these instead of scraping the rendered HTML.
 //
 // Run after any change to a foundation page's token data or to the C component object:
 //   node scripts/generate-agent-files.js
