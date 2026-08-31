@@ -1,8 +1,7 @@
 # @snacky/ui
 
 React implementation of the Snacky App design system - generated from the
-source of truth at `../../index.html` (via `tokens.json` / `components.json`),
-pixel-accurate to Figma.
+source of truth at `../../index.html`, pixel-accurate to Figma.
 
 This exists so AI coding tools (and humans) building new Snacky features can
 **import** these components directly instead of regenerating similar-looking
@@ -122,9 +121,9 @@ placeholder artwork rather than a real icon prop. Apply your own
 
 ## What's here
 
-All 24 documented components, each matching its `code.tsx` sample's prop
-shape from `components.json` (padding, colors, radius, states - all sourced
-directly from the design tokens, not eyeballed):
+All 24 documented components, matching the real Figma-sourced spec values
+(padding, colors, radius, states - all sourced directly from the design
+tokens, not eyeballed):
 
 Button, IconButton/UploadButton, Input family (TextField, SearchField,
 OtpField, CopyField, ChatInput, AddressResult), Chips (ProductChip/FilterChip),
@@ -151,8 +150,8 @@ above) - not one of the 24, there is no Figma node for it.
 
 Every component is diffed against `index.html`'s own Live Preview
 implementation - the code that actually renders the documentation site - not
-just the spec values in `components.json`. Where the two disagree, the
-verified implementation wins.
+just the prose spec values on the page. Where the two disagree, the verified
+implementation wins.
 
 See [CHANGELOG.md](https://github.com/rezatresnas/snacky-design-system/blob/main/packages/react-ui/CHANGELOG.md)
 for how the package got here, including the mistakes.

@@ -12,16 +12,15 @@ Compose Multiplatform and React.
 | Path | What it is |
 |---|---|
 | [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 24 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
-| [`tokens.json`](tokens.json) | All design tokens in [W3C Design Tokens](https://design-tokens.github.io/community-group/format/) format. |
-| [`components.json`](components.json) | Every component's variants/states with real spec values and working Kotlin (Compose Multiplatform) + React (TSX) code samples. |
-| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 24 components, styled entirely from the tokens above. |
+| [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 24 components, styled entirely from the design tokens. |
 | [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 24 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
-| [`llms.txt`](llms.txt) / [`AGENTS.md`](AGENTS.md) | Entry points for AI coding tools - point an agent here instead of scraping the HTML. |
-| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste version of the above for tools that take a text prompt instead of reading files (v0, Bolt, Claude Artifacts). |
+| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste prompt for AI tools that take a text prompt instead of reading files or running npm (v0, Bolt, Lovable, Claude Artifacts). |
 
-`tokens.json` and `components.json` are generated from `index.html` by
-[`scripts/generate-agent-files.js`](scripts/generate-agent-files.js) - never
-hand-edited, always in sync with what a human sees on the site.
+`tokens.json` also lives at the repo root, but it's an internal build
+intermediate (`scripts/generate-agent-files.js` produces it from `index.html`,
+and the token-CSS/Kotlin generators for both packages read it in turn) rather
+than a file meant to be read directly - see `CLAUDE.md` if you're touching the
+generator pipeline itself.
 
 ## Using the components
 
@@ -51,15 +50,19 @@ component list, verification status, and known gaps.
 
 ## Using this with an AI tool
 
-- **Reads files or runs npm/JitPack** (Claude Code, Cursor, most coding agents,
-  or "Create using Claude Code" in Claude Design): point it at
-  [`llms.txt`](llms.txt) (or [`AGENTS.md`](AGENTS.md), same index in the
-  convention some agents look for by default) - it lists the machine-readable
-  token/component data and the installable packages, so the agent builds real
-  UI instead of re-deriving values from screenshots.
-- **Takes a prompt but can't read files** (v0, Bolt, Lovable's chat box,
-  Claude Artifacts): paste [`design-system-prompt.md`](design-system-prompt.md)
-  into its prompt/system-context box instead.
+- **A coding agent building a separate project** (Claude Code, Cursor, Codex,
+  an IDE's built-in agent, or "Create using Claude Code" in Claude Design):
+  just tell it to install the real package - `npm install @snacky/ui` or the
+  JitPack coordinate above. That's the whole integration; the agent gets real,
+  verified components plus their README/type-level docs, not an
+  AI-reconstructed guess at this design system's values. There's no need to
+  point it at this repo at all unless it's specifically working *on* the
+  design system itself, not just using it.
+- **Takes a prompt but can't read files or run a package manager** (v0, Bolt,
+  Lovable's chat box, Claude Artifacts): paste
+  [`design-system-prompt.md`](design-system-prompt.md) into its prompt/system-
+  context box instead - the one path here that still needs a repo file, since
+  these tools have no other way to receive the design system's values.
 
 ## Roadmap
 

@@ -12,41 +12,46 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   & Playground tabs, all as JS-rendered HTML in one file. All token and component data
   lives inline as JS object literals (`C` = components, `PG` = interactive playground
   config, plus per-foundation-page consts like `ramps`/`groups`/`scale`).
-- `tokens.json`, `components.json` - generated machine-readable exports for AI
-  tools/agents (W3C Design Tokens format + full component/variant/code manifest).
-  **Never hand-edit these.**
-- `llms.txt` - concise root index for AI tools, pointing at the two files above.
-  **Hand-maintained, unlike `tokens.json`/`components.json`**, so it goes stale
-  silently: it once still claimed the icon set was "a starter subset" long after the
-  real set shipped, and never mentioned `packages/compose-ui` at all. Re-read it
-  whenever a package, a known gap, or the asset-licensing story changes.
-- The published `compose-v*` version string is hardcoded in FOUR places that must be
-  bumped together when a tag is cut: `packages/compose-ui/README.md`, `llms.txt`,
-  `AGENTS.md`, and root `README.md`. (`@snacky/ui`'s version is not hardcoded anywhere
-  in docs - npm resolves `latest`.) Grep for `compose-v` before tagging. `index.html`'s
+- `tokens.json` - **internal build intermediate, not a consumer-facing file.**
+  Generated from `index.html` by `scripts/generate-agent-files.js`; read in turn
+  by `scripts/generate-react-tokens.js`/`generate-compose-tokens.js` to produce
+  `packages/react-ui/src/theme/tokens.css` and `packages/compose-ui`'s
+  `Tokens.kt`. **Never hand-edit.** This repo used to also generate
+  `components.json` and hand-maintain `llms.txt`/`AGENTS.md` as machine-readable
+  "AI Agent Files" for external tools, all three were removed: audited against
+  the design system's real consumption paths (npm/JitPack install, or a coding
+  agent building a separate project in Cursor/Codex/an IDE/Claude Design) and
+  none of them ever read repo-root files like these - only an agent working
+  directly inside this repo would, and that's served by `index.html` and the
+  package sources themselves. `tokens.json` survives only because it's load-bearing
+  for the token-CSS/Kotlin generators above, not because anything reads it as
+  documentation.
+- The published `compose-v*` version string is hardcoded in TWO places that must be
+  bumped together when a tag is cut: `packages/compose-ui/README.md` and root
+  `README.md`. (`@snacky/ui`'s version is not hardcoded anywhere in docs - npm
+  resolves `latest`.) Grep for `compose-v` before tagging. `index.html`'s
   "Compose Package" card deliberately carries no version: its button links to the
   JitPack page, which always shows the current one.
-- `AGENTS.md` and `design-system-prompt.md` are hand-written agent entry points and drift the
-  same way `llms.txt` does - both sat at "21 components" and omitted `Header` long
-  after it shipped, and `AGENTS.md` never mentioned `packages/compose-ui`. Re-read all
-  three whenever the component set, a package, or the licensing story changes.
-  `design-system-prompt.md` also carries the literal export names for both platforms
-  (prompt-only tools guess otherwise: the docs say "Input", the code says `TextField`,
-  `SearchField`, `OtpField`, `CopyField`, `ChatInput`, `AddressResult`). Re-derive them
-  after any export change:
+- `design-system-prompt.md` is a hand-written agent entry point and drifts the
+  same way `index.html`'s copy can - it once sat at "21 components" and omitted
+  `Header` long after it shipped. Re-read it whenever the component set, a
+  package, or the licensing story changes. It also carries the literal export
+  names for both platforms (prompt-only tools guess otherwise: the docs say
+  "Input", the code says `TextField`, `SearchField`, `OtpField`, `CopyField`,
+  `ChatInput`, `AddressResult`). Re-derive them after any export change:
   ```
   node -e "const d=require('fs').readFileSync('packages/react-ui/dist/index.d.ts','utf8');console.log([...new Set([...d.matchAll(/declare (?:function|const) ([A-Z][A-Za-z]+)/g)].map(m=>m[1]))].join(', '))"
   grep -rhoE "^fun Snacky[A-Za-z]+" packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/components | sed 's/fun //' | sort -u
   ```
-- `scripts/generate-agent-files.js` - regenerates `tokens.json` and `components.json`
-  straight from `index.html`'s source (bracket-matched literal extraction, not a
-  hand transcription). Run it after any change to a foundation page's token data or
-  to the `C` object:
+- `scripts/generate-agent-files.js` - regenerates `tokens.json` straight from
+  `index.html`'s source (bracket-matched literal extraction, not a hand
+  transcription). Run it after any change to a foundation page's token data:
   ```
   node scripts/generate-agent-files.js
   ```
-  Treat this as a required step, not optional cleanup - if `index.html` changes and
-  this isn't re-run, the two JSON files silently go stale.
+  Treat this as a required step, not optional cleanup - if `index.html`'s token
+  data changes and this isn't re-run, `tokens.json` (and everything generated
+  from it) silently goes stale.
 - `assets/icons/icons.json` - the real icon geometry exported from Figma's `Icon-outline`
   (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 11 solid,
   each with its own viewBox (the set is 16/20/24px, not uniform) and its SVG path data.

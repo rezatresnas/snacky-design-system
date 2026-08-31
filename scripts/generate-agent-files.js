@@ -1,12 +1,20 @@
 #!/usr/bin/env node
-// Generates tokens.json and components.json from index.html.
-// These are the machine-readable companions to the human-facing site - AI tools
-// should read these instead of scraping the rendered HTML.
+// Generates tokens.json from index.html. This is an internal build
+// intermediate, not a consumer-facing file: scripts/generate-react-tokens.js
+// and scripts/generate-compose-tokens.js read it to produce
+// packages/react-ui/src/theme/tokens.css and packages/compose-ui's Tokens.kt.
+// (components.json and llms.txt/AGENTS.md, previously generated/maintained
+// alongside this for AI-agent consumption, were removed - none of the real
+// consumption paths for this design system, npm/JitPack install or a coding
+// agent building a separate project, ever read repo-root files like these;
+// only a coding agent working directly inside this repo would, and that
+// audience is served well enough by index.html and the package sources
+// themselves.)
 //
-// Run after any change to a foundation page's token data or to the C component object:
+// Run after any change to a foundation page's token data:
 //   node scripts/generate-agent-files.js
 //
-// Do not hand-edit tokens.json or components.json - they are overwritten on every run.
+// Do not hand-edit tokens.json - it is overwritten on every run.
 
 const fs = require('fs');
 const path = require('path');
@@ -214,17 +222,5 @@ const tokensOut = {
 
 fs.writeFileSync(path.join(ROOT, 'tokens.json'), JSON.stringify(tokensOut, null, 2), 'utf8');
 
-// ── Component manifest: the full C object, as-is (already clean, serializable data:
-//    id, name, category, description, usage, and every variant/state with its real
-//    spec values and Kotlin + React code sample) ──
-
-const components = extractConst(html, 'C');
-const componentsOut = {
-  $description: 'Snacky App component manifest. Generated from index.html by scripts/generate-agent-files.js - do not hand-edit. Each top-level key is a component id; "v" lists its variants, each with spec values ("s") and real Kotlin/React code samples ("code").',
-  components,
-};
-fs.writeFileSync(path.join(ROOT, 'components.json'), JSON.stringify(componentsOut, null, 2), 'utf8');
-
-console.log('Wrote tokens.json and components.json');
+console.log('Wrote tokens.json');
 console.log('Token groups:', Object.keys(tokens).join(', '));
-console.log('Components:', Object.keys(components).length);

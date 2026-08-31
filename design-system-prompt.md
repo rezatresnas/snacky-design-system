@@ -1,11 +1,12 @@
 # Snacky App design system - copy/paste prompt
 
-For any AI tool that takes a text prompt rather than reading files - v0, Bolt,
-Lovable's chat box, Claude Artifacts, etc. Copy everything below the line
-into the tool's prompt or system-context box. It's condensed from `llms.txt` for
-exactly that case - if the tool can read files directly or has a design-system
-config (Figma import, GitHub connection, `npm install`), use `tokens.json` and
-`components.json` instead, they're more complete and won't drift from this file.
+For any AI tool that takes a text prompt rather than reading files or running a
+package manager - v0, Bolt, Lovable's chat box, Claude Artifacts, etc. Copy
+everything below the line into the tool's prompt or system-context box. If the
+tool CAN read files or run npm/JitPack instead, don't use this file at all -
+just have it install the real package (`npm install @snacky/ui`, or the
+JitPack coordinate for Compose Multiplatform), the actual components will
+always be more accurate than a text description of them.
 
 ---
 
