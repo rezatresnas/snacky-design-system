@@ -1,5 +1,5 @@
 {
-  "$comment": "Icon geometry exported from Figma (file 4Uh4Y1fPQXu2hwq0vEXHXd, component sets Icon-outline 55:2062 and Icon-solid 8772:5851). Generated, do not hand-edit. Regenerate by re-exporting the variants as SVG and extracting the <g id=\"Icon-outline\"> / <g id=\"Icon-solid\"> subtree. The ratings star (`fi-ss-star`, node 46:1411) is included too: it is the same UIcons family and is bound to icon/icon-brand in the Product Card and review components, but whoever built the file never filed it inside the Icon-solid component set, so the original export missed it and the packages could not render their own documented rating row.",
+  "$comment": "Icon geometry exported from Figma (file 9EBmWLyRsaHDIdg9N2wBAw, component sets Icon-outline 55:2062 and Icon-solid 8772:5851). Generated, do not hand-edit. Regenerate by re-exporting the variants as SVG and extracting the <g id=\"Icon-outline\"> / <g id=\"Icon-solid\"> subtree. The ratings star (`fi-ss-star`, node 46:1411) is included too: it is the same UIcons family and is bound to icon/icon-brand in the Product Card and review components, but whoever built the file never filed it inside the Icon-solid component set, so the original export missed it and the packages could not render their own documented rating row.",
   "icons": [
     {
       "name": "account",

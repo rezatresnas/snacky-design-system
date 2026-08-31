@@ -2,7 +2,9 @@
 
 This repo is a single-page design system site (`index.html`) for Snacky, a snack
 e-commerce app, targeting Kotlin Compose Multiplatform and React. Figma is the
-source of truth (file key `4Uh4Y1fPQXu2hwq0vEXHXd`) - every documented value should
+source of truth (file key `9EBmWLyRsaHDIdg9N2wBAw`, under the `tresnareza@gmail.com`
+account - the original copy under a different account, file key `4Uh4Y1fPQXu2hwq0vEXHXd`,
+was deleted) - every documented value should
 trace back to a real Figma node, not an estimate. Never guess a spec value; verify
 against Figma via `use_figma`/`get_screenshot` before documenting or changing one.
 
