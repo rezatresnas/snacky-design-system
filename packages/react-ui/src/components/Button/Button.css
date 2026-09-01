@@ -29,12 +29,12 @@
   height: 40px;
   padding: var(--spacing-8) var(--spacing-8);
 }
-/* The slot itself is documented as a generic 24x24 (see Button.tsx's doc
-   comment and index.html's Slot Usage note), but that reads oversized next
-   to Small's 12px label - scaled down to 20x20 to stay proportional. */
+/* The slot itself is documented as a generic 24x24 (size.icon.lg), but that
+   reads oversized next to Small's 12px label - scaled down to size.icon.md
+   (20x20) to stay proportional. */
 .snacky-btn--small .snacky-btn__icon {
-  width: 20px;
-  height: 20px;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
 }
 
 /* Primary */
@@ -98,7 +98,7 @@
   top: 50%;
   transform: translateY(-50%);
   display: inline-flex;
-  width: 24px;
-  height: 24px;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
   flex-shrink: 0;
 }

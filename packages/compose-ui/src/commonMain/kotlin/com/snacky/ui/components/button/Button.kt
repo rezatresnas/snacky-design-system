@@ -24,6 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
+import com.snacky.ui.theme.SnackySize
 import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
 
@@ -86,10 +87,10 @@ fun SnackyButton(
             // Anchored to the button's true edge, independent of the text's own
             // padding, so the label stays centered on the whole button whether or
             // not an icon is present - it never shifts the label over to make room.
-            // The slot itself is documented as a generic 24x24, but that reads
-            // oversized next to Small's 12sp label - scaled down to 20x20 to stay
-            // proportional (mirrors packages/react-ui's Button.css).
-            val iconSize = if (size == ButtonSize.Small) 20.dp else 24.dp
+            // The slot itself is documented as a generic 24x24 (Icon.lg), but
+            // that reads oversized next to Small's 12sp label - scaled down to
+            // Icon.md (20x20) to stay proportional (mirrors react-ui's Button.css).
+            val iconSize = if (size == ButtonSize.Small) SnackySize.Icon.md else SnackySize.Icon.lg
             Box(
                 modifier = Modifier
                     .align(Alignment.CenterStart)

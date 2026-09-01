@@ -145,3 +145,12 @@ unverified - see the README's Verification status.
   control). Confirmed via computed styles in the Live Preview iframe, not
   just visually: the icon span and its inner SVG both resolve to exactly
   20x20 with Size=Small selected.
+- **That same fix used raw pixel values instead of the existing semantic
+  size tokens (0.7.3).** `tokens.json` already has `size.icon.md` (20px) and
+  `size.icon.lg` (24px), generated as `--size-icon-md`/`--size-icon-lg` in
+  react-ui and `SnackySize.Icon.md`/`.lg` in compose-ui - 0.7.2 hardcoded
+  `20px`/`24px` and `20.dp`/`24.dp` instead of reaching for them, caught right
+  after shipping. Swapped both platforms over to the token references; the
+  computed pixel values are unchanged (re-verified: still exactly 20px at
+  Small, now genuinely resolving through `--size-icon-md` rather than a
+  literal that happens to match it).
