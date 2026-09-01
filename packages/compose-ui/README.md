@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.2.1")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.2.2")
 ```
 
 ### Using the icons
@@ -148,7 +148,8 @@ that credit with them.
 
 - `SnackyButton` (`src/commonMain/kotlin/com/snacky/ui/components/button/Button.kt`),
   Primary/Secondary/Tertiary hierarchy, each with an optional Danger intent,
-  Default/Small sizes, an optional 24x24 leading icon slot. Ported from
+  Default/Small sizes, an optional leading icon slot (24x24 on Default, 20x20
+  on Small - 24 read oversized next to Small's 12sp label). Ported from
   `packages/react-ui`'s verified `Button.tsx`/`Button.css`, matches the
   `SnackyButton(text = ..., variant = ButtonVariant.X, ...)` shape already
   documented in the site's own Kotlin code samples (`index.html`'s

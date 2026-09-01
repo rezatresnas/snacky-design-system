@@ -86,11 +86,15 @@ fun SnackyButton(
             // Anchored to the button's true edge, independent of the text's own
             // padding, so the label stays centered on the whole button whether or
             // not an icon is present - it never shifts the label over to make room.
+            // The slot itself is documented as a generic 24x24, but that reads
+            // oversized next to Small's 12sp label - scaled down to 20x20 to stay
+            // proportional (mirrors packages/react-ui's Button.css).
+            val iconSize = if (size == ButtonSize.Small) 20.dp else 24.dp
             Box(
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(start = SnackySpacingPrimitive.space8)
-                    .size(24.dp),
+                    .size(iconSize),
             ) {
                 CompositionLocalProvider(LocalContentColor provides colors.contentColor) {
                     icon()

@@ -11,7 +11,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   /** Danger intent - a filled/outlined/text red treatment layered onto `variant`. */
   danger?: boolean;
   size?: ButtonSize;
-  /** Optional 24x24 leading icon or social logo slot. */
+  /** Optional leading icon or social logo slot - 24x24 on `default`, 20x20 on `small`. */
   icon?: ReactNode;
   children?: ReactNode;
 }

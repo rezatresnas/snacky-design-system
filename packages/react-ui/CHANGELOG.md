@@ -135,3 +135,13 @@ unverified - see the README's Verification status.
   `space-between`) - the original 0.6.2 bug was the groups spreading apart,
   not the fill-width itself, so this keeps that part of the fix while
   dropping the part that looked wrong once seen with real sibling content.
+- **Button's icon slot was disproportionate at Small size (0.7.2).** The slot
+  is documented generically as 24x24, and that was applied uniformly
+  regardless of `size` - reasonable for Default (48px tall, 12px label), but
+  oversized next to Small's 40px height and 12px label. Added a `.snacky-btn--
+  small .snacky-btn__icon` override at 20x20; Default stays 24x24. Ported the
+  same conditional to compose-ui's `SnackyButton`, and to the docs site's own
+  Button playground (previously hardcoded to 24 regardless of the size
+  control). Confirmed via computed styles in the Live Preview iframe, not
+  just visually: the icon span and its inner SVG both resolve to exactly
+  20x20 with Size=Small selected.
