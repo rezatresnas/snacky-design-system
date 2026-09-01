@@ -294,6 +294,41 @@
      unchanged (CSS-only), so this one carried forward as "unchanged" in the
      driver's diff - included in the push anyway since the bundle/CSS rebuilt.
 
+- **2026-09-01**: `@snacky/ui` 0.7.1 -> 0.7.4 across three commits (0.7.2/0.7.3
+  Button icon-slot sizing already committed upstream; 0.7.4 fixed by this
+  re-sync itself). Also noted: the Figma file was re-imported under a new
+  account/file key (`9EBmWLyRsaHDIdg9N2wBAw`, was `4Uh4Y1fPQXu2hwq0vEXHXd`) -
+  node IDs carried over unchanged (confirmed via the API), so this needed no
+  design-sync-side changes, just flagged here since CLAUDE.md's own header
+  still names the old key until that file is next read fresh.
+  1. 0.7.2/0.7.3: Button's icon slot was 24x24 uniformly, oversized next to
+     Small's 40px height - scaled to 20x20 at Small (0.7.2), then corrected to
+     reference the real `size.icon.md`/`.lg` tokens instead of hardcoded px
+     (0.7.3). CSS-only, prop contract unchanged.
+  2. **A real bug this re-sync found and fixed itself: the icon overlapped the
+     label on every hug-width Button.** No preview or story had ever passed an
+     `icon` prop to a real (non-fixed-width) Button instance before - the
+     `.snacky-btn__icon` span is absolutely positioned (out of flow, matching
+     Figma's own "Slot Usage" guideline text), so the button's auto-width came
+     from the label alone and the icon rendered on top of it ("Add to cart"
+     read as the cart glyph covering the "A"). Authored a `WithIcon` story in
+     `.design-sync/previews/Button.tsx` to exercise it for the first time,
+     which immediately surfaced the overlap. Confirmed against Figma's actual
+     "With Icon" documentation example (node 8877:8741) that icon and label
+     never overlap there - though that example is itself a fixed 376px-wide
+     frame, so it couldn't have caught a hug-width bug on its own; the bug
+     only showed up once a real narrow instance rendered. Fixed by adding a
+     `.snacky-btn--with-icon` modifier class (both platforms) that reserves
+     the icon's own space (`spacing-8` inset + icon size + `gap-text-icon`,
+     all real tokens, no new hardcoded numbers) as left padding, so the label
+     starts right after the icon. Ported to compose-ui's `SnackyButton` via
+     `contentPadding`'s `start` value; compiles clean via
+     compileDebugKotlinAndroid + compileCommonMainKotlinMetadata. Bumped to
+     0.7.4 / compose-v1.2.4. **General lesson, same shape as AddressResult/
+     Section/Tab before it: an unexercised code path is not a verified one** -
+     the icon prop existed and was even documented with a size split, but
+     nothing had ever rendered it in anger until this preview was authored.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

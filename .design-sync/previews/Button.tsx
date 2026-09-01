@@ -1,4 +1,4 @@
-import { Button } from '@snacky/ui';
+import { Button, SnackyIcons } from '@snacky/ui';
 
 export function Hierarchy() {
   return (
@@ -25,6 +25,19 @@ export function Sizes() {
     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <Button size="default">Checkout</Button>
       <Button size="small">Apply</Button>
+    </div>
+  );
+}
+
+export function WithIcon() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <Button size="default" icon={<SnackyIcons.outline.cartAdd width={24} height={24} />}>
+        Add to cart
+      </Button>
+      <Button size="small" icon={<SnackyIcons.outline.cartAdd width={20} height={20} />}>
+        Add to cart
+      </Button>
     </div>
   );
 }

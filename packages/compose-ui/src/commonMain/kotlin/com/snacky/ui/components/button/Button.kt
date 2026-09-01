@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
+import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySize
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -63,10 +64,25 @@ fun SnackyButton(
     val pressed by interactionSource.collectIsPressedAsState()
     val colors = resolveButtonColors(variant, danger, enabled, pressed)
     val shape = RoundedCornerShape(SnackyRadius.field)
-    val contentPadding = if (size == ButtonSize.Small) {
-        PaddingValues(SnackySpacingPrimitive.space8)
+    val verticalPadding = if (size == ButtonSize.Small) SnackySpacingPrimitive.space8 else SnackySpacingPrimitive.space12
+    // The slot itself is documented as a generic 24x24 (Icon.lg), but that reads
+    // oversized next to Small's 12sp label - scaled down to Icon.md (20x20) to
+    // stay proportional (mirrors react-ui's Button.css).
+    val iconSize = if (size == ButtonSize.Small) SnackySize.Icon.md else SnackySize.Icon.lg
+    val contentPadding = if (icon != null) {
+        // The icon is anchored to the button's true edge (CenterStart), independent
+        // of the text's own padding - so without reserving space for it here, the
+        // label centers across the button's full width and the icon sits on top of
+        // it. Reserve exactly the space the icon occupies (its own start inset +
+        // its size) plus a text-icon gap, so the label starts right after it.
+        PaddingValues(
+            start = SnackySpacingPrimitive.space8 + iconSize + SnackyGap.textIcon,
+            top = verticalPadding,
+            end = SnackySpacingPrimitive.space8,
+            bottom = verticalPadding,
+        )
     } else {
-        PaddingValues(horizontal = SnackySpacingPrimitive.space8, vertical = SnackySpacingPrimitive.space12)
+        PaddingValues(horizontal = SnackySpacingPrimitive.space8, vertical = verticalPadding)
     }
     val label = SnackyTypography.Small.semibold
 
@@ -85,12 +101,8 @@ fun SnackyButton(
     ) {
         if (icon != null) {
             // Anchored to the button's true edge, independent of the text's own
-            // padding, so the label stays centered on the whole button whether or
-            // not an icon is present - it never shifts the label over to make room.
-            // The slot itself is documented as a generic 24x24 (Icon.lg), but
-            // that reads oversized next to Small's 12sp label - scaled down to
-            // Icon.md (20x20) to stay proportional (mirrors react-ui's Button.css).
-            val iconSize = if (size == ButtonSize.Small) SnackySize.Icon.md else SnackySize.Icon.lg
+            // padding - the label's own padding (above) reserves this same space
+            // so the two don't overlap.
             Box(
                 modifier = Modifier
                     .align(Alignment.CenterStart)

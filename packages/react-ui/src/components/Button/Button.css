@@ -37,6 +37,19 @@
   height: var(--size-icon-md);
 }
 
+/* The icon is absolutely positioned (out of flow, per Figma's own "Slot
+   Usage" guideline) so a hug-width button never reserves space for it on its
+   own - without this, the label centers across the button's full width and
+   the icon sits on top of it. Reserve exactly the space the icon occupies
+   (its left offset + its own size) plus a text-icon gap, so the label starts
+   right after the icon instead of overlapping it. */
+.snacky-btn--with-icon {
+  padding-left: calc(var(--spacing-8) + var(--size-icon-lg) + var(--gap-text-icon));
+}
+.snacky-btn--small.snacky-btn--with-icon {
+  padding-left: calc(var(--spacing-8) + var(--size-icon-md) + var(--gap-text-icon));
+}
+
 /* Primary */
 .snacky-btn--primary {
   background: var(--bg-action-primary);

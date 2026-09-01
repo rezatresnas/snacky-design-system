@@ -35,13 +35,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         `snacky-btn--${variant}`,
         size === 'small' && 'snacky-btn--small',
         danger && 'snacky-btn--danger',
+        icon != null && 'snacky-btn--with-icon',
         className
       )}
       {...rest}
     >
       {/* Icon is absolutely positioned at the left edge, matching the real
-          Figma slot: the label stays centered on the button regardless of
-          whether an icon is present, it doesn't shift the label over. */}
+          Figma slot. The button reserves room for it via
+          `.snacky-btn--with-icon`'s left padding so the (still centered)
+          label doesn't render on top of it. */}
       {icon && <span className="snacky-btn__icon">{icon}</span>}
       {children}
     </button>

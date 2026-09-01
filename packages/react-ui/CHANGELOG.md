@@ -154,3 +154,18 @@ unverified - see the README's Verification status.
   computed pixel values are unchanged (re-verified: still exactly 20px at
   Small, now genuinely resolving through `--size-icon-md` rather than a
   literal that happens to match it).
+- **Button's icon slot overlapped the label on any hug-width button (0.7.4).**
+  The icon is absolutely positioned (out of flow, per Figma's own "Slot Usage"
+  guideline), so it never reserved space for itself - the button's auto width
+  came from the label alone, and the icon rendered on top of it (`Add to cart`
+  read as the cart icon glyph covering the `A`, `dd to cart` visible after it).
+  Never caught before because no preview or story had ever passed an `icon`
+  prop to a real, narrow (hug-width) `Button` instance - confirmed directly
+  against Figma's "With Icon" example, which shows icon and label side by
+  side with a clear gap, never overlapping. Fixed by adding a
+  `.snacky-btn--with-icon` modifier that reserves exactly the icon's own
+  space (its `spacing-8` start inset + its size + a `gap-text-icon` gap) as
+  left padding, so the (still centered) label starts right after the icon
+  instead of on top of it. Ported the same fix to compose-ui's `SnackyButton`
+  (via `contentPadding`'s `start` value). Verified visually at both sizes: a
+  clean gap between icon and label, no overlap, `Add to cart` fully legible.
