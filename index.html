@@ -2527,9 +2527,10 @@ fun SnackyButton(
     size       : ButtonSize    = ButtonSize.Large,
     enabled    : Boolean       = true,
     // A real SLOT component property in Figma (not a variant) - absolute-positioned left,
-    // vertically centered, empty by default. Accepts any 24×24 content: an icon from the
-    // Icon-outline set, or a brand/social logo (e.g. Google). Figma's own guideline text
-    // names this param "icon", not "leadingIcon", so it's named to match here.
+    // vertically centered, empty by default. Accepts an icon from the Icon-outline set or
+    // a brand/social logo (e.g. Google), sized sizeIconLg (24dp) at Size.Large / sizeIconMd
+    // (20dp) at Size.Small (24 reads oversized next to Small's 12sp label). Figma's own
+    // guideline text names this param "icon", not "leadingIcon", so it's named to match here.
     icon       : (@Composable () -> Unit)? = null
 ) {
     // Background: Tertiary never has a fill, in any state. Secondary keeps its normal white
@@ -2591,7 +2592,10 @@ fun SnackyButton(
         // aligned children reproduces that instead of a linear icon-then-text sequence.
         Box(modifier = Modifier.fillMaxWidth()) {
             if (icon != null) {
-                Box(modifier = Modifier.align(Alignment.CenterStart)) { icon() }
+                // 24dp (sizeIconLg) at Size.Large, scaled down to 20dp (sizeIconMd) at
+                // Size.Small - 24 reads oversized next to Small's 12sp label.
+                val iconSize = if (size == ButtonSize.Small) sizeIconMd else sizeIconLg
+                Box(modifier = Modifier.align(Alignment.CenterStart).size(iconSize)) { icon() }
             }
             Text(text, style = SnackyTypography.smallSemibold, modifier = Modifier.align(Alignment.Center))
         }
@@ -5648,9 +5652,10 @@ interface ButtonProps {
   size?: ButtonSize;
   disabled?: boolean;
   // A real SLOT component property in Figma (not a variant): absolute-positioned left,
-  // vertically centered, empty by default. Accepts any 24×24 content: an icon from the
-  // Icon-outline set, or a brand/social logo (e.g. Google). Figma's own guideline text
-  // names this param "icon", not "leadingIcon", so it's named to match here.
+  // vertically centered, empty by default. Accepts an icon from the Icon-outline set or
+  // a brand/social logo (e.g. Google), sized 24×24 at size="large" / 20×20 at size="small"
+  // (24 reads oversized next to Small's 12px label) - see iconStyle below. Figma's own
+  // guideline text names this param "icon", not "leadingIcon", so it's named to match here.
   icon?: ReactNode;
 }
 
@@ -5709,12 +5714,17 @@ export function Button({
     color,
     cursor: disabled ? 'not-allowed' : 'pointer',
   };
+  // 24×24 (size.icon.lg) at large, scaled down to 20×20 (size.icon.md) at small -
+  // 24 reads oversized next to small's 12px label.
+  const iconSize = size === 'small' ? 'var(--size-icon-md)' : 'var(--size-icon-lg)';
   const iconStyle: CSSProperties = {
     position: 'absolute',
     left: 'var(--spacing-8)',
     top: '50%',
     transform: 'translateY(-50%)',
     display: 'flex',
+    width: iconSize,
+    height: iconSize,
   };
 
   return (
