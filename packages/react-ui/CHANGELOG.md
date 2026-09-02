@@ -4,6 +4,43 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## VariantBadge renamed to InfoBadge, with an icon slot (0.8.0)
+
+The badge that renders `Variant: 75 Grams` turned out to have a second use in
+Figma: `Points: 20,000` in the Home header. Identical in every respect -
+32 tall, 8px padding, `bg-surface-highlight` on a `primary-500` stroke,
+`radius/field` - except for a leading icon.
+
+Two things came out of that. First, the name was wrong: `variant` described
+one use of the pattern, not the pattern, and a third use (`Berat: 500g`,
+`Stok: 12`) would have had nowhere to go. It is now `InfoBadge`, named for the
+shape of the information - a static, non-interactive `Label: Value` chip.
+Second, the icon is a slot rather than a second component, because nothing
+else differs between the two; Figma models them as `Property 2=variant` /
+`Property 2=points`, which is a naming axis, not a structural one.
+
+Worth recording as evidence, since "is this really a component?" keeps coming
+up in this repo: the points version was **not** a one-off. Searching the
+`Customer App - English` page's full node dump turned up seven copies of the
+same 116x32 structure - one named `Points info`, six named `Frame 1064` -
+hand-copied across different screens rather than instanced. That is the same
+shape as the `Stepper` case (19 hand-drawn copies under two frame names), and
+the same conclusion: a repeated hand-drawn pattern is a missing component, not
+app composition.
+
+`VariantBadge` and `VariantBadgeProps` still export as `@deprecated` aliases,
+so existing code keeps working.
+
+One inconsistency was caught while verifying: compose-ui tinted the icon slot
+`icon-brand` (per Figma) but react-ui did not, so anyone copying the
+documented snippet would have got `#333`. The playground was hiding it by
+passing an explicit colour that the docs never mention. The tint now lives in
+`.snacky-info-badge__icon` itself, and the playground passes no colour, so it
+exercises the same path a consumer gets.
+
+The 12x12 icon sits below the icon sizing scale (`size/icon/sm` is 16), so it
+stays a raw value on both platforms, with a comment saying why.
+
 ## ImagePlaceholder added, a non-Figma utility (0.7.0)
 
 Every image prop (`ProductCard.imageUrl`, `ProductImage.src`, `Avatar.src`,

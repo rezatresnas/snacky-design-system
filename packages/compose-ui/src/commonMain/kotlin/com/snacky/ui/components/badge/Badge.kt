@@ -2,14 +2,19 @@ package com.snacky.ui.components.badge
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,6 +22,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyColorPrimitive
+import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
 
@@ -112,18 +118,46 @@ fun SnackySoldOutBadge(modifier: Modifier = Modifier) {
     }
 }
 
-/** Static, non-interactive label for the currently selected product variant. */
+/**
+ * Static, non-interactive `Label: Value` chip on the accent-highlighted
+ * style, for a single attribute of something: the selected product variant,
+ * a loyalty points total, and so on.
+ *
+ * Named for the shape of the information, not one use of it. It was
+ * `SnackyVariantBadge` until Figma grew a second use (`Points: 20,000` in the
+ * Home header), which was identical apart from the icon - so [icon] became a
+ * slot rather than the pattern becoming a second component.
+ *
+ * [label] is the whole string including its own prefix, matching Figma, which
+ * draws it as a single text node rather than a label/value pair.
+ */
 @Composable
-fun SnackyVariantBadge(label: String, modifier: Modifier = Modifier) {
+fun SnackyInfoBadge(
+    label: String,
+    modifier: Modifier = Modifier,
+    icon: (@Composable () -> Unit)? = null,
+) {
     val shape = RoundedCornerShape(SnackyRadius.field)
-    Box(
+    Row(
         modifier = modifier
             .clip(shape)
             .background(SnackyColor.bgSurfaceHighlight)
             .border(1.dp, SnackyColorPrimitive.Primary.c500, shape)
             .padding(8.dp),
-        contentAlignment = Alignment.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(SnackyGap.textIcon),
     ) {
+        if (icon != null) {
+            // 12dp, raw rather than a token on purpose: the icon size scale is
+            // 16/20/24 (SnackySize.Icon.sm/md/lg) and Figma draws this one at
+            // 12, below the smallest step. Sized here rather than left to the
+            // caller so the badge stays 32 tall whatever icon is passed in.
+            Box(modifier = Modifier.size(12.dp)) {
+                CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
+                    icon()
+                }
+            }
+        }
         BasicText(
             text = label,
             style = TextStyle(
@@ -135,3 +169,11 @@ fun SnackyVariantBadge(label: String, modifier: Modifier = Modifier) {
         )
     }
 }
+
+@Deprecated(
+    "Renamed to SnackyInfoBadge - the same component, now with an optional icon slot.",
+    ReplaceWith("SnackyInfoBadge(label, modifier)"),
+)
+@Composable
+fun SnackyVariantBadge(label: String, modifier: Modifier = Modifier) =
+    SnackyInfoBadge(label = label, modifier = modifier)

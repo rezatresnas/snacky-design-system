@@ -585,12 +585,12 @@ const C={
       {id:'banner-alert',name:'Alert Banner',st:null,sl:null,img:'assets/images/variants/banner-alert.png',s:{w:360,h:40,pt:8,pb:8,pl:24,pr:24,gap:4,fill:'#eb5757',font:'Poppins Regular/SemiBold',fs:14,color:'#ffffff',use:'Inline info/warning strip with countdown'},code:{kt:'SnackyBanner(imageUrl = "https://cdn.snacky.app/banners/alert.jpg", variant = BannerVariant.Alert)',tsx:'<Banner variant="alert" imageUrl="/banners/alert.jpg" alt="System notification" />'}},
       {id:'banner-full-width',name:'Full-width Banner',st:null,sl:null,img:'assets/images/variants/banner-full-width.png',s:{w:360,h:176,use:'Prominent promotional banner. Figma names this property value "banner-detail," suggesting it may be intended specifically for a product/order detail-page context rather than a generic full-width placement; worth confirming with design before relying on the current "prominent promotional banner" framing.'},code:{kt:'SnackyBanner(imageUrl = "https://cdn.snacky.app/banners/full-width.jpg", variant = BannerVariant.FullWidth)',tsx:'<Banner variant="fullWidth" imageUrl="/banners/full-width.jpg" alt="Main promo" />'}},
     ]},
-  badge:{name:'Badge',cat:'Content',desc:'Small count and tag indicators: notification pill, discount tag, sold-out overlay, and a static variant label.',usage:'Use Notification as an absolute overlay on cart/notification icons to show a numeric count. Use Discount as an inline tag (e.g. on Product Card) to show a percentage-off label. Use Sold Out as an absolute overlay on product images to indicate stock unavailability. Use Variant as a static, non-interactive label showing the currently selected product variant (e.g. "Variant: 75 Grams") - it lives in Figma\'s Badge frame, not Chips, and has no unselected/clickable state.',cover:'assets/images/badge.png',
+  badge:{name:'Badge',cat:'Content',desc:'Small count and tag indicators: notification pill, discount tag, sold-out overlay, and a static info chip.',usage:'Use Notification as an absolute overlay on cart/notification icons to show a numeric count. Use Discount as an inline tag (e.g. on Product Card) to show a percentage-off label. Use Sold Out as an absolute overlay on product images to indicate stock unavailability. Use Info as a static, non-interactive "Label: Value" chip for a single attribute of something - the selected product variant ("Variant: 75 Grams"), a loyalty points total ("Points: 20,000"), with an optional leading icon. It lives in Figma\'s Badge frame, not Chips, and has no unselected/clickable state. It is named for the shape of the information rather than one use of it: the points case arrived later and differed only by the icon, so the icon became a slot instead of the pattern becoming a second component.',cover:'assets/images/badge.png',
     v:[
       {id:'badge-notification',name:'Notification',st:null,sl:null,img:'assets/images/badge.png',s:{w:28,h:19,pt:2,pb:2,pl:4,pr:4,fill:'#eb5757',r:999,font:'Poppins SemiBold',fs:10,color:'#ffffff',use:'Overlay on cart/notification icon'},code:{kt:'SnackyBadge(count = 3) { SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart") }',tsx:'<Badge count={3}><SnackyIcons.outline.cart width={20} height={20} aria-label="Cart" /></Badge>'}},
       {id:'badge-discount',name:'Discount',st:null,sl:null,img:'assets/images/variants/badge-discount.png',s:{w:36,h:24,pt:2,pb:2,pl:4,pr:4,fill:'#eb5757',r:6,font:'Poppins SemiBold',fs:10,lh:24,color:'#ffffff',use:'Inline discount/promo tag - e.g. "-50%" on Product Card'},code:{kt:'SnackyDiscountTag(label = "-50%")',tsx:'<DiscountTag label="-50%" />'}},
       {id:'badge-soldout',name:'Sold Out',st:null,sl:null,img:'assets/images/variants/badge-soldout.png',s:{w:65,h:48,pt:12,pb:12,pl:7,pr:7,fill:'rgba(51,51,51,0.8)',r:100,font:'Poppins Regular',fs:12,lh:24,color:'#ffffff',use:'Absolute overlay on product image - indicates item is out of stock'},code:{kt:'SnackySoldOutBadge()',tsx:'<SoldOutBadge />'}},
-      {id:'badge-variant',name:'Variant',st:null,sl:null,img:'assets/images/variants/badge-variant.png',s:{w:113,h:32,pt:8,pb:8,pl:8,pr:8,fill:'#fef8eb',bdr:'1px solid #f8b732',r:4,font:'Poppins Regular',fs:10,lh:16,color:'#333333',use:'Static label showing the currently selected product variant, non-interactive, always shown in the accent-highlighted style. Documented as a Badge, not a Chip: Figma\'s own file places this node on the Badge page, and unlike Produk/Filter chips it has no unselected/clickable state.'},code:{kt:'SnackyVariantBadge(label = "Variant: 75 Grams")',tsx:'<VariantBadge label="Variant: 75 Grams" />'}},
+      {id:'badge-info',name:'Info',st:null,sl:null,img:'assets/images/variants/badge-variant.png',s:{w:108,h:32,pt:8,pb:8,pl:8,pr:8,fill:'#fef8eb',bdr:'1px solid #f8b732',r:4,font:'Poppins Regular',fs:10,lh:16,color:'#333333',use:'Static, non-interactive "Label: Value" chip for a single attribute of something - the selected product variant, a loyalty points total. Documented as a Badge, not a Chip: Figma\'s own file places this node on the Badge page, and unlike Produk/Filter chips it has no unselected/clickable state.',icon:'Optional 12×12px leading slot, tinted icon/icon-brand - empty by default. Below the icon sizing scale (size/icon/sm is 16), so it is a raw value in both packages rather than a token, deliberately.',note:'Named for the shape of the information, not one use of it. This was "Variant" until Figma grew a second use (Points: 20,000 in the Home header) that was identical apart from a leading icon, so the icon became an optional slot rather than the pattern becoming a second component. Figma models the two as Property 2=variant / Property 2=points; in code they are one component, since nothing but the icon differs. The screenshot above shows the no-icon case - toggle the Icon control in the Playground for the other.'},code:{kt:'SnackyInfoBadge(label = "Variant: 75 Grams")\nSnackyInfoBadge(label = "Points: 20,000", icon = { SnackyIcon(SnackyIcons.Solid.Points, contentDescription = null) })',tsx:'<InfoBadge label="Variant: 75 Grams" />\n<InfoBadge label="Points: 20,000" icon={<SnackyIcons.solid.points />} />'}},
     ]},
   stepper:{name:'Stepper',cat:'Content',desc:'Vertical progress timeline for order status and delivery tracking.',usage:'Use for any ordered sequence of states the user follows over time: the four order-status screens and the driver-tracking sheet. Each step is done, pending, or cancelled - read the state from what the step actually is, not from a label. Steps are 48 tall with a 32 gap, joined by a dashed connector.',cover:'assets/images/variants/stepper-received.png',
     v:[
@@ -817,15 +817,17 @@ const PG={
     getKotlin:p=>`SnackyToggle(\n  checked = ${p.checked},\n  onCheckedChange = { checked = it }\n)`
   },
   badge:{
-    component:'BadgeDemo',initialProps:{type:'notification'},
-    controls:[{id:'type',label:'Type',type:'select',options:['notification','discount','sold','variant']}],
-    impl:`const BadgeDemo=({type})=>{const h=React.createElement;const U=SnackyUI;const I=U.SnackyIcons;
+    component:'BadgeDemo',initialProps:{type:'notification',icon:false},
+    controls:[{id:'type',label:'Type',type:'select',options:['notification','discount','sold','info']},{id:'icon',label:'Icon (info only)',type:'toggle'}],
+    impl:`const BadgeDemo=({type,icon})=>{const h=React.createElement;const U=SnackyUI;const I=U.SnackyIcons;
       if(type==='notification')return h(U.NotificationBadge,{count:100,max:99},h(I.outline.cart,{width:24,height:24,color:'#ffffff'}));
       if(type==='discount')return h(U.DiscountTag,{label:'-50%'});
       if(type==='sold')return h(U.SoldOutBadge,null);
-      return h(U.VariantBadge,{label:'Variant: 75 Grams'});};`,
-    getReact:p=>({notification:'<Badge count={99}>\n  <SnackyIcons.outline.cart width={20} height={20} />\n</Badge>',discount:'<DiscountTag label="-50%" />',sold:'<SoldOutBadge />',variant:'<VariantBadge label="Variant: 75 Grams" />'})[p.type],
-    getKotlin:p=>({notification:'SnackyBadge(count = 99) {\n  SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart")\n}',discount:'SnackyDiscountTag(label = "-50%")',sold:'SnackySoldOutBadge()',variant:'SnackyVariantBadge(label = "Variant: 75 Grams")'})[p.type]
+      return icon
+        ? h(U.InfoBadge,{label:'Points: 20,000',icon:h(I.solid.points)})
+        : h(U.InfoBadge,{label:'Variant: 75 Grams'});};`,
+    getReact:p=>({notification:'<Badge count={99}>\n  <SnackyIcons.outline.cart width={20} height={20} />\n</Badge>',discount:'<DiscountTag label="-50%" />',sold:'<SoldOutBadge />',info:p.icon?'<InfoBadge label="Points: 20,000" icon={<SnackyIcons.solid.points />} />':'<InfoBadge label="Variant: 75 Grams" />'})[p.type],
+    getKotlin:p=>({notification:'SnackyBadge(count = 99) {\n  SnackyIcon(SnackyIcons.Outline.Cart, contentDescription = "Cart")\n}',discount:'SnackyDiscountTag(label = "-50%")',sold:'SnackySoldOutBadge()',info:p.icon?'SnackyInfoBadge(\n  label = "Points: 20,000",\n  icon = { SnackyIcon(SnackyIcons.Solid.Points, contentDescription = null) }\n)':'SnackyInfoBadge(label = "Variant: 75 Grams")'})[p.type]
   },
   chips:{
     component:'ChipDemo',demoSrc:'assets/images/product-image.png',demoAlt:'Product',
@@ -3434,13 +3436,20 @@ fun SnackySoldOutBadge(modifier: Modifier = Modifier) {
 // Usage - overlay on a sold-out product image:
 // Box { ProductImage(...); SnackySoldOutBadge(modifier = Modifier.align(Alignment.Center)) }
 
-// Variant badge - static label, always shown in the accent-highlighted style
+// Info badge - static "Label: Value" chip, always shown in the accent-highlighted style
 // (not a FilterChip - there's no unselected/clickable state in the design; documented as a
-// Badge, not a Chip, since Figma's own file places this node under the Badge page/frame)
+// Badge, not a Chip, since Figma's own file places this node under the Badge page/frame).
+// Named for the shape of the information, not one use of it: Figma models the selected
+// product variant and the loyalty points total as Property 2=variant / Property 2=points,
+// but nothing except the icon differs between them, so `icon` is a slot here rather than
+// this being two components.
 @Composable
-fun SnackyVariantBadge(
+fun SnackyInfoBadge(
     label    : String,
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    // Optional leading slot, empty by default. 12dp is below the icon sizing
+    // scale (sizeIconSm is 16), so it stays a raw value rather than a token.
+    icon     : (@Composable () -> Unit)? = null
 ) {
     Surface(
         color   = bgSurfaceHighlight,
@@ -3448,17 +3457,28 @@ fun SnackyVariantBadge(
         border  = BorderStroke(1.dp, borderInputActive),
         modifier = modifier
     ) {
-        Text(
-            text     = label,
-            style    = SnackyTypography.captionRegular,
-            color    = textPrimary,
-            modifier = Modifier.padding(spacing8)
-        )
+        Row(
+            verticalAlignment   = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(gapTextIcon),
+            modifier            = Modifier.padding(spacing8)
+        ) {
+            if (icon != null) {
+                Box(modifier = Modifier.size(12.dp)) {
+                    CompositionLocalProvider(LocalContentColor provides iconBrand) { icon() }
+                }
+            }
+            Text(
+                text  = label,
+                style = SnackyTypography.captionRegular,
+                color = textPrimary
+            )
+        }
     }
 }
 
-// Usage - selected product variant on a product detail page:
-// SnackyVariantBadge(label = "Variant: 75 Grams")
+// Usage - the label carries its own prefix, matching Figma's single text node:
+// SnackyInfoBadge(label = "Variant: 75 Grams")
+// SnackyInfoBadge(label = "Points: 20,000", icon = { SnackyIcon(SnackyIcons.Solid.Points) })
 </script>
 
 <script type="text/plain" id="code-callout">
@@ -6512,18 +6532,26 @@ export function SoldOutBadge() {
 //   <SoldOutBadge />
 // </div>
 
-// Variant badge - static label, always shown in the accent-highlighted style
+// Info badge - static "Label: Value" chip, always shown in the accent-highlighted style
 // (not interactive - there's no unselected/clickable state in the design; documented as a
-// Badge, not a Chip, since Figma's own file places this node under the Badge page/frame)
-interface VariantBadgeProps {
+// Badge, not a Chip, since Figma's own file places this node under the Badge page/frame).
+// Named for the shape of the information, not one use of it: Figma models the selected
+// product variant and the loyalty points total as Property 2=variant / Property 2=points,
+// but nothing except the icon differs between them, so `icon` is a slot here rather than
+// this being two components.
+interface InfoBadgeProps {
+  // The whole string including its own prefix - Figma draws it as a single text node.
   label: string;
+  // Optional leading slot, empty by default.
+  icon?: ReactNode;
 }
 
-export function VariantBadge({ label }: VariantBadgeProps) {
+export function InfoBadge({ label, icon }: InfoBadgeProps) {
   const style: CSSProperties = {
     ...typography.captionRegular,
     display: 'inline-flex',
     alignItems: 'center',
+    gap: 'var(--gap-text-icon)',
     padding: 'var(--spacing-8)',
     borderRadius: 'var(--radius-field)',
     border: '1px solid var(--border-input-active)',
@@ -6531,11 +6559,27 @@ export function VariantBadge({ label }: VariantBadgeProps) {
     color: 'var(--text-primary)',
     whiteSpace: 'nowrap',
   };
-  return <span style={style}>{label}</span>;
+  // 12x12 is below the icon sizing scale (--size-icon-sm is 16), so it stays a
+  // raw value rather than a token. Sized here rather than left to the caller so
+  // the badge keeps its 32px height whatever icon is passed in.
+  const iconStyle: CSSProperties = {
+    display: 'inline-flex',
+    flexShrink: 0,
+    width: 12,
+    height: 12,
+    color: 'var(--icon-brand)',
+  };
+  return (
+    <span style={style}>
+      {icon && <span style={iconStyle}>{icon}</span>}
+      {label}
+    </span>
+  );
 }
 
-// Usage - selected product variant on a product detail page:
-// <VariantBadge label="Variant: 75 Grams" />
+// Usage - the label carries its own prefix, matching Figma's single text node:
+// <InfoBadge label="Variant: 75 Grams" />
+// <InfoBadge label="Points: 20,000" icon={<SnackyIcons.solid.points />} />
 </script>
 
 <script type="text/plain" id="code-react-callout">

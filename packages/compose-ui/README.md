@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v1.2.4")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v1.3.0")
 ```
 
 ### Using the icons
@@ -247,12 +247,16 @@ that credit with them.
   use (Coil's `AsyncImage`, a raw `Image(bitmap = ...)`, etc.), this just
   handles the fixed size and circular clip.
 
-- `SnackyBadge`/`SnackyDiscountTag`/`SnackySoldOutBadge`/`SnackyVariantBadge`
+- `SnackyBadge`/`SnackyDiscountTag`/`SnackySoldOutBadge`/`SnackyInfoBadge`
   (`src/commonMain/kotlin/com/snacky/ui/components/badge/Badge.kt`), the
   Badge family, four small independent composables mirroring
   `packages/react-ui`'s four-export `Badge.tsx`/`Badge.css` split exactly.
   `SnackyBadge` is a numeric count overlay (wraps a `content` slot, e.g. a
-  cart icon) that hides entirely when `count <= 0`. Confirmed against Figma
+  cart icon) that hides entirely when `count <= 0`. `SnackyInfoBadge` is the
+  static `Label: Value` chip (the selected product variant, a loyalty points
+  total) with an optional 12dp leading icon slot, tinted `iconBrand`; it was
+  `SnackyVariantBadge` until Figma grew the points use, which differed only by
+  that icon - the old name survives as a `@Deprecated` alias. Confirmed against Figma
   (node `8792:6172`, page "Badge") - all four variants matched already, no
   color/token bugs this time, `SnackySoldOutBadge`'s dim overlay uses
   `bgOverlayDim` (the token already carries the exact `rgba(51,51,51,0.8)`

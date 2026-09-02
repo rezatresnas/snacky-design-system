@@ -51,9 +51,12 @@
   line-height: var(--font-small-regular-line-height);
   letter-spacing: var(--font-small-regular-letter-spacing);
 }
-.snacky-variant-badge {
+.snacky-info-badge {
   display: inline-flex;
   align-items: center;
+  /* Icon -> label gap. Only applies when the optional icon slot is filled;
+     with no icon the badge is a single text node and the gap collapses. */
+  gap: var(--gap-text-icon);
   /* Figma: 32 tall with the stroke inside; the 1px border was stacking on top. */
   height: 32px;
   padding: var(--spacing-8);
@@ -66,4 +69,22 @@
   font-weight: var(--font-caption-regular-weight);
   line-height: var(--font-caption-regular-line-height);
   letter-spacing: var(--font-caption-regular-letter-spacing);
+}
+.snacky-info-badge__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  /* Figma binds this glyph to icon/icon-brand, and the icons render
+     currentColor, so tint the slot rather than making every caller pass a
+     color prop. Matches SnackyInfoBadge's LocalContentColor in compose-ui. */
+  color: var(--icon-brand);
+  /* 12x12, raw rather than a token on purpose: the icon size scale is
+     16/20/24 (size.icon.sm/md/lg) and Figma draws this one at 12, below the
+     smallest step. Sized here rather than left to the caller so the badge
+     stays 32 tall whatever icon is passed in. */
+  width: 12px;
+  height: 12px;
+}
+.snacky-info-badge__icon svg {
+  width: 100%;
+  height: 100%;
 }

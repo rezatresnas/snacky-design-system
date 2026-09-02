@@ -62,7 +62,7 @@ Button, IconButton, UploadButton, TextField, SearchField, OtpField,
 CopyField, ChatInput, AddressResult, ProductChip, FilterChip, RadioOption,
 Checkbox, Toggle, NavBar, TabRow, Header, HeroBanner, SquareBanner,
 FullWidthBanner, PointBalanceBanner, AlertBanner, NotificationBadge,
-DiscountTag, SoldOutBadge, VariantBadge, Callout, OrderListItem,
+DiscountTag, SoldOutBadge, InfoBadge, Callout, OrderListItem,
 NotificationListItem, Accordion, BottomSheet, Section, Avatar,
 Stepper, Calendar, Illustration, ProductImage, ProductCard, SnackyIcons
 
@@ -77,7 +77,7 @@ SnackyPasswordField, SnackyPointBalanceBanner, SnackyProductCard,
 SnackyProductCardDetails, SnackyProductChip, SnackyProductImage,
 SnackyRadioOption, SnackySearchField, SnackySection, SnackySoldOutBadge,
 SnackySquareBanner, SnackyStepper, SnackyTabRow, SnackyTextField, SnackyToggle,
-SnackyVariantBadge
+SnackyInfoBadge
 
 Compose enums you will need: ButtonVariant, ButtonSize, IconButtonVariant,
 IconButtonSize, AvatarSize, CalloutVariant, HeaderLeadingIcon,

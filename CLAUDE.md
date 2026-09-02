@@ -105,7 +105,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   90 against 88. Figma draws strokes INSIDE the frame; CSS adds them on top unless
   the height is explicit. That single mistake accounted for seven of the bugs found
   (Button Secondary, five Input fields, the COD chip, Chips, DiscountTag,
-  VariantBadge, PointBalanceBanner). Check it first on anything bordered.
+  InfoBadge (then still called VariantBadge), PointBalanceBanner). Check it first on anything bordered.
 - **`Stepper` and `Calendar` were missing components, not app composition.** Both
   were added after the question "why isn't this a component?" turned out to have
   a better answer than the one this file used to imply. Stepper had 19 hand-drawn
