@@ -152,7 +152,15 @@ fun SnackyPointBalanceBanner(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space8),
     ) {
-        PointBalanceItem(pointsLabel, points, pointsIcon)
+        // Figma's own auto-layout sets both item columns to fill-container,
+        // splitting the row 50/50 around the divider (confirmed in dev-mode
+        // inspect) - without weight(1f) the two hug-width rows just packed
+        // against the start edge, leaving the divider stranded right after the
+        // first group instead of centred, and a growing empty band of surface
+        // colour on the end in any container wider than the content itself.
+        Box(modifier = Modifier.weight(1f)) {
+            PointBalanceItem(pointsLabel, points, pointsIcon)
+        }
         // react-ui's divider is `align-self: stretch`, so it spans the row's
         // content box rather than a fixed height.
         Box(
@@ -161,7 +169,9 @@ fun SnackyPointBalanceBanner(
                 .fillMaxHeight()
                 .background(SnackyColorPrimitive.Primary.c500),
         )
-        PointBalanceItem(balanceLabel, balance, balanceIcon)
+        Box(modifier = Modifier.weight(1f)) {
+            PointBalanceItem(balanceLabel, balance, balanceIcon)
+        }
     }
 }
 

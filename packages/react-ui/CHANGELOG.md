@@ -4,6 +4,33 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## PointBalanceBanner's two halves now share the row equally (0.8.1)
+
+`.snacky-banner-point-balance__item` (the Points group and the Balance group
+either side of the hairline divider) never had a `flex` value, so each one
+just hugged its own content width and both packed against the left edge.
+That was invisible in the docs site's own Live Preview, which always renders
+this component inside a hardcoded `width: 312` wrapper matching Figma's exact
+frame size - the one width where there's barely any slack to expose the bug.
+It showed up once the component was dropped into a genuinely wider container
+(the Claude Design gallery's story card, auto-sized well past 312px): the
+divider landed right after the first group instead of at the midpoint, and
+the row's tinted, bordered background kept stretching to `width: 100%` with
+nothing in the empty half but its own surface colour.
+
+Figma's own auto-layout already has both item columns set to fill-container,
+splitting the row 50/50 around the divider - confirmed directly in Figma's
+dev-mode inspect view, not inferred. Added `flex: 1` to both items (`weight
+(1f)` in compose-ui), so each column now grows to take an equal share of
+whatever width the row fills, with its icon/label/value left-aligned inside
+that half. Verified by rendering the real package at 312px (Figma spec, where
+nothing changes visually - the two halves were already close to equal there),
+and at 400px (matching the gallery card's rough width): the divider sits at
+49.8-49.9% of the row's width in both cases, and a "LowBalance" sibling
+("0" / "Rp 0") now measures pixel-identical to "Default" at the same
+container width, which is exactly the sibling-mismatch problem `width: 100%`
+was introduced to solve in 0.7.1 in the first place.
+
 ## VariantBadge renamed to InfoBadge, with an icon slot (0.8.0)
 
 The badge that renders `Variant: 75 Grams` turned out to have a second use in

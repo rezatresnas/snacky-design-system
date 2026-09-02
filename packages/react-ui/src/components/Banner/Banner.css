@@ -57,6 +57,13 @@
 .snacky-banner-point-balance__item {
   display: flex;
   align-items: center;
+  /* Figma's own auto-layout sets both item columns to fill-container, splitting
+     the row 50/50 around the divider (confirmed in dev-mode inspect) - without
+     this, the two hug-width groups just packed against the left edge, leaving
+     the divider stranded right after the first group instead of centred, and a
+     growing empty band of surface colour on the right in any container wider
+     than the content (as wide as any real usage beyond a ~312px mobile screen). */
+  flex: 1;
   /* 12px, per Figma's "Points and Balance Container". This was gap.icon-label
      (4px), which is documented as a *vertical* navbar/menu icon-to-label gap,
      so it was wrong on both the axis and the value and left the icon jammed
