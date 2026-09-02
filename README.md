@@ -14,7 +14,6 @@ Compose Multiplatform and React.
 | [`index.html`](index.html) | The interactive doc site itself - visual specs with measurement overlays, live Figma embeds, and an editable React playground per component. 24 components across Actions, Forms, Navigation, Content, and Assets, plus foundation tokens (color, typography, spacing, radius, sizing, shadow). |
 | [`packages/react-ui`](packages/react-ui) | `@snacky/ui` on npm - a real, installable React implementation of all 24 components, styled entirely from the design tokens. |
 | [`packages/compose-ui`](packages/compose-ui) | The Kotlin Multiplatform / Compose Multiplatform counterpart, all 24 components, published via JitPack. Generated from the same source as the React package, so the two cannot drift apart. |
-| [`design-system-prompt.md`](design-system-prompt.md) | Condensed copy-paste prompt for AI tools that take a text prompt instead of reading files or running npm (v0, Bolt, Lovable, Claude Artifacts). |
 
 `tokens.json` also lives at the repo root, but it's an internal build
 intermediate (`scripts/generate-agent-files.js` produces it from `index.html`,
@@ -50,19 +49,20 @@ component list, verification status, and known gaps.
 
 ## Using this with an AI tool
 
-- **A coding agent building a separate project** (Claude Code, Cursor, Codex,
-  an IDE's built-in agent, or "Create using Claude Code" in Claude Design):
-  just tell it to install the real package - `npm install @snacky/ui` or the
-  JitPack coordinate above. That's the whole integration; the agent gets real,
-  verified components plus their README/type-level docs, not an
-  AI-reconstructed guess at this design system's values. There's no need to
-  point it at this repo at all unless it's specifically working *on* the
-  design system itself, not just using it.
-- **Takes a prompt but can't read files or run a package manager** (v0, Bolt,
-  Lovable's chat box, Claude Artifacts): paste
-  [`design-system-prompt.md`](design-system-prompt.md) into its prompt/system-
-  context box instead - the one path here that still needs a repo file, since
-  these tools have no other way to receive the design system's values.
+Tell it to install the real package - `npm install @snacky/ui` or the JitPack
+coordinate above. That's the whole integration; the agent gets real, verified
+components plus their README/type-level docs, not an AI-reconstructed guess at
+this design system's values. This applies to Claude Code, Cursor, Codex, an
+IDE's built-in agent, and "Create using Claude Code" in Claude Design. There's
+no need to point any of them at this repo at all unless the agent is
+specifically working *on* the design system itself, not just using it.
+
+Tools that only take a text prompt and can't install a package or read files
+(v0, Bolt, Lovable's chat box, Claude Artifacts) are not a supported
+consumption path. A condensed prompt file for that case existed here before,
+but testing it across several such tools produced inaccurate specs, since the
+tool has to reconstruct values from prompt text rather than read them
+directly. The file was removed rather than left as an unreliable option.
 
 ## Roadmap
 

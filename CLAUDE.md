@@ -34,17 +34,17 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   resolves `latest`.) Grep for `compose-v` before tagging. `index.html`'s
   "Compose Package" card deliberately carries no version: its button links to the
   JitPack page, which always shows the current one.
-- `design-system-prompt.md` is a hand-written agent entry point and drifts the
-  same way `index.html`'s copy can - it once sat at "21 components" and omitted
-  `Header` long after it shipped. Re-read it whenever the component set, a
-  package, or the licensing story changes. It also carries the literal export
-  names for both platforms (prompt-only tools guess otherwise: the docs say
-  "Input", the code says `TextField`, `SearchField`, `OtpField`, `CopyField`,
-  `ChatInput`, `AddressResult`). Re-derive them after any export change:
-  ```
-  node -e "const d=require('fs').readFileSync('packages/react-ui/dist/index.d.ts','utf8');console.log([...new Set([...d.matchAll(/declare (?:function|const) ([A-Z][A-Za-z]+)/g)].map(m=>m[1]))].join(', '))"
-  grep -rhoE "^fun Snacky[A-Za-z]+" packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/components | sed 's/fun //' | sort -u
-  ```
+- `design-system-prompt.md` used to exist as a condensed copy-paste prompt for
+  AI tools that take a text prompt but can't read files or run a package
+  manager (v0, Bolt, Lovable, Claude Artifacts) - the one path that had no way
+  to consume the real npm/JitPack packages. It was removed after testing it
+  against several of those tools directly: a prompt-only tool has to
+  reconstruct component and token values from the condensed text rather than
+  read them from a verified source, and the reconstructions were measurably
+  inaccurate. That is the same "AI-reconstructed guess" failure mode this repo
+  already avoids for every other consumption path, so this path is now
+  unsupported rather than kept as a known-unreliable option. Tools that cannot
+  install a package are not a target for accurate design system consumption.
 - `scripts/generate-agent-files.js` - regenerates `tokens.json` straight from
   `index.html`'s source (bracket-matched literal extraction, not a hand
   transcription). Run it after any change to a foundation page's token data:
