@@ -354,6 +354,24 @@
   fix needed this cycle - the upstream commit had already caught and fixed
   its own bug (compose-ui's icon tint) before this re-sync ran.
 
+- **2026-09-02 (later)**: `@snacky/ui` 0.8.0 -> 0.8.1. `PointBalanceBanner`'s
+  `.snacky-banner-point-balance__item` (the Points group and the Balance
+  group either side of the divider) had no `flex` value, so each just hugged
+  its own content and both packed against the left edge - invisible in the
+  docs site's own Live Preview, which always renders this component inside a
+  hardcoded `width: 312` wrapper matching Figma exactly, the one width with
+  no slack to expose it. Showed up once dropped into a genuinely wider
+  container (this design-sync's own grid card, or the Claude Design gallery).
+  Fixed with `flex: 1` on both items (`weight(1f)` in compose-ui) so they
+  split the row 50/50 - confirmed directly against Figma's dev-mode inspect
+  view, both item columns are already fill-container there. Prop contract
+  unchanged (CSS-only), so this carried forward as "unchanged" in the
+  driver's diff; spot-checked anyway per this file's standing rule for
+  CSS-only PointBalanceBanner changes (same reasoning as the 0.6.2/0.7.1
+  entries above) - re-captured at this sync's own card width (well past
+  312px) and confirmed the divider sits at the midpoint with LowBalance's
+  short content no longer collapsed.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
