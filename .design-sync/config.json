@@ -7,7 +7,8 @@
   "tokensGlob": "src/theme/tokens.css",
   "extraFonts": ["src/fonts/fonts.css"],
   "componentSrcMap": {
-    "SnackyIcons": null
+    "SnackyIcons": null,
+    "VariantBadge": null
   },
   "readmeHeader": ".design-sync/conventions.md",
   "overrides": {

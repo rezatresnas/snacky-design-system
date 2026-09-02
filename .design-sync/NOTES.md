@@ -8,6 +8,15 @@
 - `componentSrcMap: {"SnackyIcons": null}` excludes the icon-set export (`SnackyIcons`)
   from the component scan - it's an object of icon components, not a component itself,
   and tripped `[BUNDLE_EXPORT]` until excluded.
+- `componentSrcMap` also excludes `"VariantBadge": null` (added 2026-09-02, when
+  `VariantBadge` was renamed to `InfoBadge` and kept only as a deprecated identity
+  alias - `export const VariantBadge = InfoBadge`). Without the exclusion the build
+  still discovers it as a real export and gives it its own card, but its dedicated
+  preview file was deleted (the rename replaced it with `InfoBadge.tsx`), so it fell
+  back to a "Preview not yet authored" floor card for a component that in fact works
+  fine - just under a name nothing should point a design agent at anymore. Any future
+  deprecated-alias export should get the same treatment: exclude it here rather than
+  letting it either float as a stale floor card or fork into a second preview.
 - **Poppins is now self-hosted, not runtime-loaded.** Originally `runtimeFontPrefixes:
   ["Poppins"]` suppressed `[FONT_MISSING]` on the assumption the host app loads Google
   Fonts itself. On the 2026-08-24 re-sync, the actual Poppins `.ttf` files (400/500/
@@ -328,6 +337,22 @@
      Section/Tab before it: an unexercised code path is not a verified one** -
      the icon prop existed and was even documented with a size split, but
      nothing had ever rendered it in anger until this preview was authored.
+
+- **2026-09-02**: `@snacky/ui` 0.7.4 -> 0.8.0, compose-ui 1.2.4 -> 1.3.0.
+  `VariantBadge` (the "Variant: 75 Grams" chip) was renamed to `InfoBadge` and
+  given an optional icon slot, after the same "Label: Value" shape turned up a
+  second time in Figma as "Points: 20,000" - seven hand-copied instances found
+  across the Customer App pages, same discovery shape as Stepper's 19 copies
+  before it (see the "missing component, not app composition" lesson at the
+  top of this file). `VariantBadge`/`VariantBadgeProps` kept as deprecated
+  identity aliases for existing consumer code. The preview/grading work here
+  (rebuild, capture, grade `InfoBadge`'s 4 stories - PointsTotal, ProductVariant,
+  SizeOptions, WithAndWithoutIcon - all good, icon renders in the correct
+  icon-brand gold tint per the commit's own fix) plus excluding the now-
+  orphaned `VariantBadge` alias from `componentSrcMap` (see Setup section
+  above) and reconciling its stale card out of the live project. No source
+  fix needed this cycle - the upstream commit had already caught and fixed
+  its own bug (compose-ui's icon tint) before this re-sync ran.
 
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
