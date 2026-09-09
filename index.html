@@ -2099,260 +2099,198 @@ document.addEventListener('DOMContentLoaded',route);
      ═══════════════════════════════════════════════════════════════════════════ -->
 
 <script type="text/plain" id="code-foundation-typography">
-// SnackyTypography.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyTypography.kt
-
-// In the published package these ship as SnackyTypography.H1.bold and
-// SnackyTypography.Small.regular, each a SnackyTypographyToken.
-
-package com.snacky.ui.theme
+// Tokens.kt (generated) + the FontFamily you have to supply.
+// Install: com.github.rezatresnas:snacky-design-system
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import com.snacky.ui.theme.SnackyTypography
+import com.snacky.ui.theme.SnackyTypographyToken
 
-// Add font files to: composeApp/src/commonMain/resources/font/
-// Required: poppins_regular.ttf · poppins_semibold.ttf · poppins_bold.ttf
+// The package ships the type scale as raw values, NOT as TextStyle, and bundles no
+// font. Style names mirror the Figma text style names exactly (h1/bold, body/regular,
+// etc.) - keep these in sync with Figma, not the reverse:
+//
+//   SnackyTypography.H1.bold          32sp / 36sp / Bold / 0.01em
+//   SnackyTypography.Body.regular     14sp / 24sp / Normal
+//   SnackyTypography.Caption.regular  10sp / 16sp / Normal / 0.01em
+//   ...and the rest of the scale, each a SnackyTypographyToken.
 
+// 1. Supply Poppins yourself. Without this, text renders in the ambient font -
+//    which is exactly what "unstyled text" looks like in a generated screen.
+// Add font files to: composeApp/src/commonMain/composeResources/font/
+// Required: poppins_regular.ttf, poppins_semibold.ttf, poppins_bold.ttf
 val PoppinsFamily = FontFamily(
     Font(resource = "font/poppins_regular.ttf",  weight = FontWeight.Normal),
     Font(resource = "font/poppins_semibold.ttf", weight = FontWeight.SemiBold),
-    Font(resource = "font/poppins_bold.ttf",      weight = FontWeight.Bold)
+    Font(resource = "font/poppins_bold.ttf",     weight = FontWeight.Bold)
 )
 
-// Style names mirror the Figma text style names exactly (h1/bold, body/regular, etc.)
-// - keep these in sync with Figma, not the reverse. Figma has no Code Syntax field
-// for text styles, so these are derived directly from each style's own name.
-object SnackyTypography {
-    val h1Bold = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.Bold,
-        fontSize      = 32.sp,
-        lineHeight    = 36.sp,
-        letterSpacing = 0.32.sp
-    )
-    val h2Bold = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.Bold,
-        fontSize      = 20.sp,
-        lineHeight    = 36.sp,
-        letterSpacing = 0.20.sp
-    )
-    val h3Bold = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.Bold,
-        fontSize      = 16.sp,
-        lineHeight    = 36.sp,
-        letterSpacing = 0.16.sp
-    )
-    val h3Regular = TextStyle(
-        fontFamily = PoppinsFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize   = 16.sp,
-        lineHeight = 36.sp
-    )
-    val bodySemibold = TextStyle(
-        fontFamily = PoppinsFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize   = 14.sp,
-        lineHeight = 24.sp
-    )
-    val bodyRegular = TextStyle(
-        fontFamily = PoppinsFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize   = 14.sp,
-        lineHeight = 24.sp
-    )
-    val smallSemibold = TextStyle(
-        fontFamily = PoppinsFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize   = 12.sp,
-        lineHeight = 24.sp
-    )
-    val smallBold = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.Bold,
-        fontSize      = 12.sp,
-        lineHeight    = 24.sp,
-        letterSpacing = 0.12.sp
-    )
-    val smallRegular = TextStyle(
-        fontFamily = PoppinsFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize   = 12.sp,
-        lineHeight = 24.sp
-    )
-    val captionSemibold = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.SemiBold,
-        fontSize      = 10.sp,
-        lineHeight    = 23.sp,
-        letterSpacing = 0.10.sp
-    )
-    val captionRegular = TextStyle(
-        fontFamily    = PoppinsFamily,
-        fontWeight    = FontWeight.Normal,
-        fontSize      = 10.sp,
-        lineHeight    = 16.sp,
-        letterSpacing = 0.10.sp
-    )
-}
+// 2. Turn any token into a TextStyle with that family.
+fun SnackyTypographyToken.toTextStyle(family: FontFamily = PoppinsFamily) = TextStyle(
+    fontFamily    = family,
+    fontWeight    = fontWeight,
+    fontSize      = fontSize,
+    lineHeight    = lineHeight,
+    letterSpacing = letterSpacing
+)
 
-// SnackyTypography is a standalone object (not androidx.compose.material3.Typography)
-// because its style names don't map onto Material3's fixed 15-slot scheme.
-// Reference styles directly: SnackyTypography.h1Bold, not MaterialTheme.typography.*
-//
 // Usage:
-// Text("Login", style = SnackyTypography.smallSemibold)
-// Text("Product name", style = SnackyTypography.smallRegular)
-// Text("Welcome!", style = SnackyTypography.h3Bold)
+// Text("Login", style = SnackyTypography.Small.semibold.toTextStyle())
+// Text("Product name", style = SnackyTypography.Small.regular.toTextStyle())
+// Text("Welcome!", style = SnackyTypography.H3.bold.toTextStyle())
+//
+// The scale is a standalone object, not androidx.compose.material3.Typography: its
+// style names don't map onto Material3's fixed 15-slot scheme, so reference it
+// directly rather than through MaterialTheme.typography.
 </script>
 
 <script type="text/plain" id="code-foundation-primitives">
-// SnackyColorPrimitive.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyColorPrimitive.kt
+// Tokens.kt (generated) - the raw ramps as the package ships them.
+// Install: com.github.rezatresnas:snacky-design-system
 
-// In the published package these same ramps ship as
-// SnackyColorPrimitive.Primary.c500 / .Neutral.c20 / .Red.c500 - install
-// com.github.rezatresnas:snacky-design-system and use those instead of
-// copying this file.
-
-package com.snacky.ui.theme
-
-import androidx.compose.ui.graphics.Color
+import com.snacky.ui.theme.SnackyColorPrimitive
 
 // Raw color ramps - mirrors the "._primitive colors" Figma collection exactly.
-// No semantic meaning lives here. Don't reference these directly from components -
-// use the matching semantic token in SnackyColor.kt instead, so a future ramp
-// change (rebrand, contrast fix) only has to happen once, in this one file.
+// No semantic meaning lives here. Do not reference these directly from
+// components; use the matching semantic token in SnackyColor instead, so a
+// future ramp change (rebrand, contrast fix) only happens in one place.
 
-val Primary50  = Color(0xFFFEF8EB)
-val Primary100 = Color(0xFFFDE9BF)
-val Primary200 = Color(0xFFFCDEA1)
-val Primary300 = Color(0xFFFACF76)
-val Primary400 = Color(0xFFF9C55B)
-val Primary500 = Color(0xFFF8B732)
-val Primary600 = Color(0xFFE2A72E)
-val Primary700 = Color(0xFFB08224)
-val Primary800 = Color(0xFF88651C)
-val Primary900 = Color(0xFF684D15)
+object SnackyColorPrimitive {
+    object Primary {
+        val c50 = Color(0xFFFEF8EB)
+        val c100 = Color(0xFFFDE9BF)
+        val c200 = Color(0xFFFCDEA1)
+        val c300 = Color(0xFFFACF76)
+        val c400 = Color(0xFFF9C55B)
+        val c500 = Color(0xFFF8B732)
+        val c600 = Color(0xFFE2A72E)
+        val c700 = Color(0xFFB08224)
+        val c800 = Color(0xFF88651C)
+        val c900 = Color(0xFF684D15)
+    }
+    object Neutral {
+        val c0 = Color(0xFFFFFFFF)
+        val c10 = Color(0xFFFDFDFD)
+        val c20 = Color(0xFFF7F7F7)
+        val c50 = Color(0xFFF3F3F3)
+        val c100 = Color(0xFFE0E0E0)
+        val c200 = Color(0xFFCCCCCC)
+        val c400 = Color(0xFFA3A3A3)
+        val c500 = Color(0xFF7A7A7A)
+        val c600 = Color(0xFF6A6A6A)
+        val c700 = Color(0xFF525252)
+        val c800 = Color(0xFF4B4B4B)
+        val c900 = Color(0xFF434343)
+        val c950 = Color(0xFF333333)
+    }
+    object Red {
+        val c50 = Color(0xFFFDEEEE)
+        val c100 = Color(0xFFF9CBCB)
+        val c200 = Color(0xFFF6B2B2)
+        val c300 = Color(0xFFF28E8E)
+        val c400 = Color(0xFFEF7979)
+        val c500 = Color(0xFFEB5757)
+        val c600 = Color(0xFFD64F4F)
+        val c700 = Color(0xFFA73E3E)
+        val c800 = Color(0xFF813030)
+        val c900 = Color(0xFF632525)
+    }
+}
 
-val Neutral0            = Color(0xFFFFFFFF)
-val Neutral10           = Color(0xFFFDFDFD)
-val Neutral20           = Color(0xFFF7F7F7)
-val Neutral50           = Color(0xFFF3F3F3)
-val Neutral100          = Color(0xFFE0E0E0)
-val Neutral200          = Color(0xFFCCCCCC)
-val Neutral400          = Color(0xFFA3A3A3)
-val Neutral500          = Color(0xFF7A7A7A)
-val Neutral600          = Color(0xFF6A6A6A)
-val Neutral700          = Color(0xFF525252)
-val Neutral800          = Color(0xFF4B4B4B)
-val Neutral900          = Color(0xFF434343)
-val Neutral950          = Color(0xFF333333)
-val Neutral950Alpha80   = Color(0xCC333333) // neutral-950 at 80% alpha
-
-val Red50  = Color(0xFFFDEEEE)
-val Red100 = Color(0xFFF9CBCB)
-val Red200 = Color(0xFFF6B2B2)
-val Red300 = Color(0xFFF28E8E)
-val Red400 = Color(0xFFEF7979)
-val Red500 = Color(0xFFEB5757)
-val Red600 = Color(0xFFD64F4F)
-val Red700 = Color(0xFFA73E3E)
-val Red800 = Color(0xFF813030)
-val Red900 = Color(0xFF632525)
+// Usage:
+// SnackyColorPrimitive.Primary.c500
+// SnackyColorPrimitive.Neutral.c20
 </script>
 
 <script type="text/plain" id="code-foundation-colors">
-// SnackyColor.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyColor.kt
-
-// In the published package these same tokens ship as SnackyColor.bgApp,
-// SnackyColor.bgSurfacePrimary, and so on, each already pointing at its
-// primitive - install com.github.rezatresnas:snacky-design-system and use
-// those instead of copying this file.
-
-package com.snacky.ui.theme
+// Tokens.kt (generated) - the semantic colors as the package ships them.
+// Install: com.github.rezatresnas:snacky-design-system
 
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import com.snacky.ui.theme.SnackyColor
+import com.snacky.ui.theme.SnackyColorPrimitive
 
 // Token names mirror the Android "Code Syntax" set on each Figma variable
 // (semantic colors collection) - keep these in sync with Figma, not the reverse.
-// Every token here aliases a primitive from SnackyColorPrimitive.kt (same package,
-// no import needed) - never a raw hex. Reach for a primitive directly only when a
-// value is on-ramp but no semantic role fits yet (e.g. chart/illustration accents).
+// Every token points at a primitive rather than repeating its value, so a ramp
+// change lands in one place. Reach for a primitive directly only when a value is
+// on-ramp but no semantic role fits yet (e.g. chart/illustration accents).
 
-// ── Background / App ────────────────────────────────────────────────────
-val bgApp = Neutral20                    // App-level background behind all screens
+object SnackyColor {
 
-// ── Background / Overlay ─────────────────────────────────────────────────
-val bgOverlayDim = Neutral950Alpha80             // Dark translucent overlay - e.g. Sold Out badge over product images
+    // ── Background / App ────────────────────────────────────────────────────
+    val bgApp = SnackyColorPrimitive.Neutral.c20 // App-level background behind all screens
 
-// ── Background / Surface ────────────────────────────────────────────────
-val bgSurface          = Neutral0       // Cards, modals, sidebar panels
-val bgSurfacePrimary   = Primary500       // Primary surface accent areas
-val bgSurfaceAccent    = Red500       // Accent/danger surface highlight
-val bgSurfaceVariant   = Neutral50       // Secondary surface variant background
-val bgSurfaceField     = Neutral0       // Form field and input surface background
-val bgSurfaceHighlight = Primary50       // Accent tint backgrounds, hover states
+    // ── Background / Overlay ─────────────────────────────────────────────────
+    val bgOverlayDim = Color(red = 51f / 255f, green = 51f / 255f, blue = 51f / 255f, alpha = 0.8f) // Dark translucent overlay - e.g. Sold Out badge over product images
 
-// ── Background / Action ─────────────────────────────────────────────────
-val bgActionPrimary          = Primary500 // Main CTA, active states
-val bgActionPrimaryHover     = Primary600 // Primary action hover state
-val bgActionPrimaryPressed   = Primary700 // Primary action pressed state
-val bgActionSecondary        = Neutral0 // Secondary button fill
-val bgActionSecondaryHover   = Neutral50 // Secondary action hover state
-val bgActionSecondaryPressed = Neutral100 // Secondary action pressed state
-val bgActionDisabled         = Neutral200 // Disabled button and control fill
-val bgActionPrimaryDanger         = Red500 // Filled danger button fill (Primary hierarchy only; Secondary/Tertiary danger buttons keep their normal fill and only recolor border/text)
-val bgActionPrimaryDangerHovered  = Red600 // Filled danger button hover state
-val bgActionPrimaryDangerPressed  = Red700 // Filled danger button pressed state
+    // ── Background / Surface ────────────────────────────────────────────────
+    val bgSurface = SnackyColorPrimitive.Neutral.c0 // Cards, modals, sidebar panels
+    val bgSurfacePrimary = SnackyColorPrimitive.Primary.c500 // Primary surface accent areas
+    val bgSurfaceAccent = SnackyColorPrimitive.Red.c500 // Accent/danger surface highlight
+    val bgSurfaceVariant = SnackyColorPrimitive.Neutral.c50 // Secondary surface variant background
+    val bgSurfaceField = SnackyColorPrimitive.Neutral.c0 // Form field and input surface background
+    val bgSurfaceHighlight = SnackyColorPrimitive.Primary.c50 // Accent tint backgrounds, hover states
 
-// ── Border ───────────────────────────────────────────────────────────────
-val borderMain                  = Neutral200 // Default borders, dividers
-val borderHighlight              = Primary200 // Highlighted/accent border
-val borderInputDefault           = Neutral200 // Default input field border
-val borderInputActive            = Primary500 // Focused/active input field border
-val borderInputError             = Red500 // Input validation error border
-val borderActionSecondary        = Neutral200 // Secondary action button border
-val borderActionSecondaryPressed = Neutral400 // Secondary action button border, pressed
-val borderActionDanger           = Red500 // Secondary/Tertiary danger button border
-val borderActionDisabled         = Neutral200 // Disabled action button border (Secondary hierarchy; Primary/Tertiary disabled don't normally use a border, see SnackyButton.kt)
+    // ── Background / Action ─────────────────────────────────────────────────
+    val bgActionPrimary = SnackyColorPrimitive.Primary.c500 // Main CTA, active states
+    val bgActionPrimaryHover = SnackyColorPrimitive.Primary.c600 // Primary action hover state
+    val bgActionPrimaryPressed = SnackyColorPrimitive.Primary.c700 // Primary action pressed state
+    val bgActionSecondary = SnackyColorPrimitive.Neutral.c0 // Secondary button fill
+    val bgActionSecondaryHover = SnackyColorPrimitive.Neutral.c50 // Secondary action hover state
+    val bgActionSecondaryPressed = SnackyColorPrimitive.Neutral.c100 // Secondary action pressed state
+    val bgActionDisabled = SnackyColorPrimitive.Neutral.c200 // Disabled button and control fill
+    val bgActionPrimaryDanger = SnackyColorPrimitive.Red.c500 // Filled danger button fill (Primary hierarchy only; Secondary/Tertiary danger buttons keep their normal fill and only recolor border/text)
+    val bgActionPrimaryDangerHovered = SnackyColorPrimitive.Red.c600 // Filled danger button hover state
+    val bgActionPrimaryDangerPressed = SnackyColorPrimitive.Red.c700 // Filled danger button pressed state
 
-// ── Text ─────────────────────────────────────────────────────────────────
-val textPrimary     = Neutral950 // Main body text, headings
-val textSecondary   = Neutral500 // Subtitles, descriptions
-val textPlaceholder = Neutral500 // Input placeholders, hint text
-val textDisabled    = Neutral400 // Disabled text and labels
-val textLink        = Primary800 // Hyperlinks, anchor text
-val textError        = Red700 // Error messages, danger states
-val textInverse      = Neutral0 // Text on top of accent/dark-filled surfaces (e.g. discount tag label)
+    // ── Border ───────────────────────────────────────────────────────────────
+    val borderMain = SnackyColorPrimitive.Neutral.c200 // Default borders, dividers
+    val borderHighlight = SnackyColorPrimitive.Primary.c200 // Highlighted/accent border
+    val borderInputDefault = SnackyColorPrimitive.Neutral.c200 // Default input field border
+    val borderInputActive = SnackyColorPrimitive.Primary.c500 // Focused/active input field border
+    val borderInputError = SnackyColorPrimitive.Red.c500 // Input validation error border
+    val borderActionSecondary = SnackyColorPrimitive.Neutral.c200 // Secondary action button border
+    val borderActionSecondaryPressed = SnackyColorPrimitive.Neutral.c400 // Secondary action button border, pressed
+    val borderActionDanger = SnackyColorPrimitive.Red.c500 // Secondary/Tertiary danger button border
+    val borderActionDisabled = SnackyColorPrimitive.Neutral.c200 // Disabled action button border (Secondary hierarchy; Primary/Tertiary disabled don't normally use a border, see SnackyButton.kt)
 
-// ── Text / On Action ────────────────────────────────────────────────────
-// Label color for buttons specifically: kept separate from the general Text group
-// above because a button's label color depends on (hierarchy × intent × state), not
-// just "is this an error/link", and mirrors the "text/on-action/*" Figma subgroup 1:1.
-val textOnActionPrimary        = Neutral950 // Primary (Base or Danger) and Secondary/Base button label
-val textOnActionSecondary      = Neutral950 // Defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to textOnActionPrimary instead (same value, different token). Flagged for design to confirm intent.
-val textOnActionTertiary         = Primary700 // Tertiary/Base button label (default): a ghost/text button, so label color IS the affordance
-val textOnActionTertiaryHovered  = Primary800 // Tertiary/Base button label, hovered
-val textOnActionTertiaryPressed  = Primary900 // Tertiary/Base button label, pressed
-val textActionDanger           = Red600 // Secondary/Danger and Tertiary/Danger button label (default); these hierarchies signal danger via label/border color, not fill
-val textActionDangerHovered    = Red700 // Secondary/Danger and Tertiary/Danger button label, hovered
-val textActionDangerPressed    = Red800 // Secondary/Danger and Tertiary/Danger button label, pressed
-val textActionDisabled         = Neutral400 // Disabled button label, any hierarchy/intent
+    // ── Text ─────────────────────────────────────────────────────────────────
+    val textPrimary = SnackyColorPrimitive.Neutral.c950 // Main body text, headings
+    val textSecondary = SnackyColorPrimitive.Neutral.c500 // Subtitles, descriptions
+    val textPlaceholder = SnackyColorPrimitive.Neutral.c500 // Input placeholders, hint text
+    val textDisabled = SnackyColorPrimitive.Neutral.c400 // Disabled text and labels
+    val textLink = SnackyColorPrimitive.Primary.c800 // Hyperlinks, anchor text
+    val textError = SnackyColorPrimitive.Red.c700 // Error messages, danger states
+    val textInverse = SnackyColorPrimitive.Neutral.c0 // Text on top of accent/dark-filled surfaces (e.g. discount tag label)
 
-// ── Icon ─────────────────────────────────────────────────────────────────
-val iconPrimary   = Neutral950 // Default icon color
-val iconSecondary = Neutral700 // Secondary, muted icon color
-val iconBrand     = Primary500 // Brand-accent icons and indicators
-val iconDisabled  = Neutral400 // Disabled icon color
-val iconActive    = Red500 // Active/selected state icon color
-val iconOnAccent  = Neutral0 // Icon color on top of accent-filled surfaces
+    // ── Text / On Action ────────────────────────────────────────────────────
+    // Label color for buttons specifically: kept separate from the general Text group
+    // above because a button's label color depends on (hierarchy × intent × state), not
+    // just "is this an error/link", and mirrors the "text/on-action/*" Figma subgroup 1:1.
+    val textOnActionPrimary = SnackyColorPrimitive.Neutral.c950 // Primary (Base or Danger) and Secondary/Base button label
+    val textOnActionSecondary = SnackyColorPrimitive.Neutral.c950 // Defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to textOnActionPrimary instead (same value, different token). Flagged for design to confirm intent.
+    val textOnActionTertiary = SnackyColorPrimitive.Primary.c700 // Tertiary/Base button label (default): a ghost/text button, so label color IS the affordance
+    val textOnActionTertiaryHovered = SnackyColorPrimitive.Primary.c800 // Tertiary/Base button label, hovered
+    val textOnActionTertiaryPressed = SnackyColorPrimitive.Primary.c900 // Tertiary/Base button label, pressed
+    val textActionDanger = SnackyColorPrimitive.Red.c600 // Secondary/Danger and Tertiary/Danger button label (default); these hierarchies signal danger via label/border color, not fill
+    val textActionDangerHovered = SnackyColorPrimitive.Red.c700 // Secondary/Danger and Tertiary/Danger button label, hovered
+    val textActionDangerPressed = SnackyColorPrimitive.Red.c800 // Secondary/Danger and Tertiary/Danger button label, pressed
+    val textActionDisabled = SnackyColorPrimitive.Neutral.c400 // Disabled button label, any hierarchy/intent
+
+    // ── Icon ─────────────────────────────────────────────────────────────────
+    val iconPrimary = SnackyColorPrimitive.Neutral.c950 // Default icon color
+    val iconSecondary = SnackyColorPrimitive.Neutral.c700 // Secondary, muted icon color
+    val iconBrand = SnackyColorPrimitive.Primary.c500 // Brand-accent icons and indicators
+    val iconDisabled = SnackyColorPrimitive.Neutral.c400 // Disabled icon color
+    val iconActive = SnackyColorPrimitive.Red.c500 // Active/selected state icon color
+    val iconOnAccent = SnackyColorPrimitive.Neutral.c0 // Icon color on top of accent-filled surfaces
+
+}
 
 // ── Extensions (not yet defined as Figma variables) ───────────────────────
 // Order-status indicator colors. No green/blue tokens exist in the
@@ -2361,25 +2299,28 @@ val success = Color(0xFF22C55E) // Order received / completed indicator
 val info    = Color(0xFF3B82F6) // Order processing / shipped indicator
 
 // ── Material3 Light Color Scheme ──────────────────────────────────────────
+// The package ships tokens, not a MaterialTheme. Map them yourself if you want
+// Material components to pick up Snacky's colors:
 val SnackyColorScheme = lightColorScheme(
-    primary          = bgActionPrimary,
-    onPrimary        = textPrimary,
-    secondary        = textSecondary,
-    onSecondary      = bgSurface,
-    background       = bgApp,
-    onBackground     = textPrimary,
-    surface          = bgSurface,
-    onSurface        = textPrimary,
-    surfaceVariant   = bgSurfaceVariant,
-    onSurfaceVariant = textSecondary,
-    error            = bgActionPrimaryDanger,
-    onError          = bgSurface
+    primary          = SnackyColor.bgActionPrimary,
+    onPrimary        = SnackyColor.textOnActionPrimary,
+    secondary        = SnackyColor.textSecondary,
+    onSecondary      = SnackyColor.bgSurface,
+    background       = SnackyColor.bgApp,
+    onBackground     = SnackyColor.textPrimary,
+    surface          = SnackyColor.bgSurface,
+    onSurface        = SnackyColor.textPrimary,
+    surfaceVariant   = SnackyColor.bgSurfaceVariant,
+    onSurfaceVariant = SnackyColor.textSecondary,
+    error            = SnackyColor.bgActionPrimaryDanger,
+    onError          = SnackyColor.bgSurface
 )
 
 // ── App Theme ─────────────────────────────────────────────────────────
 // SnackyTheme.kt
-// SnackyTypography is a standalone object, not wired into MaterialTheme -
-// reference its styles directly (SnackyTypography.h1Bold) wherever Text() is called.
+// SnackyTypography ships raw values, not TextStyles, and is not wired into
+// MaterialTheme - build a TextStyle from it wherever Text() is called (see the
+// Typography page for the FontFamily half).
 // @Composable
 // fun SnackyTheme(content: @Composable () -> Unit) {
 //     MaterialTheme(
@@ -2389,17 +2330,13 @@ val SnackyColorScheme = lightColorScheme(
 </script>
 
 <script type="text/plain" id="code-foundation-spacing">
-// SnackySpacing.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackySpacing.kt
+// Tokens.kt (generated) - spacing as the package ships it.
+// Install: com.github.rezatresnas:snacky-design-system
 
-// In the published package these ship as SnackySpacingPrimitive.space8 for the
-// raw scale, then SnackyGap.textIcon, SnackyLayout.block and
-// SnackyMargin.screen for the semantic roles.
-
-package com.snacky.ui.theme
-
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.SnackyGap
+import com.snacky.ui.theme.SnackyLayout
+import com.snacky.ui.theme.SnackyMargin
+import com.snacky.ui.theme.SnackySpacingPrimitive
 
 // Token names mirror the Android "Code Syntax" set on each Figma variable
 // (semantic spacing collection) - keep these in sync with Figma, not the reverse.
@@ -2407,122 +2344,143 @@ import androidx.compose.ui.unit.dp
 // ── Primitive scale - prefer a semantic token below when one fits the role.
 //    Reach for these directly only when a value is on-scale but the usage doesn't match
 //    any semantic role yet (avoids inventing a one-off semantic name for a single case).
-val spacing2: Dp  = 2.dp
-val spacing4: Dp  = 4.dp
-val spacing8: Dp  = 8.dp
-val spacing12: Dp = 12.dp
-val spacing16: Dp = 16.dp
-val spacing24: Dp = 24.dp
-val spacing32: Dp = 32.dp
+object SnackySpacingPrimitive {
+    val space2 = 2.dp
+    val space4 = 4.dp
+    val space8 = 8.dp
+    val space12 = 12.dp
+    val space16 = 16.dp
+    val space24 = 24.dp
+    val space32 = 32.dp
+}
 
 // ── Gap ──────────────────────────────────────────────────────────────────
-val gapIconLabel     = spacing4  // Icon → label vertical gap (Navbar item, Menu item)
-val gapCell          = spacing4  // Spacing between repeated cells (OTP/Number input)
-val gapTextIcon      = spacing8  // Text → icon gap within a field row (Text+Icon, Dropdown, Date Picker, Address, Chat)
-val gapTextUnderline = spacing16 // Text → underline indicator gap (Tab)
+object SnackyGap {
+    val iconLabel = SnackySpacingPrimitive.space4      // Icon → label vertical gap (Navbar item, Menu item)
+    val cell = SnackySpacingPrimitive.space4           // Spacing between repeated cells (OTP/Number input)
+    val textIcon = SnackySpacingPrimitive.space8       // Text → icon gap within a field row (Text+Icon, Dropdown, Date Picker, Address, Chat)
+    val textUnderline = SnackySpacingPrimitive.space16 // Text → underline indicator gap (Tab)
+}
 
-// ── Padding - uses primitive spacing vals directly, no semantic aliases ───
+// ── Padding - uses primitive spacing values directly, no semantic aliases ───
 
 // ── Layout (page-level) ───────────────────────────────────────────────────
-val gapLayoutSectionList = spacing8  // Gap between stacked Section blocks on content-dense scrollable pages
-val gapLayoutBlock       = spacing16 // Gap between content blocks on medium-density pages
-val gapLayoutStack       = spacing24 // Gap between stacked elements within a page section, e.g. form field list, footer/CTA button area
-val gapLayoutPage        = spacing32 // Gap between major blocks on simple card/form pages
+object SnackyLayout {
+    val sectionList = SnackySpacingPrimitive.space8  // Gap between stacked Section blocks on content-dense scrollable pages
+    val block = SnackySpacingPrimitive.space16       // Gap between content blocks on medium-density pages
+    val stack = SnackySpacingPrimitive.space24       // Gap between stacked elements within a page section, e.g. form field list, footer/CTA button area
+    val page = SnackySpacingPrimitive.space32        // Gap between major blocks on simple card/form pages
+}
 
 // ── Screen Margin ──────────────────────────────────────────────────────────
-val marginScreen = spacing16 // Horizontal margin from the screen edge to content, applied on every app screen
+object SnackyMargin {
+    val screen = SnackySpacingPrimitive.space16 // Horizontal margin from the screen edge to content, applied on every app screen
+}
+
+// Usage:
+// Row(horizontalArrangement = Arrangement.spacedBy(SnackyGap.textIcon)) { ... }
+// Column(modifier = Modifier.padding(horizontal = SnackyMargin.screen)) { ... }
 </script>
 
 <script type="text/plain" id="code-foundation-radius">
-// SnackyRadius.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyRadius.kt
+// Tokens.kt (generated) - corner radius as the package ships it.
+// Install: com.github.rezatresnas:snacky-design-system
 
-// In the published package these ship as SnackyRadiusPrimitive.radius4 for the
-// raw scale and SnackyRadius.field / .card / .full for the semantic roles.
-
-package com.snacky.ui.theme
-
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.SnackyRadius
+import com.snacky.ui.theme.SnackyRadiusPrimitive
 
 // Token names mirror the Android "Code Syntax" set on each Figma variable
 // (semantic radius collection) - keep these in sync with Figma, not the reverse.
 
-// ── Primitive scale (private - use the semantic tokens below, not these directly) ──
-private val radius4: Dp   = 4.dp
-private val radius6: Dp   = 6.dp
-private val radius8: Dp   = 8.dp
-private val radius10: Dp  = 10.dp
-private val radius20: Dp  = 20.dp
-private val radius100: Dp = 100.dp
+// ── Primitive scale - prefer the semantic tokens below, not these directly ──
+object SnackyRadiusPrimitive {
+    val radius4 = 4.dp
+    val radius6 = 6.dp
+    val radius8 = 8.dp
+    val radius10 = 10.dp
+    val radius20 = 20.dp
+    val radius100 = 100.dp
+}
 // radius999 intentionally omitted - legacy alternate full-round value found only in
 // Radio Button / Badge layers, visually identical to radius100. Do not use for new work.
 
 // ── Semantic tokens ────────────────────────────────────────────────────────
-val radiusField    = radius4   // Default corner radius for buttons, inputs, cards, list items, and product cards
-val radiusTag      = radius6   // Corner radius for compact tags and labels - discount/promo badges
-val radiusBubble   = radius8   // Corner radius for chat message bubbles and callouts
-val radiusCard     = radius10  // Corner radius for summary/balance cards
-val radiusSheetTop = radius20  // Top-corner radius for bottom sheets and modals (bottom corners stay square at 0)
-val radiusFull     = radius100 // Corner radius for fully rounded/circular elements (icon buttons, chips, pills, avatars, drag handles)
+object SnackyRadius {
+    val field = SnackyRadiusPrimitive.radius4      // Default corner radius for buttons, inputs, cards, list items, and product cards
+    val tag = SnackyRadiusPrimitive.radius6        // Corner radius for compact tags and labels - discount/promo badges
+    val bubble = SnackyRadiusPrimitive.radius8     // Corner radius for chat message bubbles and callouts
+    val card = SnackyRadiusPrimitive.radius10      // Corner radius for summary/balance cards
+    val sheetTop = SnackyRadiusPrimitive.radius20  // Top-corner radius for bottom sheets and modals (bottom corners stay square at 0)
+    val full = SnackyRadiusPrimitive.radius100     // Corner radius for fully rounded/circular elements (icon buttons, chips, pills, avatars, drag handles)
+}
+
+// Usage:
+// Modifier.clip(RoundedCornerShape(SnackyRadius.card))
 </script>
 
 <script type="text/plain" id="code-foundation-sizing">
-// SnackySize.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackySize.kt
+// Tokens.kt (generated) - fixed sizes as the package ships them.
+// Install: com.github.rezatresnas:snacky-design-system
 
-// In the published package these ship as SnackySize.Icon.md and
-// SnackySize.Avatar.lg.
-
-package com.snacky.ui.theme
-
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.SnackySize
 
 // Only genuinely fixed-size elements get a sizing token. Fluid components (buttons,
 // cards, inputs) size themselves via layout/content and are intentionally NOT covered
 // here. Token names mirror the Android "Code Syntax" set on each Figma variable
 // (semantic size collection) - keep these in sync with Figma, not the reverse.
 
-// ── Icon ─────────────────────────────────────────────────────────────────
-val sizeIconSm: Dp = 16.dp // Small icon size (search icon, inline rating stars)
-val sizeIconMd: Dp = 20.dp // Default icon size (input trailing/leading icons, nav icons, menu icons)
-val sizeIconLg: Dp = 24.dp // Large icon size (icon buttons, header icons, payment logos)
+object SnackySize {
+    // ── Icon ─────────────────────────────────────────────────────────────
+    object Icon {
+        val sm = 16.dp // Small icon size (search icon, inline rating stars)
+        val md = 20.dp // Default icon size (input trailing/leading icons, nav icons, menu icons)
+        val lg = 24.dp // Large icon size (icon buttons, header icons, payment logos)
+    }
 
-// ── Avatar ───────────────────────────────────────────────────────────────
-val sizeAvatarSm: Dp = 32.dp // Small avatar size (reviewer profile photo, list rows)
-val sizeAvatarMd: Dp = 56.dp // Medium avatar size (driver/contact card photo)
-val sizeAvatarLg: Dp = 72.dp // Large avatar size (profile/account header)
+    // ── Avatar ───────────────────────────────────────────────────────────
+    object Avatar {
+        val sm = 32.dp // Small avatar size (reviewer profile photo, list rows)
+        val md = 56.dp // Medium avatar size (driver/contact card photo)
+        val lg = 72.dp // Large avatar size (profile/account header)
+    }
+}
 
+// Usage:
+// SnackyIcon(SnackyIcons.Outline.Search, size = SnackySize.Icon.md)
+// SnackyAvatar(size = SnackySize.Avatar.lg) { ... }
 </script>
 
 <script type="text/plain" id="code-foundation-shadow">
-// SnackyShadow.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyShadow.kt
+// Tokens.kt (generated) + the mapping you have to supply.
+// Install: com.github.rezatresnas:snacky-design-system
 
-// In the published package these ship as SnackyShadow.md / .lg / .top,
-// carrying offset/blur/color as a SnackyShadowToken.
-
-package com.snacky.ui.theme
-
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.SnackyShadow
 
-// Compose's elevation system (CardDefaults.cardElevation, Surface's shadowElevation) renders
-// its own Material shadow from a single Dp value - it doesn't take literal offset/blur/color
-// like CSS box-shadow. These tokens are tuned so the RELATIVE strength of each tier matches
-// the real Figma effect styles (shadow/md, shadow/lg, shadow/top), not their literal pixel
-// values, which only exist as-is on Web. Keep in sync with Figma's effect styles, not the reverse.
+// The package ships the literal Figma values (offset, blur, color) as a
+// SnackyShadowToken, because Compose Multiplatform has no box-shadow primitive to
+// apply them to:
+//
+//   SnackyShadow.md   offsetY 4.dp,  blur 8.dp,  black @ 8%
+//   SnackyShadow.lg   offsetY 10.dp, blur 30.dp, black @ 10%
+//   SnackyShadow.top  offsetY -4.dp, blur 10.dp, black @ 8%
+//
+// Compose's own elevation system (CardDefaults.cardElevation, Surface's
+// shadowElevation) renders a Material shadow from a single Dp instead, so map the
+// token onto an elevation whose RELATIVE strength matches the Figma tier rather
+// than trying to reproduce its literal pixels:
 
-// ── Elevation ────────────────────────────────────────────────────────────
-val shadowMd: Dp = 4.dp  // Default elevation - cards, list items, buttons, input fields
-val shadowLg: Dp = 10.dp // Stronger elevation for Product Cards
+val elevationMd = 4.dp  // for SnackyShadow.md  - cards, list items, buttons, input fields
+val elevationLg = 10.dp // for SnackyShadow.lg  - Product Cards
 
-// shadow/top (upward-cast shadow on the bottom Navbar) has no Compose equivalent: elevation
-// shadows are always cast downward. Reproducing the upward shadow on Android requires a
-// custom Modifier.drawBehind that paints an inverted shadow path - not implemented here.
-// The design value (0 -4px 10px rgba(0,0,0,0.08)) is the source of truth on Web; see
-// shadow.css's --shadow-top.
+// Usage:
+// Surface(shadowElevation = elevationMd, shape = RoundedCornerShape(SnackyRadius.card)) { ... }
+
+// SnackyShadow.top (the upward-cast shadow under the bottom Navbar) has no elevation
+// equivalent: Compose elevation shadows always cast downward. Reproducing it needs a
+// custom Modifier.drawBehind painting an inverted shadow path - not implemented here.
+// The literal value stays available on the token if you write that yourself, and
+// --shadow-top is the source of truth on Web.
 </script>
 
 <script type="text/plain" id="code-button">
