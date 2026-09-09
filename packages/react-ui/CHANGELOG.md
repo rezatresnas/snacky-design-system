@@ -4,6 +4,23 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## SoldOut overlay uses its own token (0.9.1)
+
+Auditing the rest of the package after the semantic-token fix turned up two
+places still painting `rgba(51, 51, 51, 0.8)` by hand: `.snacky-soldout-badge`
+and `.snacky-product-image-sold-label`. `--bg-overlay-dim` is defined for
+exactly that value, and its description in `tokens.json` names this exact use
+("Dark translucent overlay - e.g. Sold Out badge over product images"), so
+both now reference the token. Renders identically (verified in the badge
+playground: still `rgba(51, 51, 51, 0.8)`), but the overlay is now overridable
+like every other colour.
+
+compose-ui already had this right, using `SnackyColor.bgOverlayDim` in all
+three places it paints the overlay, so nothing changed there. Everything else
+in the component CSS was already on tokens; the remaining raw values are
+alpha-only tints with no token behind them (the tertiary icon-button press
+state, ProductCard's white scrim).
+
 ## Semantic tokens reference their primitive again, instead of copying it (0.9.0)
 
 `tokens.css` shipped every semantic token as a frozen literal:

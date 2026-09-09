@@ -43,7 +43,9 @@
   justify-content: center;
   padding: var(--spacing-12) var(--spacing-8);
   border-radius: 999px;
-  background: rgba(51, 51, 51, 0.8);
+  /* bg-overlay-dim is defined for exactly this: the dark translucent Sold Out
+     overlay over a product image. */
+  background: var(--bg-overlay-dim);
   color: var(--text-inverse);
   font-family: var(--font-small-regular-family);
   font-size: var(--font-small-regular-size);
