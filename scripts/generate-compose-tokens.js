@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 // Generates packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt
-// from tokens.json. Every value is fully resolved (no Kotlin-to-Kotlin references),
-// matching the same flattening approach scripts/generate-react-tokens.js uses for
-// tokens.css.
+// from tokens.json. Semantic tokens reference their primitive by name
+// (SnackyColor.bgActionPrimary = SnackyColorPrimitive.Primary.c500) rather than
+// repeating its literal value, mirroring the var(--color-primary-500) references
+// scripts/generate-react-tokens.js now emits for tokens.css. Kotlin has no runtime
+// cascade the way CSS custom properties do, so this propagates at compile time
+// instead, but it keeps the primitive the single place a value is defined and
+// keeps the semantic layer's mapping visible to anyone reading Tokens.kt.
 //
 // Run after any change to tokens.json (i.e. after scripts/generate-agent-files.js):
 //   node scripts/generate-compose-tokens.js
@@ -26,6 +30,30 @@ function resolveRef(value, root) {
 
 function pascal(s) {
   return s.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
+}
+
+// Maps a tokens.json alias ("{color.primitive.primary.500}") onto the Kotlin val
+// that same primitive is emitted as, so a semantic token points at its primitive
+// instead of carrying a duplicate of its value. Returns null for anything
+// unmappable (e.g. bgOverlayDim, a raw rgba with no primitive behind it), which
+// then falls through to the resolved literal.
+function refToKotlin(value) {
+  if (typeof value !== 'string') return null;
+  const m = /^\{([^}]+)\}$/.exec(value);
+  if (!m) return null;
+  const [group, layer, ...rest] = m[1].split('.');
+  if (layer !== 'primitive') return null;
+  if (group === 'color' && rest.length === 2) return `SnackyColorPrimitive.${pascal(rest[0])}.c${rest[1]}`;
+  if (group === 'spacing' && rest.length === 1) return `SnackySpacingPrimitive.space${rest[0]}`;
+  if (group === 'radius' && rest.length === 1) return `SnackyRadiusPrimitive.radius${rest[0]}`;
+  return null;
+}
+
+// Semantic tokens reference their primitive; anything without one keeps the
+// fully resolved literal, converted by `convert`.
+function aliasOr(node, convert) {
+  const ref = refToKotlin(node.$value);
+  return ref === null ? convert(resolveRef(node.$value, tokens)) : ref;
 }
 
 function camel(s) {
@@ -111,7 +139,7 @@ L.push('/** Semantic colors, what components should bind to. */');
 L.push('object SnackyColor {');
 for (const group of Object.values(tokens.color.semantic)) {
   for (const [name, node] of Object.entries(group)) {
-    L.push(`${indent(1)}val ${camel(name)} = ${colorToKotlin(resolveRef(node.$value, tokens))}`);
+    L.push(`${indent(1)}val ${camel(name)} = ${aliasOr(node, colorToKotlin)}`);
   }
 }
 L.push('}');
@@ -128,21 +156,21 @@ L.push('');
 
 L.push('object SnackyGap {');
 for (const [name, node] of Object.entries(tokens.spacing.gap)) {
-  L.push(`${indent(1)}val ${camel(name)} = ${dp(resolveRef(node.$value, tokens))}`);
+  L.push(`${indent(1)}val ${camel(name)} = ${aliasOr(node, dp)}`);
 }
 L.push('}');
 L.push('');
 
 L.push('object SnackyLayout {');
 for (const [name, node] of Object.entries(tokens.spacing.layout)) {
-  L.push(`${indent(1)}val ${camel(name)} = ${dp(resolveRef(node.$value, tokens))}`);
+  L.push(`${indent(1)}val ${camel(name)} = ${aliasOr(node, dp)}`);
 }
 L.push('}');
 L.push('');
 
 L.push('object SnackyMargin {');
 for (const [name, node] of Object.entries(tokens.spacing.margin)) {
-  L.push(`${indent(1)}val ${camel(name)} = ${dp(resolveRef(node.$value, tokens))}`);
+  L.push(`${indent(1)}val ${camel(name)} = ${aliasOr(node, dp)}`);
 }
 L.push('}');
 L.push('');
@@ -158,7 +186,7 @@ L.push('');
 
 L.push('object SnackyRadius {');
 for (const [name, node] of Object.entries(tokens.radius.semantic)) {
-  L.push(`${indent(1)}val ${camel(name)} = ${dp(resolveRef(node.$value, tokens))}`);
+  L.push(`${indent(1)}val ${camel(name)} = ${aliasOr(node, dp)}`);
 }
 L.push('}');
 L.push('');

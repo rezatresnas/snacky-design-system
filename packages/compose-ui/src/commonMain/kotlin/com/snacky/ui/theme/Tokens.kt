@@ -54,55 +54,55 @@ object SnackyColorPrimitive {
 
 /** Semantic colors, what components should bind to. */
 object SnackyColor {
-    val bgApp = Color(0xFFF7F7F7)
-    val bgSurface = Color(0xFFFFFFFF)
-    val bgSurfacePrimary = Color(0xFFF8B732)
-    val bgSurfaceAccent = Color(0xFFEB5757)
-    val bgSurfaceVariant = Color(0xFFF3F3F3)
-    val bgSurfaceField = Color(0xFFFFFFFF)
-    val bgSurfaceHighlight = Color(0xFFFEF8EB)
-    val bgActionPrimary = Color(0xFFF8B732)
-    val bgActionPrimaryHover = Color(0xFFE2A72E)
-    val bgActionPrimaryPressed = Color(0xFFB08224)
-    val bgActionSecondary = Color(0xFFFFFFFF)
-    val bgActionSecondaryHover = Color(0xFFF3F3F3)
-    val bgActionSecondaryPressed = Color(0xFFE0E0E0)
-    val bgActionDisabled = Color(0xFFCCCCCC)
-    val bgActionPrimaryDanger = Color(0xFFEB5757)
-    val bgActionPrimaryDangerHovered = Color(0xFFD64F4F)
-    val bgActionPrimaryDangerPressed = Color(0xFFA73E3E)
+    val bgApp = SnackyColorPrimitive.Neutral.c20
+    val bgSurface = SnackyColorPrimitive.Neutral.c0
+    val bgSurfacePrimary = SnackyColorPrimitive.Primary.c500
+    val bgSurfaceAccent = SnackyColorPrimitive.Red.c500
+    val bgSurfaceVariant = SnackyColorPrimitive.Neutral.c50
+    val bgSurfaceField = SnackyColorPrimitive.Neutral.c0
+    val bgSurfaceHighlight = SnackyColorPrimitive.Primary.c50
+    val bgActionPrimary = SnackyColorPrimitive.Primary.c500
+    val bgActionPrimaryHover = SnackyColorPrimitive.Primary.c600
+    val bgActionPrimaryPressed = SnackyColorPrimitive.Primary.c700
+    val bgActionSecondary = SnackyColorPrimitive.Neutral.c0
+    val bgActionSecondaryHover = SnackyColorPrimitive.Neutral.c50
+    val bgActionSecondaryPressed = SnackyColorPrimitive.Neutral.c100
+    val bgActionDisabled = SnackyColorPrimitive.Neutral.c200
+    val bgActionPrimaryDanger = SnackyColorPrimitive.Red.c500
+    val bgActionPrimaryDangerHovered = SnackyColorPrimitive.Red.c600
+    val bgActionPrimaryDangerPressed = SnackyColorPrimitive.Red.c700
     val bgOverlayDim = Color(red = 51f / 255f, green = 51f / 255f, blue = 51f / 255f, alpha = 0.8f)
-    val borderMain = Color(0xFFCCCCCC)
-    val borderHighlight = Color(0xFFFCDEA1)
-    val borderInputDefault = Color(0xFFCCCCCC)
-    val borderInputActive = Color(0xFFF8B732)
-    val borderInputError = Color(0xFFEB5757)
-    val borderActionSecondary = Color(0xFFCCCCCC)
-    val borderActionSecondaryPressed = Color(0xFFA3A3A3)
-    val borderActionDanger = Color(0xFFEB5757)
-    val borderActionDisabled = Color(0xFFCCCCCC)
-    val textPrimary = Color(0xFF333333)
-    val textSecondary = Color(0xFF7A7A7A)
-    val textPlaceholder = Color(0xFF7A7A7A)
-    val textDisabled = Color(0xFFA3A3A3)
-    val textLink = Color(0xFF88651C)
-    val textError = Color(0xFFA73E3E)
-    val textInverse = Color(0xFFFFFFFF)
-    val textOnActionPrimary = Color(0xFF333333)
-    val textOnActionSecondary = Color(0xFF333333)
-    val textOnActionTertiary = Color(0xFFB08224)
-    val textOnActionTertiaryHovered = Color(0xFF88651C)
-    val textOnActionTertiaryPressed = Color(0xFF684D15)
-    val textActionDanger = Color(0xFFD64F4F)
-    val textActionDangerHovered = Color(0xFFA73E3E)
-    val textActionDangerPressed = Color(0xFF813030)
-    val textActionDisabled = Color(0xFFA3A3A3)
-    val iconPrimary = Color(0xFF333333)
-    val iconSecondary = Color(0xFF525252)
-    val iconBrand = Color(0xFFF8B732)
-    val iconDisabled = Color(0xFFA3A3A3)
-    val iconActive = Color(0xFFEB5757)
-    val iconOnAccent = Color(0xFFFFFFFF)
+    val borderMain = SnackyColorPrimitive.Neutral.c200
+    val borderHighlight = SnackyColorPrimitive.Primary.c200
+    val borderInputDefault = SnackyColorPrimitive.Neutral.c200
+    val borderInputActive = SnackyColorPrimitive.Primary.c500
+    val borderInputError = SnackyColorPrimitive.Red.c500
+    val borderActionSecondary = SnackyColorPrimitive.Neutral.c200
+    val borderActionSecondaryPressed = SnackyColorPrimitive.Neutral.c400
+    val borderActionDanger = SnackyColorPrimitive.Red.c500
+    val borderActionDisabled = SnackyColorPrimitive.Neutral.c200
+    val textPrimary = SnackyColorPrimitive.Neutral.c950
+    val textSecondary = SnackyColorPrimitive.Neutral.c500
+    val textPlaceholder = SnackyColorPrimitive.Neutral.c500
+    val textDisabled = SnackyColorPrimitive.Neutral.c400
+    val textLink = SnackyColorPrimitive.Primary.c800
+    val textError = SnackyColorPrimitive.Red.c700
+    val textInverse = SnackyColorPrimitive.Neutral.c0
+    val textOnActionPrimary = SnackyColorPrimitive.Neutral.c950
+    val textOnActionSecondary = SnackyColorPrimitive.Neutral.c950
+    val textOnActionTertiary = SnackyColorPrimitive.Primary.c700
+    val textOnActionTertiaryHovered = SnackyColorPrimitive.Primary.c800
+    val textOnActionTertiaryPressed = SnackyColorPrimitive.Primary.c900
+    val textActionDanger = SnackyColorPrimitive.Red.c600
+    val textActionDangerHovered = SnackyColorPrimitive.Red.c700
+    val textActionDangerPressed = SnackyColorPrimitive.Red.c800
+    val textActionDisabled = SnackyColorPrimitive.Neutral.c400
+    val iconPrimary = SnackyColorPrimitive.Neutral.c950
+    val iconSecondary = SnackyColorPrimitive.Neutral.c700
+    val iconBrand = SnackyColorPrimitive.Primary.c500
+    val iconDisabled = SnackyColorPrimitive.Neutral.c400
+    val iconActive = SnackyColorPrimitive.Red.c500
+    val iconOnAccent = SnackyColorPrimitive.Neutral.c0
 }
 
 object SnackySpacingPrimitive {
@@ -116,21 +116,21 @@ object SnackySpacingPrimitive {
 }
 
 object SnackyGap {
-    val iconLabel = 4.dp
-    val cell = 4.dp
-    val textIcon = 8.dp
-    val textUnderline = 16.dp
+    val iconLabel = SnackySpacingPrimitive.space4
+    val cell = SnackySpacingPrimitive.space4
+    val textIcon = SnackySpacingPrimitive.space8
+    val textUnderline = SnackySpacingPrimitive.space16
 }
 
 object SnackyLayout {
-    val sectionList = 8.dp
-    val block = 16.dp
-    val stack = 24.dp
-    val page = 32.dp
+    val sectionList = SnackySpacingPrimitive.space8
+    val block = SnackySpacingPrimitive.space16
+    val stack = SnackySpacingPrimitive.space24
+    val page = SnackySpacingPrimitive.space32
 }
 
 object SnackyMargin {
-    val screen = 16.dp
+    val screen = SnackySpacingPrimitive.space16
 }
 
 object SnackyRadiusPrimitive {
@@ -144,12 +144,12 @@ object SnackyRadiusPrimitive {
 }
 
 object SnackyRadius {
-    val field = 4.dp
-    val tag = 6.dp
-    val bubble = 8.dp
-    val card = 10.dp
-    val sheetTop = 20.dp
-    val full = 100.dp
+    val field = SnackyRadiusPrimitive.radius4
+    val tag = SnackyRadiusPrimitive.radius6
+    val bubble = SnackyRadiusPrimitive.radius8
+    val card = SnackyRadiusPrimitive.radius10
+    val sheetTop = SnackyRadiusPrimitive.radius20
+    val full = SnackyRadiusPrimitive.radius100
 }
 
 object SnackySize {

@@ -4,6 +4,41 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## Semantic tokens reference their primitive again, instead of copying it (0.9.0)
+
+`tokens.css` shipped every semantic token as a frozen literal:
+`--bg-action-primary: #f8b732`, with nothing tying it back to
+`--color-primary-500`. `tokens.json` had the relationship right all along
+(`"$value": "{color.primitive.primary.500}"`), but both generators ran that
+alias through a `resolveRef()` that walked it down to the raw value before
+emitting.
+
+The colors were never wrong, which is why this survived a long time. What it
+broke was everything the primitive/semantic split is for. Devtools showed a
+flat hex with no trace of where it came from, so the layer that exists to
+answer "which primitive is this, and why" answered nothing. And overriding
+`--color-primary-500` alone - the obvious way to re-skin the system for a
+white-label build or a theme block - changed nothing at all, because each
+semantic token carried its own private copy of the value. A design system
+whose stated first problem is "colors get hardcoded per component" was doing
+exactly that, one layer up.
+
+Semantic tokens now emit `var(--color-primary-500)`, and compose-ui emits
+`SnackyColorPrimitive.Primary.c500` rather than `Color(0xFFF8B732)`. Kotlin
+has no runtime cascade the way CSS custom properties do, so that side
+propagates at compile time, but it keeps the primitive as the single place a
+value is written and makes the mapping visible to anyone reading `Tokens.kt`.
+
+Verified rather than assumed, since this touches every color in the system:
+all 175 CSS custom properties were resolved in a browser before and after and
+compared - 0 differences, with 63 of them now resolving through a reference.
+The same 63/1 split holds on the Kotlin side (63 references, 1 literal), each
+checked against the value it previously carried. `bgOverlayDim` is that one
+literal: a raw `rgba(51,51,51,0.8)` with no primitive behind it, so it stays
+as it was. Confirmed the references survive the tsup build into the published
+`dist/index.css`, and that overriding one primitive now cascades to every
+semantic token pointing at it.
+
 ## PointBalanceBanner's two halves now share the row equally (0.8.1)
 
 `.snacky-banner-point-balance__item` (the Points group and the Balance group

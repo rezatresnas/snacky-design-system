@@ -27,6 +27,35 @@ function resolveRef(value, root) {
   return resolveRef(node.$value, root);
 }
 
+// Maps a tokens.json alias ("{color.primitive.primary.500}") onto the CSS custom
+// property that same primitive is emitted as above, so a semantic token keeps
+// POINTING at its primitive instead of being flattened to a copy of its value.
+// This is what makes the primitive/semantic split real at runtime: devtools shows
+// --bg-action-primary resolving through --color-primary-500, and a consumer can
+// re-skin the whole system by overriding the primitive alone. Flattening produced
+// correct colors but silently broke both (and is exactly the "hardcoded per
+// component" token drift this design system exists to prevent).
+// Returns null for anything unmappable, e.g. bgOverlayDim, a raw rgba() with no
+// primitive behind it - those still fall through to the resolved literal.
+function refToCssVar(value) {
+  if (typeof value !== 'string') return null;
+  const m = /^\{([^}]+)\}$/.exec(value);
+  if (!m) return null;
+  const [group, layer, ...rest] = m[1].split('.');
+  if (layer !== 'primitive') return null;
+  if (group === 'color' && rest.length === 2) return `var(--color-${rest[0]}-${rest[1]})`;
+  if (group === 'spacing' && rest.length === 1) return `var(--spacing-${rest[0]})`;
+  if (group === 'radius' && rest.length === 1) return `var(--radius-${rest[0]})`;
+  return null;
+}
+
+// Semantic tokens reference their primitive; anything without one keeps the
+// fully resolved literal.
+function aliasOrValue(node) {
+  const ref = refToCssVar(node.$value);
+  return ref === null ? resolveRef(node.$value, tokens) : ref;
+}
+
 const lines = [];
 lines.push('/* Generated from tokens.json by scripts/generate-react-tokens.js - do not hand-edit. */');
 lines.push(':root {');
@@ -40,7 +69,7 @@ for (const [ramp, steps] of Object.entries(tokens.color.primitive)) {
 // Color semantic
 for (const group of Object.values(tokens.color.semantic)) {
   for (const [name, node] of Object.entries(group)) {
-    lines.push(`  --${camelToKebab(name)}: ${resolveRef(node.$value, tokens)};`);
+    lines.push(`  --${camelToKebab(name)}: ${aliasOrValue(node)};`);
   }
 }
 // Spacing primitives
@@ -49,22 +78,22 @@ for (const [step, node] of Object.entries(tokens.spacing.primitive)) {
 }
 // Spacing gap
 for (const [name, node] of Object.entries(tokens.spacing.gap)) {
-  lines.push(`  --gap-${name}: ${resolveRef(node.$value, tokens)};`);
+  lines.push(`  --gap-${name}: ${aliasOrValue(node)};`);
 }
 // Spacing layout (prefixed "gap-layout-" to match existing var(--gap-layout-block) references)
 for (const [name, node] of Object.entries(tokens.spacing.layout)) {
-  lines.push(`  --gap-layout-${name}: ${resolveRef(node.$value, tokens)};`);
+  lines.push(`  --gap-layout-${name}: ${aliasOrValue(node)};`);
 }
 // Spacing margin
 for (const [name, node] of Object.entries(tokens.spacing.margin)) {
-  lines.push(`  --margin-${name}: ${resolveRef(node.$value, tokens)};`);
+  lines.push(`  --margin-${name}: ${aliasOrValue(node)};`);
 }
 // Radius primitives + semantic
 for (const [step, node] of Object.entries(tokens.radius.primitive)) {
   lines.push(`  --radius-${step}: ${node.$value};`);
 }
 for (const [name, node] of Object.entries(tokens.radius.semantic)) {
-  lines.push(`  --radius-${camelToKebab(name)}: ${resolveRef(node.$value, tokens)};`);
+  lines.push(`  --radius-${camelToKebab(name)}: ${aliasOrValue(node)};`);
 }
 // Size
 for (const [cat, sizes] of Object.entries(tokens.size)) {
