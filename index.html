@@ -2102,6 +2102,9 @@ document.addEventListener('DOMContentLoaded',route);
 // SnackyTypography.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyTypography.kt
 
+// In the published package these ship as SnackyTypography.H1.bold and
+// SnackyTypography.Small.regular, each a SnackyTypographyToken.
+
 package com.snacky.ui.theme
 
 import androidx.compose.ui.text.TextStyle
@@ -2208,8 +2211,13 @@ object SnackyTypography {
 </script>
 
 <script type="text/plain" id="code-foundation-primitives">
-// SnackyPrimitiveColor.kt
-// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyPrimitiveColor.kt
+// SnackyColorPrimitive.kt
+// composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyColorPrimitive.kt
+
+// In the published package these same ramps ship as
+// SnackyColorPrimitive.Primary.c500 / .Neutral.c20 / .Red.c500 - install
+// com.github.rezatresnas:snacky-design-system and use those instead of
+// copying this file.
 
 package com.snacky.ui.theme
 
@@ -2262,6 +2270,11 @@ val Red900 = Color(0xFF632525)
 // SnackyColor.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyColor.kt
 
+// In the published package these same tokens ship as SnackyColor.bgApp,
+// SnackyColor.bgSurfacePrimary, and so on, each already pointing at its
+// primitive - install com.github.rezatresnas:snacky-design-system and use
+// those instead of copying this file.
+
 package com.snacky.ui.theme
 
 import androidx.compose.material3.lightColorScheme
@@ -2269,7 +2282,7 @@ import androidx.compose.ui.graphics.Color
 
 // Token names mirror the Android "Code Syntax" set on each Figma variable
 // (semantic colors collection) - keep these in sync with Figma, not the reverse.
-// Every token here aliases a primitive from SnackyPrimitiveColor.kt (same package,
+// Every token here aliases a primitive from SnackyColorPrimitive.kt (same package,
 // no import needed) - never a raw hex. Reach for a primitive directly only when a
 // value is on-ramp but no semantic role fits yet (e.g. chart/illustration accents).
 
@@ -2379,6 +2392,10 @@ val SnackyColorScheme = lightColorScheme(
 // SnackySpacing.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackySpacing.kt
 
+// In the published package these ship as SnackySpacingPrimitive.space8 for the
+// raw scale, then SnackyGap.textIcon, SnackyLayout.block and
+// SnackyMargin.screen for the semantic roles.
+
 package com.snacky.ui.theme
 
 import androidx.compose.ui.unit.Dp
@@ -2420,6 +2437,9 @@ val marginScreen = spacing16 // Horizontal margin from the screen edge to conten
 // SnackyRadius.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyRadius.kt
 
+// In the published package these ship as SnackyRadiusPrimitive.radius4 for the
+// raw scale and SnackyRadius.field / .card / .full for the semantic roles.
+
 package com.snacky.ui.theme
 
 import androidx.compose.ui.unit.Dp
@@ -2451,6 +2471,9 @@ val radiusFull     = radius100 // Corner radius for fully rounded/circular eleme
 // SnackySize.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackySize.kt
 
+// In the published package these ship as SnackySize.Icon.md and
+// SnackySize.Avatar.lg.
+
 package com.snacky.ui.theme
 
 import androidx.compose.ui.unit.Dp
@@ -2476,6 +2499,9 @@ val sizeAvatarLg: Dp = 72.dp // Large avatar size (profile/account header)
 <script type="text/plain" id="code-foundation-shadow">
 // SnackyShadow.kt
 // composeApp/src/commonMain/kotlin/com/snacky/ui/theme/SnackyShadow.kt
+
+// In the published package these ship as SnackyShadow.md / .lg / .top,
+// carrying offset/blur/color as a SnackyShadowToken.
 
 package com.snacky.ui.theme
 
@@ -5366,8 +5392,10 @@ fun SnackyProductCard(
 
 <script type="text/plain" id="code-react-foundation-typography">
 /* typography.css */
-/* src/styles/typography.css - Poppins type scale, web equivalent of SnackyTypography.kt */
+/* src/styles/typography.css - optional utility classes over @snacky/ui's type scale. */
 
+/* 1. The package ships the tokens, not the font. Load Poppins yourself, or text
+      falls back to whatever the host page uses. */
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-Regular.woff2') format('woff2');
@@ -5384,46 +5412,39 @@ fun SnackyProductCard(
   font-weight: 700;
 }
 
-:root {
-  --font-family-base: 'Poppins', sans-serif;
-}
+/* 2. Pull in the tokens these classes read. */
+@import '@snacky/ui/styles.css';
 
-/* Class names mirror the Figma text style names exactly (h1/bold, body/regular, etc.)
-   - keep these in sync with Figma, not the reverse. Letter-spacing is converted from
-   Figma's percent-of-font-size to CSS em (1% = 0.01em), which is unit-equivalent. */
-.text-h1-bold         { font-family: var(--font-family-base); font-weight: 700; font-size: 32px; line-height: 36px; letter-spacing: 0.01em; }
-.text-h2-bold         { font-family: var(--font-family-base); font-weight: 700; font-size: 20px; line-height: 36px; letter-spacing: 0.01em; }
-.text-h3-bold         { font-family: var(--font-family-base); font-weight: 700; font-size: 16px; line-height: 36px; letter-spacing: 0.01em; }
-.text-h3-regular      { font-family: var(--font-family-base); font-weight: 400; font-size: 16px; line-height: 36px; }
-.text-body-semibold   { font-family: var(--font-family-base); font-weight: 600; font-size: 14px; line-height: 24px; }
-.text-body-regular    { font-family: var(--font-family-base); font-weight: 400; font-size: 14px; line-height: 24px; }
-.text-small-semibold  { font-family: var(--font-family-base); font-weight: 600; font-size: 12px; line-height: 24px; }
-.text-small-bold      { font-family: var(--font-family-base); font-weight: 700; font-size: 12px; line-height: 24px; letter-spacing: 0.01em; }
-.text-small-regular   { font-family: var(--font-family-base); font-weight: 400; font-size: 12px; line-height: 24px; }
-.text-caption-semibold{ font-family: var(--font-family-base); font-weight: 600; font-size: 10px; line-height: 23px; letter-spacing: 0.01em; }
-.text-caption-regular { font-family: var(--font-family-base); font-weight: 400; font-size: 10px; line-height: 16px; letter-spacing: 0.01em; }
+/* Class names mirror the Figma text style names exactly (h1/bold, body/regular,
+   etc.) - keep these in sync with Figma, not the reverse. Each one is a shorthand
+   for the five --font-<group>-<variant>-* tokens the package already defines, so
+   the values live in one place instead of being copied here. Letter-spacing was
+   converted from Figma's percent-of-font-size to CSS em (1% = 0.01em) when the
+   tokens were generated, which is unit-equivalent. */
+.text-h1-bold          { font-family: var(--font-h1-bold-family); font-size: var(--font-h1-bold-size); font-weight: var(--font-h1-bold-weight); line-height: var(--font-h1-bold-line-height); letter-spacing: var(--font-h1-bold-letter-spacing); }
+.text-h2-bold          { font-family: var(--font-h2-bold-family); font-size: var(--font-h2-bold-size); font-weight: var(--font-h2-bold-weight); line-height: var(--font-h2-bold-line-height); letter-spacing: var(--font-h2-bold-letter-spacing); }
+.text-h3-bold          { font-family: var(--font-h3-bold-family); font-size: var(--font-h3-bold-size); font-weight: var(--font-h3-bold-weight); line-height: var(--font-h3-bold-line-height); letter-spacing: var(--font-h3-bold-letter-spacing); }
+.text-h3-regular       { font-family: var(--font-h3-regular-family); font-size: var(--font-h3-regular-size); font-weight: var(--font-h3-regular-weight); line-height: var(--font-h3-regular-line-height); letter-spacing: var(--font-h3-regular-letter-spacing); }
+.text-body-semibold    { font-family: var(--font-body-semibold-family); font-size: var(--font-body-semibold-size); font-weight: var(--font-body-semibold-weight); line-height: var(--font-body-semibold-line-height); letter-spacing: var(--font-body-semibold-letter-spacing); }
+.text-body-regular     { font-family: var(--font-body-regular-family); font-size: var(--font-body-regular-size); font-weight: var(--font-body-regular-weight); line-height: var(--font-body-regular-line-height); letter-spacing: var(--font-body-regular-letter-spacing); }
+.text-small-semibold   { font-family: var(--font-small-semibold-family); font-size: var(--font-small-semibold-size); font-weight: var(--font-small-semibold-weight); line-height: var(--font-small-semibold-line-height); letter-spacing: var(--font-small-semibold-letter-spacing); }
+.text-small-bold       { font-family: var(--font-small-bold-family); font-size: var(--font-small-bold-size); font-weight: var(--font-small-bold-weight); line-height: var(--font-small-bold-line-height); letter-spacing: var(--font-small-bold-letter-spacing); }
+.text-small-regular    { font-family: var(--font-small-regular-family); font-size: var(--font-small-regular-size); font-weight: var(--font-small-regular-weight); line-height: var(--font-small-regular-line-height); letter-spacing: var(--font-small-regular-letter-spacing); }
+.text-caption-semibold { font-family: var(--font-caption-semibold-family); font-size: var(--font-caption-semibold-size); font-weight: var(--font-caption-semibold-weight); line-height: var(--font-caption-semibold-line-height); letter-spacing: var(--font-caption-semibold-letter-spacing); }
+.text-caption-regular  { font-family: var(--font-caption-regular-family); font-size: var(--font-caption-regular-size); font-weight: var(--font-caption-regular-weight); line-height: var(--font-caption-regular-line-height); letter-spacing: var(--font-caption-regular-letter-spacing); }
+
+/* Or skip the classes entirely and read the tokens directly: */
+.product-name { font-size: var(--font-small-regular-size); line-height: var(--font-small-regular-line-height); }
 
 /* typography.ts */
-/* src/styles/typography.ts - spread into inline style objects: <p style={typography.smallRegular}> */
+/* The same scale as spreadable style objects, exported by the package - import it
+   rather than redeclaring the values: */
 
-export const typography = {
-  h1Bold:         { fontFamily: 'var(--font-family-base)', fontWeight: 700, fontSize: 32, lineHeight: '36px', letterSpacing: '0.01em' },
-  h2Bold:         { fontFamily: 'var(--font-family-base)', fontWeight: 700, fontSize: 20, lineHeight: '36px', letterSpacing: '0.01em' },
-  h3Bold:         { fontFamily: 'var(--font-family-base)', fontWeight: 700, fontSize: 16, lineHeight: '36px', letterSpacing: '0.01em' },
-  h3Regular:      { fontFamily: 'var(--font-family-base)', fontWeight: 400, fontSize: 16, lineHeight: '36px' },
-  bodySemibold:   { fontFamily: 'var(--font-family-base)', fontWeight: 600, fontSize: 14, lineHeight: '24px' },
-  bodyRegular:    { fontFamily: 'var(--font-family-base)', fontWeight: 400, fontSize: 14, lineHeight: '24px' },
-  smallSemibold:  { fontFamily: 'var(--font-family-base)', fontWeight: 600, fontSize: 12, lineHeight: '24px' },
-  smallBold:      { fontFamily: 'var(--font-family-base)', fontWeight: 700, fontSize: 12, lineHeight: '24px', letterSpacing: '0.01em' },
-  smallRegular:   { fontFamily: 'var(--font-family-base)', fontWeight: 400, fontSize: 12, lineHeight: '24px' },
-  captionSemibold:{ fontFamily: 'var(--font-family-base)', fontWeight: 600, fontSize: 10, lineHeight: '23px', letterSpacing: '0.01em' },
-  captionRegular: { fontFamily: 'var(--font-family-base)', fontWeight: 400, fontSize: 10, lineHeight: '16px', letterSpacing: '0.01em' },
-} as const;
+import { typography } from '@snacky/ui';
 
-// Usage:
-// <p style={typography.smallSemibold}>Login</p>
-// <p style={typography.smallRegular}>Product name</p>
-// <h2 style={typography.h3Bold}>Welcome!</h2>
+// <p style={typography.small.semibold}>Login</p>
+// <p style={typography.small.regular}>Product name</p>
+// <h2 style={typography.h3.bold}>Welcome!</h2>
 </script>
 
 <script type="text/plain" id="code-react-foundation-primitives">
@@ -5435,42 +5456,43 @@ export const typography = {
    only has to happen once, in this one file. Load this file before tokens.css. */
 
 :root {
-  --primary-50: #fef8eb;
-  --primary-100: #fde9bf;
-  --primary-200: #fcdea1;
-  --primary-300: #facf76;
-  --primary-400: #f9c55b;
-  --primary-500: #f8b732;
-  --primary-600: #e2a72e;
-  --primary-700: #b08224;
-  --primary-800: #88651c;
-  --primary-900: #684d15;
+  --color-primary-50: #fef8eb;
+  --color-primary-100: #fde9bf;
+  --color-primary-200: #fcdea1;
+  --color-primary-300: #facf76;
+  --color-primary-400: #f9c55b;
+  --color-primary-500: #f8b732;
+  --color-primary-600: #e2a72e;
+  --color-primary-700: #b08224;
+  --color-primary-800: #88651c;
+  --color-primary-900: #684d15;
 
-  --neutral-0: #ffffff;
-  --neutral-10: #fdfdfd;
-  --neutral-20: #f7f7f7;
-  --neutral-50: #f3f3f3;
-  --neutral-100: #e0e0e0;
-  --neutral-200: #cccccc;
-  --neutral-400: #a3a3a3;
-  --neutral-500: #7a7a7a;
-  --neutral-600: #6a6a6a;
-  --neutral-700: #525252;
-  --neutral-800: #4b4b4b;
-  --neutral-900: #434343;
-  --neutral-950: #333333;
-  --neutral-950-alpha-80: rgba(51,51,51,0.8);
+  --color-neutral-0: #ffffff;
+  --color-neutral-10: #fdfdfd;
+  --color-neutral-20: #f7f7f7;
+  --color-neutral-50: #f3f3f3;
+  --color-neutral-100: #e0e0e0;
+  --color-neutral-200: #cccccc;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #7a7a7a;
+  --color-neutral-600: #6a6a6a;
+  --color-neutral-700: #525252;
+  --color-neutral-800: #4b4b4b;
+  --color-neutral-900: #434343;
+  --color-neutral-950: #333333;
+  /* No primitive ships for this one: it is neutral-950 at 80% alpha, and the
+     package defines --bg-overlay-dim with the rgba() literal directly. */
 
-  --red-50: #fdeeee;
-  --red-100: #f9cbcb;
-  --red-200: #f6b2b2;
-  --red-300: #f28e8e;
-  --red-400: #ef7979;
-  --red-500: #eb5757;
-  --red-600: #d64f4f;
-  --red-700: #a73e3e;
-  --red-800: #813030;
-  --red-900: #632525;
+  --color-red-50: #fdeeee;
+  --color-red-100: #f9cbcb;
+  --color-red-200: #f6b2b2;
+  --color-red-300: #f28e8e;
+  --color-red-400: #ef7979;
+  --color-red-500: #eb5757;
+  --color-red-600: #d64f4f;
+  --color-red-700: #a73e3e;
+  --color-red-800: #813030;
+  --color-red-900: #632525;
 }
 </script>
 
@@ -5484,71 +5506,71 @@ export const typography = {
 
 :root {
   /* Background / App */
-  --bg-app: var(--neutral-20);
+  --bg-app: var(--color-neutral-20);
 
   /* Background / Overlay */
-  --bg-overlay-dim: var(--neutral-950-alpha-80);
+  --bg-overlay-dim: rgba(51,51,51,0.8); /* neutral-950 @ 80%, no primitive token */
 
   /* Background / Surface */
-  --bg-surface: var(--neutral-0);
-  --bg-surface-primary: var(--primary-500);
-  --bg-surface-accent: var(--red-500);
-  --bg-surface-variant: var(--neutral-50);
-  --bg-surface-field: var(--neutral-0);
-  --bg-surface-highlight: var(--primary-50);
+  --bg-surface: var(--color-neutral-0);
+  --bg-surface-primary: var(--color-primary-500);
+  --bg-surface-accent: var(--color-red-500);
+  --bg-surface-variant: var(--color-neutral-50);
+  --bg-surface-field: var(--color-neutral-0);
+  --bg-surface-highlight: var(--color-primary-50);
 
   /* Background / Action */
-  --bg-action-primary: var(--primary-500);
-  --bg-action-primary-hover: var(--primary-600);
-  --bg-action-primary-pressed: var(--primary-700);
-  --bg-action-secondary: var(--neutral-0);
-  --bg-action-secondary-hover: var(--neutral-50);
-  --bg-action-secondary-pressed: var(--neutral-100);
-  --bg-action-disabled: var(--neutral-200);
-  --bg-action-primary-danger: var(--red-500);
-  --bg-action-primary-danger-hovered: var(--red-600);
-  --bg-action-primary-danger-pressed: var(--red-700);
+  --bg-action-primary: var(--color-primary-500);
+  --bg-action-primary-hover: var(--color-primary-600);
+  --bg-action-primary-pressed: var(--color-primary-700);
+  --bg-action-secondary: var(--color-neutral-0);
+  --bg-action-secondary-hover: var(--color-neutral-50);
+  --bg-action-secondary-pressed: var(--color-neutral-100);
+  --bg-action-disabled: var(--color-neutral-200);
+  --bg-action-primary-danger: var(--color-red-500);
+  --bg-action-primary-danger-hovered: var(--color-red-600);
+  --bg-action-primary-danger-pressed: var(--color-red-700);
 
   /* Border */
-  --border-main: var(--neutral-200);
-  --border-highlight: var(--primary-200);
-  --border-input-default: var(--neutral-200);
-  --border-input-active: var(--primary-500);
-  --border-input-error: var(--red-500);
-  --border-action-secondary: var(--neutral-200);
-  --border-action-secondary-pressed: var(--neutral-400);
-  --border-action-danger: var(--red-500);
-  --border-action-disabled: var(--neutral-200);
+  --border-main: var(--color-neutral-200);
+  --border-highlight: var(--color-primary-200);
+  --border-input-default: var(--color-neutral-200);
+  --border-input-active: var(--color-primary-500);
+  --border-input-error: var(--color-red-500);
+  --border-action-secondary: var(--color-neutral-200);
+  --border-action-secondary-pressed: var(--color-neutral-400);
+  --border-action-danger: var(--color-red-500);
+  --border-action-disabled: var(--color-neutral-200);
 
   /* Text */
-  --text-primary: var(--neutral-950);
-  --text-secondary: var(--neutral-500);
-  --text-placeholder: var(--neutral-500);
-  --text-disabled: var(--neutral-400);
-  --text-link: var(--primary-800);
-  --text-error: var(--red-700);
-  --text-inverse: var(--neutral-0);
+  --text-primary: var(--color-neutral-950);
+  --text-secondary: var(--color-neutral-500);
+  --text-placeholder: var(--color-neutral-500);
+  --text-disabled: var(--color-neutral-400);
+  --text-link: var(--color-primary-800);
+  --text-error: var(--color-red-700);
+  --text-inverse: var(--color-neutral-0);
 
   /* Text / On Action: button label color, kept separate from the general Text group
      since it depends on (hierarchy × intent × state), mirroring the Figma "text/on-action/*"
      subgroup 1:1. */
-  --text-on-action-primary: var(--neutral-950);
-  --text-on-action-secondary: var(--neutral-950); /* defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to --text-on-action-primary instead (same value, different token) */
-  --text-on-action-tertiary: var(--primary-700);
-  --text-on-action-tertiary-hovered: var(--primary-800);
-  --text-on-action-tertiary-pressed: var(--primary-900);
-  --text-action-danger: var(--red-600);
-  --text-action-danger-hovered: var(--red-700);
-  --text-action-danger-pressed: var(--red-800);
-  --text-action-disabled: var(--neutral-400);
+  --text-on-action-primary: var(--color-neutral-950);
+  --text-on-action-secondary: var(--color-neutral-950); /* defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to --text-on-action-primary instead (same value, different token) */
+  --text-on-action-tertiary: var(--color-primary-700);
+  --text-on-action-tertiary-hovered: var(--color-primary-800);
+  --text-on-action-tertiary-pressed: var(--color-primary-900);
+  --text-action-danger: var(--color-red-600);
+  --text-action-danger-hovered: var(--color-red-700);
+  --text-action-danger-pressed: var(--color-red-800);
+  --text-action-disabled: var(--color-neutral-400);
 
   /* Icon */
-  --icon-primary: var(--neutral-950);
-  --icon-secondary: var(--neutral-700);
-  --icon-brand: var(--primary-500);
-  --icon-disabled: var(--neutral-400);
-  --icon-active: var(--red-500);
-  --icon-on-accent: var(--neutral-0);
+  --icon-primary: var(--color-neutral-950);
+  --icon-secondary: var(--color-neutral-700);
+  --icon-brand: var(--color-primary-500);
+  --icon-disabled: var(--color-neutral-400);
+  --icon-active: var(--color-red-500);
+  --icon-on-accent: var(--color-neutral-0);
 
   /* Extensions - not yet defined as Figma variables.
      Order-status indicators; request these be added upstream. */
