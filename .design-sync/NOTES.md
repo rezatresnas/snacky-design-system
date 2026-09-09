@@ -372,6 +372,20 @@
   312px) and confirmed the divider sits at the midpoint with LowBalance's
   short content no longer collapsed.
 
+- **2026-09-09**: `@snacky/ui` 0.8.1 -> 0.9.0. No component code changed -
+  `tokens.css` now emits semantic tokens as `var()` references to their
+  primitive (e.g. `--bg-action-primary: var(--color-primary-500)`) instead of
+  a flattened literal, so the two-layer token system actually means something
+  in devtools/an override cascade. All 175 CSS custom properties verified
+  byte-identical in resolved value before/after (0 differences), so no visual
+  change to verify here - no components changed/added/removed, no grading
+  needed. Confirmed the `var()` references survive the tsup build into
+  `dist/index.css` (spot-checked `--bg-action-primary`) before pushing just
+  the bundle/CSS/README (no component-level files touched). A separate
+  docs-only commit in the same window (removing `design-system-prompt.md`,
+  a prompt-only-tool reference file that tested inaccurate against real AI
+  tools) touched nothing this sync reads.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
