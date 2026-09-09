@@ -386,6 +386,20 @@
   a prompt-only-tool reference file that tested inaccurate against real AI
   tools) touched nothing this sync reads.
 
+- **2026-09-09 (later)**: `@snacky/ui` 0.9.0 -> 0.9.1. `SoldOutBadge` and
+  `ProductImage`'s Sold Out overlay were still painting `rgba(51, 51, 51, 0.8)`
+  by hand instead of referencing `--bg-overlay-dim`, which holds exactly that
+  value and is documented for exactly this use. Same class of fix as the
+  0.9.0 semantic-token change, found by auditing the rest of the package for
+  it. compose-ui already referenced the token in all three places it paints
+  this overlay, so no compose release needed. Prop contracts unchanged
+  (CSS-only), carried forward as "unchanged" in the driver's diff; spot-
+  checked both components' screenshots anyway (same standing rule as every
+  other CSS-only fix in this file) - both render identically to before, as
+  claimed. Docs-only commit in the same window (naming the doc code samples
+  after the real package token exports, following up on 0.9.0) touched
+  nothing this sync reads.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
