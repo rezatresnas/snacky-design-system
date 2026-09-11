@@ -433,6 +433,28 @@
   warns about from the `compose-v0.1.2` incident. compose-ui in particular
   needs an explicit tag to ever reach JitPack.
 
+- **2026-09-12**: `@snacky/ui` -> 0.10.0, compose-ui -> compose-v2.0.0 (the
+  user cut this release explicitly after the prior entry's flag - both
+  package.json/gradle.properties and the tag now exist). Two commits synced
+  together: the amber-rename/binding fixes from the prior entry, plus a new
+  one - `IconButton`'s small primary variant now has no padding and a full
+  24px icon (was inset to 16px, ~60% of Figma size); `UploadButton` gets
+  Figma's real secondary fill, dashed `border-action-secondary` outline, and
+  a default camera icon (was a different treatment, plus a new
+  `SnackyUploadButton` on compose-ui); `Section`'s "see more" action is now
+  the shared small `IconButton` component instead of a hand-drawn 16px
+  chevron; `Section`'s header is pinned to 30px (Figma crops the h3-bold
+  36px line box from the top); `ProductCard`'s list variant pins its name box
+  and rating/cart row to 41px each, making the card 294px total (was 292).
+  All prop contracts unchanged (CSS/internal-render-only), so nothing showed
+  as "changed" in the driver's diff - spot-checked all four touched
+  components (`IconButton`, `UploadButton`, `Section`, `ProductCard`)
+  regardless: small IconButton now visibly smaller with a full-size icon,
+  UploadButton's dashed outline + camera icon renders correctly, Section's
+  "see more" now shows the real orange IconButton chevron across all 8
+  stories that use it, ProductCard's list dims render correctly. compose-ui
+  compiles clean via compileDebugKotlinAndroid + compileCommonMainKotlinMetadata.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
