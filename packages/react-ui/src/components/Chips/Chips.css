@@ -20,7 +20,7 @@
 }
 .snacky-chip--selected {
   background: var(--bg-surface-highlight);
-  border-color: var(--color-primary-500);
+  border-color: var(--border-input-active);
 }
 .snacky-chip__thumb {
   width: 24px;

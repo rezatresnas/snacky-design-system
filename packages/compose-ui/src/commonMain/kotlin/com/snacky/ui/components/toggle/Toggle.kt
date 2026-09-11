@@ -22,7 +22,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 
 /**
  * Snacky Toggle - switch for settings that take effect immediately, no
@@ -52,7 +51,7 @@ fun SnackyToggle(
         animationSpec = tween(200),
     )
     val thumbColor by animateColorAsState(
-        targetValue = if (checked) SnackyColorPrimitive.Primary.c500 else SnackyColor.iconDisabled,
+        targetValue = if (checked) SnackyColor.bgSurfacePrimary else SnackyColor.iconDisabled,
         animationSpec = tween(200),
     )
     val thumbOffset by animateDpAsState(

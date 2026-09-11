@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
 
@@ -54,7 +53,7 @@ fun SnackyCallout(
         modifier = modifier
             .widthIn(max = 200.dp)
             .clip(RoundedCornerShape(SnackyRadius.bubble))
-            .background(if (isReceived) SnackyColor.bgSurface else SnackyColorPrimitive.Primary.c500)
+            .background(if (isReceived) SnackyColor.bgSurface else SnackyColor.bgSurfacePrimary)
             .padding(horizontal = 8.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {

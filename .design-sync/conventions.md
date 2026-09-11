@@ -19,7 +19,7 @@ Real token families (184 defined total):
 
 | Family | Examples |
 |---|---|
-| Color | `--color-primary-500`, `--color-neutral-0`..`950`, `--color-red-50`..`900` |
+| Color | `--color-amber-500`, `--color-neutral-0`..`950`, `--color-red-50`..`900` |
 | Surface/text roles | `--bg-app`, `--bg-surface`, `--bg-surface-primary`, `--bg-surface-accent` |
 | Spacing (primitive) | `--spacing-2`, `--spacing-4`, `--spacing-8`, `--spacing-12`, `--spacing-16`, `--spacing-24`, `--spacing-32` |
 | Radius | `--radius-field`, `--radius-tag`, `--radius-bubble`, `--radius-card`, `--radius-sheet-top`, `--radius-full` |

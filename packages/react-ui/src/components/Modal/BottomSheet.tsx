@@ -6,9 +6,11 @@ export interface BottomSheetProps {
   open: boolean;
   onDismiss: () => void;
   children: ReactNode;
-  /** Show the drag-handle bar. Confirmed against Figma: none of the 9
-   *  documented Modal variants show one, so this defaults to false - opt
-   *  in only if a future variant actually needs it. */
+  /** Show the drag-handle bar. Defaults to false because 8 of Figma's 9
+   *  Modal variants have no handle. The `driver` variant does: it draws a
+   *  visible 40x4 `Driver Slider` (node 8693:6233). An earlier pass read
+   *  that as "no variant shows one", which was wrong, so a Driver Tracking
+   *  composition should pass showHandle. */
   showHandle?: boolean;
   className?: string;
 }

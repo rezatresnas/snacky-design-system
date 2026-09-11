@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackyRadius
 
@@ -38,11 +37,13 @@ import com.snacky.ui.theme.SnackyRadius
  * click. Mirrors packages/react-ui's BottomSheet.tsx/BottomSheet.css.
  *
  * Found and fixed a real bug in react-ui's BottomSheet.tsx while porting:
- * confirmed against Figma (node 8681:8211, page "Modal") by checking all 9
- * documented variants' node trees plus a screenshot, none of them ever show
- * a drag-handle bar - react-ui defaulted to showing one (`hideHandle =
- * false`). Renamed to [showHandle], defaulting to `false`, so a future
- * variant can opt in rather than every existing one opting out.
+ * react-ui defaulted to showing a drag-handle bar (`hideHandle = false`),
+ * which is wrong for 8 of Figma's 9 Modal variants. Renamed to [showHandle],
+ * defaulting to `false`, so a variant opts in rather than every other one
+ * opting out. That pass also concluded no variant shows a handle at all;
+ * reading the bound variables later disproved it, since `Property 1=driver`
+ * draws a visible 40x4 `Driver Slider` (node 8693:6233). A Driver Tracking
+ * composition should therefore pass `showHandle = true`.
  *
  * Also confirmed, but not something to "fix": the padding-bottom/gap-between-
  * blocks values genuinely differ per real variant (Welcome's gap is 32dp,
@@ -98,10 +99,14 @@ fun SnackyBottomSheet(
                     Box(
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally)
-                            .padding(bottom = 8.dp)
-                            .size(width = 36.dp, height = 4.dp)
+                            // Figma draws this as an explicit 40x4 rectangle
+                            // (`Driver Slider`, Modal > Property 1=driver)
+                            // bound to border/border-main, radius 100. No
+                            // bottom padding: the next child sits at y28
+                            // there, so the only space below is the gap.
+                            .size(width = 40.dp, height = 4.dp)
                             .clip(RoundedCornerShape(SnackyRadius.full))
-                            .background(SnackyColorPrimitive.Neutral.c200),
+                            .background(SnackyColor.borderMain),
                     )
                 }
                 content()

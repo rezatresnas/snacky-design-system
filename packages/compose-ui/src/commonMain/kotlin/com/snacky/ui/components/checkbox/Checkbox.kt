@@ -65,7 +65,7 @@ fun SnackyCheckbox(
             modifier = Modifier
                 .size(24.dp)
                 .clip(shape)
-                .background(if (checked) SnackyColor.bgActionPrimary else SnackyColor.bgSurfaceField)
+                .background(if (checked) SnackyColor.bgSurfacePrimary else SnackyColor.bgSurfaceField)
                 .then(
                     if (!checked) Modifier.border(1.dp, SnackyColor.borderMain, shape) else Modifier,
                 ),

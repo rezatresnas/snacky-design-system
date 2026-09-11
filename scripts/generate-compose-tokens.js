@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Generates packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/theme/Tokens.kt
 // from tokens.json. Semantic tokens reference their primitive by name
-// (SnackyColor.bgActionPrimary = SnackyColorPrimitive.Primary.c500) rather than
-// repeating its literal value, mirroring the var(--color-primary-500) references
+// (SnackyColor.bgActionPrimary = SnackyColorPrimitive.Amber.c500) rather than
+// repeating its literal value, mirroring the var(--color-amber-500) references
 // scripts/generate-react-tokens.js now emits for tokens.css. Kotlin has no runtime
 // cascade the way CSS custom properties do, so this propagates at compile time
 // instead, but it keeps the primitive the single place a value is defined and
@@ -32,7 +32,7 @@ function pascal(s) {
   return s.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
 }
 
-// Maps a tokens.json alias ("{color.primitive.primary.500}") onto the Kotlin val
+// Maps a tokens.json alias ("{color.primitive.amber.500}") onto the Kotlin val
 // that same primitive is emitted as, so a semantic token points at its primitive
 // instead of carrying a duplicate of its value. Returns null for anything
 // unmappable (e.g. bgOverlayDim, a raw rgba with no primitive behind it), which

@@ -21,9 +21,13 @@
   gap: var(--gap-layout-block);
 }
 .snacky-sheet__handle {
-  width: 36px;
+  /* Figma draws this as an explicit 40x4 rectangle (`Driver Slider`, node
+     Modal > Property 1=driver) bound to border/border-main, radius 100.
+     No bottom margin: the next child sits at y28 there (8 padding + 4 handle
+     + 16), so the gap below the handle is just the sheet's own 16px gap. */
+  width: 40px;
   height: 4px;
-  border-radius: 999px;
-  background: var(--color-neutral-200);
-  margin: 0 auto var(--spacing-8);
+  border-radius: var(--radius-full);
+  background: var(--border-main);
+  margin: 0 auto;
 }

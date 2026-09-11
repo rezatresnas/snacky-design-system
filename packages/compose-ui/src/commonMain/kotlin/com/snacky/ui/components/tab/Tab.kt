@@ -18,7 +18,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
@@ -89,7 +88,7 @@ fun SnackyTabRow(
                     .drawBehind {
                         if (active) {
                             drawLine(
-                                color = SnackyColorPrimitive.Primary.c500,
+                                color = SnackyColor.borderInputActive,
                                 start = Offset(0f, size.height),
                                 end = Offset(size.width, size.height),
                                 strokeWidth = 2.dp.toPx(),

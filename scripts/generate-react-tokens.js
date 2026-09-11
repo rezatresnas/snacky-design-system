@@ -27,11 +27,11 @@ function resolveRef(value, root) {
   return resolveRef(node.$value, root);
 }
 
-// Maps a tokens.json alias ("{color.primitive.primary.500}") onto the CSS custom
+// Maps a tokens.json alias ("{color.primitive.amber.500}") onto the CSS custom
 // property that same primitive is emitted as above, so a semantic token keeps
 // POINTING at its primitive instead of being flattened to a copy of its value.
 // This is what makes the primitive/semantic split real at runtime: devtools shows
-// --bg-action-primary resolving through --color-primary-500, and a consumer can
+// --bg-action-primary resolving through --color-amber-500, and a consumer can
 // re-skin the whole system by overriding the primitive alone. Flattening produced
 // correct colors but silently broke both (and is exactly the "hardcoded per
 // component" token drift this design system exists to prevent).

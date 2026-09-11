@@ -562,7 +562,7 @@ const C={
   tab:{name:'Tab',cat:'Navigation',desc:'Inline tab selector for switching between content views.',usage:'Used horizontally below page headers. Active tab shows accent color with a 2px underline indicator. Inactive tabs are grey.',cover:'assets/images/tab.png',
     v:[
       {id:'tab',name:'Tab',s:{h:40,gap:16},states:[
-        {sl:'Active',st:'active',img:'assets/images/variants/tab-active.png',sOverride:{font:'Poppins SemiBold',fs:14,color:'#b08224',indicator:'2px accent (primary-500) underline, a distinct lighter value from the primary-700 label color',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 0, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={0} onSelect={() => {}} />"}},
+        {sl:'Active',st:'active',img:'assets/images/variants/tab-active.png',sOverride:{font:'Poppins SemiBold',fs:14,color:'#b08224',indicator:'2px accent (amber-500) underline, a distinct lighter value from the amber-700 label color',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 0, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={0} onSelect={() => {}} />"}},
         {sl:'Inactive',st:null,img:'assets/images/variants/tab-inactive.png',sOverride:{font:'Poppins Regular',fs:14,color:'#333333',indicator:'None (line is transparent, same layout height reserved)',gapAnchor:'text-line',gapTopPct:60,gapHeightPct:40},code:{kt:'SnackyTabRow(tabs = listOf("All", "Waiting"), selected = 1, onSelect = {})',tsx:"<TabRow tabs={['All', 'Waiting']} selected={1} onSelect={() => {}} />"}},
       ]},
     ]},
@@ -1050,7 +1050,7 @@ const PG={
     component:'ModalDemo',demoSrc:'assets/images/product-image.png',demoAlt:'Snack',
     initialProps:{type:'Welcome'},
     controls:[{id:'type',label:'Type',type:'select',options:['Welcome','Success','Confirmation','Onboarding','Calendar','Variants','reviews','payment-methods','driver']}],
-    impl:`const ModalDemo=({type,src})=>{const h=React.createElement;const F='Poppins,sans-serif';const t=type||'Welcome';const sv=useState(1),selV=sv[0],setSelV=sv[1];const sf=useState(0),selF=sf[0],setSelF=sf[1];const rgS=useState([15,19]),rg=rgS[0],setRg=rgS[1];const rep=(n)=>src?src.replace(/[^\\/]+$/,n):'';const prod=src||'';const sheet=(children,extra)=>h('div',{style:Object.assign({background:'#ffffff',width:360,boxSizing:'border-box',fontFamily:F,borderTopLeftRadius:20,borderTopRightRadius:20},extra||{})},children);const btn=(label,primary)=>h(Btn,{label:label,variant:primary?'primary':'secondary',flex:true});const star=(fill,k)=>h('span',{key:k,style:{display:'inline-flex'}},ic('star',16,fill?'#f8b732':'#e0e0e0'));const div312=(k)=>h('div',{key:k,style:{width:312,height:1,background:'#e4e4e7',margin:'0 auto'}});const timeline=(steps)=>h(SnackyUI.Stepper,{steps:steps.map(function(st){return {state:st[0]==='active'?'done':(st[0]==='cancel'?'cancelled':'pending'),label:st[1],timestamp:st[2]||undefined};})});const closeRow=(title)=>h('div',{style:{display:'flex',alignItems:'center',gap:8,padding:'0 24px'}},h(IconBtn,{variant:'tertiary',iconName:'close',iconSize:24,pad:0,style:{width:24,height:24}}),h('span',{style:{flex:1,fontSize:14,fontWeight:600,lineHeight:'24px',color:'#333333'}},title));const secTitle=(txt,k)=>h('div',{key:k,style:{padding:'0 24px',fontSize:16,fontWeight:700,lineHeight:'36px',color:'#333333',letterSpacing:'0.16px'}},txt);const logo=(n)=>h('img',{src:rep(n),alt:'',width:24,height:24,style:{objectFit:'contain',flexShrink:0}});const payItem=(iconEl,name,sub,action,k)=>h('div',{key:k,style:{display:'flex',gap:8,alignItems:'center',width:312,margin:'0 auto'}},iconEl,h('div',{style:{flex:1,minWidth:0,display:'flex',flexDirection:'column'}},h('span',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#333333'}},name),sub?h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},sub):null),action?h('span',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#88651c',letterSpacing:'0.12px',cursor:'pointer'}},action):null);if(t==='Welcome')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:16,alignItems:'center'}},h('img',{src:rep('illustration-welcome.svg'),alt:'',width:200,height:200,style:{display:'block'}}),h('div',{style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Hi, Welcome to Snacky!'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'Let\\'s take a quick tour so you can get to know our features better'))),h('div',{key:2,style:{display:'flex',gap:16,alignItems:'center',paddingTop:4,paddingBottom:24,width:'100%'}},btn('Skip',false),btn('Take the Tour',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Success')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:16,alignItems:'center',width:'100%'}},h('img',{src:rep('illustration-success.svg'),alt:'',width:200,height:200,style:{display:'block'}}),h('div',{style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Password Successfully Changed'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'You can now log in with your new password'))),h('div',{key:2,style:{paddingTop:4,paddingBottom:24,width:'100%',display:'flex'}},btn('OK',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Confirmation')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Are you sure you want to log out?'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'You need to log in again to access your account')),h('div',{key:2,style:{display:'flex',gap:14,alignItems:'center',paddingTop:4,paddingBottom:24,width:'100%'}},btn('Cancel',false),btn('Log Out',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Onboarding')return h('div',{style:{background:'#ffffff',width:325,boxSizing:'border-box',fontFamily:F,borderRadius:4,padding:12,display:'flex',flexDirection:'column',gap:16,boxShadow:'0 4px 16px rgba(0,0,0,0.12)'}},h('div',{key:1},h('div',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#333333'}},'Shipping Address'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px',color:'#333333'}},'Your delivery destination can be easily accessed here')),h('div',{key:2,style:{display:'flex',alignItems:'center',gap:8}},h('span',{style:{flex:1,fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'1 of 5'),h('div',{style:{flex:1,display:'flex'}},btn('Continue',true))));if(t==='Calendar'){const wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const weeks=[[['30','dis'],['1'],['2'],['3'],['4'],['5'],['6']],[['7'],['8','dot'],['9'],['10'],['11'],['12'],['13']],[['14'],['15'],['16'],['17'],['18'],['19'],['20']],[['21'],['22'],['23'],['24'],['25'],['26'],['27']],[['28'],['29'],['30'],['1','dis'],['2','dis'],['3','dis'],['4','dis']]];const lo=rg[1]==null?rg[0]:Math.min(rg[0],rg[1]);const hi=rg[1]==null?rg[0]:Math.max(rg[0],rg[1]);const pick=(d)=>{if(rg[1]!=null){setRg([d,null]);}else{setRg([Math.min(rg[0],d),Math.max(rg[0],d)]);}};const cell=(c,ci)=>{const st=c[1];const dis=st==='dis';const d=parseInt(c[0],10);const isSel=!dis&&(d===lo||d===hi);const isBand=!dis&&rg[1]!=null&&d>lo&&d<hi;return h('div',{key:ci,onClick:dis?null:function(){pick(d);},style:{flex:1,height:40,display:'flex',alignItems:'center',justifyContent:'center',position:'relative',background:isBand?'#fef8eb':'transparent',cursor:dis?'default':'pointer'}},h('div',{style:{width:40,height:40,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',background:isSel?'#f8b732':'transparent'}},h('span',{style:{fontSize:16,fontWeight:isSel?700:400,lineHeight:'36px',color:dis?'#a3a3a3':'#333333'}},c[0])),st==='dot'?h('div',{style:{position:'absolute',bottom:2,width:6,height:6,borderRadius:'50%',background:'#f8b732'}}):null);};return sheet([h('div',{key:'hd',style:{display:'flex',alignItems:'center',width:'100%'}},h(IconBtn,{variant:'tertiary',iconName:'back',iconSize:24,pad:0,style:{width:24,height:24}}),h('span',{style:{flex:1,fontSize:16,fontWeight:700,lineHeight:'36px',color:'#333333',textAlign:'center',letterSpacing:'0.16px'}},'June 2021'),h(IconBtn,{variant:'tertiary',iconName:'back',iconSize:24,pad:0,style:{width:24,height:24,transform:'scaleX(-1)'}})),h('div',{key:'wd',style:{display:'flex',width:'100%'}},wd.map((d,i)=>h('span',{key:i,style:{flex:1,textAlign:'center',fontSize:12,lineHeight:'24px',color:'#333333'}},d))),h('div',{key:'grid',style:{display:'flex',flexDirection:'column',width:'100%'}},weeks.map((wk,wi)=>h('div',{key:wi,style:{display:'flex',width:'100%'}},wk.map((c,ci)=>cell(c,ci))))),h('div',{key:'btn',style:{width:'100%',display:'flex'}},btn('Select Date',true))],{display:'flex',flexDirection:'column',gap:24,alignItems:'center',padding:24});}if(t==='Variants'){const ws=['100 grams','75 grams','50 grams','20 grams'];return sheet([closeRow('Variants'),h('div',{key:'img',style:{padding:'0 24px'}},h('div',{style:{display:'inline-flex',padding:4,border:'1px solid #cccccc',borderRadius:4}},h('img',{src:prod,alt:'',width:80,height:80,style:{objectFit:'contain'}}))),h('div',{key:'chips',style:{display:'flex',flexWrap:'wrap',gap:8,padding:'0 24px'}},ws.map(function(w,i){return h(Chip,{key:i,label:w,selected:i===selV,onClick:function(){setSelV(i);},icon:h('img',{src:prod,alt:'',width:24,height:24,style:{objectFit:'contain'}})});})),h('div',{key:'btns',style:{display:'flex',gap:8,padding:'0 24px 24px'}},h(Btn,{label:'Cart',variant:'secondary',width:160,style:{gap:10},icon:ic('add-to-cart',24,'#333333')}),btn('Buy Now',true))],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0 0'});}if(t==='reviews'){const filter=(txt,i)=>h(Chip,{key:txt,label:txt,gap:0,selected:i===selF,onClick:function(){setSelF(i);}});const revItem=(k)=>h('div',{key:k,style:{display:'flex',flexDirection:'column',gap:16}},h('div',{style:{display:'flex',alignItems:'center',gap:16,padding:'0 24px'}},h('img',{src:rep('avatar-reviewer.png'),alt:'',width:32,height:32,style:{borderRadius:'50%',objectFit:'cover'}}),h('div',null,h('div',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#333333',letterSpacing:'0.12px'}},'Debora Maryanti'),h('div',{style:{display:'flex'}},star(true,1),star(true,2),star(true,3),star(true,4),star(false,5)))),h('div',{style:{display:'flex',flexDirection:'column',gap:8,padding:'0 24px'}},h('div',{style:{fontSize:12,lineHeight:'24px',color:'#333333'}},'Order was accurate and arrived quickly'),h('div',{style:{display:'flex',gap:8}},[0,1,2].map(function(i){return h('div',{key:i,style:{border:'1px solid #cccccc',borderRadius:4,padding:3,display:'inline-flex'}},h('img',{src:prod,alt:'',width:40,height:40,style:{objectFit:'contain'}}));}))),div312('dv'+k));return sheet([closeRow('Buyer Reviews'),h('div',{key:'rt',style:{display:'flex',alignItems:'center',gap:4,padding:'0 24px'}},star(true,'s'),h('span',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#7a7a7a'}},'4.5'),h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'(471 ratings)'),h('span',{style:{width:4,height:4,borderRadius:'50%',background:'#7a7a7a'}}),h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'189 Reviews')),h('div',{key:'f',style:{display:'flex',gap:8,padding:'0 24px'}},filter('Latest',0),filter('Highest Rating',1),filter('Lowest Rating',2)),revItem(1),revItem(2),revItem(3)],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0'});}if(t==='payment-methods')return sheet([closeRow('Payment Methods'),secTitle('Balance & COD','st1'),payItem(ic('saldo',24,'#525252'),'Balance','$6.00 (Insufficient Balance)','Top Up','p1'),div312('d1'),payItem(ic('cod',24,'#525252'),'COD',null,null,'p2'),div312('d2'),secTitle('E-Wallet','st2'),payItem(logo('gopay.png'),'GOPAY',null,null,'p3'),div312('d3'),payItem(logo('pay-ovo.png'),'OVO',null,null,'p4'),div312('d4'),payItem(logo('pay-shopeepay.png'),'ShopeePay',null,null,'p5'),div312('d5'),payItem(logo('pay-dana.png'),'DANA',null,null,'p6'),div312('d6'),payItem(logo('pay-linkaja.png'),'Link AjA',null,null,'p7'),div312('d7'),secTitle('Credit/Debit Card','st3'),payItem(ic('credit',24,'#525252'),'Visa/Mastercard',null,'Add','p8'),div312('d8'),secTitle('Virtual Account','st4'),payItem(logo('bca-logo.png'),'BCA Virtual Account',null,null,'p9'),div312('d9'),payItem(logo('pay-mandiri.png'),'Mandiri Virtual Account',null,null,'p10'),div312('d10'),payItem(logo('pay-bri.png'),'BRI Virtual Account',null,null,'p11'),div312('d11')],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0',maxHeight:600,overflowY:'auto'});return sheet([h('div',{key:'sl',style:{width:40,height:4,background:'#cccccc',borderRadius:100,margin:'0 auto'}}),h('div',{key:'dh',style:{display:'flex',alignItems:'center',gap:12,width:312,margin:'0 auto'}},h('img',{src:rep('driver.png'),alt:'',width:56,height:56,style:{borderRadius:'50%',objectFit:'cover'}}),h('div',{style:{flex:1,minWidth:0}},h('div',{style:{fontSize:14,fontWeight:600,lineHeight:'24px',color:'#333333'}},'Mimbar Al Risyad'),h('div',{style:{fontSize:10,lineHeight:'16px',color:'#7a7a7a',letterSpacing:'0.1px'}},'B1112ARB')),h('div',{style:{display:'flex',gap:16,alignItems:'center'}},h(IconBtn,{variant:'tertiary',iconName:'call',iconSize:24,pad:0,style:{width:24,height:24}}),h(IconBtn,{variant:'tertiary',iconName:'chat-driver',iconSize:24,pad:0,style:{width:24,height:24}}))),div312('d1'),h('div',{key:'ar',style:{width:312,margin:'0 auto'}},h('div',{style:{fontSize:12,lineHeight:'24px',color:'#333333'}},'Estimated arrival at'),h('div',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#333333',letterSpacing:'0.12px'}},'12:30 - 12:40')),div312('d2'),h('div',{key:'tl',style:{width:312,margin:'0 auto'}},timeline([['active','Driver picking up order from seller','Dec 30, 11:00 AM'],['active','Driver delivering order to customer','Dec 30, 12:00 PM'],['disabled','Order received by customer']])),div312('d3')],{display:'flex',flexDirection:'column',gap:16,padding:'8px 24px 24px',boxShadow:'0 -4px 12px rgba(0,0,0,0.08)'});};`,
+    impl:`const ModalDemo=({type,src})=>{const h=React.createElement;const F='Poppins,sans-serif';const t=type||'Welcome';const sv=useState(1),selV=sv[0],setSelV=sv[1];const sf=useState(0),selF=sf[0],setSelF=sf[1];const rgS=useState([15,19]),rg=rgS[0],setRg=rgS[1];const rep=(n)=>src?src.replace(/[^\\/]+$/,n):'';const prod=src||'';const sheetCss=(o)=>Object.keys(o).map(function(k){const v=o[k];return k.replace(/[A-Z]/g,function(m){return '-'+m.toLowerCase();})+':'+(typeof v==='number'?v+'px':v);}).join(';');const sheet=(children,extra,handle)=>h('div',{className:'pg-sheet-host',style:{fontFamily:F}},h('style',null,'.pg-sheet-host .snacky-sheet-overlay{position:static;inset:auto;background:none;display:block;z-index:auto}.pg-sheet-host .snacky-sheet{width:360px;max-width:none;max-height:none;overflow:visible}.pg-sheet-host .snacky-sheet{'+sheetCss(extra||{})+'}'),h(SnackyUI.BottomSheet,{open:true,onDismiss:function(){},showHandle:!!handle},children));const btn=(label,primary)=>h(Btn,{label:label,variant:primary?'primary':'secondary',flex:true});const star=(fill,k)=>h('span',{key:k,style:{display:'inline-flex'}},ic('star',16,fill?'#f8b732':'#e0e0e0'));const div312=(k)=>h('div',{key:k,style:{width:312,height:1,background:'#e4e4e7',margin:'0 auto'}});const timeline=(steps)=>h(SnackyUI.Stepper,{steps:steps.map(function(st){return {state:st[0]==='active'?'done':(st[0]==='cancel'?'cancelled':'pending'),label:st[1],timestamp:st[2]||undefined};})});const closeRow=(title)=>h('div',{style:{display:'flex',alignItems:'center',gap:8,padding:'0 24px'}},h(IconBtn,{variant:'tertiary',iconName:'close',iconSize:24,pad:0,style:{width:24,height:24}}),h('span',{style:{flex:1,fontSize:14,fontWeight:600,lineHeight:'24px',color:'#333333'}},title));const secTitle=(txt,k)=>h('div',{key:k,style:{padding:'0 24px',fontSize:16,fontWeight:700,lineHeight:'36px',color:'#333333',letterSpacing:'0.16px'}},txt);const logo=(n)=>h('img',{src:rep(n),alt:'',width:24,height:24,style:{objectFit:'contain',flexShrink:0}});const payItem=(iconEl,name,sub,action,k)=>h('div',{key:k,style:{display:'flex',gap:8,alignItems:'center',width:312,margin:'0 auto'}},iconEl,h('div',{style:{flex:1,minWidth:0,display:'flex',flexDirection:'column'}},h('span',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#333333'}},name),sub?h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},sub):null),action?h('span',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#88651c',letterSpacing:'0.12px',cursor:'pointer'}},action):null);if(t==='Welcome')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:16,alignItems:'center'}},h('img',{src:rep('illustration-welcome.svg'),alt:'',width:200,height:200,style:{display:'block'}}),h('div',{style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Hi, Welcome to Snacky!'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'Let\\'s take a quick tour so you can get to know our features better'))),h('div',{key:2,style:{display:'flex',gap:16,alignItems:'center',paddingTop:4,paddingBottom:24,width:'100%'}},btn('Skip',false),btn('Take the Tour',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Success')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:16,alignItems:'center',width:'100%'}},h('img',{src:rep('illustration-success.svg'),alt:'',width:200,height:200,style:{display:'block'}}),h('div',{style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Password Successfully Changed'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'You can now log in with your new password'))),h('div',{key:2,style:{paddingTop:4,paddingBottom:24,width:'100%',display:'flex'}},btn('OK',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Confirmation')return sheet([h('div',{key:1,style:{display:'flex',flexDirection:'column',gap:8,textAlign:'center',color:'#333333',width:312}},h('div',{style:{fontSize:16,fontWeight:700,lineHeight:'36px',letterSpacing:'0.16px'}},'Are you sure you want to log out?'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px'}},'You need to log in again to access your account')),h('div',{key:2,style:{display:'flex',gap:14,alignItems:'center',paddingTop:4,paddingBottom:24,width:'100%'}},btn('Cancel',false),btn('Log Out',true))],{display:'flex',flexDirection:'column',gap:32,alignItems:'center',padding:'24px 24px 0'});if(t==='Onboarding')return h('div',{style:{background:'#ffffff',width:325,boxSizing:'border-box',fontFamily:F,borderRadius:4,padding:12,display:'flex',flexDirection:'column',gap:16,boxShadow:'0 4px 16px rgba(0,0,0,0.12)'}},h('div',{key:1},h('div',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#333333'}},'Shipping Address'),h('div',{style:{fontSize:12,fontWeight:400,lineHeight:'24px',color:'#333333'}},'Your delivery destination can be easily accessed here')),h('div',{key:2,style:{display:'flex',alignItems:'center',gap:8}},h('span',{style:{flex:1,fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'1 of 5'),h('div',{style:{flex:1,display:'flex'}},btn('Continue',true))));if(t==='Calendar'){const wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const weeks=[[['30','dis'],['1'],['2'],['3'],['4'],['5'],['6']],[['7'],['8','dot'],['9'],['10'],['11'],['12'],['13']],[['14'],['15'],['16'],['17'],['18'],['19'],['20']],[['21'],['22'],['23'],['24'],['25'],['26'],['27']],[['28'],['29'],['30'],['1','dis'],['2','dis'],['3','dis'],['4','dis']]];const lo=rg[1]==null?rg[0]:Math.min(rg[0],rg[1]);const hi=rg[1]==null?rg[0]:Math.max(rg[0],rg[1]);const pick=(d)=>{if(rg[1]!=null){setRg([d,null]);}else{setRg([Math.min(rg[0],d),Math.max(rg[0],d)]);}};const cell=(c,ci)=>{const st=c[1];const dis=st==='dis';const d=parseInt(c[0],10);const isSel=!dis&&(d===lo||d===hi);const isBand=!dis&&rg[1]!=null&&d>lo&&d<hi;return h('div',{key:ci,onClick:dis?null:function(){pick(d);},style:{flex:1,height:40,display:'flex',alignItems:'center',justifyContent:'center',position:'relative',background:isBand?'#fef8eb':'transparent',cursor:dis?'default':'pointer'}},h('div',{style:{width:40,height:40,borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',background:isSel?'#f8b732':'transparent'}},h('span',{style:{fontSize:16,fontWeight:isSel?700:400,lineHeight:'36px',color:dis?'#a3a3a3':'#333333'}},c[0])),st==='dot'?h('div',{style:{position:'absolute',bottom:2,width:6,height:6,borderRadius:'50%',background:'#f8b732'}}):null);};return sheet([h('div',{key:'hd',style:{display:'flex',alignItems:'center',width:'100%'}},h(IconBtn,{variant:'tertiary',iconName:'back',iconSize:24,pad:0,style:{width:24,height:24}}),h('span',{style:{flex:1,fontSize:16,fontWeight:700,lineHeight:'36px',color:'#333333',textAlign:'center',letterSpacing:'0.16px'}},'June 2021'),h(IconBtn,{variant:'tertiary',iconName:'back',iconSize:24,pad:0,style:{width:24,height:24,transform:'scaleX(-1)'}})),h('div',{key:'wd',style:{display:'flex',width:'100%'}},wd.map((d,i)=>h('span',{key:i,style:{flex:1,textAlign:'center',fontSize:12,lineHeight:'24px',color:'#333333'}},d))),h('div',{key:'grid',style:{display:'flex',flexDirection:'column',width:'100%'}},weeks.map((wk,wi)=>h('div',{key:wi,style:{display:'flex',width:'100%'}},wk.map((c,ci)=>cell(c,ci))))),h('div',{key:'btn',style:{width:'100%',display:'flex'}},btn('Select Date',true))],{display:'flex',flexDirection:'column',gap:24,alignItems:'center',padding:24});}if(t==='Variants'){const ws=['100 grams','75 grams','50 grams','20 grams'];return sheet([closeRow('Variants'),h('div',{key:'img',style:{padding:'0 24px'}},h('div',{style:{display:'inline-flex',padding:4,border:'1px solid #cccccc',borderRadius:4}},h('img',{src:prod,alt:'',width:80,height:80,style:{objectFit:'contain'}}))),h('div',{key:'chips',style:{display:'flex',flexWrap:'wrap',gap:8,padding:'0 24px'}},ws.map(function(w,i){return h(Chip,{key:i,label:w,selected:i===selV,onClick:function(){setSelV(i);},icon:h('img',{src:prod,alt:'',width:24,height:24,style:{objectFit:'contain'}})});})),h('div',{key:'btns',style:{display:'flex',gap:8,padding:'0 24px 24px'}},h(Btn,{label:'Cart',variant:'secondary',width:160,style:{gap:10},icon:ic('add-to-cart',24,'#333333')}),btn('Buy Now',true))],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0 0'});}if(t==='reviews'){const filter=(txt,i)=>h(Chip,{key:txt,label:txt,gap:0,selected:i===selF,onClick:function(){setSelF(i);}});const revItem=(k)=>h('div',{key:k,style:{display:'flex',flexDirection:'column',gap:16}},h('div',{style:{display:'flex',alignItems:'center',gap:16,padding:'0 24px'}},h('img',{src:rep('avatar-reviewer.png'),alt:'',width:32,height:32,style:{borderRadius:'50%',objectFit:'cover'}}),h('div',null,h('div',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#333333',letterSpacing:'0.12px'}},'Debora Maryanti'),h('div',{style:{display:'flex'}},star(true,1),star(true,2),star(true,3),star(true,4),star(false,5)))),h('div',{style:{display:'flex',flexDirection:'column',gap:8,padding:'0 24px'}},h('div',{style:{fontSize:12,lineHeight:'24px',color:'#333333'}},'Order was accurate and arrived quickly'),h('div',{style:{display:'flex',gap:8}},[0,1,2].map(function(i){return h('div',{key:i,style:{border:'1px solid #cccccc',borderRadius:4,padding:3,display:'inline-flex'}},h('img',{src:prod,alt:'',width:40,height:40,style:{objectFit:'contain'}}));}))),div312('dv'+k));return sheet([closeRow('Buyer Reviews'),h('div',{key:'rt',style:{display:'flex',alignItems:'center',gap:4,padding:'0 24px'}},star(true,'s'),h('span',{style:{fontSize:12,fontWeight:600,lineHeight:'24px',color:'#7a7a7a'}},'4.5'),h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'(471 ratings)'),h('span',{style:{width:4,height:4,borderRadius:'50%',background:'#7a7a7a'}}),h('span',{style:{fontSize:12,lineHeight:'24px',color:'#7a7a7a'}},'189 Reviews')),h('div',{key:'f',style:{display:'flex',gap:8,padding:'0 24px'}},filter('Latest',0),filter('Highest Rating',1),filter('Lowest Rating',2)),revItem(1),revItem(2),revItem(3)],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0'});}if(t==='payment-methods')return sheet([closeRow('Payment Methods'),secTitle('Balance & COD','st1'),payItem(ic('saldo',24,'#525252'),'Balance','$6.00 (Insufficient Balance)','Top Up','p1'),div312('d1'),payItem(ic('cod',24,'#525252'),'COD',null,null,'p2'),div312('d2'),secTitle('E-Wallet','st2'),payItem(logo('gopay.png'),'GOPAY',null,null,'p3'),div312('d3'),payItem(logo('pay-ovo.png'),'OVO',null,null,'p4'),div312('d4'),payItem(logo('pay-shopeepay.png'),'ShopeePay',null,null,'p5'),div312('d5'),payItem(logo('pay-dana.png'),'DANA',null,null,'p6'),div312('d6'),payItem(logo('pay-linkaja.png'),'Link AjA',null,null,'p7'),div312('d7'),secTitle('Credit/Debit Card','st3'),payItem(ic('credit',24,'#525252'),'Visa/Mastercard',null,'Add','p8'),div312('d8'),secTitle('Virtual Account','st4'),payItem(logo('bca-logo.png'),'BCA Virtual Account',null,null,'p9'),div312('d9'),payItem(logo('pay-mandiri.png'),'Mandiri Virtual Account',null,null,'p10'),div312('d10'),payItem(logo('pay-bri.png'),'BRI Virtual Account',null,null,'p11'),div312('d11')],{display:'flex',flexDirection:'column',gap:16,padding:'16px 0',maxHeight:600,overflowY:'auto'});return sheet([h('div',{key:'dh',style:{display:'flex',alignItems:'center',gap:12,width:312,margin:'0 auto'}},h('img',{src:rep('driver.png'),alt:'',width:56,height:56,style:{borderRadius:'50%',objectFit:'cover'}}),h('div',{style:{flex:1,minWidth:0}},h('div',{style:{fontSize:14,fontWeight:600,lineHeight:'24px',color:'#333333'}},'Mimbar Al Risyad'),h('div',{style:{fontSize:10,lineHeight:'16px',color:'#7a7a7a',letterSpacing:'0.1px'}},'B1112ARB')),h('div',{style:{display:'flex',gap:16,alignItems:'center'}},h(IconBtn,{variant:'tertiary',iconName:'call',iconSize:24,pad:0,style:{width:24,height:24}}),h(IconBtn,{variant:'tertiary',iconName:'chat-driver',iconSize:24,pad:0,style:{width:24,height:24}}))),div312('d1'),h('div',{key:'ar',style:{width:312,margin:'0 auto'}},h('div',{style:{fontSize:12,lineHeight:'24px',color:'#333333'}},'Estimated arrival at'),h('div',{style:{fontSize:12,fontWeight:700,lineHeight:'24px',color:'#333333',letterSpacing:'0.12px'}},'12:30 - 12:40')),div312('d2'),h('div',{key:'tl',style:{width:312,margin:'0 auto'}},timeline([['active','Driver picking up order from seller','Dec 30, 11:00 AM'],['active','Driver delivering order to customer','Dec 30, 12:00 PM'],['disabled','Order received by customer']])),div312('d3')],{display:'flex',flexDirection:'column',gap:16,padding:'8px 24px 24px',boxShadow:'0 -4px 12px rgba(0,0,0,0.08)'},true);};`,
     getReact:p=>`<SnackyModal type={ModalType.${({'Welcome':'Welcome','Success':'Success','Confirmation':'Confirmation','Onboarding':'Onboarding','Calendar':'Calendar','Variants':'Variants','reviews':'Reviews','payment-methods':'PaymentMethods','driver':'Driver'})[p.type]}} onDismiss={() => {}} />`,
     getKotlin:p=>`SnackyModal(\n  type = ModalType.${({'Welcome':'Welcome','Success':'Success','Confirmation':'Confirmation','Onboarding':'Onboarding','Calendar':'Calendar','Variants':'Variants','reviews':'Reviews','payment-methods':'PaymentMethods','driver':'Driver'})[p.type]},\n  onDismiss = {}\n)`
   },
@@ -1448,7 +1448,7 @@ function annotateSizeText(str){
 // the field it appears in (fill/border/text) and, where that's still ambiguous, to a small
 // component-category heuristic (action controls vs. surfaces, input fields vs. generic
 // borders) rather than guessing from the hex alone.
-// #b08224 (Tab's active label) was first read as the raw primary-700 primitive with no
+// #b08224 (Tab's active label) was first read as the raw amber-700 primitive with no
 // semantic alias; re-checking Figma's actual bound variable found it's really
 // text/on-action/text-on-action-tertiary - the same semantic token Tertiary buttons use
 // for their default label, reused here because Tab's active state is visually the same
@@ -1789,7 +1789,7 @@ function renderPrimitiveColors(tab){
   const tabBar=`<div class="tab-bar"><button class="tab-btn${tab==='overview'?' on':''}" data-tab="overview">Overview</button><button class="tab-btn${tab==='code'?' on':''}" data-tab="code">Code</button></div>`;
   if(tab==='code')return`<div class="comp-hd"><div class="eyebrow">Foundations</div><h2>Primitive Colors</h2><p>Raw color ramps - the base layer every semantic token aliases, defined in its own file.</p></div>${tabBar}${tabCode('foundation-primitives')}`;
   const ramps=[
-    {label:'Primary',items:[
+    {label:'Amber',items:[
       ['50','#fef8eb'],['100','#fde9bf'],['200','#fcdea1'],['300','#facf76'],['400','#f9c55b'],
       ['500','#f8b732'],['600','#e2a72e'],['700','#b08224'],['800','#88651c'],['900','#684d15'],
     ]},
@@ -1824,16 +1824,16 @@ function renderSemanticColors(tab){
     ]},
     {label:'Surface',items:[
       {name:'bgSurface',hex:'#ffffff',alias:'neutral-0',use:'Cards, modals, sidebar panels'},
-      {name:'bgSurfacePrimary',hex:'#f8b732',alias:'primary-500',use:'Primary surface accent areas'},
+      {name:'bgSurfacePrimary',hex:'#f8b732',alias:'amber-500',use:'Primary surface accent areas'},
       {name:'bgSurfaceAccent',hex:'#eb5757',alias:'red-500',use:'Accent/danger surface highlight'},
       {name:'bgSurfaceVariant',hex:'#f3f3f3',alias:'neutral-50',use:'Secondary surface variant background'},
       {name:'bgSurfaceField',hex:'#ffffff',alias:'neutral-0',use:'Form field and input surface background'},
-      {name:'bgSurfaceHighlight',hex:'#fef8eb',alias:'primary-50',use:'Accent tint backgrounds, hover states'},
+      {name:'bgSurfaceHighlight',hex:'#fef8eb',alias:'amber-50',use:'Accent tint backgrounds, hover states'},
     ]},
     {label:'Action',items:[
-      {name:'bgActionPrimary',hex:'#f8b732',alias:'primary-500',use:'Main CTA, active states'},
-      {name:'bgActionPrimaryHover',hex:'#e2a72e',alias:'primary-600',use:'Primary action hover state'},
-      {name:'bgActionPrimaryPressed',hex:'#b08224',alias:'primary-700',use:'Primary action pressed state'},
+      {name:'bgActionPrimary',hex:'#f8b732',alias:'amber-500',use:'Main CTA, active states'},
+      {name:'bgActionPrimaryHover',hex:'#e2a72e',alias:'amber-600',use:'Primary action hover state'},
+      {name:'bgActionPrimaryPressed',hex:'#b08224',alias:'amber-700',use:'Primary action pressed state'},
       {name:'bgActionSecondary',hex:'#ffffff',alias:'neutral-0',use:'Secondary button fill'},
       {name:'bgActionSecondaryHover',hex:'#f3f3f3',alias:'neutral-50',use:'Secondary action hover state'},
       {name:'bgActionSecondaryPressed',hex:'#e0e0e0',alias:'neutral-100',use:'Secondary action pressed state'},
@@ -1847,9 +1847,9 @@ function renderSemanticColors(tab){
     ]},
     {label:'Border',items:[
       {name:'borderMain',hex:'#cccccc',alias:'neutral-200',use:'Default borders, dividers'},
-      {name:'borderHighlight',hex:'#fcdea1',alias:'primary-200',use:'Highlighted/accent border'},
+      {name:'borderHighlight',hex:'#fcdea1',alias:'amber-200',use:'Highlighted/accent border'},
       {name:'borderInputDefault',hex:'#cccccc',alias:'neutral-200',use:'Default input field border'},
-      {name:'borderInputActive',hex:'#f8b732',alias:'primary-500',use:'Focused/active input field border'},
+      {name:'borderInputActive',hex:'#f8b732',alias:'amber-500',use:'Focused/active input field border'},
       {name:'borderInputError',hex:'#eb5757',alias:'red-500',use:'Input validation error border'},
       {name:'borderActionSecondary',hex:'#cccccc',alias:'neutral-200',use:'Secondary action button border'},
       {name:'borderActionSecondaryPressed',hex:'#a3a3a3',alias:'neutral-400',use:'Secondary action button border, pressed'},
@@ -1861,16 +1861,16 @@ function renderSemanticColors(tab){
       {name:'textSecondary',hex:'#7a7a7a',alias:'neutral-500',use:'Subtitles, descriptions'},
       {name:'textPlaceholder',hex:'#7a7a7a',alias:'neutral-500',use:'Input placeholders, hint text'},
       {name:'textDisabled',hex:'#a3a3a3',alias:'neutral-400',use:'Disabled text and labels'},
-      {name:'textLink',hex:'#88651c',alias:'primary-800',use:'Hyperlinks, anchor text'},
+      {name:'textLink',hex:'#88651c',alias:'amber-800',use:'Hyperlinks, anchor text'},
       {name:'textError',hex:'#a73e3e',alias:'red-700',use:'Error messages, danger states'},
       {name:'textInverse',hex:'#ffffff',alias:'neutral-0',use:'Text on top of accent/dark-filled surfaces (e.g. discount tag label)'},
     ]},
     {label:'Text / On Action',items:[
       {name:'textOnActionPrimary',hex:'#333333',alias:'neutral-950',use:'Primary (Base or Danger) and Secondary/Base button label'},
       {name:'textOnActionSecondary',hex:'#333333',alias:'neutral-950',use:'Defined in Figma but not currently wired to any button; Secondary/Base label actually binds to textOnActionPrimary instead (same value, different token)'},
-      {name:'textOnActionTertiary',hex:'#b08224',alias:'primary-700',use:'Tertiary/Base button label (default): a ghost/text button, so label color is the affordance'},
-      {name:'textOnActionTertiaryHovered',hex:'#88651c',alias:'primary-800',use:'Tertiary/Base button label, hovered'},
-      {name:'textOnActionTertiaryPressed',hex:'#684d15',alias:'primary-900',use:'Tertiary/Base button label, pressed'},
+      {name:'textOnActionTertiary',hex:'#b08224',alias:'amber-700',use:'Tertiary/Base button label (default): a ghost/text button, so label color is the affordance'},
+      {name:'textOnActionTertiaryHovered',hex:'#88651c',alias:'amber-800',use:'Tertiary/Base button label, hovered'},
+      {name:'textOnActionTertiaryPressed',hex:'#684d15',alias:'amber-900',use:'Tertiary/Base button label, pressed'},
       {name:'textActionDanger',hex:'#d64f4f',alias:'red-600',use:'Secondary/Danger and Tertiary/Danger button label (default)'},
       {name:'textActionDangerHovered',hex:'#a73e3e',alias:'red-700',use:'Secondary/Danger and Tertiary/Danger button label, hovered'},
       {name:'textActionDangerPressed',hex:'#813030',alias:'red-800',use:'Secondary/Danger and Tertiary/Danger button label, pressed'},
@@ -1879,7 +1879,7 @@ function renderSemanticColors(tab){
     {label:'Icon',items:[
       {name:'iconPrimary',hex:'#333333',alias:'neutral-950',use:'Default icon color'},
       {name:'iconSecondary',hex:'#525252',alias:'neutral-700',use:'Secondary, muted icon color'},
-      {name:'iconBrand',hex:'#f8b732',alias:'primary-500',use:'Brand-accent icons and indicators'},
+      {name:'iconBrand',hex:'#f8b732',alias:'amber-500',use:'Brand-accent icons and indicators'},
       {name:'iconDisabled',hex:'#a3a3a3',alias:'neutral-400',use:'Disabled icon color'},
       {name:'iconActive',hex:'#eb5757',alias:'red-500',use:'Active/selected state icon color'},
       {name:'iconOnAccent',hex:'#ffffff',alias:'neutral-0',use:'Icon color on top of accent-filled surfaces'},
@@ -2201,7 +2201,7 @@ object SnackyColorPrimitive {
 }
 
 // Usage:
-// SnackyColorPrimitive.Primary.c500
+// SnackyColorPrimitive.Amber.c500
 // SnackyColorPrimitive.Neutral.c20
 </script>
 
@@ -2230,16 +2230,16 @@ object SnackyColor {
 
     // ── Background / Surface ────────────────────────────────────────────────
     val bgSurface = SnackyColorPrimitive.Neutral.c0 // Cards, modals, sidebar panels
-    val bgSurfacePrimary = SnackyColorPrimitive.Primary.c500 // Primary surface accent areas
+    val bgSurfacePrimary = SnackyColorPrimitive.Amber.c500 // Primary surface accent areas
     val bgSurfaceAccent = SnackyColorPrimitive.Red.c500 // Accent/danger surface highlight
     val bgSurfaceVariant = SnackyColorPrimitive.Neutral.c50 // Secondary surface variant background
     val bgSurfaceField = SnackyColorPrimitive.Neutral.c0 // Form field and input surface background
-    val bgSurfaceHighlight = SnackyColorPrimitive.Primary.c50 // Accent tint backgrounds, hover states
+    val bgSurfaceHighlight = SnackyColorPrimitive.Amber.c50 // Accent tint backgrounds, hover states
 
     // ── Background / Action ─────────────────────────────────────────────────
-    val bgActionPrimary = SnackyColorPrimitive.Primary.c500 // Main CTA, active states
-    val bgActionPrimaryHover = SnackyColorPrimitive.Primary.c600 // Primary action hover state
-    val bgActionPrimaryPressed = SnackyColorPrimitive.Primary.c700 // Primary action pressed state
+    val bgActionPrimary = SnackyColorPrimitive.Amber.c500 // Main CTA, active states
+    val bgActionPrimaryHover = SnackyColorPrimitive.Amber.c600 // Primary action hover state
+    val bgActionPrimaryPressed = SnackyColorPrimitive.Amber.c700 // Primary action pressed state
     val bgActionSecondary = SnackyColorPrimitive.Neutral.c0 // Secondary button fill
     val bgActionSecondaryHover = SnackyColorPrimitive.Neutral.c50 // Secondary action hover state
     val bgActionSecondaryPressed = SnackyColorPrimitive.Neutral.c100 // Secondary action pressed state
@@ -2250,9 +2250,9 @@ object SnackyColor {
 
     // ── Border ───────────────────────────────────────────────────────────────
     val borderMain = SnackyColorPrimitive.Neutral.c200 // Default borders, dividers
-    val borderHighlight = SnackyColorPrimitive.Primary.c200 // Highlighted/accent border
+    val borderHighlight = SnackyColorPrimitive.Amber.c200 // Highlighted/accent border
     val borderInputDefault = SnackyColorPrimitive.Neutral.c200 // Default input field border
-    val borderInputActive = SnackyColorPrimitive.Primary.c500 // Focused/active input field border
+    val borderInputActive = SnackyColorPrimitive.Amber.c500 // Focused/active input field border
     val borderInputError = SnackyColorPrimitive.Red.c500 // Input validation error border
     val borderActionSecondary = SnackyColorPrimitive.Neutral.c200 // Secondary action button border
     val borderActionSecondaryPressed = SnackyColorPrimitive.Neutral.c400 // Secondary action button border, pressed
@@ -2264,7 +2264,7 @@ object SnackyColor {
     val textSecondary = SnackyColorPrimitive.Neutral.c500 // Subtitles, descriptions
     val textPlaceholder = SnackyColorPrimitive.Neutral.c500 // Input placeholders, hint text
     val textDisabled = SnackyColorPrimitive.Neutral.c400 // Disabled text and labels
-    val textLink = SnackyColorPrimitive.Primary.c800 // Hyperlinks, anchor text
+    val textLink = SnackyColorPrimitive.Amber.c800 // Hyperlinks, anchor text
     val textError = SnackyColorPrimitive.Red.c700 // Error messages, danger states
     val textInverse = SnackyColorPrimitive.Neutral.c0 // Text on top of accent/dark-filled surfaces (e.g. discount tag label)
 
@@ -2274,9 +2274,9 @@ object SnackyColor {
     // just "is this an error/link", and mirrors the "text/on-action/*" Figma subgroup 1:1.
     val textOnActionPrimary = SnackyColorPrimitive.Neutral.c950 // Primary (Base or Danger) and Secondary/Base button label
     val textOnActionSecondary = SnackyColorPrimitive.Neutral.c950 // Defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to textOnActionPrimary instead (same value, different token). Flagged for design to confirm intent.
-    val textOnActionTertiary = SnackyColorPrimitive.Primary.c700 // Tertiary/Base button label (default): a ghost/text button, so label color IS the affordance
-    val textOnActionTertiaryHovered = SnackyColorPrimitive.Primary.c800 // Tertiary/Base button label, hovered
-    val textOnActionTertiaryPressed = SnackyColorPrimitive.Primary.c900 // Tertiary/Base button label, pressed
+    val textOnActionTertiary = SnackyColorPrimitive.Amber.c700 // Tertiary/Base button label (default): a ghost/text button, so label color IS the affordance
+    val textOnActionTertiaryHovered = SnackyColorPrimitive.Amber.c800 // Tertiary/Base button label, hovered
+    val textOnActionTertiaryPressed = SnackyColorPrimitive.Amber.c900 // Tertiary/Base button label, pressed
     val textActionDanger = SnackyColorPrimitive.Red.c600 // Secondary/Danger and Tertiary/Danger button label (default); these hierarchies signal danger via label/border color, not fill
     val textActionDangerHovered = SnackyColorPrimitive.Red.c700 // Secondary/Danger and Tertiary/Danger button label, hovered
     val textActionDangerPressed = SnackyColorPrimitive.Red.c800 // Secondary/Danger and Tertiary/Danger button label, pressed
@@ -2285,7 +2285,7 @@ object SnackyColor {
     // ── Icon ─────────────────────────────────────────────────────────────────
     val iconPrimary = SnackyColorPrimitive.Neutral.c950 // Default icon color
     val iconSecondary = SnackyColorPrimitive.Neutral.c700 // Secondary, muted icon color
-    val iconBrand = SnackyColorPrimitive.Primary.c500 // Brand-accent icons and indicators
+    val iconBrand = SnackyColorPrimitive.Amber.c500 // Brand-accent icons and indicators
     val iconDisabled = SnackyColorPrimitive.Neutral.c400 // Disabled icon color
     val iconActive = SnackyColorPrimitive.Red.c500 // Active/selected state icon color
     val iconOnAccent = SnackyColorPrimitive.Neutral.c0 // Icon color on top of accent-filled surfaces
@@ -3224,7 +3224,7 @@ fun SnackyTabRow(
         selectedTabIndex = selected,
         modifier         = modifier,
         containerColor   = bgSurface,
-        contentColor     = textOnActionTertiary, // active label is primary-700, a distinct darker value from the primary-500 (iconBrand) indicator
+        contentColor     = textOnActionTertiary, // active label is amber-700, a distinct darker value from the amber-500 (iconBrand) indicator
         indicator        = { tabPositions ->
             TabRowDefaults.SecondaryIndicator(
                 modifier = Modifier.tabIndicatorOffset(tabPositions[selected]),
@@ -5414,16 +5414,16 @@ import { typography } from '@snacky/ui';
    only has to happen once, in this one file. Load this file before tokens.css. */
 
 :root {
-  --color-primary-50: #fef8eb;
-  --color-primary-100: #fde9bf;
-  --color-primary-200: #fcdea1;
-  --color-primary-300: #facf76;
-  --color-primary-400: #f9c55b;
-  --color-primary-500: #f8b732;
-  --color-primary-600: #e2a72e;
-  --color-primary-700: #b08224;
-  --color-primary-800: #88651c;
-  --color-primary-900: #684d15;
+  --color-amber-50: #fef8eb;
+  --color-amber-100: #fde9bf;
+  --color-amber-200: #fcdea1;
+  --color-amber-300: #facf76;
+  --color-amber-400: #f9c55b;
+  --color-amber-500: #f8b732;
+  --color-amber-600: #e2a72e;
+  --color-amber-700: #b08224;
+  --color-amber-800: #88651c;
+  --color-amber-900: #684d15;
 
   --color-neutral-0: #ffffff;
   --color-neutral-10: #fdfdfd;
@@ -5471,16 +5471,16 @@ import { typography } from '@snacky/ui';
 
   /* Background / Surface */
   --bg-surface: var(--color-neutral-0);
-  --bg-surface-primary: var(--color-primary-500);
+  --bg-surface-primary: var(--color-amber-500);
   --bg-surface-accent: var(--color-red-500);
   --bg-surface-variant: var(--color-neutral-50);
   --bg-surface-field: var(--color-neutral-0);
-  --bg-surface-highlight: var(--color-primary-50);
+  --bg-surface-highlight: var(--color-amber-50);
 
   /* Background / Action */
-  --bg-action-primary: var(--color-primary-500);
-  --bg-action-primary-hover: var(--color-primary-600);
-  --bg-action-primary-pressed: var(--color-primary-700);
+  --bg-action-primary: var(--color-amber-500);
+  --bg-action-primary-hover: var(--color-amber-600);
+  --bg-action-primary-pressed: var(--color-amber-700);
   --bg-action-secondary: var(--color-neutral-0);
   --bg-action-secondary-hover: var(--color-neutral-50);
   --bg-action-secondary-pressed: var(--color-neutral-100);
@@ -5491,9 +5491,9 @@ import { typography } from '@snacky/ui';
 
   /* Border */
   --border-main: var(--color-neutral-200);
-  --border-highlight: var(--color-primary-200);
+  --border-highlight: var(--color-amber-200);
   --border-input-default: var(--color-neutral-200);
-  --border-input-active: var(--color-primary-500);
+  --border-input-active: var(--color-amber-500);
   --border-input-error: var(--color-red-500);
   --border-action-secondary: var(--color-neutral-200);
   --border-action-secondary-pressed: var(--color-neutral-400);
@@ -5505,7 +5505,7 @@ import { typography } from '@snacky/ui';
   --text-secondary: var(--color-neutral-500);
   --text-placeholder: var(--color-neutral-500);
   --text-disabled: var(--color-neutral-400);
-  --text-link: var(--color-primary-800);
+  --text-link: var(--color-amber-800);
   --text-error: var(--color-red-700);
   --text-inverse: var(--color-neutral-0);
 
@@ -5514,9 +5514,9 @@ import { typography } from '@snacky/ui';
      subgroup 1:1. */
   --text-on-action-primary: var(--color-neutral-950);
   --text-on-action-secondary: var(--color-neutral-950); /* defined in Figma but not currently wired to any button; Secondary/Base's label actually binds to --text-on-action-primary instead (same value, different token) */
-  --text-on-action-tertiary: var(--color-primary-700);
-  --text-on-action-tertiary-hovered: var(--color-primary-800);
-  --text-on-action-tertiary-pressed: var(--color-primary-900);
+  --text-on-action-tertiary: var(--color-amber-700);
+  --text-on-action-tertiary-hovered: var(--color-amber-800);
+  --text-on-action-tertiary-pressed: var(--color-amber-900);
   --text-action-danger: var(--color-red-600);
   --text-action-danger-hovered: var(--color-red-700);
   --text-action-danger-pressed: var(--color-red-800);
@@ -5525,7 +5525,7 @@ import { typography } from '@snacky/ui';
   /* Icon */
   --icon-primary: var(--color-neutral-950);
   --icon-secondary: var(--color-neutral-700);
-  --icon-brand: var(--color-primary-500);
+  --icon-brand: var(--color-amber-500);
   --icon-disabled: var(--color-neutral-400);
   --icon-active: var(--color-red-500);
   --icon-on-accent: var(--color-neutral-0);

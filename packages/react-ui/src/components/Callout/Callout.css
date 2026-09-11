@@ -21,7 +21,7 @@
 .snacky-callout--sent,
 .snacky-callout--pending {
   align-self: flex-end;
-  background: var(--color-primary-500);
+  background: var(--bg-surface-primary);
 }
 .snacky-callout__message {
   margin: 0;

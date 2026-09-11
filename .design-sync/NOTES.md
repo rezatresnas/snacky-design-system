@@ -374,7 +374,7 @@
 
 - **2026-09-09**: `@snacky/ui` 0.8.1 -> 0.9.0. No component code changed -
   `tokens.css` now emits semantic tokens as `var()` references to their
-  primitive (e.g. `--bg-action-primary: var(--color-primary-500)`) instead of
+  primitive (e.g. `--bg-action-primary: var(--color-amber-500)`) instead of
   a flattened literal, so the two-layer token system actually means something
   in devtools/an override cascade. All 175 CSS custom properties verified
   byte-identical in resolved value before/after (0 differences), so no visual

@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 
 /** Raw color ramps. Rarely used directly, prefer [SnackyColor]. */
 object SnackyColorPrimitive {
-    object Primary {
+    object Amber {
         val c50 = Color(0xFFFEF8EB)
         val c100 = Color(0xFFFDE9BF)
         val c200 = Color(0xFFFCDEA1)
@@ -56,14 +56,14 @@ object SnackyColorPrimitive {
 object SnackyColor {
     val bgApp = SnackyColorPrimitive.Neutral.c20
     val bgSurface = SnackyColorPrimitive.Neutral.c0
-    val bgSurfacePrimary = SnackyColorPrimitive.Primary.c500
+    val bgSurfacePrimary = SnackyColorPrimitive.Amber.c500
     val bgSurfaceAccent = SnackyColorPrimitive.Red.c500
     val bgSurfaceVariant = SnackyColorPrimitive.Neutral.c50
     val bgSurfaceField = SnackyColorPrimitive.Neutral.c0
-    val bgSurfaceHighlight = SnackyColorPrimitive.Primary.c50
-    val bgActionPrimary = SnackyColorPrimitive.Primary.c500
-    val bgActionPrimaryHover = SnackyColorPrimitive.Primary.c600
-    val bgActionPrimaryPressed = SnackyColorPrimitive.Primary.c700
+    val bgSurfaceHighlight = SnackyColorPrimitive.Amber.c50
+    val bgActionPrimary = SnackyColorPrimitive.Amber.c500
+    val bgActionPrimaryHover = SnackyColorPrimitive.Amber.c600
+    val bgActionPrimaryPressed = SnackyColorPrimitive.Amber.c700
     val bgActionSecondary = SnackyColorPrimitive.Neutral.c0
     val bgActionSecondaryHover = SnackyColorPrimitive.Neutral.c50
     val bgActionSecondaryPressed = SnackyColorPrimitive.Neutral.c100
@@ -73,9 +73,9 @@ object SnackyColor {
     val bgActionPrimaryDangerPressed = SnackyColorPrimitive.Red.c700
     val bgOverlayDim = Color(red = 51f / 255f, green = 51f / 255f, blue = 51f / 255f, alpha = 0.8f)
     val borderMain = SnackyColorPrimitive.Neutral.c200
-    val borderHighlight = SnackyColorPrimitive.Primary.c200
+    val borderHighlight = SnackyColorPrimitive.Amber.c200
     val borderInputDefault = SnackyColorPrimitive.Neutral.c200
-    val borderInputActive = SnackyColorPrimitive.Primary.c500
+    val borderInputActive = SnackyColorPrimitive.Amber.c500
     val borderInputError = SnackyColorPrimitive.Red.c500
     val borderActionSecondary = SnackyColorPrimitive.Neutral.c200
     val borderActionSecondaryPressed = SnackyColorPrimitive.Neutral.c400
@@ -85,21 +85,21 @@ object SnackyColor {
     val textSecondary = SnackyColorPrimitive.Neutral.c500
     val textPlaceholder = SnackyColorPrimitive.Neutral.c500
     val textDisabled = SnackyColorPrimitive.Neutral.c400
-    val textLink = SnackyColorPrimitive.Primary.c800
+    val textLink = SnackyColorPrimitive.Amber.c800
     val textError = SnackyColorPrimitive.Red.c700
     val textInverse = SnackyColorPrimitive.Neutral.c0
     val textOnActionPrimary = SnackyColorPrimitive.Neutral.c950
     val textOnActionSecondary = SnackyColorPrimitive.Neutral.c950
-    val textOnActionTertiary = SnackyColorPrimitive.Primary.c700
-    val textOnActionTertiaryHovered = SnackyColorPrimitive.Primary.c800
-    val textOnActionTertiaryPressed = SnackyColorPrimitive.Primary.c900
+    val textOnActionTertiary = SnackyColorPrimitive.Amber.c700
+    val textOnActionTertiaryHovered = SnackyColorPrimitive.Amber.c800
+    val textOnActionTertiaryPressed = SnackyColorPrimitive.Amber.c900
     val textActionDanger = SnackyColorPrimitive.Red.c600
     val textActionDangerHovered = SnackyColorPrimitive.Red.c700
     val textActionDangerPressed = SnackyColorPrimitive.Red.c800
     val textActionDisabled = SnackyColorPrimitive.Neutral.c400
     val iconPrimary = SnackyColorPrimitive.Neutral.c950
     val iconSecondary = SnackyColorPrimitive.Neutral.c700
-    val iconBrand = SnackyColorPrimitive.Primary.c500
+    val iconBrand = SnackyColorPrimitive.Amber.c500
     val iconDisabled = SnackyColorPrimitive.Neutral.c400
     val iconActive = SnackyColorPrimitive.Red.c500
     val iconOnAccent = SnackyColorPrimitive.Neutral.c0

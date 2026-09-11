@@ -27,7 +27,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -147,7 +146,7 @@ fun SnackyPointBalanceBanner(
             .height(IntrinsicSize.Min) // lets the divider below actually stretch
             .clip(RoundedCornerShape(SnackyRadius.card))
             .background(SnackyColor.bgSurfaceHighlight)
-            .border(1.dp, SnackyColorPrimitive.Primary.c500, RoundedCornerShape(SnackyRadius.card))
+            .border(1.dp, SnackyColor.borderHighlight, RoundedCornerShape(SnackyRadius.card))
             .padding(horizontal = SnackySpacingPrimitive.space16, vertical = SnackySpacingPrimitive.space8),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space8),
@@ -167,7 +166,7 @@ fun SnackyPointBalanceBanner(
             modifier = Modifier
                 .width(1.dp)
                 .fillMaxHeight()
-                .background(SnackyColorPrimitive.Primary.c500),
+                .background(SnackyColor.borderHighlight),
         )
         Box(modifier = Modifier.weight(1f)) {
             PointBalanceItem(balanceLabel, balance, balanceIcon)

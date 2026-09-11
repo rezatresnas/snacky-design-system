@@ -136,16 +136,16 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   See `packages/react-ui/README.md` for known gaps (Illustration ships no artwork, etc).
 - **Semantic tokens must be emitted as references to their primitive, never
   flattened to a copy of its value.** Both generators originally resolved every
-  `{color.primitive.primary.500}` alias down to a literal, so `tokens.css` shipped
+  `{color.primitive.amber.500}` alias down to a literal, so `tokens.css` shipped
   `--bg-action-primary: #f8b732` and `Tokens.kt` shipped
   `val bgActionPrimary = Color(0xFFF8B732)`. The colors were right, but it made the
   primitive/semantic split cosmetic: devtools showed no link between the two, and
-  overriding `--color-primary-500` alone (a white-label re-skin, a theme block)
+  overriding `--color-amber-500` alone (a white-label re-skin, a theme block)
   changed nothing, because each semantic token carried its own frozen copy. That is
   the same "hardcoded per component" token drift this design system exists to
   prevent, reproduced one layer up. `refToCssVar()`/`refToKotlin()` now map an alias
-  onto the emitted variable name (`var(--color-primary-500)`,
-  `SnackyColorPrimitive.Primary.c500`); anything without a primitive behind it
+  onto the emitted variable name (`var(--color-amber-500)`,
+  `SnackyColorPrimitive.Amber.c500`); anything without a primitive behind it
   (`bgOverlayDim`, a raw rgba) still falls through to the literal. Verified at the
   time of the change: all 175 CSS custom properties resolve to byte-identical
   values, 63 of them now through a reference, and overriding one primitive cascades

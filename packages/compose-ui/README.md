@@ -203,7 +203,7 @@ that credit with them.
 
 - `SnackyRadioOption` (`src/commonMain/kotlin/com/snacky/ui/components/radiobutton/RadioButton.kt`),
   single-selection control for a group of 2+ mutually exclusive options. A
-  24dp ring (1px `borderMain`, or `primitive.primary.500` when selected) with
+  24dp ring (1px `borderMain`, or `primitive.amber.500` when selected) with
   a 12dp center dot when selected. Disabled is a solid `bgSurfaceVariant`
   (#f3f3f3) fill and suppresses the dot entirely even if selected (no
   disabled+selected variant exists in Figma to contradict that).
@@ -297,7 +297,7 @@ that credit with them.
   fixed 360dp width there). Confirmed against Figma (node `441:13155`, page
   "Navbar"): no bugs, including the already-noted detail that icon and
   label use different inactive colors (`iconSecondary` #525252 vs
-  `textSecondary` #7a7a7a) and the active icon color (`primitive.primary.500`)
+  `textSecondary` #7a7a7a) and the active icon color (`primitive.amber.500`)
   - all re-verified directly rather than assumed correct because a comment
   said so. The outer shadow matches `shadowTop` exactly (offsetY -4, blur
   10, alpha 0.08), approximated with a plain `Modifier.shadow` since Compose
@@ -325,7 +325,7 @@ that credit with them.
   default label. The underline's own bound variable turned out to be
   `border/input/border-input-active` (an input-focus token, same #f8b732
   value) - read as incidental Figma variable reuse rather than an
-  intentional shared role, so it stays on the primitive `color-primary-500`
+  intentional shared role, so it stays on the primitive `color-amber-500`
   /`Primary.c500` rather than adopting a misleading semantic name.
 
 - `SnackyAccordion` (`src/commonMain/kotlin/com/snacky/ui/components/accordion/Accordion.kt`),

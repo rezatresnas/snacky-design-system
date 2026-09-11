@@ -28,8 +28,8 @@
   background: var(--bg-surface-field);
 }
 .snacky-checkbox:checked {
-  background: var(--color-primary-500);
-  border-color: var(--color-primary-500);
+  background: var(--bg-surface-primary);
+  border-color: var(--bg-surface-primary);
 }
 .snacky-checkbox:checked::after {
   content: '';

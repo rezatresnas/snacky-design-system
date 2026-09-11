@@ -21,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
@@ -29,11 +28,12 @@ import com.snacky.ui.theme.SnackyTypography
 /**
  * Badge family - four small independent components, mirroring
  * packages/react-ui's Badge.tsx/Badge.css exactly (same split, same
- * verified spec). Confirmed against Figma (node 8792:6172, page "Badge"):
- * all four variants matched already, no color/token bugs found this time
- * (a 7dp vs 8dp horizontal-padding difference on Sold looked like a Figma
+ * verified spec). Checked against Figma node 8792:6172, page "Badge". A 7dp
+ * vs 8dp horizontal-padding difference on Sold looked like a Figma
  * auto-layout hug-content rounding artifact, not an intentional value, so
- * this still uses the spacing-8 token like react-ui does).
+ * this still uses the spacing-8 token like react-ui does. That pass compared
+ * rendered colors rather than bound variables and so missed the InfoBadge
+ * stroke below, which Figma splits across two different border tokens.
  */
 
 /** Numeric count overlay on an icon (e.g. cart). Hides entirely when count <= 0. */
@@ -142,7 +142,13 @@ fun SnackyInfoBadge(
         modifier = modifier
             .clip(shape)
             .background(SnackyColor.bgSurfaceHighlight)
-            .border(1.dp, SnackyColorPrimitive.Primary.c500, shape)
+            // Figma gives the two info variants different strokes (node 8792:6172),
+            // separated by the same icon slot that separates them here.
+            .border(
+                1.dp,
+                if (icon != null) SnackyColor.borderInputActive else SnackyColor.borderHighlight,
+                shape,
+            )
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(SnackyGap.textIcon),

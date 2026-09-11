@@ -38,5 +38,5 @@
   color: var(--icon-secondary);
 }
 .snacky-navbar__item--active .snacky-navbar__icon {
-  color: var(--color-primary-500);
+  color: var(--icon-brand);
 }

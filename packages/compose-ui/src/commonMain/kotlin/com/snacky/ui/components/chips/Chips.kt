@@ -22,7 +22,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
-import com.snacky.ui.theme.SnackyColorPrimitive
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
 
@@ -41,7 +40,7 @@ private fun chipBackground(selected: Boolean): Color =
     if (selected) SnackyColor.bgSurfaceHighlight else SnackyColor.bgSurface
 
 private fun chipBorderColor(selected: Boolean): Color =
-    if (selected) SnackyColorPrimitive.Primary.c500 else SnackyColor.borderMain
+    if (selected) SnackyColor.borderInputActive else SnackyColor.borderMain
 
 private val chipTextStyle: TextStyle
     get() = TextStyle(

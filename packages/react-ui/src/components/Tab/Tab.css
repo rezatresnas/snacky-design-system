@@ -27,17 +27,14 @@
 .snacky-tab--active {
   font-family: var(--font-body-semibold-family);
   font-weight: var(--font-body-semibold-weight);
-  /* Re-verified against Figma's actual bound variables (an earlier pass
-     read this as the raw primary-700 primitive): the active label's text
-     fill is bound to text/on-action/text-on-action-tertiary (#b08224,
-     same value as primary-700, but the real semantic token, matching the
-     Tertiary button's default label color). The underline's stroke is
-     bound to border/input/border-input-active (#f8b732) - an input-focus
-     token reused here, which reads as incidental Figma variable reuse
-     rather than an intentional shared role, so this keeps the primitive
-     --color-primary-500 instead of adopting a misleading token name. */
+  /* Both fills come straight from Figma's bound variables (node 386:10910):
+     the active label is text/on-action/text-on-action-tertiary and the
+     underline stroke is border/input/border-input-active. An earlier pass
+     dismissed the underline binding as incidental variable reuse and kept
+     the raw primitive instead; reading the node confirmed it is deliberate,
+     and Chips uses the same token for its selected border. */
   color: var(--text-on-action-tertiary);
-  box-shadow: inset 0 -2px 0 0 var(--color-primary-500);
+  box-shadow: inset 0 -2px 0 0 var(--border-input-active);
   font-size: var(--font-body-semibold-size);
   line-height: var(--font-body-semibold-line-height);
   letter-spacing: var(--font-body-semibold-letter-spacing);

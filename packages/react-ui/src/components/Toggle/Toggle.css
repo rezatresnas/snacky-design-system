@@ -49,5 +49,5 @@
 }
 .snacky-toggle--on .snacky-toggle__thumb {
   left: 24px;
-  background: var(--color-primary-500);
+  background: var(--bg-surface-primary);
 }
