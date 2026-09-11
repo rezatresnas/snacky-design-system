@@ -400,6 +400,39 @@
   after the real package token exports, following up on 0.9.0) touched
   nothing this sync reads.
 
+- **2026-09-11**: Primary ramp renamed `primary` -> `amber` (`--color-amber-*`,
+  `SnackyColorPrimitive.Amber.*`); semantic role names unchanged. Components
+  rebound to the semantic token Figma actually binds instead of the raw
+  primitive, across both platforms - 17 sites, all now matching Figma's bound
+  variables. Two real color bugs found this way: `InfoBadge`'s no-icon border
+  and `PointBalanceBanner`'s border/divider rendered `#f8b732` (amber-500)
+  where Figma binds `border-highlight` (amber-200, `#fcdea1`) - a visibly
+  lighter gold. Verified: both now show the lighter border in their
+  screenshots. Everything else rebound (`Callout`, `Checkbox`, `Toggle`,
+  `Chips`/`ProductChip`, `TabRow`, `NavBar`) resolves to the exact same
+  primitive value as before (`bg-surface-primary`/`border-input-active`/
+  `icon-brand` all = amber-500), so no visual change there - confirmed by
+  spot-checking all of them anyway rather than trusting the token math.
+  Also a real `BottomSheet` fix: the drag handle (driver variant only) is now
+  40x4 (was 36x4), `border-main` gray (was the neutral-200 primitive - same
+  value, but now the real token), `radius-full`, no extra bottom margin -
+  matches Figma's `Driver Slider` node (8693:6233). Verified in the
+  `WithHandle` screenshot. **Also fixed a stale preview bug while verifying**:
+  `.design-sync/previews/BottomSheet.tsx`'s `WithHandle` story's own body text
+  claimed "none of the nine documented Modal variants use one" while
+  demonstrating the one that does (`showHandle`) - a leftover from before the
+  component's own docstring was corrected in this same commit. Reworded to
+  name the driver variant as the documented exception. All prop contracts
+  unchanged (CSS-only across the board), so nothing showed as "changed" in
+  the driver's diff except `BottomSheet` (from the preview text edit) -
+  re-graded that one fresh, everything else carried forward after spot-check.
+  **Flagged to the user, not fixed by this sync**: this commit contains real
+  cross-platform component fixes but did not bump `packages/react-ui/
+  package.json`, `CHANGELOG.md`, or `packages/compose-ui/gradle.properties` -
+  the exact "real fix landed, no release cut" failure mode CLAUDE.md already
+  warns about from the `compose-v0.1.2` incident. compose-ui in particular
+  needs an explicit tag to ever reach JitPack.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

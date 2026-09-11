@@ -238,7 +238,8 @@ export function WithHandle() {
           <div style={centred}>
             <div style={title}>Driver on the way</div>
             <div style={bodyText}>
-              The drag handle is opt-in: none of the nine documented Modal variants use one.
+              The drag handle is opt-in (showHandle) - 8 of Figma&rsquo;s 9 Modal variants have
+              none; this driver variant is the one that does.
             </div>
           </div>
         </div>
