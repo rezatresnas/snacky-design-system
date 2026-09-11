@@ -32,11 +32,11 @@ enum class IconButtonSize { Default, Small }
  * Secondary doubles as a toggle control via [selected] (e.g. Favorite).
  * Mirrors packages/react-ui's IconButton.tsx/IconButton.css.
  *
- * [size] only has an effect on [IconButtonVariant.Primary] (32dp default,
- * 24dp small circle, the icon glyph itself stays a fixed 16dp either way).
- * react-ui's own doc comment claims "24px (default) or 16px (small)", that
- * is stale relative to its own CSS (verified 32px/24px), the CSS wins here
- * the same way it did when this was diffed for react-ui.
+ * [size] only has an effect on [IconButtonVariant.Primary]: 32dp with a 16dp
+ * icon by default, or Figma's small variant, a 24dp circle whose icon fills
+ * the full 24dp (Icon-Button set 8685:6254, Property 1=small, which carries
+ * [SnackyIcons.Solid.AngleSmallRight]). The small icon used to stay at 16dp,
+ * which drew that chevron at about 60% of its Figma size.
  *
  * Mobile has no hover, only a press: this maps Secondary/Primary's CSS
  * `:active` (pressed) colors and Tertiary's transient press overlay, and
@@ -68,7 +68,7 @@ fun SnackyIconButton(
         else -> 40.dp
     }
     val iconSize = when (variant) {
-        IconButtonVariant.Primary -> 16.dp
+        IconButtonVariant.Primary -> if (size == IconButtonSize.Small) 24.dp else 16.dp
         IconButtonVariant.Secondary -> 20.dp
         IconButtonVariant.Tertiary -> 24.dp
     }

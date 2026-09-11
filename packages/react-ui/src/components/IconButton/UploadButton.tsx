@@ -1,15 +1,17 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
+import { camera as CameraIcon } from '../../icons/outline.js';
 import './UploadButton.css';
 
 export interface UploadButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: ReactNode;
+  /** Defaults to the camera glyph Figma draws in this button (its `picture` icon). */
+  icon?: ReactNode;
   ariaLabel?: string;
 }
 
 /** Snacky Upload Button - circular dashed-border image drop zone. */
 export const UploadButton = forwardRef<HTMLButtonElement, UploadButtonProps>(function UploadButton(
-  { icon, ariaLabel = 'Upload image', className, ...rest },
+  { icon = <CameraIcon />, ariaLabel = 'Upload image', className, ...rest },
   ref
 ) {
   return (

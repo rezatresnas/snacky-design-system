@@ -79,6 +79,11 @@
 .snacky-product-card--details .snacky-product-card__name {
   font-size: 14px;
 }
+/* Figma fixes the list card's name box and rating/cart row at 41 each (Product-Card
+   set, Property 1=list), which is what makes the card 294 tall rather than 292.
+   The second line of a two-line name overflows the box into the gap, as in Figma. */
+.snacky-product-card--list .snacky-product-card__name { height: 41px; }
+.snacky-product-card--list .snacky-product-card__footer-row { height: 41px; }
 .snacky-product-card__price-row {
   display: flex;
   /* Figma's "Price container" is CENTER with a 5px gap, and 5 is not on the

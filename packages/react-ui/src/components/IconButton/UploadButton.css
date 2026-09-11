@@ -1,15 +1,30 @@
+/* Figma: Icon-Button set 8685:6254, Property 1=upload. A 72px circle, 24px
+   padding around a 24px icon, filled bg-action-secondary. */
 .snacky-upload {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 72px;
   height: 72px;
   padding: var(--spacing-24);
+  border: none;
   border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  border: 1px dashed var(--border-main);
+  background: var(--bg-action-secondary);
+  color: var(--icon-primary);
   cursor: pointer;
   transition: background-color 0.12s ease;
+}
+/* Figma draws the 1px dashed border-action-secondary stroke OUTSIDE the 72px
+   frame. A real border sits inside the box and squeezed the icon to 22px, so
+   the stroke is painted by this pseudo-element 1px outside instead. */
+.snacky-upload::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px dashed var(--border-action-secondary);
+  border-radius: inherit;
+  pointer-events: none;
 }
 .snacky-upload svg,
 .snacky-upload img { width: 100%; height: 100%; }

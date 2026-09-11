@@ -1,35 +1,24 @@
 package com.snacky.ui.components.section
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
+import com.snacky.ui.components.iconbutton.IconButtonSize
+import com.snacky.ui.components.iconbutton.SnackyIconButton
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -41,14 +30,13 @@ import com.snacky.ui.theme.SnackyTypography
  * vertical product groups, order summary, etc). Mirrors packages/react-ui's
  * Section.tsx/Section.css.
  *
- * The "see more" action button's chevron icon is textPrimary (#333333),
- * confirmed against Figma (node 8877-8885, page "Section", component set
- * 351:7830) by reading the chevron vector's own bound variable
- * (text/text-primary) directly, not the icon instance's own separate white
- * frame fill, which was misread as the icon color in an earlier pass of
- * this port and briefly "fixed" to white before being caught and reverted.
- * This button is bespoke to Section (like react-ui's own hand-rolled inline
- * SVG button), not the shared IconButton component.
+ * The "see more" action is the shared [SnackyIconButton] at
+ * [IconButtonSize.Small]: every Section header in Figma (component set
+ * 351:7830) instances the Icon-Button set's small variant, a 24dp circle
+ * carrying the full-size `fi-sr-angle-small-right` chevron. An earlier port
+ * drew its own 16dp stroked chevron here instead, at about 60% of Figma's
+ * size. The chevron is #333333 either way (Figma binds text/text-primary on
+ * the Section instance, icon-primary resolves to the same value).
  *
  * Also confirmed, but not something to "fix": shell padding is content-
  * dependent in some real variants (e.g. Figma's "Variant" variant has 0
@@ -56,11 +44,6 @@ import com.snacky.ui.theme.SnackyTypography
  * 24dp instead) - a content-composition pattern like BottomSheet's per-
  * variant spacing, not a shell bug; [content] can override this shell's
  * default padding when a specific composition needs to.
- *
- * react-ui's CSS only defines a `:hover` rule for the action button (no
- * `:active`) - mobile has no hover, so this maps that hover color onto the
- * press state instead, same convention used for SnackyIconButton's Tertiary
- * variant.
  */
 @Composable
 fun SnackySection(
@@ -76,10 +59,12 @@ fun SnackySection(
             .padding(horizontal = SnackySpacingPrimitive.space24, vertical = SnackySpacingPrimitive.space16),
         verticalArrangement = Arrangement.spacedBy(SnackyLayout.block),
     ) {
+        // Figma's Section headers are 30dp tall, cropping the title's 36sp line
+        // box from the top: the title stays top-aligned, the chevron centers.
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().height(30.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.Top,
         ) {
             BasicText(
                 text = title,
@@ -94,45 +79,15 @@ fun SnackySection(
                 ),
             )
             if (onAction != null) {
-                SectionActionButton(onClick = onAction)
+                SnackyIconButton(
+                    icon = { SnackyIcon(SnackyIcons.Solid.AngleSmallRight) },
+                    onClick = onAction,
+                    contentDescription = "See more: $title",
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    size = IconButtonSize.Small,
+                )
             }
         }
         content()
-    }
-}
-
-@Composable
-private fun SectionActionButton(onClick: () -> Unit) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val pressed by interactionSource.collectIsPressedAsState()
-    Box(
-        modifier = Modifier
-            .size(24.dp)
-            .clip(CircleShape)
-            .background(if (pressed) SnackyColor.bgActionPrimaryHover else SnackyColor.bgActionPrimary)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = onClick,
-            )
-            .semantics { contentDescription = "See more" },
-        contentAlignment = Alignment.Center,
-    ) {
-        Canvas(modifier = Modifier.size(16.dp)) {
-            val path = Path().apply {
-                moveTo(size.width * (6f / 16f), size.height * (3.5f / 16f))
-                lineTo(size.width * (10.5f / 16f), size.height * (8f / 16f))
-                lineTo(size.width * (6f / 16f), size.height * (12.5f / 16f))
-            }
-            drawPath(
-                path = path,
-                color = SnackyColor.textPrimary,
-                style = Stroke(
-                    width = size.minDimension * (1.5f / 16f),
-                    cap = StrokeCap.Round,
-                    join = StrokeJoin.Round,
-                ),
-            )
-        }
     }
 }

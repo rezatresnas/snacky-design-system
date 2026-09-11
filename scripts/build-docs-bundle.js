@@ -12,7 +12,9 @@
  * committed, because packages/react-ui/dist is gitignored and GitHub Pages
  * could not serve it.
  *
- * Run after any change to packages/react-ui:
+ * It also regenerates assets/ui/component-sources.js (the real package files
+ * shown in each page's "Component Source" panel), so run it after any change
+ * to packages/react-ui OR packages/compose-ui:
  *   node scripts/build-docs-bundle.js
  */
 const path = require('path');
@@ -55,6 +57,7 @@ build({
     if (fs.existsSync(css)) parts.push(`snacky-ui.css ${kb(css)}`);
     else console.warn('WARNING: no CSS emitted - the preview would render unstyled');
     console.log('Wrote assets/ui/: ' + parts.join(', '));
+    require('./build-component-sources.js').buildComponentSources();
   })
   .catch((err) => {
     console.error(err);

@@ -28,11 +28,14 @@
 .snacky-iconbtn--primary:disabled { background: var(--bg-action-disabled); border: 1px solid var(--border-action-disabled); }
 .snacky-iconbtn--primary:disabled .snacky-iconbtn__icon { color: var(--icon-disabled); }
 
+/* Figma's small variant (Icon-Button set, Property 1=small) is a 24px circle
+   with its chevron icon at the full 24x24, not inset: no padding. */
 .snacky-iconbtn--primary.snacky-iconbtn--small {
   width: 24px;
   height: 24px;
-  padding: var(--spacing-4);
+  padding: 0;
 }
+.snacky-iconbtn--primary.snacky-iconbtn--small .snacky-iconbtn__icon { width: 24px; height: 24px; }
 
 /* Secondary - 40px, elevated, can act as a toggle via `selected` */
 .snacky-iconbtn--secondary {

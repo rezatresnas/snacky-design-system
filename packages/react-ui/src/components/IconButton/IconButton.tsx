@@ -6,7 +6,7 @@ export type IconButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: IconButtonVariant;
-  /** 24px (default) or 16px (small) circle - only meaningful on the primary variant. */
+  /** 32px circle with a 16px icon (default) or 24px circle with a full-size 24px icon (small), primary only. */
   size?: 'default' | 'small';
   icon: ReactNode;
   /** Toggled/favorited state on the Secondary variant - tints the icon with icon-active, fill unchanged. */

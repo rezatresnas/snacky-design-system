@@ -50,7 +50,7 @@ implementation("com.github.rezatresnas:snacky-design-system:compose-v1.4.0")
 ### Using the icons
 
 **Never substitute an emoji or a hand-drawn shape for an icon.** The real set
-ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (11), rendered
+ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (12), rendered
 through `SnackyIcon`:
 
 ```kotlin
@@ -164,18 +164,24 @@ that credit with them.
   package grows a `SnackyTheme` that can supply one globally.
 
 - `SnackyIconButton` (`src/commonMain/kotlin/com/snacky/ui/components/iconbutton/IconButton.kt`),
-  a compact circular touch target for a single icon. Primary (32dp default /
-  24dp small, the icon glyph itself always stays 16dp), Secondary (40dp,
+  a compact circular touch target for a single icon. Primary (32dp with a
+  16dp icon, or 24dp small with a full 24dp icon), Secondary (40dp,
   shadowed, doubles as a toggle via `selected`), Tertiary (40dp, no resting
   fill). Ported from `packages/react-ui`'s verified `IconButton.tsx`/
-  `IconButton.css`, not the site's illustrative Kotlin sample (that sample's
-  `tint`/upload-variant params aren't in react-ui's real, verified prop
-  shape, so weren't carried over here either).
+  `IconButton.css`.
 
-  Caught one stale doc comment in `IconButton.tsx` while porting: it claims
-  Primary is "24px (default) or 16px (small)", the CSS (32px/24px) is what
-  actually ships and is what this Compose port matches, same "verified
-  implementation wins" rule the rest of this repo already follows.
+- `SnackyUploadButton` (`src/commonMain/kotlin/com/snacky/ui/components/iconbutton/UploadButton.kt`),
+  the circular dashed image drop zone, react-ui's `UploadButton`. A 72dp
+  `bgActionSecondary` circle around a 24dp icon (defaults to the camera glyph),
+  with a 1dp `borderActionSecondary` stroke dashed [2dp, 2dp] and drawn outside
+  the circle, as Figma does (Icon-Button set 8685:6254, Property 1=upload).
+  It was the one react-ui component with no Compose counterpart; the site's
+  Kotlin sample called a `SnackyUploadButton` that did not exist.
+
+  Primary is 32dp with a 16dp icon, or 24dp at `IconButtonSize.Small`, where
+  Figma's small variant puts its `angleSmallRight` chevron at the full 24dp
+  with no inset (Icon-Button set 8685:6254). Both packages used to inset the
+  small icon to 16dp.
 
   Secondary's elevation uses Compose's own `Modifier.shadow`, an
   approximation, not a literal replication of the CSS `box-shadow` blur

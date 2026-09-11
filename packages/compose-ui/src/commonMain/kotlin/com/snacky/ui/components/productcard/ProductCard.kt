@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -23,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.snacky.ui.components.badge.SnackyDiscountTag
@@ -95,10 +97,17 @@ fun SnackyProductCard(
                 SnackyDiscountTag(label = discountLabel, modifier = Modifier.align(Alignment.TopEnd))
             }
         }
-        BasicText(text = productName, style = cardStyle(SnackyTypography.Small.regular, SnackyColor.textPrimary))
+        // Figma's list card fixes both the name box and the rating/cart row at
+        // 41dp (Product-Card set, Property 1=list), which is what makes it 294 tall.
+        BasicText(
+            text = productName,
+            modifier = Modifier.height(41.dp),
+            style = cardStyle(SnackyTypography.Small.regular, SnackyColor.textPrimary),
+            overflow = TextOverflow.Visible,
+        )
         PriceRow(price, originalPrice, detailed = false)
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().height(41.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
