@@ -4,6 +4,66 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## Brand ramp renamed to amber, components re-checked against Figma (0.10.0)
+
+**Breaking: the brand primitive ramp is now `amber`.** It was the only
+primitive named by role (`primary`) while its neighbours were named by hue
+(`neutral`, `red`), which made `--bg-action-primary: var(--color-primary-500)`
+read like a tautology. `--color-primary-50` through `--color-primary-900` are
+now `--color-amber-50` through `--color-amber-900`, with no alias left behind.
+Semantic tokens keep their role names (`--bg-action-primary`,
+`--border-input-active`, ...) and resolve to byte-identical values: all 175
+custom properties were compared before and after, 63 of them still through a
+reference. Only code that referenced a `--color-primary-*` variable directly
+needs to change, and a find-and-replace of `--color-primary-` to
+`--color-amber-` is the whole migration.
+
+**Components now use the semantic token Figma binds.** The earlier checks
+compared rendered colours, so a component painting the right hex from the
+wrong token passed. This pass read each node's bound variables instead, and
+found 17 places across both packages reaching past the semantic layer to a
+primitive. Most resolve to the same colour, so only the token changed
+(Checkbox, Toggle, Callout, Navbar's active icon, Tab's underline, Chips'
+selected border). Three were real colour bugs, all rendering `#f8b732` where
+Figma binds `border-highlight` (`#fcdea1`): InfoBadge's border when it has no
+icon, and PointBalanceBanner's border and divider. InfoBadge with an icon
+keeps `border-input-active`, selected by the same icon slot Figma uses to tell
+the two variants apart.
+
+**BottomSheet's drag handle** follows Figma's `Driver Slider`: 40x4 (was
+36x4), `border-main` rather than the `neutral-200` primitive (same colour),
+`radius-full`, and no bottom margin of its own. The space below the handle is
+now just the sheet's 16px gap, so a sheet with `showHandle` is 8px shorter.
+
+**IconButton `size="small"`** is Figma's 24px circle with the icon at the full
+24x24 and no padding. It used to pad by 4 and inset the icon to 16px, about
+60% of Figma's size. The chevron it carries in Figma, `fi-sr-angle-small-right`,
+was not in the icon set at all; it now ships as `SnackyIcons.solid.angleSmallRight`,
+making the solid set 12 icons.
+
+**Section's "see more" action** is that shared small IconButton. It used to be
+its own button with a hand-drawn 16px stroked chevron, so the
+`.snacky-section__action` class no longer exists; style the IconButton instead
+if you were targeting it. The header is also 30px tall now, not the title's
+36px line box, because Figma crops the h3 title node to 30 from the top. Every
+Section is 6px shorter as a result.
+
+**UploadButton** matches Figma's `Property 1=upload`: `bg-action-secondary`
+fill (was `bg-surface`) and a dashed `border-action-secondary` outline (was
+`border-main`) drawn 1px outside the 72px circle, as Figma draws it. A real
+border sat inside the box and squeezed the icon to 22px. The `icon` prop is
+now optional and defaults to the camera glyph Figma uses.
+
+**ProductCard (list)** pins the name box and the rating/cart row at 41px each,
+as Figma does, so the card is 294 tall (it was 292). The docs site's spec
+already said 294; the package was the one that was wrong.
+
+compose-ui ships the same changes as `compose-v2.0.0`. The major bump is for
+the ramp rename, which there is `SnackyColorPrimitive.Primary` becoming
+`SnackyColorPrimitive.Amber`; `SnackyColor.*` semantic names are unchanged.
+It also adds `SnackyUploadButton`, which react-ui had and compose-ui did not,
+and `SnackyIcons.Solid.AngleSmallRight`.
+
 ## SoldOut overlay uses its own token (0.9.1)
 
 Auditing the rest of the package after the semantic-token fix turned up two
