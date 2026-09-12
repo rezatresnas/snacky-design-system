@@ -53,11 +53,14 @@
   height: 16px;
   border-radius: var(--radius-full);
 }
+/* The dot fills are the indicator role, not an icon colour and not a disabled
+   control: a pending step is one the order has not reached yet, not one the
+   user cannot use. Same values as before (amber-500, neutral-200). */
 .snacky-stepper__dot--done::before {
-  background: var(--icon-brand);
+  background: var(--bg-indicator-active);
 }
 .snacky-stepper__dot--pending::before {
-  background: var(--bg-action-disabled);
+  background: var(--bg-indicator-inactive);
 }
 .snacky-stepper__dot--cancelled::before {
   background: var(--bg-surface-accent);

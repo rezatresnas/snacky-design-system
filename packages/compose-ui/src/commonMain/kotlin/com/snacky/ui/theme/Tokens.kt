@@ -71,6 +71,8 @@ object SnackyColor {
     val bgActionPrimaryDanger = SnackyColorPrimitive.Red.c500
     val bgActionPrimaryDangerHovered = SnackyColorPrimitive.Red.c600
     val bgActionPrimaryDangerPressed = SnackyColorPrimitive.Red.c700
+    val bgIndicatorActive = SnackyColorPrimitive.Amber.c500
+    val bgIndicatorInactive = SnackyColorPrimitive.Neutral.c200
     val bgOverlayDim = Color(red = 51f / 255f, green = 51f / 255f, blue = 51f / 255f, alpha = 0.8f)
     val borderMain = SnackyColorPrimitive.Neutral.c200
     val borderHighlight = SnackyColorPrimitive.Amber.c200

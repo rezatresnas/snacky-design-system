@@ -142,12 +142,44 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   General lesson: "the package has no component for this" is evidence the design
   system may be missing one, not proof the pattern is app-level. Count the
   copies in Figma before concluding.
+- **`PageIndicator` came in through the other door: the count said no, the token
+  gap said yes.** The carousel dot row had one real copy in the app page, far
+  below Stepper's 19, so the counting rule above did not call for a component.
+  What did was the borrowing underneath it: the dots were raw `#dadada` (a grey
+  in no ramp) and raw `#f8b732`, and Stepper's own dots were painting
+  `--icon-brand` (an icon token used as a shape fill) and `--bg-action-disabled`
+  (a pending step is not a disabled control). Two components needing "reached"
+  versus "not yet" and both lying about it is what justifies a new semantic
+  role, so `bg-indicator-active`/`bg-indicator-inactive` were added in Figma
+  first, then flowed out through the generators. Lesson: a missing component and
+  a missing token are different findings, and the second can be the real one.
+  `PageIndicator` / `SnackyPageIndicator` first shipped inside each package's
+  Banner folder, on the theory that carousel chrome belongs with the carousel.
+  That was wrong twice over: it reads as part of Banner when it is its own
+  pattern (Figma models it as its own component set), and a component with no
+  page of its own gets no playground and no Component Source panel, so the docs
+  showed a screenshot and nothing else. It now has its own folder, its own
+  `PAGES` entry, and its own page under Navigation. Anything with a real
+  component in Figma earns a page here; a docs page is what carries a
+  component's playground, so folding one into another page hides it.
+- **Figma's Banner page instanced three deleted masters.** `Banner/1`, `Banner/2`
+  and `Banner/3` (978x152, one carousel scroll state each) were gone from every
+  page while their instances still rendered, so two of the three hand-drawn
+  `Pagination` copies sat somewhere nothing could edit. They are now one
+  `Banner Carousel` component set with `Property 1=page-1/2/3`, built from
+  instances of the documented `Property 1=promo` banner plus a `Page Indicator`
+  row. Scroll offset is a variant, not an instance override, because the plugin
+  API refuses `relative-transform` overrides on instance children (`This
+  property cannot be overridden in an instance`), so anything that varies by
+  position has to be a variant. Visible difference from before: the three cards
+  are now the same promo banner three times, since that is the only promo
+  variant the Banner set actually has.
 - `assets/images/` - exported PNGs, one per documented variant/state, at 2x-4x scale
   depending on the component. Re-export from the matching Figma node (`download_assets`,
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
   leaving a screenshot showing an old value.
 - `packages/react-ui/` - installable `@snacky/ui` npm package: real React
-  implementations of all 24 documented components (not just doc samples), so an AI
+  implementations of all 25 documented components (not just doc samples), so an AI
   tool building a new feature can `import` them instead of regenerating similar
   markup. `src/theme/tokens.css`/`tokens.ts` are generated from `tokens.json` by
   `scripts/generate-react-tokens.js` - run it after `generate-agent-files.js`
@@ -177,7 +209,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   to every semantic that points at it. Do not "simplify" these back to
   `resolveRef()`.
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 24 of 24 components ported
+  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 25 of 25 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,
   `SnackyToggle`, `SnackyAvatar`, the Badge family, `SnackyCallout`, Chips, `SnackyNavBar`,
   `SnackyTabRow`, `SnackyAccordion`, `SnackyHeader`, List, `SnackyBottomSheet`,

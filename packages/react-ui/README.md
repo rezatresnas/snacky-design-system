@@ -121,19 +121,20 @@ placeholder artwork rather than a real icon prop. Apply your own
 
 ## What's here
 
-All 24 documented components, matching the real Figma-sourced spec values
+All 25 documented components, matching the real Figma-sourced spec values
 (padding, colors, radius, states - all sourced directly from the design
 tokens, not eyeballed):
 
 Button, IconButton/UploadButton, Input family (TextField, SearchField,
 OtpField, CopyField, ChatInput, AddressResult), Chips (ProductChip/FilterChip),
-RadioOption, Checkbox, Toggle, NavBar, TabRow, Header, Banner family, Badge family,
+RadioOption, Checkbox, Toggle, NavBar, TabRow, Header, PageIndicator, Banner
+family, Badge family,
 Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
 (the shared Modal shell), Section (the shared content-block shell), Avatar,
 Illustration, ProductImage, ProductCard.
 
 Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (42
-Outline, 11 Solid). Two things to know: they are **filled** shapes rather than
+Outline, 12 Solid). Two things to know: they are **filled** shapes rather than
 stroked paths, so there is no `strokeWidth` to set, and the set is **not
 uniform** - each icon is authored at 16, 20 or 24px and defaults to its own
 natural size, so pass `width`/`height` if you need them to match.

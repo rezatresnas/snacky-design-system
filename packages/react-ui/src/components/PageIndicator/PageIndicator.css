@@ -1,0 +1,20 @@
+/* Figma: the `Pagination` row under the Home hero carousel, 52x8 for three
+   pages. Repeated cells 4 apart, which is what gap/cell is for. */
+.snacky-page-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-cell);
+}
+.snacky-page-indicator__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-indicator-inactive);
+  flex-shrink: 0;
+}
+/* The current page widens into a pill rather than changing size, so the row
+   height stays 8 whichever page is showing. */
+.snacky-page-indicator__dot--active {
+  width: 28px;
+  background: var(--bg-indicator-active);
+}

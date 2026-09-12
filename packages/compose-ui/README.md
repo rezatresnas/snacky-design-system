@@ -5,7 +5,7 @@ design system, the Compose counterpart to `@snacky/ui`
 ([packages/react-ui](../react-ui)). Sourced from the same
 `../../index.html`, so the two packages cannot drift apart.
 
-## Status: 24 of 24 components - complete
+## Status: 25 of 25 components - complete
 
 Every documented component is ported: design tokens, plus `Button`,
 `IconButton`, `Checkbox`, `RadioButton`, `Toggle`, `Avatar`, the `Badge`
@@ -506,11 +506,12 @@ that credit with them.
   because react-ui sets only `width: 100%` on it with no aspect ratio, unlike
   the other two.
 
-  `SnackyPointBalanceBanner`'s border and divider use the raw `primary-500`
-  primitive rather than a semantic token, matching react-ui exactly - there is
-  no semantic "accent outline" token in this system, and inventing a binding
-  Figma does not carry is what produced the mislabels fixed earlier in this
-  package. Its divider uses `IntrinsicSize.Min` + `fillMaxHeight()`, the
+  `SnackyPointBalanceBanner`'s border and divider bind `borderHighlight`, the
+  token Figma actually binds on that node. They used to paint the raw
+  `primary-500` primitive, on the reasoning that no semantic "accent outline"
+  token existed; reading the node's bound variables rather than its rendered
+  colour showed one did, and that the rendered `#f8b732` was wrong for
+  `#fcdea1`. Its divider uses `IntrinsicSize.Min` + `fillMaxHeight()`, the
   Compose equivalent of the CSS `align-self: stretch` it replaces, rather than
   a hardcoded height.
 
@@ -518,9 +519,16 @@ that credit with them.
   parameters instead of hardcoded English strings, so the component stays
   usable in a localised app.
 
+- `SnackyPageIndicator` (`src/commonMain/kotlin/com/snacky/ui/components/pageindicator/PageIndicator.kt`),
+  the dot row under the hero carousel, react-ui's `PageIndicator`. Figma draws
+  the current page as a 28x8 pill and the rest as 8x8 dots, `SnackyGap.cell`
+  apart, filled from the `bgIndicatorActive`/`bgIndicatorInactive` pair that
+  the Stepper dots also use. It reports position and does not change it: no
+  click target on the dots, one `contentDescription` on the row.
+
 - The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
   `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace:
-  **42 Outline + 11 Solid, exported from the real Figma icon components**
+  **42 Outline + 12 Solid, exported from the real Figma icon components**
   (`Icon-outline` node `55:2062`, `Icon-solid` node `8772:5851`).
 
   `SnackyIcons.kt` is generated from `../../assets/icons/icons.json` by

@@ -128,8 +128,8 @@ private fun StepDot(state: StepState, drawConnector: Boolean) {
                 .clip(CircleShape)
                 .background(
                     when (state) {
-                        StepState.Done -> SnackyColor.iconBrand
-                        StepState.Pending -> SnackyColor.bgActionDisabled
+                        StepState.Done -> SnackyColor.bgIndicatorActive
+                        StepState.Pending -> SnackyColor.bgIndicatorInactive
                         StepState.Cancelled -> SnackyColor.bgSurfaceAccent
                     }
                 ),

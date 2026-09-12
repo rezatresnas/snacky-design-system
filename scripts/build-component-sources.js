@@ -40,6 +40,7 @@ const PAGES = {
   tab: ['tab', 'Tab'],
   header: ['header', 'Header'],
   banner: ['banner', 'Banner'],
+  'page-indicator': ['pageindicator', 'PageIndicator'],
   badge: ['badge', 'Badge'],
   stepper: ['stepper', 'Stepper'],
   callout: ['callout', 'Callout'],

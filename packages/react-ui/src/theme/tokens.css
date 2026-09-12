@@ -50,6 +50,8 @@
   --bg-action-primary-danger: var(--color-red-500);
   --bg-action-primary-danger-hovered: var(--color-red-600);
   --bg-action-primary-danger-pressed: var(--color-red-700);
+  --bg-indicator-active: var(--color-amber-500);
+  --bg-indicator-inactive: var(--color-neutral-200);
   --bg-overlay-dim: rgba(51,51,51,0.8);
   --border-main: var(--color-neutral-200);
   --border-highlight: var(--color-amber-200);

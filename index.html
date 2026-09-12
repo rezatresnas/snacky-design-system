@@ -377,6 +377,7 @@ html.light .tok-sw .dot{border-color:rgba(0,0,0,.08)}
     <a href="#navbar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="10" width="14" height="5" rx="1"/><path d="M3 10V4h10v6"/></svg>Navbar</a>
     <a href="#tab"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10h14M3 10V5h4v5M9 10V5h4v5"/></svg>Tab</a>
     <a href="#header"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="14" height="12" rx="1"/><path d="M3.5 6h9M1 6h1M14 6h1"/></svg>Header</a>
+    <a href="#page-indicator"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="3" cy="8" r="1.5"/><circle cx="7" cy="8" r="1.5"/><rect x="9.5" y="6.5" width="5" height="3" rx="1.5"/></svg>Page Indicator</a>
   </div>
   <div class="nav-group"><div class="nav-label">Content</div>
     <a href="#banner"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/></svg>Banner</a>
@@ -577,6 +578,13 @@ const C={
       {id:'header-close-action',name:'Leading + Right Action',st:null,sl:null,img:'assets/images/variants/header-close-action.png',s:{w:360,h:72,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',icon:'24×24px',note:'Leading and trailing icons each sit in their own 40×40px tappable circle. Right Action only ever pairs with Close, never Back.',font:'Poppins Bold',fs:16,lh:36,color:'#333333'},code:{kt:'SnackyHeader(title = "Address Details", leadingIcon = HeaderLeadingIcon.Close, onLeadingClick = onDismiss, trailingIcon = { SnackyIcon(SnackyIcons.Outline.Map, size = 24.dp) }, onTrailingClick = onOpenMap)',tsx:'<Header title="Address Details" leadingIcon="close" onLeadingClick={onDismiss} trailingIcon={<SnackyIcons.outline.map />} onTrailingClick={onOpenMap} />'}},
       {id:'header-none',name:'None',st:null,sl:null,img:'assets/images/variants/header-none.png',s:{w:360,h:68,pt:16,pr:8,pb:16,pl:8,fill:'#ffffff',font:'Poppins Bold',fs:16,lh:36,color:'#333333',note:'No leading or trailing icon - title fills the full width'},code:{kt:'SnackyHeader(title = "Snacky")',tsx:'<Header title="Snacky" />'}},
     ]},
+  'page-indicator':{name:'Page Indicator',cat:'Navigation',desc:'Dot row showing which page of a carousel is on screen.',usage:'Sits under the home hero carousel, centred, 10 below the banner. The current page is a 28x8 pill and every other page an 8x8 dot, 4 apart, so the row stays 8 tall whichever page is showing. It reports position and does not change it: the dots are not touch targets, so keep the carousel itself swipeable and let this follow it. Fills come from bg-indicator-active and bg-indicator-inactive, the same pair the Stepper dots use.',cover:'assets/images/variants/page-indicator.png',
+    v:[
+      {id:'page-indicator',name:'Page Indicator',s:{w:52,h:8,gap:4,r:100,use:'Three pages, 52x8 in total. Figma draws the row as a plain auto-layout frame, so the width follows the page count: 8 per dot, 28 for the pill, 4 between.'},states:[
+        {sl:'Active',st:'active',img:'assets/images/variants/page-indicator.png',sOverride:{w:28,h:8,fill:'#f8b732',r:100,use:'Current page. Widens into a pill rather than growing, so the row height never changes.'},code:{kt:'SnackyPageIndicator(count = 3, activeIndex = 2)',tsx:'<PageIndicator count={3} activeIndex={2} />'}},
+        {sl:'Inactive',st:null,img:'assets/images/variants/page-indicator.png',sOverride:{w:8,h:8,fill:'#cccccc',r:100,use:'Every other page.'},code:{kt:'SnackyPageIndicator(count = 3, activeIndex = 0)',tsx:'<PageIndicator count={3} activeIndex={0} />'}},
+      ]},
+    ]},
   banner:{name:'Banner',cat:'Content',desc:'Promotional and informational banners throughout the app.',usage:'Hero banners appear in a carousel at the top of the home screen. Square banners show featured categories. Alert banner communicates system messages. Point balance strip shows loyalty data.',cover:'assets/images/banner.png',
     v:[
       {id:'banner-hero',name:'Banner',st:null,sl:'Promo',img:'assets/images/variants/banner.png',s:{w:978,h:152,shadow:'0 4px 8px rgba(0,0,0,0.08)',use:'Main hero carousel'},code:{kt:'SnackyBanner(imageUrl = "https://cdn.snacky.app/banners/promo.jpg", variant = BannerVariant.Hero)',tsx:'<Banner variant="hero" imageUrl="/banners/promo.jpg" alt="50% off promo" />'}},
@@ -597,7 +605,7 @@ const C={
     ]},
   stepper:{name:'Stepper',cat:'Content',desc:'Vertical progress timeline for order status and delivery tracking.',usage:'Use for any ordered sequence of states the user follows over time: the four order-status screens and the driver-tracking sheet. Each step is done, pending, or cancelled - read the state from what the step actually is, not from a label. Steps are 48 tall with a 32 gap, joined by a dashed connector.',cover:'assets/images/variants/stepper-received.png',
     v:[
-      {id:'stepper-waiting',name:'Waiting',st:null,sl:null,img:'assets/images/variants/stepper-waiting.png',s:{w:180,h:216,gap:32,use:'First step done, the rest pending. Dot 24x24 holding a 16x16 circle: icon-brand when done, bg-action-disabled when pending.'},code:{kt:'SnackyStepper(steps = listOf(\n  Step("Waiting for payment", "Pay before Dec 30, 11:00", StepState.Done),\n  Step("Order Processed", state = StepState.Pending),\n))',tsx:'<Stepper steps={[\n  { label: \'Waiting for payment\', timestamp: \'Pay before Dec 30, 11:00\', state: \'done\' },\n  { label: \'Order Processed\', state: \'pending\' },\n]} />'}},
+      {id:'stepper-waiting',name:'Waiting',st:null,sl:null,img:'assets/images/variants/stepper-waiting.png',s:{w:180,h:216,gap:32,use:'First step done, the rest pending. Dot 24x24 holding a 16x16 circle: bg-indicator-active when done, bg-indicator-inactive when pending.'},code:{kt:'SnackyStepper(steps = listOf(\n  Step("Waiting for payment", "Pay before Dec 30, 11:00", StepState.Done),\n  Step("Order Processed", state = StepState.Pending),\n))',tsx:'<Stepper steps={[\n  { label: \'Waiting for payment\', timestamp: \'Pay before Dec 30, 11:00\', state: \'done\' },\n  { label: \'Order Processed\', state: \'pending\' },\n]} />'}},
       {id:'stepper-delivered',name:'Delivered',st:null,sl:null,img:'assets/images/variants/stepper-delivered.png',s:{w:158,h:264,gap:32,use:'Three done, last still pending. Done labels use text-primary, pending labels text-secondary.'},code:{kt:'SnackyStepper(steps = listOf(\n  Step("Order Delivered", "Dec 30, 12:00 PM", StepState.Done),\n  Step("Order Received", state = StepState.Pending),\n))',tsx:'<Stepper steps={[\n  { label: \'Order Delivered\', timestamp: \'Dec 30, 12:00 PM\', state: \'done\' },\n  { label: \'Order Received\', state: \'pending\' },\n]} />'}},
       {id:'stepper-received',name:'Received',st:'active',sl:'Complete',img:'assets/images/variants/stepper-received.png',s:{w:158,h:288,gap:32,use:'Every step done. Note Figma names one of these dots "disabled" while filling it icon-brand - the state comes from the fill, not the layer name.'},code:{kt:'SnackyStepper(steps = allDone)',tsx:'<Stepper steps={allDone} />'}},
       {id:'stepper-cancelled',name:'Cancelled',st:null,sl:null,img:'assets/images/variants/stepper-cancelled.png',s:{w:148,h:216,gap:32,use:'First step cancelled: bg-surface-accent circle with a white close glyph, label in text-error. Remaining steps stay pending.'},code:{kt:'SnackyStepper(steps = listOf(\n  Step("Order Cancelled", "Dec 30, 11:00 AM", StepState.Cancelled),\n  Step("Order Processing", state = StepState.Pending),\n))',tsx:'<Stepper steps={[\n  { label: \'Order Cancelled\', timestamp: \'Dec 30, 11:00 AM\', state: \'cancelled\' },\n  { label: \'Order Processing\', state: \'pending\' },\n]} />'}}
@@ -971,6 +979,17 @@ const PG={
       return h('div',{style:{width:200}},h(U.Callout,{message:isRec?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus',timestamp:isRec?'09:00':'09:10',variant:t,statusIcon:icon}));};`,
     getReact:p=>`<Callout\n  message="${p.type==='received'?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus'}"\n  timestamp="${p.type==='received'?'09:00':'09:10'}"\n  variant="${p.type}"\n/>`,
     getKotlin:p=>`SnackyCallout(\n  message = "${p.type==='received'?'Lorem ipsum dolor sit amet':'Consectetur adipiscing elit. Vivamus lacus'}",\n  timestamp = "${p.type==='received'?'09:00':'09:10'}",\n  variant = CalloutVariant.${p.type[0].toUpperCase()+p.type.slice(1)}\n)`
+  },
+  'page-indicator':{
+    component:'PageIndicatorDemo',
+    initialProps:{count:'3',active:'3'},
+    controls:[{id:'count',label:'Pages',type:'select',options:['2','3','4','5']},{id:'active',label:'Current Page',type:'select',options:['1','2','3','4','5']}],
+    impl:`const PageIndicatorDemo=({count,active})=>{const h=React.createElement;const U=SnackyUI;const n=parseInt(count||'3',10);const i=Math.min(parseInt(active||'1',10),n)-1;return h('div',{style:{padding:'20px 0',display:'flex',justifyContent:'center'}},h(U.PageIndicator,{count:n,activeIndex:i}));};`,
+    getReact:p=>`<PageIndicator count={${parseInt(p.count||'3',10)}} activeIndex={${Math.min(parseInt(p.active||'1',10),parseInt(p.count||'3',10))-1}} />`,
+    getKotlin:p=>`SnackyPageIndicator(
+  count = ${parseInt(p.count||'3',10)},
+  activeIndex = ${Math.min(parseInt(p.active||'1',10),parseInt(p.count||'3',10))-1}
+)`
   },
   banner:{
     component:'BannerDemo',demoSrc:'assets/images/product-image.png',demoAlt:'Snack',
@@ -1876,6 +1895,10 @@ function renderSemanticColors(tab){
       {name:'bgActionPrimaryDangerHovered',hex:'#d64f4f',alias:'red-600',use:'Filled danger button hover state'},
       {name:'bgActionPrimaryDangerPressed',hex:'#a73e3e',alias:'red-700',use:'Filled danger button pressed state'},
     ]},
+    {label:'Indicator',items:[
+      {name:'bgIndicatorActive',hex:'#f8b732',alias:'amber-500',use:'Reached or current dot in a progress or page indicator: active carousel page, completed Stepper step'},
+      {name:'bgIndicatorInactive',hex:'#cccccc',alias:'neutral-200',use:'Not yet reached dot in a progress or page indicator: other carousel pages, pending Stepper step. Not the same as disabled'},
+    ]},
     {label:'Overlay',items:[
       {name:'bgOverlayDim',hex:'rgba(51,51,51,0.8)',alias:'neutral-950 @ 80%',use:'Dark translucent overlay - e.g. Sold Out badge over product images'},
     ]},
@@ -2281,6 +2304,10 @@ object SnackyColor {
     val bgActionPrimaryDanger = SnackyColorPrimitive.Red.c500 // Filled danger button fill (Primary hierarchy only; Secondary/Tertiary danger buttons keep their normal fill and only recolor border/text)
     val bgActionPrimaryDangerHovered = SnackyColorPrimitive.Red.c600 // Filled danger button hover state
     val bgActionPrimaryDangerPressed = SnackyColorPrimitive.Red.c700 // Filled danger button pressed state
+
+    // ── Background / Indicator ──────────────────────────────────────────────
+    val bgIndicatorActive = SnackyColorPrimitive.Amber.c500 // Reached or current dot in a progress or page indicator
+    val bgIndicatorInactive = SnackyColorPrimitive.Neutral.c200 // Not yet reached dot, which is not the same as disabled
 
     // ── Border ───────────────────────────────────────────────────────────────
     val borderMain = SnackyColorPrimitive.Neutral.c200 // Default borders, dividers
@@ -2699,6 +2726,10 @@ import { typography } from '@snacky/ui';
   --bg-action-primary-danger: var(--color-red-500);
   --bg-action-primary-danger-hovered: var(--color-red-600);
   --bg-action-primary-danger-pressed: var(--color-red-700);
+
+  /* Background / Indicator */
+  --bg-indicator-active: var(--color-amber-500);
+  --bg-indicator-inactive: var(--color-neutral-200);
 
   /* Border */
   --border-main: var(--color-neutral-200);
