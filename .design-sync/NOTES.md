@@ -455,6 +455,24 @@
   stories that use it, ProductCard's list dims render correctly. compose-ui
   compiles clean via compileDebugKotlinAndroid + compileCommonMainKotlinMetadata.
 
+- **2026-09-12**: `@snacky/ui` -> 0.11.0, compose-ui -> compose-v2.1.0 (release
+  already cut by the user). A genuinely new component: `PageIndicator` - the
+  carousel dot row, found the same way `Stepper`/`Calendar` were: not by
+  counting Figma copies (only one real instance), but by a token gap - the
+  dots were painting raw `#f8b732`/`#dadada` and `Stepper` was reusing
+  `--icon-brand`/`--bg-action-disabled` for the same active/pending meaning,
+  both wrong tokens for the job. Two new semantic tokens
+  (`bg-indicator-active`/`bg-indicator-inactive`) now back both components.
+  Shipped with zero authored preview (floor card only), caught by this
+  re-sync's `added` diff - authored `.design-sync/previews/PageIndicator.tsx`
+  (FirstPage/MiddlePage/LastPage at count=3, plus a 5-dot row) and graded all
+  four good: amber pill for the active page, gray dots otherwise, consistent
+  spacing across counts. Also spot-checked `Stepper` since its token rebind
+  carried real semantic meaning (a pending step is not literally "disabled")
+  even though `--bg-indicator-active`/`inactive` resolve to the exact same
+  amber-500/neutral-200 as the tokens they replaced - confirmed all 5 stories
+  render identically to before. compose-ui compiles clean.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
