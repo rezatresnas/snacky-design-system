@@ -4,6 +4,40 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## PageIndicator, and a semantic role for indicator dots (0.11.0)
+
+`PageIndicator` is the dot row under a carousel: 8x8 dots, a 28x8 pill for the
+current page, `gap/cell` apart, so the row stays 8 tall whichever page is
+showing. It reports position rather than changing it, so the dots are
+`aria-hidden` with no click target and the row carries a single label ("Page 2
+of 3" by default). Make the carousel itself operable and let this follow it.
+
+The component is small; the reason it exists is the two tokens under it.
+`--bg-indicator-active` and `--bg-indicator-inactive` are new semantic roles,
+referencing `--color-amber-500` and `--color-neutral-200`. Adding a role rather
+than reusing one needs a reason, and there were two. Figma drew the dots as raw
+hex, one of them `#dadada`, a grey in no ramp at all. And `Stepper` was already
+borrowing: its done dot painted `--icon-brand`, an icon token used as a shape
+fill, and its pending dot `--bg-action-disabled`, which says a step the order
+has not reached yet is a control you cannot use. Two components needing
+"reached" versus "not yet", both saying something false, is what a missing role
+looks like. Stepper now uses the pair, and its rendered colours are unchanged
+(`#f8b732` and `#cccccc`, exactly as before).
+
+Worth knowing if you theme the system: `--bg-indicator-inactive` and
+`--bg-action-disabled` resolve to the same grey today but are free to diverge,
+which is the point. Override the indicator one to restyle carousels and
+progress dots without touching disabled controls.
+
+compose-ui ships the same as `compose-v2.1.0`: `SnackyPageIndicator`, the
+`SnackyColor.bgIndicatorActive`/`bgIndicatorInactive` pair, and the same Stepper
+change. Both are additive, so neither release breaks anything.
+
+Two README corrections came along: compose-ui still claimed
+`SnackyPointBalanceBanner` paints the `primary-500` primitive, which stopped
+being true when its binding was fixed against Figma in 0.10.0, and both READMEs
+still counted 11 solid icons rather than 12.
+
 ## Brand ramp renamed to amber, components re-checked against Figma (0.10.0)
 
 **Breaking: the brand primitive ramp is now `amber`.** It was the only
