@@ -117,7 +117,7 @@ function Stars({ filled }: { filled: number }) {
           key={i}
           width={16}
           height={16}
-          color={i < filled ? 'var(--icon-brand)' : 'var(--color-neutral-200)'}
+          color={i < filled ? 'var(--icon-brand)' : 'var(--icon-disabled)'}
         />
       ))}
     </div>
@@ -284,7 +284,11 @@ export function PaymentMethods() {
           <span style={type('small-semibold')}>{name}</span>
           {sub ? <span style={type('small-regular', 'var(--text-secondary)')}>{sub}</span> : null}
         </div>
-        {action ? <span style={{ ...type('small-bold', 'var(--text-link)'), cursor: 'pointer' }}>{action}</span> : null}
+        {action ? (
+          <Button variant="tertiary" size="small">
+            {action}
+          </Button>
+        ) : null}
       </div>
       <Divider />
     </>
@@ -293,7 +297,7 @@ export function PaymentMethods() {
     <Sheet sheetStyle="display:flex;flex-direction:column;gap:16px;padding:16px 0;">
       <CloseRow title="Payment Methods" />
       {section('Balance & COD')}
-      {item(icon(<SnackyIcons.outline.balance width={24} height={24} />), 'Balance', '$6.00 (Insufficient Balance)', 'Top Up')}
+      {item(icon(<SnackyIcons.outline.balance width={24} height={24} />), 'Balance', 'Rp 85.000 (Insufficient Balance)', 'Top Up')}
       {item(icon(<SnackyIcons.outline.truck width={24} height={24} />), 'COD')}
       {section('E-Wallet')}
       {item(logo, 'GOPAY')}
@@ -358,7 +362,7 @@ export function DriverTracking() {
   return (
     <Sheet
       showHandle
-      sheetStyle="display:flex;flex-direction:column;gap:16px;padding:8px 24px 24px;box-shadow:0 -4px 12px rgba(0,0,0,0.08);"
+      sheetStyle="display:flex;flex-direction:column;gap:16px;padding:8px 24px 24px;box-shadow:0 -4px 8px rgba(0,0,0,0.08);"
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: 312, margin: '0 auto', padding: '16px 0' }}>
         <Avatar src={AVATAR} alt="" size="md" />

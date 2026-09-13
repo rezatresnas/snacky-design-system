@@ -483,12 +483,8 @@
   Rewritten: `Section.tsx` now has all 16 documented types and `BottomSheet.tsx`
   all 9 Modal variants, both ported from the docs playgrounds with raw hex swapped
   for tokens and photography swapped for placeholders. Headless render of the new
-  stories against Figma heights: all 16 Section types match exactly, and 7 of 9
-  Modal variants do. `VariantsSelector` renders 372 where the docs spec says 356,
-  but the Figma export (`modal-variants.png`, 1440x1488 at 4x) is 372, so the
-  spec number is the wrong one. `DriverTracking` renders 452 against Figma's 456
-  (`modal-driver.png`), and the docs playground renders the same 452, so that 4px
-  predates this pass and still needs a Figma node check.
+  stories against Figma heights: all 16 Section types match exactly. Modal
+  needed the follow-ups below before all 9 did.
   Smaller gaps filled: `NavBar` (Category/History active, labels corrected to
   Figma's Home/Category/Cart/History/Account from invented Orders/Profile),
   `Header` (Close only), `SquareBanner` (Deals), `Button` (With Social),
@@ -503,11 +499,42 @@
   source (with a negative control proving the check fails on a bad prop).
   Rule going forward: when a docs page gains or changes a variant, its preview
   file changes in the same commit, or Claude Design silently falls behind again.
-  Follow-ups in the same pass: empty review stars sampled from the Figma exports
-  disagree between screens (`section-review-preview.png` #a3a3a3 = `--icon-disabled`,
-  `modal-reviews.png` #cccccc = neutral-200), so each preview now matches its own
-  export; unifying them is a Figma decision. The Modal `VariantsSelector` spec
-  height was corrected to 372.
+  Follow-ups, checked against the Figma nodes themselves (figma-cli) rather than
+  the PNG exports, which turned out to be misleading twice. Empty review stars
+  are bound to `icon/icon-disabled` (#a3a3a3) on both the Section and Modal
+  screens; `modal-reviews.png` still showed #cccccc because it predated that
+  binding, and an earlier commit in this pass wrongly followed it (reverted,
+  export refreshed). Driver Tracking's node is 452; `modal-driver.png` is 456
+  only because the export includes the node's 0 -4 blur 8 drop shadow. Payment
+  Methods is 920: Figma's "Top Up" and "Add" are Tertiary Small Button
+  instances (40 tall), which the docs and preview had drawn as 24px text links
+  (export refreshed from 904). All 9 Modal stories and all 9 docs playground
+  variants now match their Figma node heights exactly.
+
+- **2026-09-13**: This re-sync is what actually pushed the prior entry's huge
+  preview-authoring pass (177 stories, 45 files) to the live Claude Design
+  project - the pass itself only verified headlessly and locally, it never
+  uploaded. Also picked up `@snacky/ui` 0.12.0 / compose-v2.2.0 (the new solid
+  `address` pin icon, plus a compose-ui `toTextStyle()` helper that fixed 58
+  broken Kotlin doc samples - docs-only on the compose-ui side, nothing this
+  sync reads). 9 components changed prop-contract-free (CSS/preview-file only,
+  matching the huge rewrite): `BottomSheet`, `Button`, `Header`, `IconButton`,
+  `NavBar`, `Section`, `SquareBanner`, `Stepper`, `TextField` - graded all of
+  them fresh rather than trusting the prior pass's own verification, since
+  that pass never went through this sync's own capture/grade loop.
+  **Two real bugs found and fixed during grading, both currency-formatting
+  slips introduced by the new stories (not present anywhere else in the
+  repo):** `Section.tsx`'s `GroupProductsHorizontal` story priced its cards in
+  USD (`$5.00`) while every other price in the entire app - including its own
+  sibling stories two lines above - is Rupiah; and several of the newly
+  authored `Section.tsx`/`BottomSheet.tsx` stories used comma-thousands
+  formatting (`Rp 5,000`) where the established convention across the whole
+  repo is period-thousands (`Rp 5.000`, the actual Indonesian convention).
+  Both are exactly the kind of thing this sync exists to catch: a design
+  agent copying the `GroupProductsHorizontal` pattern would have picked up
+  the wrong currency entirely. Fixed all instances in both preview files
+  (`$` -> `Rp`, comma -> period) before grading and pushing. compose-ui
+  compiles clean via compileDebugKotlinAndroid + compileCommonMainKotlinMetadata.
 
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 

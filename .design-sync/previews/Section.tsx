@@ -214,9 +214,9 @@ export function GroupProductsHorizontal() {
     <div style={{ width: 360 }}>
       <Section title="Similar Products" onAction={() => {}}>
         <div style={{ display: 'flex', gap: 8, marginRight: -24, overflowX: 'auto' }}>
-          <Card name="Lays Seaweed Flavor 14g" price="$5.00" old="$10.00" />
-          <Card name="Pota Bee Black Truffle 65g" price="$5.00" old="$5.00" />
-          <Card name="Oishi Caramel Popcorn 100g" price="$10.00" old="$20.00" />
+          <Card name="Lays Seaweed Flavor 14g" price="Rp 15.000" old="Rp 20.000" />
+          <Card name="Pota Bee Black Truffle 65g" price="Rp 15.000" old="Rp 15.000" />
+          <Card name="Oishi Caramel Popcorn 100g" price="Rp 20.000" old="Rp 30.000" />
           <SeeMore />
         </div>
       </Section>
@@ -238,9 +238,9 @@ export function GroupProductsBanner() {
         <div style={{ position: 'relative', width: 360, height: 334 }}>
           <SquareBanner imageUrl={BANNER} alt="Chiki Discount 50% for all variants" />
           <div style={{ position: 'absolute', left: 160, right: 0, top: 24, display: 'flex', gap: 8, overflowX: 'auto' }}>
-            <Card name="Chicki Balls Cheeky Chicken 75 g" price="Rp 5,000" old="Rp 10,000" />
-            <Card name="Chicki Twist Roasted Corn 75 g" price="Rp 5,000" old="Rp 10,000" />
-            <Card name="Chicki Puffs Cheddar Cheese 75 g" price="Rp 5,000" old="Rp 10,000" />
+            <Card name="Chicki Balls Cheeky Chicken 75 g" price="Rp 5.000" old="Rp 10.000" />
+            <Card name="Chicki Twist Roasted Corn 75 g" price="Rp 5.000" old="Rp 10.000" />
+            <Card name="Chicki Puffs Cheddar Cheese 75 g" price="Rp 5.000" old="Rp 10.000" />
             <SeeMore />
           </div>
         </div>
@@ -265,7 +265,7 @@ export function GroupProductsVertical() {
       <Section title="Recommendations for You" onAction={() => {}}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, justifyItems: 'center' }}>
           {names.map((n, i) => (
-            <Card key={i} name={n} price="Rp 5,000" old="Rp 10,000" />
+            <Card key={i} name={n} price="Rp 5.000" old="Rp 10.000" />
           ))}
         </div>
       </Section>
@@ -378,9 +378,9 @@ export function OrderSummary() {
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
-        {row('1x', 'Chicki Balls Cheeky Chicken 75 g', 'Rp 5,000')}
+        {row('1x', 'Chicki Balls Cheeky Chicken 75 g', 'Rp 5.000')}
         <Divider />
-        {row('1x', 'Chicki Twist Roasted Corn 75 g', 'Rp 5,000')}
+        {row('1x', 'Chicki Twist Roasted Corn 75 g', 'Rp 5.000')}
         <Divider />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, width: 312 }}>
           <span style={type('small-regular', 'var(--text-secondary)')}>Notes</span>
@@ -388,17 +388,17 @@ export function OrderSummary() {
         </div>
         <Divider />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: 312, ...type('small-regular') }}>
-          {line('Subtotal', <span style={type('small-semibold')}>Rp 10,000</span>)}
+          {line('Subtotal', <span style={type('small-semibold')}>Rp 10.000</span>)}
           {line(
             'Shipping Fee',
             <>
-              <span style={{ textDecoration: 'line-through' }}>Rp 5,000</span>
+              <span style={{ textDecoration: 'line-through' }}>Rp 5.000</span>
               <span>Free</span>
             </>
           )}
-          {line('Referral Promo', <span>- Rp 2,000</span>)}
+          {line('Referral Promo', <span>- Rp 2.000</span>)}
           <Divider />
-          {line('Total', <span style={type('small-semibold')}>Rp 8,000</span>)}
+          {line('Total', <span style={type('small-semibold')}>Rp 8.000</span>)}
         </div>
       </div>
     </Surface>
@@ -489,7 +489,7 @@ export function OrderDetails() {
             <img src={PRODUCT} width={48} height={48} alt="" style={{ objectFit: 'contain' }} />
           </div>
           <span style={{ ...type('small-regular'), flex: 1 }}>Chicki Balls Cheeky Chicken 75 g</span>
-          <span style={type('body-semibold')}>Rp 5,000</span>
+          <span style={type('body-semibold')}>Rp 5.000</span>
         </div>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center', paddingLeft: 60 }}>
           <InfoBadge label="Variant: 75 Grams" />
@@ -512,9 +512,9 @@ export function OrderDetails() {
         </Button>
       </div>
       <Divider />
-      {fee('Subtotal', 'Rp 5,000')}
-      {fee('Shipping Fee', 'Free', 'Rp 5,000')}
-      {fee('Referral Promo', '- Rp 2,000')}
+      {fee('Subtotal', 'Rp 5.000')}
+      {fee('Shipping Fee', 'Free', 'Rp 5.000')}
+      {fee('Referral Promo', '- Rp 2.000')}
     </Surface>
   );
 }
