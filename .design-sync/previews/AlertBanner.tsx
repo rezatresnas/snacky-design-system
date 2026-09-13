@@ -1,7 +1,7 @@
 import { AlertBanner } from '@snacky/ui';
 
 export function Message() {
-  return <AlertBanner message="Free shipping over Rp 100.000" />;
+  return <AlertBanner message="Free shipping over Rp 100,000" />;
 }
 
 export function WithCountdown() {

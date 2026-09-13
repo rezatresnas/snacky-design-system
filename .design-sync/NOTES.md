@@ -535,6 +535,13 @@
   the wrong currency entirely. Fixed all instances in both preview files
   (`$` -> `Rp`, comma -> period) before grading and pushing. compose-ui
   compiles clean via compileDebugKotlinAndroid + compileCommonMainKotlinMetadata.
+  **Correction, same day: the separator half of this was backwards.** The user
+  confirmed Rupiah uses a comma for thousands here (`Rp 5,000`), which is also
+  what every Rupiah text in the Figma file uses. The "period convention" was
+  only the older previews' own invented prices (`Rp 24.000`), never Figma. All
+  52 period-formatted amounts across the previews, `conventions.md` and the
+  docs site's List samples are comma-formatted now. The `$` -> `Rp` half
+  stands.
 
 - **2026-09-13 (later)**: `Section.GroupProductsBanner` scrolls the way the user
   demonstrated in Figma: the product row spans the full 360 and starts its first

@@ -25,7 +25,7 @@ export function Waiting() {
         productName="Choco Chip Cookies 200g"
         status="waiting"
         itemsSummary="2 products"
-        total="Rp 48.000"
+        total="Rp 48,000"
         paymentDeadline="Dec 30, 11:00"
         onAction={() => {}}
       />
@@ -41,7 +41,7 @@ export function Processing() {
         productName="Salted Caramel Wafers 150g"
         status="process"
         itemsSummary="1 product"
-        total="Rp 22.000"
+        total="Rp 22,000"
         onAction={() => {}}
       />
     </div>
@@ -56,7 +56,7 @@ export function ProcessingCOD() {
         productName="Matcha Wafers Bundle"
         status="processCod"
         itemsSummary="3 products"
-        total="Rp 65.000"
+        total="Rp 65,000"
         onAction={() => {}}
       />
     </div>
@@ -71,7 +71,7 @@ export function Shipped() {
         productName="Spicy Cassava Chips 100g"
         status="shipped"
         itemsSummary="Order #SNK-40213"
-        total="Rp 18.500"
+        total="Rp 18,500"
         onAction={() => {}}
       />
     </div>
@@ -86,7 +86,7 @@ export function Received() {
         productName="Honey Roasted Almonds 80g"
         status="received"
         itemsSummary="Order #SNK-40188, Delivered"
-        total="Rp 35.000"
+        total="Rp 35,000"
         onAction={() => {}}
       />
     </div>
@@ -101,7 +101,7 @@ export function Cancelled() {
         productName="Green Tea Rice Crackers 90g"
         status="cancelled"
         itemsSummary="1 product"
-        total="Rp 15.000"
+        total="Rp 15,000"
         onAction={() => {}}
       />
     </div>

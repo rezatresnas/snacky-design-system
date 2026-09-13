@@ -73,7 +73,7 @@ function PopularSnacks() {
           variant="list"
           productName="Choco Chip Cookies 200g"
           imageUrl="/cookies.jpg"
-          price="Rp 24.000"
+          price="Rp 24,000"
           rating={4.8}
           onAddToCart={() => {}}
         />

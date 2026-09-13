@@ -6,7 +6,7 @@ export function Default() {
       pointsIcon={<SnackyIcons.solid.points width={20} height={20} />}
       points="1.250"
       balanceIcon={<SnackyIcons.outline.balance width={20} height={20} />}
-      balance="Rp 85.000"
+      balance="Rp 85,000"
     />
   );
 }

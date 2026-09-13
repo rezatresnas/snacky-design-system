@@ -149,6 +149,11 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Input page's `<CopyField copied>` (no such prop), `TextField`-as-chat and
   hand-built address row now show `CopyField`, `ChatInput` and `AddressResult`.
   Before adding a sample, check the name against the package source.
+- **Prices are Rupiah with a comma for thousands: `Rp 5,000`, never `$5.00` and
+  never `Rp 5.000`.** Confirmed by the user and matching every Rupiah text in Figma.
+  Two Figma texts still said dollars (Group-Products-Horizontal and the Payment
+  Methods balance), and a design-sync pass once flipped the previews to period
+  separators on the strength of older invented preview prices; both were wrong.
 - **Read Figma bindings, not PNG exports, when a value is in doubt.** The exports in
   `assets/images/variants/` can be stale or padded: `modal-reviews.png` showed empty
   stars at #cccccc after Figma had bound them to `icon/icon-disabled` (#a3a3a3), and

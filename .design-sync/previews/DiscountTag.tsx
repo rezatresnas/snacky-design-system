@@ -9,5 +9,5 @@ export function BundleDeal() {
 }
 
 export function Nominal() {
-  return <DiscountTag label="Rp 5.000 OFF" />;
+  return <DiscountTag label="Rp 5,000 OFF" />;
 }

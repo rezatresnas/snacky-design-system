@@ -297,7 +297,7 @@ export function PaymentMethods() {
     <Sheet sheetStyle="display:flex;flex-direction:column;gap:16px;padding:16px 0;">
       <CloseRow title="Payment Methods" />
       {section('Balance & COD')}
-      {item(icon(<SnackyIcons.outline.balance width={24} height={24} />), 'Balance', 'Rp 85.000 (Insufficient Balance)', 'Top Up')}
+      {item(icon(<SnackyIcons.outline.balance width={24} height={24} />), 'Balance', 'Rp 85,000 (Insufficient Balance)', 'Top Up')}
       {item(icon(<SnackyIcons.outline.truck width={24} height={24} />), 'COD')}
       {section('E-Wallet')}
       {item(logo, 'GOPAY')}

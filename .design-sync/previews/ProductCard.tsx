@@ -25,8 +25,8 @@ export function ListVariant() {
         variant="list"
         productName="Choco Chip Cookies 200g"
         imageUrl={IMG}
-        price="Rp 24.000"
-        originalPrice="Rp 30.000"
+        price="Rp 24,000"
+        originalPrice="Rp 30,000"
         discountLabel="20%"
         rating={4.8}
         onAddToCart={() => {}}
@@ -50,8 +50,8 @@ export function DetailsVariant() {
         variant="details"
         productName="Choco Chip Cookies 200g"
         imageUrl={IMG}
-        price="Rp 24.000"
-        originalPrice="Rp 30.000"
+        price="Rp 24,000"
+        originalPrice="Rp 30,000"
         discountLabel="20%"
         rating={4.8}
         ratingCount={312}
@@ -76,7 +76,7 @@ export function SoldOut() {
         variant="details"
         productName="Limited Matcha Wafers"
         imageUrl={IMG}
-        price="Rp 32.000"
+        price="Rp 32,000"
         rating={4.6}
         ratingCount={87}
         favorited={false}
