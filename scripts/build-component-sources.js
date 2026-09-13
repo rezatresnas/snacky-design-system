@@ -48,6 +48,7 @@ const PAGES = {
   accordion: ['accordion', 'Accordion'],
   modal: ['modal', 'Modal'],
   section: ['section', 'Section'],
+  'product-group-section': ['productgroupsection', 'ProductGroupSection'],
   avatar: ['avatar', 'Avatar'],
   illustration: ['illustration', 'Illustration'],
   'product-image': ['productimage', 'ProductImage'],

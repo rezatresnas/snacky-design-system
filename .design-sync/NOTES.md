@@ -566,6 +566,17 @@
   artwork, Payment Methods' Top Up/Add render as real buttons. No package
   source changed in any of these commits, so no release needed.
 
+- **2026-09-13 (later still)**: new component `ProductGroupSection` (not yet
+  released). Authored `.design-sync/previews/ProductGroupSection.tsx`: Horizontal,
+  Banner, Grid and WithoutSeeMore. `Section.tsx`'s three Group stories now use the
+  component instead of hand-built rows, so the local `SeeMore` card and `DragRow`
+  helper are gone from that file (the component carries both). Headless render:
+  Horizontal 372, Banner 396, Grid 1278 with eight cards, matching Figma; a 200px
+  mouse drag on the banner story moves the first card from x160 to x-40 with the
+  banner still at x0, and a plain click still reaches the cart button. Previews
+  typecheck with `noUnusedLocals` on. The next `/design-sync` should pick the new
+  component up through its `added` diff.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

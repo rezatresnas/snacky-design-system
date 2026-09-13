@@ -121,7 +121,7 @@ placeholder artwork rather than a real icon prop. Apply your own
 
 ## What's here
 
-All 25 documented components, matching the real Figma-sourced spec values
+All 26 documented components, matching the real Figma-sourced spec values
 (padding, colors, radius, states - all sourced directly from the design
 tokens, not eyeballed):
 
@@ -130,7 +130,8 @@ OtpField, CopyField, ChatInput, AddressResult), Chips (ProductChip/FilterChip),
 RadioOption, Checkbox, Toggle, NavBar, TabRow, Header, PageIndicator, Banner
 family, Badge family,
 Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
-(the shared Modal shell), Section (the shared content-block shell), Avatar,
+(the shared Modal shell), Section (the shared content-block shell),
+ProductGroupSection (titled product rows and grids), Avatar,
 Illustration, ProductImage, ProductCard.
 
 Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (42

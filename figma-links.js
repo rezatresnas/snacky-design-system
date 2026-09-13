@@ -26,6 +26,7 @@ const FIGMA_LINKS = {
   'navbar': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8876',
   'tab': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8878',
   'header': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=9564-6352',
+  'page-indicator': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=10412-6932',
 
   // Content
   'banner': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8879',
@@ -36,6 +37,8 @@ const FIGMA_LINKS = {
   'accordion': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8883',
   'modal': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8884',
   'section': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8885',
+  // Product Group Section packages three of the Section set's variants, so it points at the same frame.
+  'product-group-section': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8885',
 
   // Assets
   'avatar': 'https://www.figma.com/design/9EBmWLyRsaHDIdg9N2wBAw/Snacky-App---Design-System?node-id=8877-8886',

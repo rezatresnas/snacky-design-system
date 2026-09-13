@@ -154,6 +154,19 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Two Figma texts still said dollars (Group-Products-Horizontal and the Payment
   Methods balance), and a design-sync pass once flipped the previews to period
   separators on the strength of older invented preview prices; both were wrong.
+- **`ProductGroupSection` exists because Claude Design reads components, not
+  compositions.** Claude Design renders the real package, but a composition like
+  "Section with a banner and a product row over it" has no name in the package, so
+  the only place it could see one was a hand-written preview story, and those went
+  missing for months. Counting Figma instances picked which compositions earn a
+  component: the three product groups had 8 instances across Home and product
+  detail; order status, driver, payment and the other order-screen sections had
+  none, so they stay compositions. `Section` stays a generic shell; its Compose
+  header is `SnackySectionHeader` (internal) so the banner layout can reuse it.
+  The Section page's code samples for the other 13 types still describe an API
+  that does not exist (`SnackySection(type = SectionType.X)`, `actionLabel`,
+  `OrderStatusTimeline`, `ProductCard variant="slider"`); only the three product
+  types have been corrected.
 - **Read Figma bindings, not PNG exports, when a value is in doubt.** The exports in
   `assets/images/variants/` can be stale or padded: `modal-reviews.png` showed empty
   stars at #cccccc after Figma had bound them to `icon/icon-disabled` (#a3a3a3), and
@@ -217,7 +230,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `defaultFormat:'png'`) whenever a component's real fill/state changes, rather than
   leaving a screenshot showing an old value.
 - `packages/react-ui/` - installable `@snacky/ui` npm package: real React
-  implementations of all 25 documented components (not just doc samples), so an AI
+  implementations of all 26 documented components (not just doc samples), so an AI
   tool building a new feature can `import` them instead of regenerating similar
   markup. `src/theme/tokens.css`/`tokens.ts` are generated from `tokens.json` by
   `scripts/generate-react-tokens.js` - run it after `generate-agent-files.js`
@@ -247,7 +260,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   to every semantic that points at it. Do not "simplify" these back to
   `resolveRef()`.
 - `packages/compose-ui/` - Kotlin Multiplatform / Compose Multiplatform counterpart
-  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 25 of 25 components ported
+  to `packages/react-ui`, targeting `androidTarget` + iOS. ALL 26 of 26 components ported
   so far (`SnackyButton`, `SnackyIconButton`, `SnackyCheckbox`, `SnackyRadioOption`,
   `SnackyToggle`, `SnackyAvatar`, the Badge family, `SnackyCallout`, Chips, `SnackyNavBar`,
   `SnackyTabRow`, `SnackyAccordion`, `SnackyHeader`, List, `SnackyBottomSheet`,

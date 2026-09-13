@@ -1,0 +1,91 @@
+/* Figma: Section variants Group-Products-Horizontal (360x372), Group-Products-Banner
+   (360x396) and Group-Products-vertical (360x1278 with eight cards). All three keep
+   the Section shell's 30px header; the heights follow from it. */
+
+/* Horizontal and banner rows scroll sideways with the scrollbar hidden. */
+.snacky-product-group__row {
+  display: flex;
+  gap: var(--spacing-8);
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+.snacky-product-group__row::-webkit-scrollbar {
+  display: none;
+}
+.snacky-product-group__row--dragging {
+  cursor: grabbing;
+}
+.snacky-product-group__row > * {
+  flex-shrink: 0;
+}
+
+/* Horizontal: the row runs out to the screen's right edge instead of stopping at
+   the shell's 24px padding, as Figma's 336px row inside a clipped 360 frame does. */
+.snacky-product-group--horizontal .snacky-product-group__row {
+  margin-right: calc(-1 * var(--spacing-24));
+}
+
+/* Banner: no side or bottom padding (16/0/0/0 in Figma), the header keeps its 24px
+   inset, and the banner runs edge to edge with square corners. */
+.snacky-product-group--banner.snacky-section {
+  padding: var(--spacing-16) 0 0;
+}
+.snacky-product-group--banner .snacky-section__header {
+  padding: 0 var(--spacing-24);
+}
+.snacky-product-group__stage {
+  position: relative;
+  height: 334px;
+}
+.snacky-product-group__banner,
+.snacky-product-group__banner > * {
+  width: 100%;
+  height: 100%;
+}
+.snacky-product-group__banner .snacky-banner-square {
+  border-radius: 0;
+}
+/* The row spans the full width and starts its first card at x160 with padding, so
+   scrolling carries the cards over the banner while the banner stays put. */
+.snacky-product-group--banner .snacky-product-group__row {
+  position: absolute;
+  top: var(--spacing-24);
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding-left: 160px;
+}
+
+/* Grid: two 152px list cards, 8 apart, in both directions. */
+.snacky-product-group__grid {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: var(--spacing-8);
+}
+
+/* "See other products": the trailing card in a scrolling row. Figma draws it by
+   hand (145x294, 8 padding, 5 gap) with the same surface and shadow as ProductCard. */
+.snacky-product-group__see-more {
+  width: 145px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: var(--spacing-8);
+  border-radius: var(--radius-field);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-lg);
+}
+.snacky-product-group__see-more-label {
+  font-family: var(--font-small-bold-family);
+  font-size: var(--font-small-bold-size);
+  font-weight: var(--font-small-bold-weight);
+  line-height: var(--font-small-bold-line-height);
+  letter-spacing: var(--font-small-bold-letter-spacing);
+  color: var(--text-link);
+  text-align: center;
+}

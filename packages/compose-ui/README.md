@@ -5,7 +5,7 @@ design system, the Compose counterpart to `@snacky/ui`
 ([packages/react-ui](../react-ui)). Sourced from the same
 `../../index.html`, so the two packages cannot drift apart.
 
-## Status: 25 of 25 components - complete
+## Status: 26 of 26 components - complete
 
 Every documented component is ported: design tokens, plus `Button`,
 `IconButton`, `Checkbox`, `RadioButton`, `Toggle`, `Avatar`, the `Badge`
@@ -419,6 +419,19 @@ that credit with them.
   `content`'s own spacing is expected to override the shell's default
   `SnackyLayout.block` gap when a composition needs something else,
   matching how react-ui already treats it.
+
+- `SnackyProductGroupSection` (`src/commonMain/kotlin/com/snacky/ui/components/productgroupsection/ProductGroupSection.kt`),
+  a titled group of product cards with `layout = ProductGroupLayout.Horizontal`,
+  `Banner` or `Grid`, react-ui's `ProductGroupSection`. It packages three of
+  Figma's Section variants (`Group-Products-Horizontal`, `-Banner`, `-vertical`;
+  8 instances across Home and product detail), including the trailing "See other
+  products" card Figma draws by hand. `content` is the products (normally
+  `SnackyProductCard`s); `onSeeMore` shows the header chevron and the trailing
+  card; `banner` is the image drawn edge to edge behind the row in the banner
+  layout, where the row scrolls with its first card at x160 so the cards slide
+  over it. The banner layout builds its own shell (16dp top only) around the
+  shared `SnackySectionHeader`, because the Section shell's fixed padding cannot
+  run content edge to edge.
 
 - `SnackySection` (`src/commonMain/kotlin/com/snacky/ui/components/section/Section.kt`),
   the shared shell wrapping the app's composite content blocks (variant

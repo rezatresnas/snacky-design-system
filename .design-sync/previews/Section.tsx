@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import {
-  Section,
+  ProductGroupSection,
   ProductCard,
   ProductChip,
   ProductImage,
@@ -86,84 +85,6 @@ function Card({ name, price, old }: { name: string; price: string; old: string }
       rating={4.5}
       onAddToCart={() => {}}
     />
-  );
-}
-
-/* "See other products": Figma's trailing card in a product row, 145 wide. */
-function SeeMore() {
-  return (
-    <div
-      style={{
-        flexShrink: 0,
-        width: 145,
-        boxSizing: 'border-box',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'var(--spacing-8)',
-        borderRadius: 'var(--radius-field)',
-        background: 'var(--bg-surface)',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      {seeAll}
-      <span style={{ ...type('small-bold', 'var(--text-link)'), textAlign: 'center' }}>See other products</span>
-    </div>
-  );
-}
-
-/* A horizontal product row you can drag with a mouse, the way it scrolls under a
-   finger on a phone. Touch and trackpad scroll natively; the pointer is only
-   captured after a 4px move, so a plain tap on a card's cart button still lands,
-   and the click that ends a real drag is swallowed. */
-type DragState = { x: number; left: number; moved: boolean; id: number };
-
-function DragRow({ style, children }: { style: React.CSSProperties; children: React.ReactNode }) {
-  const drag = useRef<DragState | null>(null);
-  const justDragged = useRef(false);
-  return (
-    <div
-      style={{ ...style, overflowX: 'auto', scrollbarWidth: 'none', cursor: 'grab', userSelect: 'none' }}
-      onPointerDown={(e) => {
-        if (e.pointerType !== 'mouse') return;
-        drag.current = { x: e.clientX, left: e.currentTarget.scrollLeft, moved: false, id: e.pointerId };
-      }}
-      onPointerMove={(e) => {
-        const d = drag.current;
-        if (!d) return;
-        const dx = e.clientX - d.x;
-        if (!d.moved && Math.abs(dx) > 4) {
-          d.moved = true;
-          e.currentTarget.setPointerCapture(d.id);
-          e.currentTarget.style.cursor = 'grabbing';
-        }
-        if (d.moved) e.currentTarget.scrollLeft = d.left - dx;
-      }}
-      onPointerUp={(e) => {
-        if (drag.current?.moved) {
-          e.currentTarget.style.cursor = 'grab';
-          justDragged.current = true;
-          setTimeout(() => {
-            justDragged.current = false;
-          }, 0);
-        }
-        drag.current = null;
-      }}
-      onPointerCancel={() => {
-        drag.current = null;
-      }}
-      onClickCapture={(e) => {
-        if (justDragged.current) {
-          e.stopPropagation();
-          e.preventDefault();
-        }
-      }}
-      onDragStart={(e) => e.preventDefault()}
-    >
-      {children}
-    </div>
   );
 }
 
@@ -266,43 +187,32 @@ export function BuyerReviews() {
 export function GroupProductsHorizontal() {
   return (
     <div style={{ width: 360 }}>
-      <Section title="Similar Products" onAction={() => {}}>
-        <div style={{ display: 'flex', gap: 8, marginRight: -24, overflowX: 'auto' }}>
-          <Card name="Lays Seaweed Flavor 14g" price="Rp 15,000" old="Rp 20,000" />
-          <Card name="Pota Bee Black Truffle 65g" price="Rp 15,000" old="Rp 15,000" />
-          <Card name="Oishi Caramel Popcorn 100g" price="Rp 20,000" old="Rp 30,000" />
-          <SeeMore />
-        </div>
-      </Section>
+      <ProductGroupSection title="Similar Products" layout="horizontal" onSeeMore={() => {}}>
+        <Card name="Lays Seaweed Flavor 14g" price="Rp 15,000" old="Rp 20,000" />
+        <Card name="Pota Bee Black Truffle 65g" price="Rp 15,000" old="Rp 15,000" />
+        <Card name="Oishi Caramel Popcorn 100g" price="Rp 20,000" old="Rp 30,000" />
+      </ProductGroupSection>
     </div>
   );
 }
 
-/* Figma: a full-bleed 360x334 square discount banner under the header, with the
-   product row laid over it from x160. The row scrolls across the whole width, so
-   the cards slide over the banner while it stays put behind them. The banner
-   artwork is a placeholder here. */
+/* The product layouts are their own component now (ProductGroupSection), which
+   brings the trailing "See other products" card and the scrolling: in the banner
+   layout the cards start at x160 and slide over the banner. Artwork is a
+   placeholder here. */
 export function GroupProductsBanner() {
   return (
-    <div className="preview-sec-banner" style={{ width: 360 }}>
-      <style>
-        {
-          '.preview-sec-banner .snacky-section{padding:16px 0 0}.preview-sec-banner .snacky-section__header{padding:0 24px}.preview-sec-banner .snacky-banner-square{border-radius:0}'
-        }
-      </style>
-      <Section title="Exciting Promo" onAction={() => {}}>
-        <div style={{ position: 'relative', width: 360, height: 334 }}>
-          <SquareBanner imageUrl={BANNER} alt="Chiki Discount 50% for all variants" />
-          <DragRow
-            style={{ position: 'absolute', left: 0, right: 0, top: 24, display: 'flex', gap: 8, paddingLeft: 160, boxSizing: 'border-box' }}
-          >
-            <Card name="Chicki Balls Cheeky Chicken 75 g" price="Rp 5,000" old="Rp 10,000" />
-            <Card name="Chicki Twist Roasted Corn 75 g" price="Rp 5,000" old="Rp 10,000" />
-            <Card name="Chicki Puffs Cheddar Cheese 75 g" price="Rp 5,000" old="Rp 10,000" />
-            <SeeMore />
-          </DragRow>
-        </div>
-      </Section>
+    <div style={{ width: 360 }}>
+      <ProductGroupSection
+        title="Exciting Promo"
+        layout="banner"
+        onSeeMore={() => {}}
+        banner={<SquareBanner imageUrl={BANNER} alt="Chiki Discount 50% for all variants" />}
+      >
+        <Card name="Chicki Balls Cheeky Chicken 75 g" price="Rp 5,000" old="Rp 10,000" />
+        <Card name="Chicki Twist Roasted Corn 75 g" price="Rp 5,000" old="Rp 10,000" />
+        <Card name="Chicki Puffs Cheddar Cheese 75 g" price="Rp 5,000" old="Rp 10,000" />
+      </ProductGroupSection>
     </div>
   );
 }
@@ -320,13 +230,11 @@ export function GroupProductsVertical() {
   ];
   return (
     <div style={{ width: 360 }}>
-      <Section title="Recommendations for You" onAction={() => {}}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, justifyItems: 'center' }}>
-          {names.map((n, i) => (
-            <Card key={i} name={n} price="Rp 5,000" old="Rp 10,000" />
-          ))}
-        </div>
-      </Section>
+      <ProductGroupSection title="Recommendations for You" layout="grid" onSeeMore={() => {}}>
+        {names.map((n, i) => (
+          <Card key={i} name={n} price="Rp 5,000" old="Rp 10,000" />
+        ))}
+      </ProductGroupSection>
     </div>
   );
 }

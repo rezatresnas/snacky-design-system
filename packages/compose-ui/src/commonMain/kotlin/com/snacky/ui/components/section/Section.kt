@@ -59,35 +59,49 @@ fun SnackySection(
             .padding(horizontal = SnackySpacingPrimitive.space24, vertical = SnackySpacingPrimitive.space16),
         verticalArrangement = Arrangement.spacedBy(SnackyLayout.block),
     ) {
-        // Figma's Section headers are 30dp tall, cropping the title's 36sp line
-        // box from the top: the title stays top-aligned, the chevron centers.
-        Row(
-            modifier = Modifier.fillMaxWidth().height(30.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top,
-        ) {
-            BasicText(
-                text = title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = TextStyle(
-                    color = SnackyColor.textPrimary,
-                    fontSize = SnackyTypography.H3.bold.fontSize,
-                    fontWeight = SnackyTypography.H3.bold.fontWeight,
-                    lineHeight = SnackyTypography.H3.bold.lineHeight,
-                    letterSpacing = SnackyTypography.H3.bold.letterSpacing,
-                ),
-            )
-            if (onAction != null) {
-                SnackyIconButton(
-                    icon = { SnackyIcon(SnackyIcons.Solid.AngleSmallRight) },
-                    onClick = onAction,
-                    contentDescription = "See more: $title",
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    size = IconButtonSize.Small,
-                )
-            }
-        }
+        SnackySectionHeader(title = title, onAction = onAction)
         content()
+    }
+}
+
+/**
+ * The Section header on its own: title plus the optional small "see more"
+ * IconButton. Shared with [com.snacky.ui.components.productgroupsection.SnackyProductGroupSection],
+ * whose banner layout needs a different shell padding around the same header.
+ */
+@Composable
+internal fun SnackySectionHeader(
+    title: String,
+    onAction: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+) {
+    // Figma's Section headers are 30dp tall, cropping the title's 36sp line
+    // box from the top: the title stays top-aligned, the chevron centers.
+    Row(
+        modifier = modifier.fillMaxWidth().height(30.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Top,
+    ) {
+        BasicText(
+            text = title,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            style = TextStyle(
+                color = SnackyColor.textPrimary,
+                fontSize = SnackyTypography.H3.bold.fontSize,
+                fontWeight = SnackyTypography.H3.bold.fontWeight,
+                lineHeight = SnackyTypography.H3.bold.lineHeight,
+                letterSpacing = SnackyTypography.H3.bold.letterSpacing,
+            ),
+        )
+        if (onAction != null) {
+            SnackyIconButton(
+                icon = { SnackyIcon(SnackyIcons.Solid.AngleSmallRight) },
+                onClick = onAction,
+                contentDescription = "See more: $title",
+                modifier = Modifier.align(Alignment.CenterVertically),
+                size = IconButtonSize.Small,
+            )
+        }
     }
 }
