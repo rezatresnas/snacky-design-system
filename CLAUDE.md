@@ -163,6 +163,11 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   detail; order status, driver, payment and the other order-screen sections had
   none, so they stay compositions. `Section` stays a generic shell; its Compose
   header is `SnackySectionHeader` (internal) so the banner layout can reuse it.
+  It is documented on the Section page, not a page of its own: in Figma it is
+  three variants of the Section set, and docs pages follow Figma's structure (a
+  first version got its own page and read as a second Section). The Section page's
+  Component Source shows both folders; `build-component-sources.js`'s `PAGES`
+  accepts a list of folders per page for exactly this.
   The Section page's code samples for the other 13 types still describe an API
   that does not exist (`SnackySection(type = SectionType.X)`, `actionLabel`,
   `OrderStatusTimeline`, `ProductCard variant="slider"`); only the three product

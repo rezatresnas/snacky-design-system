@@ -24,7 +24,8 @@ const KT_DIR = 'packages/compose-ui/src/commonMain/kotlin/com/snacky/ui/componen
 const RX_DIR = 'packages/react-ui/src/components';
 const OUT = path.join(ROOT, 'assets', 'ui', 'component-sources.js');
 
-// index.html component page id -> [compose-ui folder, react-ui folder].
+// index.html component page id -> [compose-ui folder, react-ui folder]; either side
+// may be a list when one page documents several package folders.
 // Pages not listed keep their own index.html block: `icon` shows a reference
 // generated from assets/icons/icons.json by scripts/generate-icons.js.
 const PAGES = {
@@ -47,8 +48,9 @@ const PAGES = {
   list: ['list', 'List'],
   accordion: ['accordion', 'Accordion'],
   modal: ['modal', 'Modal'],
-  section: ['section', 'Section'],
-  'product-group-section': ['productgroupsection', 'ProductGroupSection'],
+  // ProductGroupSection packages three of Figma's Section variants, so it is
+  // documented on the Section page rather than a page of its own.
+  section: [['section', 'productgroupsection'], ['Section', 'ProductGroupSection']],
   avatar: ['avatar', 'Avatar'],
   illustration: ['illustration', 'Illustration'],
   'product-image': ['productimage', 'ProductImage'],
@@ -81,7 +83,7 @@ function buildComponentSources() {
     }
   }
   for (const [dir, side] of [[KT_DIR, 0], [RX_DIR, 1]]) {
-    const mapped = new Set(Object.values(PAGES).map((p) => p[side]));
+    const mapped = new Set(Object.values(PAGES).flatMap((p) => [].concat(p[side])));
     const orphans = fs
       .readdirSync(path.join(ROOT, dir))
       .filter((d) => !mapped.has(d) && !UNPAGED.has(d) && fs.statSync(path.join(ROOT, dir, d)).isDirectory());
@@ -90,7 +92,10 @@ function buildComponentSources() {
 
   const sources = {};
   for (const [id, [kt, rx]] of Object.entries(PAGES)) {
-    sources[id] = { kotlin: readFolder(`${KT_DIR}/${kt}`), react: readFolder(`${RX_DIR}/${rx}`) };
+    sources[id] = {
+      kotlin: [].concat(kt).flatMap((d) => readFolder(`${KT_DIR}/${d}`)),
+      react: [].concat(rx).flatMap((d) => readFolder(`${RX_DIR}/${d}`)),
+    };
   }
 
   const banner =
