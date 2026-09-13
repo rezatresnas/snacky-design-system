@@ -4,6 +4,39 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## ProductGroupSection, and a mouse-draggable product row (0.13.0)
+
+`ProductGroupSection` is a titled group of list `ProductCard`s with
+`layout="horizontal" | "banner" | "grid"`. It packages three variants of Figma's
+Section set (`Group-Products-Horizontal`, `-Banner`, `-vertical`), which between
+them have 8 instances across the Home and product detail screens.
+
+The reason it exists is that `Section` is a shell: a title, an optional see-more
+chevron, and `children`. Those three variants were never props on it, so every
+use meant rebuilding the same things by hand, and a design agent working from the
+package had to improvise them: the trailing "See other products" card (which
+Figma also draws by hand, twice), a row that runs out to the screen's right edge,
+and for the banner variant, zero side padding plus a full-bleed banner with the
+row laid over it from x160. The component carries all of that:
+
+- `onSeeMore` shows the header chevron and, in the two scrolling layouts, the
+  trailing card (`seeMoreLabel` defaults to "See other products").
+- `banner` is required for `layout="banner"`, normally a `SquareBanner`. The row
+  spans the full width with its first card at x160, so scrolling carries the cards
+  over the banner while the banner stays put.
+- Rows scroll by touch and trackpad natively, and by mouse drag. The pointer is
+  captured only after a 4px move, so a tap on a card's cart button still lands.
+
+Heights match the Figma nodes: 372 horizontal, 396 banner, 1278 for a grid of
+eight cards. `Section` itself is unchanged; the order-screen Section variants have
+no instances in Figma and stay compositions inside it.
+
+compose-ui ships the same as `SnackyProductGroupSection` with
+`ProductGroupLayout.Horizontal | Banner | Grid` in `compose-v2.3.0`, where the
+banner is an image slot like the rest of the Banner family. `SnackySection`'s
+header is now a shared internal `SnackySectionHeader`; its public API is
+unchanged. Additive on both sides.
+
 ## The solid address icon (0.12.0)
 
 `SnackyIcons.solid.address` is new: the filled map marker, added to Figma's
