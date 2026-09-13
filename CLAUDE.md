@@ -168,10 +168,14 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   first version got its own page and read as a second Section). The Section page's
   Component Source shows both folders; `build-component-sources.js`'s `PAGES`
   accepts a list of folders per page for exactly this.
-  The Section page's code samples for the other 13 types still describe an API
-  that does not exist (`SnackySection(type = SectionType.X)`, `actionLabel`,
-  `OrderStatusTimeline`, `ProductCard variant="slider"`); only the three product
-  types have been corrected.
+  The Section page's code samples used to describe an API that never existed
+  (`SnackySection(type = SectionType.X)`, `actionLabel`, `OrderStatusTimeline`,
+  `ProductCard variant="slider"`). All 16 are real now. The 13 composed types
+  were written once and proven three ways from that same text: a TSX typecheck,
+  a headless render where all 13 land on their Figma heights, and a Kotlin
+  compile, each with a negative control. The playground's Show Code reads the
+  sample off the variant card (`sectionSample()` in index.html), so the two
+  cannot drift apart.
 - **Read Figma bindings, not PNG exports, when a value is in doubt.** The exports in
   `assets/images/variants/` can be stale or padded: `modal-reviews.png` showed empty
   stars at #cccccc after Figma had bound them to `icon/icon-disabled` (#a3a3a3), and
