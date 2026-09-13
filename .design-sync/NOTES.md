@@ -554,6 +554,18 @@
   still at x0, a plain click still reaches the cart button, story height is
   still Figma's 396. The docs playground has the same behaviour.
 
+- **2026-09-13 (re-sync)**: pushed the corrected comma formatting, the
+  GroupProductsBanner drag-scroll fix, and the Modal/review-star corrections
+  (Payment Methods' real Tertiary Small Button links at 920px, Driver
+  Tracking at 452px, review stars on `icon-disabled`) live - none of the
+  prior same-day commits had gone through this sync's own capture/grade/
+  upload loop yet. Re-graded all 7 touched components fresh
+  (`AlertBanner`, `BottomSheet`, `DiscountTag`, `OrderListItem`,
+  `PointBalanceBanner`, `ProductCard`, `Section`): comma-formatted Rupiah
+  confirmed everywhere, the banner's first card sits at x160 over the
+  artwork, Payment Methods' Top Up/Add render as real buttons. No package
+  source changed in any of these commits, so no release needed.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
