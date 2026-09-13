@@ -55,7 +55,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   data changes and this isn't re-run, `tokens.json` (and everything generated
   from it) silently goes stale.
 - `assets/icons/icons.json` - the real icon geometry exported from Figma's `Icon-outline`
-  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 12 solid,
+  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 13 solid,
   each with its own viewBox (the set is 16/20/24px, not uniform) and its SVG path data.
   **Never hand-edit.** `scripts/generate-icons.js` turns it into BOTH
   `packages/react-ui/src/icons/outline.tsx`/`solid.tsx` and compose-ui's
@@ -77,6 +77,12 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   drew a stroked 16px chevron by hand and `IconButton size="small"` inset its icon to
   16px, both about 60% of Figma's size. It is now `angleSmallRight` in the solid set,
   the small variant has no padding, and Section uses the shared small IconButton.
+  Code names follow the outline twin, not the Figma variant label: a solid icon
+  takes the name of the outline icon with the same shape. Figma's `Icon-solid`
+  variant `general/pin` (node `10437:8198`, the UIcons `fi-sr-marker`) is the
+  filled form of outline `address`, so it ships as `SnackyIcons.solid.address`,
+  the same way `riwayat` ships as `history` and `Fav` as `heart`. It is 16px while
+  its outline twin is 24, which has a precedent (`heart` is 20 solid, 24 outline).
   The generator ALSO rewrites `index.html`'s own `const ICONS={...}` registry and the
   `const ICON_SET={...}` index the Icon playground gallery enumerates, so the site renders
   the same geometry the packages ship. Playground-only glyphs that are not part of the

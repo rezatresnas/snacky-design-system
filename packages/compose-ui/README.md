@@ -528,7 +528,7 @@ that credit with them.
 
 - The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
   `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace:
-  **42 Outline + 12 Solid, exported from the real Figma icon components**
+  **42 Outline + 13 Solid, exported from the real Figma icon components**
   (`Icon-outline` node `55:2062`, `Icon-solid` node `8772:5851`).
 
   `SnackyIcons.kt` is generated from `../../assets/icons/icons.json` by
