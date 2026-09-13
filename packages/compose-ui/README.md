@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.1.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.2.0")
 ```
 
 ### Using the icons
@@ -668,21 +668,25 @@ it):
 - `SnackyTypography`, raw `SnackyTypographyToken(fontSize, fontWeight,
   lineHeight, letterSpacing)` values, grouped the same way as
   `tokens.json` (`SnackyTypography.H1.bold`, `SnackyTypography.Body.regular`,
-  etc). Not a Compose `TextStyle`, this package ships no Poppins font
-  resource, so build the `TextStyle` yourself with a `FontFamily` you supply:
+  etc). Not a Compose `TextStyle` on their own, because this package ships no
+  Poppins font resource. Turn one into a `TextStyle` with `toTextStyle()`
+  (hand-written in `theme/TypographyTextStyle.kt`, since `Tokens.kt` is
+  regenerated), passing your `FontFamily` or leaving it null to inherit one
+  you provide higher up:
   ```kotlin
-  TextStyle(
-      fontFamily = poppins,
-      fontSize = SnackyTypography.H1.bold.fontSize,
-      fontWeight = SnackyTypography.H1.bold.fontWeight,
-      lineHeight = SnackyTypography.H1.bold.lineHeight,
-      letterSpacing = SnackyTypography.H1.bold.letterSpacing,
+  Text(
+      "Order",
+      style = SnackyTypography.Body.semibold.toTextStyle(
+          color = SnackyColor.textPrimary,
+          fontFamily = poppins,
+      ),
   )
   ```
 
-Every value is fully resolved to a literal (colors, dp, sp), the same
-flattening approach `generate-react-tokens.js` uses for `tokens.css`, there
-are no cross-references between generated Kotlin objects.
+Semantic colors reference their primitive rather than copying its value
+(`val bgActionPrimary = SnackyColorPrimitive.Amber.c500`), mirroring
+`tokens.css`; dp, sp and anything with no primitive behind it (`bgOverlayDim`)
+are literals.
 
 ## Building
 

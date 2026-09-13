@@ -4,6 +4,33 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## The solid address icon (0.12.0)
+
+`SnackyIcons.solid.address` is new: the filled map marker, added to Figma's
+`Icon-solid` set as `general/pin` (UIcons `fi-sr-marker`), 16x16, with its fill
+bound to `icon/icon-brand`. The solid set is 13 icons now.
+
+It ships as `address` rather than `pin` because a solid icon here takes the name
+of its outline twin, and this is the same marker shape as the existing
+`SnackyIcons.outline.address`. That is the rule the rest of the set already
+follows (Figma's `riwayat` is `history`, `Fav` is `heart`), and it means an
+active/inactive pair is always `outline.x` and `solid.x` with no lookup table.
+It is 16px where its outline twin is 24; `heart` has the same kind of mismatch
+(20 solid, 24 outline), and each icon still defaults to its own authored size.
+
+compose-ui ships the same icon as `SnackyIcons.Solid.Address` in
+`compose-v2.2.0`, plus one helper it was missing:
+`SnackyTypographyToken.toTextStyle(color, fontFamily)`. compose-ui's type tokens
+are raw values rather than `TextStyle`s (the package ships no font), and nothing
+turned one into the other, so every component built the style by hand and 58 of
+the docs site's Kotlin samples could not compile: 24 called a `toTextStyle()`
+that did not exist, and the rest used flat names like
+`SnackyTypography.smallRegular` that never did either. Those samples now use
+`SnackyTypography.Small.regular.toTextStyle()`. The React samples had the same
+flat-name problem (`typography.smallRegular`, 43 places) against an export that
+is nested (`typography.small.regular`), and are fixed the same way. Additive on
+both sides.
+
 ## PageIndicator, and a semantic role for indicator dots (0.11.0)
 
 `PageIndicator` is the dot row under a carousel: 8x8 dots, a 28x8 pill for the
