@@ -141,13 +141,21 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `typography.smallRegular`-style flat names against an export that is nested
   (`typography.small.regular`), and 43 Kotlin samples did the same with
   `SnackyTypography.smallRegular`; 24 more Kotlin samples called a `toTextStyle()`
-  that compose-ui did not ship. None of it could compile, and agents copy
-  snippets verbatim. All now use the nested names, compose-ui ships
+  that only existed as a paste-it-yourself helper on the Foundations page, not in
+  compose-ui. The flat names could never compile, and agents copy snippets
+  verbatim. All now use the nested names, compose-ui ships
   `SnackyTypographyToken.toTextStyle()` (hand-written in
   `theme/TypographyTextStyle.kt`, because `Tokens.kt` is regenerated), and the
   Input page's `<CopyField copied>` (no such prop), `TextField`-as-chat and
   hand-built address row now show `CopyField`, `ChatInput` and `AddressResult`.
   Before adding a sample, check the name against the package source.
+- **Read Figma bindings, not PNG exports, when a value is in doubt.** The exports in
+  `assets/images/variants/` can be stale or padded: `modal-reviews.png` showed empty
+  stars at #cccccc after Figma had bound them to `icon/icon-disabled` (#a3a3a3), and
+  `modal-driver.png` is 456 tall only because it includes the node's drop shadow
+  (the node is 452). A pass that trusted those pixels shipped one wrong fix. Use
+  figma-cli to read the node's size and bound variables, and re-export an image
+  when it no longer matches its node.
 - **Figma is the arbiter, not the Live Preview.** The preview was confirmed
   pixel-perfect and mostly was, but migrating found it wrong in several places:
   every bordered Input field measured 50 against Figma's 48, ProductCard details was

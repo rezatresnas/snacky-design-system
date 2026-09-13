@@ -23,9 +23,10 @@ compose-ui ships the same icon as `SnackyIcons.Solid.Address` in
 `SnackyTypographyToken.toTextStyle(color, fontFamily)`. compose-ui's type tokens
 are raw values rather than `TextStyle`s (the package ships no font), and nothing
 turned one into the other, so every component built the style by hand and 58 of
-the docs site's Kotlin samples could not compile: 24 called a `toTextStyle()`
-that did not exist, and the rest used flat names like
-`SnackyTypography.smallRegular` that never did either. Those samples now use
+the docs site's Kotlin samples were broken or incomplete: 24 called a
+`toTextStyle()` that only existed as a helper the Foundations page told you to
+paste in yourself, and the rest used flat names like
+`SnackyTypography.smallRegular` that never existed at all. Those samples now use
 `SnackyTypography.Small.regular.toTextStyle()`. The React samples had the same
 flat-name problem (`typography.smallRegular`, 43 places) against an export that
 is nested (`typography.small.regular`), and are fixed the same way. Additive on
