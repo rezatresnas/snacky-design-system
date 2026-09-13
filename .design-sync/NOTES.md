@@ -577,6 +577,18 @@
   typecheck with `noUnusedLocals` on. The next `/design-sync` should pick the new
   component up through its `added` diff.
 
+- **2026-09-13 (re-sync)**: `@snacky/ui` 0.13.0, compose-v2.3.0 (release
+  already cut). Pushed `ProductGroupSection` live - graded all 4 stories
+  (Horizontal, Banner, Grid, WithoutSeeMore): real ProductCard rows/grid,
+  correct banner overlap, "see more" chevron correctly present/absent. Also
+  re-graded `Section` since its three Group stories now delegate to the new
+  component internally instead of hand-rolled composition - renders
+  identically, confirming the delegation didn't change anything visible.
+  Two follow-up commits in the same window (fixing the docs Section page's
+  invented code samples, correcting the Badge page's samples) were
+  docs-site-only (`index.html`, `figma-links.js`), nothing this sync reads.
+  compose-ui compiles clean.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
