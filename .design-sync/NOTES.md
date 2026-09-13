@@ -536,6 +536,17 @@
   (`$` -> `Rp`, comma -> period) before grading and pushing. compose-ui
   compiles clean via compileDebugKotlinAndroid + compileCommonMainKotlinMetadata.
 
+- **2026-09-13 (later)**: `Section.GroupProductsBanner` scrolls the way the user
+  demonstrated in Figma: the product row spans the full 360 and starts its first
+  card at x160 with padding (it used to be a scroller starting AT x160, which
+  clipped the cards there), so dragging carries the cards over the banner while
+  the banner stays put. Mouse drag comes from a small `DragRow` in the preview
+  (pointer captured only after a 4px move, so taps on the cart buttons still
+  land); touch and trackpad scroll natively. Headless check with real mouse
+  input: a 200px drag moves the first card from x160 to x-40 with the banner
+  still at x0, a plain click still reaches the cart button, story height is
+  still Figma's 396. The docs playground has the same behaviour.
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -

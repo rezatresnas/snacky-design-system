@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   Section,
   ProductCard,
@@ -109,6 +110,59 @@ function SeeMore() {
     >
       {seeAll}
       <span style={{ ...type('small-bold', 'var(--text-link)'), textAlign: 'center' }}>See other products</span>
+    </div>
+  );
+}
+
+/* A horizontal product row you can drag with a mouse, the way it scrolls under a
+   finger on a phone. Touch and trackpad scroll natively; the pointer is only
+   captured after a 4px move, so a plain tap on a card's cart button still lands,
+   and the click that ends a real drag is swallowed. */
+type DragState = { x: number; left: number; moved: boolean; id: number };
+
+function DragRow({ style, children }: { style: React.CSSProperties; children: React.ReactNode }) {
+  const drag = useRef<DragState | null>(null);
+  const justDragged = useRef(false);
+  return (
+    <div
+      style={{ ...style, overflowX: 'auto', scrollbarWidth: 'none', cursor: 'grab', userSelect: 'none' }}
+      onPointerDown={(e) => {
+        if (e.pointerType !== 'mouse') return;
+        drag.current = { x: e.clientX, left: e.currentTarget.scrollLeft, moved: false, id: e.pointerId };
+      }}
+      onPointerMove={(e) => {
+        const d = drag.current;
+        if (!d) return;
+        const dx = e.clientX - d.x;
+        if (!d.moved && Math.abs(dx) > 4) {
+          d.moved = true;
+          e.currentTarget.setPointerCapture(d.id);
+          e.currentTarget.style.cursor = 'grabbing';
+        }
+        if (d.moved) e.currentTarget.scrollLeft = d.left - dx;
+      }}
+      onPointerUp={(e) => {
+        if (drag.current?.moved) {
+          e.currentTarget.style.cursor = 'grab';
+          justDragged.current = true;
+          setTimeout(() => {
+            justDragged.current = false;
+          }, 0);
+        }
+        drag.current = null;
+      }}
+      onPointerCancel={() => {
+        drag.current = null;
+      }}
+      onClickCapture={(e) => {
+        if (justDragged.current) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      }}
+      onDragStart={(e) => e.preventDefault()}
+    >
+      {children}
     </div>
   );
 }
@@ -225,7 +279,9 @@ export function GroupProductsHorizontal() {
 }
 
 /* Figma: a full-bleed 360x334 square discount banner under the header, with the
-   product row laid over it from x160. The banner artwork is a placeholder here. */
+   product row laid over it from x160. The row scrolls across the whole width, so
+   the cards slide over the banner while it stays put behind them. The banner
+   artwork is a placeholder here. */
 export function GroupProductsBanner() {
   return (
     <div className="preview-sec-banner" style={{ width: 360 }}>
@@ -237,12 +293,14 @@ export function GroupProductsBanner() {
       <Section title="Exciting Promo" onAction={() => {}}>
         <div style={{ position: 'relative', width: 360, height: 334 }}>
           <SquareBanner imageUrl={BANNER} alt="Chiki Discount 50% for all variants" />
-          <div style={{ position: 'absolute', left: 160, right: 0, top: 24, display: 'flex', gap: 8, overflowX: 'auto' }}>
+          <DragRow
+            style={{ position: 'absolute', left: 0, right: 0, top: 24, display: 'flex', gap: 8, paddingLeft: 160, boxSizing: 'border-box' }}
+          >
             <Card name="Chicki Balls Cheeky Chicken 75 g" price="Rp 5.000" old="Rp 10.000" />
             <Card name="Chicki Twist Roasted Corn 75 g" price="Rp 5.000" old="Rp 10.000" />
             <Card name="Chicki Puffs Cheddar Cheese 75 g" price="Rp 5.000" old="Rp 10.000" />
             <SeeMore />
-          </div>
+          </DragRow>
         </div>
       </Section>
     </div>
