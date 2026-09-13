@@ -40,7 +40,7 @@ export function Delivered() {
   );
 }
 
-export function Complete() {
+export function Received() {
   return (
     <div style={surface}>
       <Stepper

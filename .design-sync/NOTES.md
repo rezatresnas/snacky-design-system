@@ -37,9 +37,9 @@
   `cardMode: "column"` (their stories render wider than a grid cell, so each gets
   the full card width, one story per row). `BottomSheet` was originally
   `cardMode: "single", primaryStory: "Default"` when it only had one story - once
-  its preview grew to 6 distinct documented Modal variants (Welcome/Success/
-  Confirmation/VariantSelector/PaymentMethods/WithHandle), `single` would have
-  hidden 5 of them, so it moved to `column` like the others. If a component's
+  its preview grew to several distinct documented Modal variants (now all 9 on
+  the docs Modal page, see the 2026-09-13 entry), `single` would have hidden all
+  but one, so it moved to `column` like the others. If a component's
   preview grows past one meaningfully-different story, re-check whether `single`
   is still the right override.
 
@@ -472,6 +472,42 @@
   even though `--bg-indicator-active`/`inactive` resolve to the exact same
   amber-500/neutral-200 as the tokens they replaced - confirmed all 5 stories
   render identically to before. compose-ui compiles clean.
+
+- **2026-09-13**: previews audited against every documented variant on the docs
+  site, after the user noticed Claude Design had no `Group-Products-Banner`
+  Section. The cause was not a sync bug: previews are a third render path, hand
+  written on earlier syncs, and nothing ever compared them with the docs pages
+  (whose playgrounds are the path measured against Figma). `Section.tsx` had 8
+  stories, only 3 of them real Figma types and one (`SettingsList`) not a
+  Section variant at all; `BottomSheet.tsx` had 6 of the 9 Modal variants.
+  Rewritten: `Section.tsx` now has all 16 documented types and `BottomSheet.tsx`
+  all 9 Modal variants, both ported from the docs playgrounds with raw hex swapped
+  for tokens and photography swapped for placeholders. Headless render of the new
+  stories against Figma heights: all 16 Section types match exactly, and 7 of 9
+  Modal variants do. `VariantsSelector` renders 372 where the docs spec says 356,
+  but the Figma export (`modal-variants.png`, 1440x1488 at 4x) is 372, so the
+  spec number is the wrong one. `DriverTracking` renders 452 against Figma's 456
+  (`modal-driver.png`), and the docs playground renders the same 452, so that 4px
+  predates this pass and still needs a Figma node check.
+  Smaller gaps filled: `NavBar` (Category/History active, labels corrected to
+  Figma's Home/Category/Cart/History/Account from invented Orders/Profile),
+  `Header` (Close only), `SquareBanner` (Deals), `Button` (With Social),
+  `TextField` (Password, Dropdown with icon, Date Picker empty/filled, Address,
+  Address search). `Stepper`'s all-done story renamed `Complete` -> `Received` to
+  match the docs, and `IconButton`'s small size now carries the `angleSmallRight`
+  chevron Figma's small variant uses. Not added as stories because they cannot be
+  forced statically: focus ("Active") states, hover/pressed, and `CopyField`'s
+  transient "Copied" label, all of which work live in the interactive cards.
+  Verified: all 177 stories across 45 preview files render headless with no
+  runtime error and none empty, and every preview typechecks against the package
+  source (with a negative control proving the check fails on a bad prop).
+  Rule going forward: when a docs page gains or changes a variant, its preview
+  file changes in the same commit, or Claude Design silently falls behind again.
+  Follow-ups in the same pass: empty review stars sampled from the Figma exports
+  disagree between screens (`section-review-preview.png` #a3a3a3 = `--icon-disabled`,
+  `modal-reviews.png` #cccccc = neutral-200), so each preview now matches its own
+  export; unifying them is a Figma decision. The Modal `VariantsSelector` spec
+  height was corrected to 372.
 
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 

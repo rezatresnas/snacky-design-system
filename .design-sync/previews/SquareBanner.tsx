@@ -17,6 +17,7 @@ function placeholder(width: number, height: number) {
 
 const IMG_DISCOUNT = placeholder(360, 334);
 const IMG_FAVOURITES = placeholder(360, 334);
+const IMG_DEALS = placeholder(360, 334);
 
 export function Discount() {
   return <SquareBanner imageUrl={IMG_DISCOUNT} alt="Discount snacks category" />;
@@ -24,4 +25,8 @@ export function Discount() {
 
 export function Favourites() {
   return <SquareBanner imageUrl={IMG_FAVOURITES} alt="Customer favourites category" />;
+}
+
+export function Deals() {
+  return <SquareBanner imageUrl={IMG_DEALS} alt="Snack deals category" />;
 }

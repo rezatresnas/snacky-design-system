@@ -8,6 +8,10 @@ export function WithBack() {
   return <Header title="Product details" leadingIcon="back" onLeadingClick={() => {}} />;
 }
 
+export function WithClose() {
+  return <Header title="Cart" leadingIcon="close" onLeadingClick={() => {}} />;
+}
+
 export function WithCloseAndAction() {
   return (
     <Header
