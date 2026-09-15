@@ -19,6 +19,16 @@ group = "com.snacky"
 
 kotlin {
     androidTarget {
+        // Without this, the KMP plugin compiles the Android target (JitPack's
+        // own build log shows compileDebugKotlinAndroid/compileReleaseKotlinAndroid
+        // succeeding) but registers no Maven publication for it: the published
+        // .module had only iosArm64/iosSimulatorArm64/iosX64 and metadata
+        // variants, so any real Android app resolving this dependency got "No
+        // matching variant ... needed a component for use during runtime ...
+        // androidJvm" and could not build at all. androidTarget is the one KMP
+        // target that publishes nothing by default; every other target here
+        // does.
+        publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -64,9 +74,10 @@ android {
     }
 }
 
-// Applying the bare maven-publish plugin is all JitPack needs: the Kotlin
-// Multiplatform plugin auto-registers a publication per target (androidRelease,
-// kotlinMultiplatform, iosX64, iosArm64, iosSimulatorArm64) once it sees
-// maven-publish applied, no manual publications {} block required. JitPack then
-// runs its own build (see ../../jitpack.yml) and serves whatever lands in
-// mavenLocal, no signing and no external account needed, unlike Maven Central.
+// Applying the bare maven-publish plugin is all JitPack needs beyond the
+// publishLibraryVariants() call above: the Kotlin Multiplatform plugin then
+// auto-registers a publication per target (androidRelease, kotlinMultiplatform,
+// iosX64, iosArm64, iosSimulatorArm64), no manual publications {} block
+// required. JitPack then runs its own build (see ../../jitpack.yml) and serves
+// whatever lands in mavenLocal, no signing and no external account needed,
+// unlike Maven Central.

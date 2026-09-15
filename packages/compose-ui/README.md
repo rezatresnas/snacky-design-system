@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.0")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.1")
 ```
 
 ### Using the icons
@@ -131,6 +131,29 @@ androidx.compose.runtime.getValue` needed for a `by` delegate on
 `State<Boolean>` to resolve, plus a JVM-target mismatch between Kotlin (11)
 and AGP's own javac step (still defaulting to 1.8). All fixed in
 `compose-v0.1.2`.
+
+**Every tag through `compose-v2.3.0` published with no usable Android
+artifact at all**, found while wiring this package into a real Android
+Studio app for the first time. `build.gradle.kts`'s `kotlin { androidTarget
+{ ... } }` block never called `publishLibraryVariants("release")`, which
+Kotlin Multiplatform's Android target needs to register a Maven publication,
+unlike every other target here (`iosX64`, `iosArm64`, `iosSimulatorArm64`),
+which publish without it. `compileDebugKotlinAndroid`/`compileReleaseKotlinAndroid`
+compiled fine on every JitPack build (their build logs show it), so the tag
+looked healthy; what silently never happened was
+`publishAndroidReleasePublicationToMavenLocal`. A real Android app requesting
+`com.github.rezatresnas:snacky-design-system` got `No matching variant ...
+needed a component for use during runtime ... with value 'androidJvm'` and
+could not build, because the published `.module` had `metadataApiElements`
+and three `iosXxxApiElements` variants and nothing for `androidJvm`.
+Confirmed fixed by running `./gradlew publishToMavenLocal` before and after:
+the umbrella module's `releaseRuntimeElements-published` variant now carries
+`org.jetbrains.kotlin.platform.type: androidJvm` and redirects
+(`available-at`) to a real `compose-ui-android` artifact with the `.aar`
+inside it. Fixed in `compose-v2.3.1`. Lesson: a Kotlin/Native or JVM target
+compiling on CI is not proof it publishes, check the actual `.module` file
+(or the platform-specific publish task list) when adding a new KMP target,
+not just that the compile task ran.
 
 ## Artwork credit and licensing
 

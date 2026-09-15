@@ -299,6 +299,21 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Windows doesn't preserve it, `git update-index --chmod=+x` fixes it), a missing
   `import androidx.compose.runtime.getValue` for a `by` delegate on `State<T>`, and
   a Kotlin/AGP JVM-target mismatch (11 vs default 1.8).
+- **Every `compose-v*` tag through `compose-v2.3.0` compiled clean and published with
+  no usable Android artifact at all**, found only when a real Android Studio app tried
+  to depend on it. `kotlin { androidTarget { ... } }` in `packages/compose-ui/build.gradle.kts`
+  never called `publishLibraryVariants("release")`, which Kotlin Multiplatform's
+  Android target needs to register a Maven publication (the iOS targets publish
+  without it, which is why this went unnoticed). `compileDebugKotlinAndroid` succeeding
+  on every JitPack build made the tag look healthy; the published `.module` actually had
+  a `metadataApiElements` variant and three `iosXxxApiElements` variants and nothing
+  for `androidJvm`, so any real Android app got "No matching variant ... needed a
+  component for use during runtime ... androidJvm" and could not build at all. Fixed in
+  `compose-v2.3.1`, confirmed by running `./gradlew publishToMavenLocal` and checking the
+  actual `.module` file for a `releaseRuntimeElements-published` variant redirecting
+  (`available-at`) to a real `compose-ui-android` artifact. General lesson: a KMP target
+  compiling is not proof it publishes; check the `.module` (or the publish task list),
+  not just the compile task, when trusting a new platform target.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,
