@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.components.button.SnackyButton
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
@@ -118,6 +119,7 @@ fun SnackyOrderListItem(
                     text = STATUS_LABEL.getValue(status),
                     style = TextStyle(
                         color = if (status == OrderStatus.Cancelled) SnackyColor.textError else SnackyColor.textPrimary,
+                        fontFamily = LocalSnackyFontFamily.current,
                         fontSize = SnackyTypography.Small.semibold.fontSize,
                         fontWeight = SnackyTypography.Small.semibold.fontWeight,
                         lineHeight = SnackyTypography.Small.semibold.lineHeight,
@@ -160,6 +162,7 @@ fun SnackyOrderListItem(
                         text = "COD",
                         style = TextStyle(
                             color = SnackyColor.textSecondary,
+                            fontFamily = LocalSnackyFontFamily.current,
                             fontSize = SnackyTypography.Small.bold.fontSize,
                             fontWeight = SnackyTypography.Small.bold.fontWeight,
                             lineHeight = SnackyTypography.Small.bold.lineHeight,
@@ -219,6 +222,7 @@ fun SnackyNotificationListItem(
             text = title,
             style = TextStyle(
                 color = SnackyColor.textPrimary,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Small.semibold.fontSize,
                 fontWeight = SnackyTypography.Small.semibold.fontWeight,
                 lineHeight = SnackyTypography.Small.semibold.lineHeight,
@@ -234,10 +238,12 @@ fun SnackyNotificationListItem(
     }
 }
 
+@Composable
 private fun smallRegularStyle(color: Color): TextStyle {
     val token = SnackyTypography.Small.regular
     return TextStyle(
         color = color,
+        fontFamily = LocalSnackyFontFamily.current,
         fontSize = token.fontSize,
         fontWeight = token.fontWeight,
         lineHeight = token.lineHeight,

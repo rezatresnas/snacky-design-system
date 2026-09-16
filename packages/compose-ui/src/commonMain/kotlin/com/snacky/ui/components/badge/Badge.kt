@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -63,6 +64,7 @@ fun SnackyBadge(
                     text = text,
                     style = TextStyle(
                         color = SnackyColor.textInverse,
+                        fontFamily = LocalSnackyFontFamily.current,
                         fontSize = SnackyTypography.Caption.semibold.fontSize,
                         fontWeight = SnackyTypography.Caption.semibold.fontWeight,
                         letterSpacing = SnackyTypography.Caption.semibold.letterSpacing,
@@ -87,6 +89,7 @@ fun SnackyDiscountTag(label: String, modifier: Modifier = Modifier) {
             text = label,
             style = TextStyle(
                 color = SnackyColor.textInverse,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Caption.semibold.fontSize,
                 fontWeight = SnackyTypography.Caption.semibold.fontWeight,
                 letterSpacing = SnackyTypography.Caption.semibold.letterSpacing,
@@ -109,6 +112,7 @@ fun SnackySoldOutBadge(modifier: Modifier = Modifier) {
             text = "Sold Out",
             style = TextStyle(
                 color = SnackyColor.textInverse,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Small.regular.fontSize,
                 fontWeight = SnackyTypography.Small.regular.fontWeight,
                 lineHeight = SnackyTypography.Small.regular.lineHeight,
@@ -168,6 +172,7 @@ fun SnackyInfoBadge(
             text = label,
             style = TextStyle(
                 color = SnackyColor.textPrimary,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Caption.regular.fontSize,
                 fontWeight = SnackyTypography.Caption.regular.fontWeight,
                 letterSpacing = SnackyTypography.Caption.regular.letterSpacing,

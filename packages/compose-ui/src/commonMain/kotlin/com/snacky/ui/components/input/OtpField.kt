@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -103,6 +104,7 @@ fun SnackyOtpField(
                     // text colour the other fields use, so `enabled = false` is at
                     // least visible rather than rendering identically to enabled.
                     color = if (enabled) SnackyColor.textPrimary else SnackyColor.textDisabled,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = SnackyTypography.H3.bold.fontSize,
                     fontWeight = SnackyTypography.H3.bold.fontWeight,
                     // 46sp, not the token's 36sp - see the KDoc above.

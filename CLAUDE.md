@@ -333,6 +333,33 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   so avoid experimental Compose APIs in it even when they compile fine locally; when a
   runtime crash like this is reported, get the exact required method descriptor from the
   stack trace or `javap` rather than guessing which BOM might be "close enough".
+- **No component ever picked up a host app's font, found the same way as the two bugs
+  above: a real Android app (`SnackyApp`) actually using the package.** Every one of the
+  26 components builds its own `TextStyle` by hand with size/weight/line-height/letter-
+  spacing but never `fontFamily`, so text rendered in the platform default even after the
+  host app loaded Poppins and passed it into its own hand-written screen text.
+  `SnackyButton`'s own doc comment admitted this was expected, in exactly these words:
+  "it renders in whatever `fontFamily` is ambient/default until this package grows a
+  SnackyTheme that can supply one globally." Fixed in `compose-v2.3.3` by adding exactly
+  that: `theme/SnackyTheme.kt` exposes `LocalSnackyFontFamily` (a `CompositionLocal
+  <FontFamily?>`, default null) and `SnackyTheme(fontFamily) { content() }`; every
+  component's hand-built `TextStyle` and the docs' `toTextStyle()` helper now read
+  `LocalSnackyFontFamily.current` as their default. A host wraps its content once
+  (`SnackyTheme(fontFamily = PoppinsFamily) { HomeScreen() }`) instead of threading a
+  `fontFamily` parameter through every component call. General lesson: a component doc
+  comment describing a known gap as "until this package grows X" is a standing TODO, not
+  a closed decision, worth grepping for when related work touches that area.
+- **The same real-app build also found the Grid layout's two product cards pinned to
+  the screen's left edge on any device wider than Figma's 360dp reference canvas**, with
+  the leftover width dumped entirely on the right rather than split evenly (not a value
+  bug: the two 152dp cards plus their 8dp gap sum to exactly Figma's 312dp content
+  width and matched perfectly at that width); the mismatch only showed up on a real
+  device's wider viewport (e.g. a Pixel 8's ~412dp), which the docs site's fixed-width
+  preview frame never exercises. `SnackySection`'s content sits in a plain `Column`
+  (default `Start` alignment) with no reason to center a fixed-width child, so
+  `SnackyProductGroupSection`'s Grid branch now wraps its `TwoColumnGrid` in a
+  `Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center)`, matching how a
+  real e-commerce layout should behave once the screen is wider than the design canvas.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,

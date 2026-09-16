@@ -19,6 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.components.icon.SnackyIcon
 import com.snacky.ui.components.icon.SnackyIcons
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -76,6 +77,7 @@ fun SnackyStepper(
                                 StepState.Pending -> SnackyColor.textSecondary
                                 StepState.Cancelled -> SnackyColor.textError
                             },
+                            fontFamily = LocalSnackyFontFamily.current,
                             fontSize = SnackyTypography.Small.bold.fontSize,
                             fontWeight = SnackyTypography.Small.bold.fontWeight,
                             lineHeight = SnackyTypography.Small.bold.lineHeight,
@@ -87,6 +89,7 @@ fun SnackyStepper(
                             text = step.timestamp,
                             style = TextStyle(
                                 color = SnackyColor.textSecondary,
+                                fontFamily = LocalSnackyFontFamily.current,
                                 fontSize = SnackyTypography.Small.regular.fontSize,
                                 fontWeight = SnackyTypography.Small.regular.fontWeight,
                                 lineHeight = SnackyTypography.Small.regular.lineHeight,

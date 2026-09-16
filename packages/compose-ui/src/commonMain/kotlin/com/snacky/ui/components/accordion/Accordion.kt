@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -106,6 +107,7 @@ fun SnackyAccordion(
                 modifier = Modifier.weight(1f),
                 style = TextStyle(
                     color = SnackyColor.textPrimary,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = titleStyle.fontSize,
                     fontWeight = titleStyle.fontWeight,
                     lineHeight = titleStyle.lineHeight,

@@ -33,6 +33,7 @@ import com.snacky.ui.components.icon.SnackyIcon
 import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.components.iconbutton.IconButtonVariant
 import com.snacky.ui.components.iconbutton.SnackyIconButton
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -300,11 +301,13 @@ private fun RatingLabel(text: String, ratingIcon: (@Composable () -> Unit)?) {
     }
 }
 
+@Composable
 private fun cardStyle(
     token: SnackyTypographyToken,
     color: androidx.compose.ui.graphics.Color,
 ): TextStyle = TextStyle(
     color = color,
+    fontFamily = LocalSnackyFontFamily.current,
     fontSize = token.fontSize,
     fontWeight = token.fontWeight,
     lineHeight = token.lineHeight,

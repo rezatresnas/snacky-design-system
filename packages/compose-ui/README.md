@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.2")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.3")
 ```
 
 ### Using the icons
@@ -96,10 +96,27 @@ yourself to match whatever slot it fills.
 
 ### Supplying the font
 
-The package bundles no font, so text renders in the ambient one until you give
-it Poppins. Build the `TextStyle` with a `FontFamily` you supply (see the
-Typography note further down), and apply it to any text you author around the
-components too, not just to the components themselves.
+The package bundles no font, so text renders in the platform default until
+you give it Poppins. Wrap your content once in `SnackyTheme`, and every
+component under it picks up the font automatically, no need to touch each
+component's own parameters:
+
+```kotlin
+val PoppinsFamily = FontFamily(
+    Font(R.font.poppins_regular, FontWeight.Normal),
+    Font(R.font.poppins_bold, FontWeight.Bold),
+    // ...the weights you loaded
+)
+
+SnackyTheme(fontFamily = PoppinsFamily) {
+    HomeScreen()
+}
+```
+
+This still doesn't cover text you author yourself around the components
+(a screen's own headings, glue text between sections): pass the same
+`FontFamily` to those directly, or read `LocalSnackyFontFamily.current` if
+you want them to inherit the theme's choice rather than hardcode it again.
 
 Confirmed coordinate format (`com.github.User:Repo:Tag`, the repo-level
 form, not the module-qualified `User.Repo:Module` form) via JitPack's own
@@ -177,6 +194,35 @@ or `FlowLayoutKt` anywhere in it. General lesson: a published binary
 library cannot control which Compose version the host app resolves, so it
 cannot call an experimental API for something a stable, hand-rolled layout
 can do just as well.
+
+**Every component ignored a host app's font until `compose-v2.3.3`.** Each
+component built its own `TextStyle` by hand with size/weight/line-height/
+letter-spacing but no `fontFamily`, so text always rendered in the
+platform default even after a real Android app loaded Poppins and passed
+it around by hand (see the Home screen build in the root repo's sibling
+`SnackyApp` project). `SnackyButton`'s own doc comment used to admit this
+directly: "it renders in whatever `fontFamily` is ambient/default until
+this package grows a SnackyTheme that can supply one globally." Fixed by
+adding exactly that: `theme/SnackyTheme.kt` now exposes
+`LocalSnackyFontFamily` (a `CompositionLocal<FontFamily?>`, default null)
+and `SnackyTheme(fontFamily) { content() }`, and every hand-built
+`TextStyle` across all 26 components now reads `LocalSnackyFontFamily.current`
+as its `fontFamily`. A host wraps its content once:
+```kotlin
+SnackyTheme(fontFamily = PoppinsFamily) {
+    HomeScreen()
+}
+```
+and every Snacky component picks it up without threading a `fontFamily`
+parameter through each one. `toTextStyle()` (theme/TypographyTextStyle.kt)
+got the same default, so docs code samples calling it directly inherit the
+theme too, without having to know the CompositionLocal exists. This also
+fixed the two-column grid product cards reading as pinned to the left
+edge on any device wider than Figma's 360dp reference canvas: the fixed
+152dp cards summed to exactly 312dp (Figma's content width) and never
+filled a wider real screen, so `Column`'s default `Start` alignment
+dumped the slack entirely on the right. `SnackyProductGroupSection`'s
+Grid branch now centers that block in the section's full width.
 
 ## Artwork credit and licensing
 

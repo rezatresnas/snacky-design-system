@@ -19,6 +19,7 @@ import com.snacky.ui.components.icon.SnackyIcon
 import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.components.iconbutton.IconButtonSize
 import com.snacky.ui.components.iconbutton.SnackyIconButton
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -88,6 +89,7 @@ internal fun SnackySectionHeader(
             overflow = TextOverflow.Ellipsis,
             style = TextStyle(
                 color = SnackyColor.textPrimary,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.H3.bold.fontSize,
                 fontWeight = SnackyTypography.H3.bold.fontWeight,
                 lineHeight = SnackyTypography.H3.bold.lineHeight,

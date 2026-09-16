@@ -25,6 +25,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyTypography
 
@@ -85,6 +86,7 @@ fun SnackyHeader(
                 overflow = TextOverflow.Ellipsis,
                 style = TextStyle(
                     color = SnackyColor.textPrimary,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = SnackyTypography.H3.bold.fontSize,
                     fontWeight = SnackyTypography.H3.bold.fontWeight,
                     lineHeight = SnackyTypography.H3.bold.lineHeight,

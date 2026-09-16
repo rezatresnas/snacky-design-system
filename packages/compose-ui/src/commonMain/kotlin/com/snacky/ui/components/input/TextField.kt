@@ -29,6 +29,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -193,10 +194,12 @@ internal fun FieldIcon(
  * theme/Tokens.kt), so no `fontFamily` is set here either - supply one
  * globally if you need the real typeface.
  */
+@Composable
 internal fun androidx.compose.ui.graphics.Color.asStyle(
     token: com.snacky.ui.theme.SnackyTypographyToken,
 ): TextStyle = TextStyle(
     color = this,
+    fontFamily = LocalSnackyFontFamily.current,
     fontSize = token.fontSize,
     fontWeight = token.fontWeight,
     lineHeight = token.lineHeight,

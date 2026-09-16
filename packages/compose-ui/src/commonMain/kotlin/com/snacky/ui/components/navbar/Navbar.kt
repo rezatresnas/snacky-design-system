@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyTypography
@@ -95,6 +96,7 @@ fun SnackyNavBar(
                     text = item.label,
                     style = TextStyle(
                         color = labelColor,
+                        fontFamily = LocalSnackyFontFamily.current,
                         fontSize = labelStyle.fontSize,
                         fontWeight = labelStyle.fontWeight,
                         lineHeight = labelStyle.lineHeight,

@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyTypography
@@ -83,6 +84,7 @@ fun SnackyRadioOption(
             text = label,
             style = TextStyle(
                 color = SnackyColor.textPrimary,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Small.regular.fontSize,
                 fontWeight = SnackyTypography.Small.regular.fontWeight,
                 lineHeight = SnackyTypography.Small.regular.lineHeight,

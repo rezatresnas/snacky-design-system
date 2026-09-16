@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -245,11 +246,13 @@ fun SnackyAlertBanner(
     }
 }
 
+@Composable
 private fun bannerStyle(
     token: SnackyTypographyToken,
     color: androidx.compose.ui.graphics.Color,
 ): TextStyle = TextStyle(
     color = color,
+    fontFamily = LocalSnackyFontFamily.current,
     fontSize = token.fontSize,
     fontWeight = token.fontWeight,
     lineHeight = token.lineHeight,

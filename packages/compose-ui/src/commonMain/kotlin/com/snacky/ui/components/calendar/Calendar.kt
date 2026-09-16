@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.snacky.ui.components.button.SnackyButton
 import com.snacky.ui.components.icon.SnackyIcon
 import com.snacky.ui.components.icon.SnackyIcons
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
@@ -85,6 +86,7 @@ fun SnackyCalendar(
                 modifier = Modifier.weight(1f),
                 style = TextStyle(
                     color = SnackyColor.textPrimary,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = SnackyTypography.H3.bold.fontSize,
                     fontWeight = SnackyTypography.H3.bold.fontWeight,
                     lineHeight = SnackyTypography.H3.bold.lineHeight,
@@ -108,6 +110,7 @@ fun SnackyCalendar(
                             text = d,
                             style = TextStyle(
                                 color = SnackyColor.textPrimary,
+                                fontFamily = LocalSnackyFontFamily.current,
                                 fontSize = SnackyTypography.Small.regular.fontSize,
                                 fontWeight = SnackyTypography.Small.regular.fontWeight,
                                 lineHeight = SnackyTypography.Small.regular.lineHeight,
@@ -167,6 +170,7 @@ private fun androidx.compose.foundation.layout.RowScope.DayCell(
                 text = day.label,
                 style = TextStyle(
                     color = if (day.inMonth) SnackyColor.textPrimary else SnackyColor.textDisabled,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = 16.sp,
                     fontWeight = if (day.selected) {
                         SnackyTypography.H3.bold.fontWeight

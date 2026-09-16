@@ -17,6 +17,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -100,6 +101,7 @@ fun SnackyTabRow(
                     text = tab,
                     style = TextStyle(
                         color = color,
+                        fontFamily = LocalSnackyFontFamily.current,
                         fontSize = style.fontSize,
                         fontWeight = style.fontWeight,
                         lineHeight = style.lineHeight,

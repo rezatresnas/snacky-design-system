@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackyTypography
@@ -61,6 +62,7 @@ fun SnackyCallout(
             text = message,
             style = TextStyle(
                 color = SnackyColor.textPrimary,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = messageStyle.fontSize,
                 fontWeight = messageStyle.fontWeight,
                 lineHeight = messageStyle.lineHeight,
@@ -76,6 +78,7 @@ fun SnackyCallout(
                 text = timestamp,
                 style = TextStyle(
                     color = SnackyColor.textPrimary,
+                    fontFamily = LocalSnackyFontFamily.current,
                     fontSize = metaStyle.fontSize,
                     fontWeight = metaStyle.fontWeight,
                     lineHeight = metaStyle.lineHeight,

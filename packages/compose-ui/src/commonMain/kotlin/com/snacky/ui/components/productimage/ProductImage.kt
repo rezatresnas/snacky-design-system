@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -111,6 +112,7 @@ fun SnackyProductImage(
                         .padding(horizontal = 7.dp, vertical = SnackySpacingPrimitive.space12),
                     style = TextStyle(
                         color = SnackyColor.textInverse,
+                        fontFamily = LocalSnackyFontFamily.current,
                         fontSize = SnackyTypography.Small.regular.fontSize,
                         fontWeight = SnackyTypography.Small.regular.fontWeight,
                         lineHeight = SnackyTypography.Small.regular.lineHeight,

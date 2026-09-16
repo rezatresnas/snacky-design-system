@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -44,10 +45,10 @@ enum class ButtonSize { Default, Small }
  * colors and drops `:hover` entirely rather than simulating it on a touch
  * target - see Button.css for the web version, which does use both.
  *
- * No font is set on [text] beyond the token's size/weight/line-height/letter
- * spacing (Poppins is not bundled, see theme/Tokens.kt), it renders in
- * whatever `fontFamily` is ambient/default until this package grows a
- * SnackyTheme that can supply one globally.
+ * No font is bundled (Poppins is not shipped, see theme/Tokens.kt): [text]
+ * renders in whatever `fontFamily` the host provides via
+ * [com.snacky.ui.theme.SnackyTheme], or the platform default if it wraps
+ * nothing.
  */
 @Composable
 fun SnackyButton(
@@ -119,6 +120,7 @@ fun SnackyButton(
             modifier = Modifier.padding(contentPadding),
             style = TextStyle(
                 color = colors.contentColor,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = label.fontSize,
                 fontWeight = label.fontWeight,
                 lineHeight = label.lineHeight,

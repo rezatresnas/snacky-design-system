@@ -31,6 +31,7 @@ import com.snacky.ui.components.iconbutton.IconButtonSize
 import com.snacky.ui.components.iconbutton.SnackyIconButton
 import com.snacky.ui.components.section.SnackySection
 import com.snacky.ui.components.section.SnackySectionHeader
+import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackyRadius
@@ -88,7 +89,17 @@ fun SnackyProductGroupSection(
         }
 
         ProductGroupLayout.Grid -> SnackySection(title = title, modifier = modifier, onAction = onSeeMore) {
-            TwoColumnGrid(gap = SnackySpacingPrimitive.space8, content = content)
+            // The grid's own two cards are a fixed 152dp each (documented per-component,
+            // not a Fill size - see CLAUDE.md), which sums to exactly Figma's 312dp
+            // reference content width. On a device wider than Figma's 360dp canvas
+            // that content no longer fills the section, and Column's default
+            // horizontalAlignment (Start) then leaves the whole grid pinned to the
+            // left with the extra width dumped entirely on the right, reading as
+            // uncentered/lopsided rather than a snug pair of cards. Centering the grid
+            // in the section's full width splits that slack evenly instead.
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                TwoColumnGrid(gap = SnackySpacingPrimitive.space8, content = content)
+            }
         }
 
         // Figma pads this variant 16/0/0/0: the header keeps its 24dp inset while the
@@ -152,6 +163,7 @@ private fun SeeMoreCard(label: String, onClick: () -> Unit) {
             text = label,
             style = TextStyle(
                 color = SnackyColor.textLink,
+                fontFamily = LocalSnackyFontFamily.current,
                 fontSize = SnackyTypography.Small.bold.fontSize,
                 fontWeight = SnackyTypography.Small.bold.fontWeight,
                 lineHeight = SnackyTypography.Small.bold.lineHeight,
