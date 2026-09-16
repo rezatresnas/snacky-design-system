@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
+import com.snacky.ui.theme.SnackySize
+import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
 
 data class NavItem(
@@ -36,11 +38,15 @@ data class NavItem(
  * Snacky Nav Bar - bottom navigation, 5 tabs for the customer flow. Mirrors
  * packages/react-ui's Navbar.tsx/Navbar.css.
  *
- * Confirmed against Figma (node 441:13155, page "Navbar"): no bugs found,
- * including the already-documented detail that icon and label use
- * different inactive colors (icon-secondary #525252, text-secondary
- * #7a7a7a), and the outer shadow matches `shadowTop` exactly (offsetY -4,
- * blur 10, alpha 0.08) - re-verified directly rather than assumed.
+ * Confirmed against Figma's own variant (`Property 1=Customer`, node
+ * 55:2100, the single variant inside component set 441:13155): 360x88, an
+ * auto-layout row of five 72x72 items over a 16dp bottom padding. Already
+ * matching before that check: icon and label use different inactive colors
+ * (icon-secondary #525252, text-secondary #7a7a7a), and the outer shadow
+ * matches `shadowTop` exactly (offsetY -4, blur 10, alpha 0.08). An earlier
+ * pass read the component SET node (441:13155) rather than the variant
+ * inside it, which is why the bar's own 16dp bottom padding was missed: a
+ * set's padding is Figma's gutter between variants, never a spec value.
  *
  * One deliberate deviation, carried over from react-ui: items use
  * `Modifier.weight(1f)` to fill the container width, where Figma's own
@@ -61,10 +67,15 @@ fun SnackyNavBar(
     modifier: Modifier = Modifier,
 ) {
     Row(
+        // The 16dp bottom padding sits INSIDE the background, not outside it:
+        // Figma's bar is 88 tall (5 items at 72, plus this 16), all of it the
+        // same surface, so the strip below the items is painted, not
+        // transparent. Both packages shipped without it and rendered a 72dp bar.
         modifier = modifier
             .fillMaxWidth()
             .shadow(elevation = 4.dp)
-            .background(SnackyColor.bgSurface),
+            .background(SnackyColor.bgSurface)
+            .padding(bottom = SnackySpacingPrimitive.space16),
     ) {
         items.forEachIndexed { index, item ->
             val active = index == selected
@@ -82,11 +93,11 @@ fun SnackyNavBar(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                     )
-                    .padding(vertical = 12.dp),
+                    .padding(vertical = SnackySpacingPrimitive.space12),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(SnackyGap.iconLabel),
             ) {
-                Box(modifier = Modifier.size(20.dp)) {
+                Box(modifier = Modifier.size(SnackySize.Icon.md)) {
                     val icon = if (active && item.activeIcon != null) item.activeIcon else item.icon
                     CompositionLocalProvider(LocalContentColor provides iconColor) {
                         icon()

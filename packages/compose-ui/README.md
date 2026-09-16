@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.3")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.4")
 ```
 
 ### Using the icons
@@ -223,6 +223,31 @@ edge on any device wider than Figma's 360dp reference canvas: the fixed
 filled a wider real screen, so `Column`'s default `Start` alignment
 dumped the slack entirely on the right. `SnackyProductGroupSection`'s
 Grid branch now centers that block in the section's full width.
+
+**`SnackyHeroBanner` clipped and shadowed its corner at `SnackyRadius.field`
+(4dp) instead of `SnackyRadius.bubble` (8dp), fixed in `compose-v2.3.4`.**
+Found the same way as the font and grid bugs above: real banner artwork
+placed inside the component in a real app. The master `Banner` component's
+own `Card Background` (Figma node `10136:5912`, `Property 1=promo`) is 8dp,
+confirmed directly against that node rather than assumed. At 4dp the drop
+shadow's silhouette is close enough to straight-edged that it visibly peeks
+past the artwork's more rounded 8dp corner, reading as a square shadow
+behind a round card. `packages/react-ui`'s `Banner.css` had the identical
+`var(--radius-field)` on `.snacky-banner-hero`, fixed to `var(--radius-bubble)`
+in the same pass. Lesson: a radius token being *a* valid token (field is a
+real, used value elsewhere) doesn't mean it's the *right* one for this
+component, check it against the component's own master node rather than
+assuming the nearest small radius.
+
+**`SnackyNavBar` was 72 tall against Figma's 88, also fixed in
+`compose-v2.3.4`.** The bar's own 16dp bottom padding (`spacing-16`, a
+primitive, painted inside the surface so the strip below the items is not
+transparent) was missing on both platforms. Its items were already exact
+(12 + 20 icon + 4 gap + 24 line-height + 12 = Figma's 72x72), so the
+padding was the only gap. Same root cause as the radius bug above: an
+earlier pass measured the component SET node (`441:13155`) instead of the
+variant inside it (`Property 1=Customer`, `55:2100`, 360x88), and a set's
+own padding is Figma's gutter between variants, never a spec value.
 
 ## Artwork credit and licensing
 

@@ -3,6 +3,10 @@
   width: 100%;
   background: var(--bg-surface);
   box-shadow: var(--shadow-top);
+  /* Figma's variant (Property 1=Customer, node 55:2100) is 360x88: five
+     72x72 items plus this 16px below them, on the same surface. Shipped
+     without it, the bar rendered 72 tall. */
+  padding-bottom: var(--spacing-16);
 }
 .snacky-navbar__item {
   flex: 1;

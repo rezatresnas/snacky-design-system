@@ -5,7 +5,12 @@
      artwork's own proportions decided the height and a 6.4:1 strip rendered the
      banner 49 tall instead of Figma's 312x128. */
   aspect-ratio: 312 / 128;
-  border-radius: var(--radius-field);
+  /* Confirmed against the master Banner component's own Card Background
+     (Property 1=promo, node 10136:5912): 8px (radius-bubble), not
+     radius-field's 4px. At 4px the box-shadow's silhouette is nearly
+     straight-edged and visibly peeks past the artwork's more rounded 8px
+     corner. */
+  border-radius: var(--radius-bubble);
   box-shadow: var(--shadow-md);
   object-fit: cover;
 }

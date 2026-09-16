@@ -44,6 +44,13 @@ import com.snacky.ui.theme.SnackyTypographyToken
  * `Image(bitmap = ...)`, etc. This handles the frame: radius, elevation and
  * the clip, so the image cannot paint outside the rounded corners.
  *
+ * Radius is [SnackyRadius.bubble] (8dp), confirmed against the master
+ * `Banner` component's own `Card Background` (`Property 1=promo`, node
+ * `10136:5912`), not [SnackyRadius.field] (4dp). Both packages shipped the
+ * wrong token for a while: a 4dp clip/shadow on artwork drawn with an 8dp
+ * corner shows the shadow's squarer silhouette peeking past the art's more
+ * rounded corner, since the shadow shape is nearly straight-edged at 4dp.
+ *
  * Height is caller-owned (react-ui sets only `width: 100%` with
  * `object-fit: cover`, no aspect ratio), unlike [SnackySquareBanner] and
  * [SnackyFullWidthBanner], which do pin one.
@@ -56,8 +63,8 @@ fun SnackyHeroBanner(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(elevation = 4.dp, shape = RoundedCornerShape(SnackyRadius.field))
-            .clip(RoundedCornerShape(SnackyRadius.field)),
+            .shadow(elevation = 4.dp, shape = RoundedCornerShape(SnackyRadius.bubble))
+            .clip(RoundedCornerShape(SnackyRadius.bubble)),
     ) {
         content()
     }

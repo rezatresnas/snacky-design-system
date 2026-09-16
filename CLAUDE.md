@@ -360,6 +360,36 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   `SnackyProductGroupSection`'s Grid branch now wraps its `TwoColumnGrid` in a
   `Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center)`, matching how a
   real e-commerce layout should behave once the screen is wider than the design canvas.
+- **`SnackyHeroBanner` used `SnackyRadius.field` (4dp) for its shadow and clip shape on
+  both platforms, when the master `Banner` component's own `Card Background` (Figma node
+  `10136:5912`, `Property 1=promo`) is `SnackyRadius.bubble` (8dp), confirmed directly
+  against that node rather than assumed.** Found by placing real banner artwork inside
+  the component in a real app (`SnackyApp`): at 4dp the shadow's own silhouette is close
+  enough to straight-edged that it visibly peeked past the artwork's more rounded 8dp
+  corner, reading as a squared-off shadow sitting behind a rounded card. `packages/
+  react-ui`'s `Banner.css` had the identical bug (`var(--radius-field)` on
+  `.snacky-banner-hero`); both fixed in the same pass (`compose-v2.3.4`, `@snacky/ui`
+  `0.13.1`) to `SnackyRadius.bubble` / `var(--radius-bubble)`. Lesson: a radius token
+  being *a* valid, real token elsewhere in the system does not mean it is the *right*
+  one for a given component; check against that component's own master node rather than
+  assuming the nearest small value.
+- **`NavBar` shipped 72 tall on both platforms against Figma's 88, missing the bar's own
+  16dp bottom padding** (`spacing-16`, a primitive, per the component-padding rule
+  below). The variant (`Property 1=Customer`, node `55:2100`) is 360x88: an auto-layout
+  row of five 72x72 items, `paddingBottom: 16`. The item math was already exactly right
+  (12 + 20 icon + 4 gap + 24 line-height + 12 = 72), so only the bar's own padding was
+  missing. Root cause is the same shape as the HeroBanner radius bug above, and worth
+  internalising as one rule: **an earlier pass read the component SET node (441:13155)
+  instead of the variant inside it.** A set's own width/height/padding is Figma's
+  gutter around the variant grid, never a spec value, so reading it silently yields
+  plausible-but-wrong numbers. Always resolve to the variant (or non-variant component)
+  before reading any measurement. `assets/images/variants/navbar-customer.png` was
+  exported from that same wrong height, so it was re-exported from `55:2100` and
+  `index.html`'s spec entry moved 72 -> 88 with `pb:16`; its `gapTopPct`/`gapHeightPct`
+  were re-based onto the taller image (the annotated band's absolute pixel position is
+  unchanged, since only padding below the items was added). Verified in a real browser
+  against the built bundle: `.snacky-navbar` measures 88 with `padding-bottom: 16px`,
+  items still 72.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,
