@@ -314,6 +314,25 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   (`available-at`) to a real `compose-ui-android` artifact. General lesson: a KMP target
   compiling is not proof it publishes; check the `.module` (or the publish task list),
   not just the compile task, when trusting a new platform target.
+- **`compose-v2.3.1`'s Android artifact crashed on launch with `NoSuchMethodError:
+  FlowRow(...)`**, in any host app whose own Compose BOM resolved a newer
+  `androidx.compose.foundation:foundation-layout` than this package links against
+  (Compose Multiplatform 1.7.0). `SnackyProductGroupSection`'s grid layout called
+  `FlowRow`, which is `@ExperimentalLayoutApi`: Compose gives no binary-compatibility
+  guarantee on experimental APIs, and Foundation 1.11.0 inserted a new
+  `Alignment.Vertical` parameter into `FlowRow`'s signature that Foundation 1.7.1 (what
+  this package compiled against) does not have. Both sides compile clean; the mismatch
+  only shows up at runtime, in whichever Foundation version Gradle's normal
+  highest-version-wins resolution actually picks for the app. Confirmed by disassembling
+  the actual `.aar` with `javap`: the compiled call site's descriptor matched Foundation
+  1.7.1's `FlowRow` overload exactly and did not exist in 1.11.0's. Fixed in
+  `compose-v2.3.2` by replacing it with a hand-rolled two-column grid built on the
+  stable `androidx.compose.ui.layout.Layout` API, confirmed by disassembling the
+  rebuilt `.aar` and finding zero references to `FlowRow`/`FlowLayoutKt`. Lesson: a
+  published binary library cannot control which Compose version the host app resolves,
+  so avoid experimental Compose APIs in it even when they compile fine locally; when a
+  runtime crash like this is reported, get the exact required method descriptor from the
+  stack trace or `javap` rather than guessing which BOM might be "close enough".
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,

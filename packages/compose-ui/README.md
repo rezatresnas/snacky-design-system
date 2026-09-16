@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.1")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.2")
 ```
 
 ### Using the icons
@@ -154,6 +154,29 @@ inside it. Fixed in `compose-v2.3.1`. Lesson: a Kotlin/Native or JVM target
 compiling on CI is not proof it publishes, check the actual `.module` file
 (or the platform-specific publish task list) when adding a new KMP target,
 not just that the compile task ran.
+
+**`compose-v2.3.1` published an Android artifact that crashed on launch**
+in any app using a Compose BOM newer than the one this package builds with
+(Compose Multiplatform 1.7.0). `SnackyProductGroupSection`'s grid layout
+called `FlowRow`, which is `@ExperimentalLayoutApi`: Compose gives no
+binary-compatibility guarantee on experimental APIs, and Foundation 1.11.0
+inserted a new `Alignment.Vertical` parameter into `FlowRow`'s signature
+that Foundation 1.7.1 (what this package links against) does not have. Both
+sides compile clean; the failure only shows up at runtime, as
+`NoSuchMethodError: FlowRow(...)`, in whichever Foundation version the host
+app's own Compose BOM actually resolves (Gradle picks the highest version
+requested unless something pins it). Confirmed by disassembling the actual
+`.aar` classes with `javap`: the compiled call site expected
+`FlowRow(Modifier, Arrangement$Horizontal, Arrangement$Vertical, Int, Int,
+FlowRowOverflow, Function3, Composer, Int, Int)`, which Foundation 1.7.1
+still has and 1.11.0 does not. Fixed in `compose-v2.3.2` by replacing the
+`FlowRow` call with a hand-rolled two-column grid built on the stable
+`androidx.compose.ui.layout.Layout` API (no `@OptIn` needed), confirmed by
+disassembling the rebuilt `.aar` and finding zero references to `FlowRow`
+or `FlowLayoutKt` anywhere in it. General lesson: a published binary
+library cannot control which Compose version the host app resolves, so it
+cannot call an experimental API for something a stable, hand-rolled layout
+can do just as well.
 
 ## Artwork credit and licensing
 

@@ -5,8 +5,6 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.components.icon.SnackyIcon
@@ -60,7 +60,6 @@ enum class ProductGroupLayout {
  * the image composable to draw edge to edge behind the row (this package ships no
  * image loader, the same slot convention as the Banner family).
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SnackyProductGroupSection(
     title: String,
@@ -89,13 +88,7 @@ fun SnackyProductGroupSection(
         }
 
         ProductGroupLayout.Grid -> SnackySection(title = title, modifier = modifier, onAction = onSeeMore) {
-            FlowRow(
-                maxItemsInEachRow = 2,
-                horizontalArrangement = cardGap,
-                verticalArrangement = cardGap,
-            ) {
-                content()
-            }
+            TwoColumnGrid(gap = SnackySpacingPrimitive.space8, content = content)
         }
 
         // Figma pads this variant 16/0/0/0: the header keeps its 24dp inset while the
@@ -166,6 +159,46 @@ private fun SeeMoreCard(label: String, onClick: () -> Unit) {
                 textAlign = TextAlign.Center,
             ),
         )
+    }
+}
+
+/**
+ * Two equal-width columns, [gap] apart both ways, wrapping [content]'s children two per
+ * row in the order they compose. Figma's Group-Products-vertical is a fixed 2-column
+ * grid, not a wrap that wants more columns on a wider screen, so this hand-rolls exactly
+ * that with the stable [Layout] API rather than reaching for `FlowRow`.
+ *
+ * `FlowRow` used to do this job, but it is `@ExperimentalLayoutApi`, and Compose gives no
+ * binary-compatibility guarantee on experimental APIs between versions: Foundation 1.11.0
+ * inserted a new parameter into `FlowRow`'s signature that Foundation 1.7.1 (what this
+ * package compiles against) does not have, so any app on a newer Compose BOM than this
+ * package crashed at runtime with `NoSuchMethodError`, even though everything compiled
+ * cleanly on both sides. A published binary library cannot control which Compose version
+ * the host app resolves, so it cannot depend on an API with no such guarantee for a shape
+ * this simple.
+ */
+@Composable
+private fun TwoColumnGrid(gap: Dp, content: @Composable () -> Unit) {
+    Layout(content = content) { measurables, constraints ->
+        val gapPx = gap.roundToPx()
+        val childConstraints = Constraints(maxWidth = constraints.maxWidth)
+        val placeables = measurables.map { it.measure(childConstraints) }
+        val rows = placeables.chunked(2)
+        val columnWidth = placeables.maxOfOrNull { it.width } ?: 0
+        val rowHeights = rows.map { row -> row.maxOf { it.height } }
+        val width = if (rows.any { it.size > 1 }) columnWidth * 2 + gapPx else columnWidth
+        val height = rowHeights.sum() + gapPx * (rows.size - 1).coerceAtLeast(0)
+        layout(width.coerceAtMost(constraints.maxWidth), height) {
+            var y = 0
+            rows.forEachIndexed { index, row ->
+                var x = 0
+                row.forEach { placeable ->
+                    placeable.placeRelative(x, y)
+                    x += placeable.width + gapPx
+                }
+                y += rowHeights[index] + gapPx
+            }
+        }
     }
 }
 
