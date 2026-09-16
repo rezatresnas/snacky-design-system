@@ -390,6 +390,21 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   unchanged, since only padding below the items was added). Verified in a real browser
   against the built bundle: `.snacky-navbar` measures 88 with `padding-bottom: 16px`,
   items still 72.
+- **`SearchField` rendered no magnifier at all unless the caller passed one, on both
+  platforms, and react-ui's clear button drew a literal `✕` character.** This is the
+  "give every icon slot a real default" rule three paragraphs up, violated by the one
+  component whose icon is least optional: compose-ui guarded the slot with
+  `if (searchIcon != null)` and react-ui with `{searchIcon && ...}`, so a caller who
+  followed the docs and omitted the prop got a bare pill with a placeholder and nothing
+  else. Fixed in `compose-v2.3.5` / `@snacky/ui` `0.13.2`: both default to the real set
+  (`SnackyIcons.Outline.Search` / `outline.search`, and `CloseInput` / `outline.closeInput`
+  for the clear button, which `icons.json` authors at 16px, exactly the size both slots
+  render at). The distinction worth carrying forward: an image slot (`SnackyProductCard`,
+  the Banner family) is genuinely caller-owned and stays required with no default,
+  because the package ships no photography; an ICON slot is part of the component's own
+  spec and must always fall back to the set. Verified on a real device by publishing to
+  Maven Local first and pointing the app at it, so the fix was proven before a public
+  tag was cut rather than after.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,

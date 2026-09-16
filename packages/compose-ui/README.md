@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.4")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.5")
 ```
 
 ### Using the icons
@@ -248,6 +248,17 @@ padding was the only gap. Same root cause as the radius bug above: an
 earlier pass measured the component SET node (`441:13155`) instead of the
 variant inside it (`Property 1=Customer`, `55:2100`, 360x88), and a set's
 own padding is Figma's gutter between variants, never a spec value.
+
+**`SnackySearchField` drew no magnifier unless the caller passed one, fixed
+in `compose-v2.3.5`.** The slot was guarded with `if (searchIcon != null)`,
+so following the docs and omitting it produced a bare pill with a
+placeholder and nothing else; the clear affordance was invisible the same
+way. Both now fall back to the real set (`SnackyIcons.Outline.Search` and
+`SnackyIcons.Outline.CloseInput`, each authored at 16px in `icons.json`,
+which is the size the slots render at). The line to hold: an IMAGE slot is
+caller-owned and stays required with no default, since this package ships
+no photography, but an ICON slot belongs to the component's spec and must
+always fall back to the set.
 
 ## Artwork credit and licensing
 

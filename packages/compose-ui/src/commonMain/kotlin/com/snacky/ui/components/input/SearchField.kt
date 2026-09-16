@@ -25,6 +25,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -37,6 +39,12 @@ import com.snacky.ui.theme.SnackyTypography
  * documented 260dp -> 312dp width animation on focus (a fixed width that
  * grows, not a fluid 100% field) and its resting transparent border, so the
  * accent focus ring does not shift the layout.
+ *
+ * [searchIcon] and [clearIcon] fall back to the real icon set rather than
+ * rendering nothing. Both are part of this component's spec, not caller
+ * decoration, so a caller that omits them used to get a field with no
+ * magnifier at all and no way to clear it. Both icons are authored at 16px in
+ * `icons.json`, which is the size the slots render at.
  */
 @Composable
 fun SnackySearchField(
@@ -77,7 +85,10 @@ fun SnackySearchField(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space12),
             ) {
-                if (searchIcon != null) FieldIcon(searchIcon, size = 16.dp)
+                FieldIcon(
+                    content = searchIcon ?: { SnackyIcon(SnackyIcons.Outline.Search, size = 16.dp) },
+                    size = 16.dp,
+                )
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterStart) {
                     if (value.isEmpty()) {
                         BasicText(
@@ -87,7 +98,7 @@ fun SnackySearchField(
                     }
                     innerTextField()
                 }
-                if (value.isNotEmpty() && onClear != null && clearIcon != null) {
+                if (value.isNotEmpty() && onClear != null) {
                     Box(
                         modifier = Modifier
                             .clickable(
@@ -97,7 +108,10 @@ fun SnackySearchField(
                             )
                             .semantics { contentDescription = "Clear search" },
                     ) {
-                        FieldIcon(clearIcon, size = 16.dp)
+                        FieldIcon(
+                            content = clearIcon ?: { SnackyIcon(SnackyIcons.Outline.CloseInput, size = 16.dp) },
+                            size = 16.dp,
+                        )
                     }
                 }
             }
