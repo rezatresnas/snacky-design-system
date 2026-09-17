@@ -405,6 +405,22 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   spec and must always fall back to the set. Verified on a real device by publishing to
   Maven Local first and pointing the app at it, so the fix was proven before a public
   tag was cut rather than after.
+- **`SnackyNavBar`'s icon slot was `Box(Modifier.size(...))`, which clipped a badge
+  wrapped around a nav icon to a single character** (`SnackyBadge(count = 120)` rendered
+  "9" instead of "99+"), fixed in `compose-v2.3.6` with `.wrapContentSize(unbounded =
+  true)` so the slot keeps its 20dp footprint but stops capping its content's width.
+  Two things worth carrying forward. First, **`Modifier.size()` is a constraint, not a
+  hint**: anything handed to a slot sized that way is measured at exactly that width, so
+  a slot meant to accept arbitrary caller content should not use it without
+  `wrapContentSize(unbounded = true)`. Second, **react-ui has the identical 20px box and
+  is NOT affected**, because a CSS `width` does not clip an overflowing child the way
+  Compose's measurement constraints do. The two ports being pixel-identical in the
+  normal case says nothing about how they behave at the edges, so a bug found on one
+  platform needs checking on the other rather than assuming it mirrors, in either
+  direction. The giveaway here was that the same `SnackyBadge(count = 120)` rendered
+  "99+" correctly in the header (unconstrained parent) and "9" in the nav bar, and that
+  it had previously shown "99" and only degraded to "9" once Poppins made the glyphs
+  wider, which is the signature of clipping rather than a counting bug.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,

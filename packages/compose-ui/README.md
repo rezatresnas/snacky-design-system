@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.5")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.6")
 ```
 
 ### Using the icons
@@ -259,6 +259,19 @@ which is the size the slots render at). The line to hold: an IMAGE slot is
 caller-owned and stays required with no default, since this package ships
 no photography, but an ICON slot belongs to the component's spec and must
 always fall back to the set.
+
+**`SnackyNavBar` clipped anything that overflowed its icon, fixed in
+`compose-v2.3.6`.** The slot was `Box(Modifier.size(SnackySize.Icon.md))`,
+and `size()` sets FIXED constraints, so slot content was measured at a hard
+20dp wide. Wrapping a nav icon in `SnackyBadge` (the notification tab, a
+real pattern in this app's own Figma) therefore rendered "99+" as a bare
+"9": the pill needs about 28dp and simply got cut. The slot now keeps its
+20dp footprint but adds `.wrapContentSize(unbounded = true)`, so content is
+measured without a width cap and only the layout footprint stays fixed.
+Worth noting react-ui does NOT have this bug despite the identical 20px
+box: a CSS `width` does not clip an overflowing child, while Compose's
+measurement constraints do. A port being visually identical in the normal
+case says nothing about how the two behave at the edges.
 
 ## Artwork credit and licensing
 

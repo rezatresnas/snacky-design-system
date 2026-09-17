@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.LocalContentColor
@@ -97,7 +98,19 @@ fun SnackyNavBar(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(SnackyGap.iconLabel),
             ) {
-                Box(modifier = Modifier.size(SnackySize.Icon.md)) {
+                // The slot keeps a 20dp footprint so every item stays the same
+                // height, but its CONTENT is measured unbounded. Without that,
+                // `size()`'s fixed constraints cap the slot at 20dp wide and clip
+                // anything that overflows the icon, which is how a [SnackyBadge]
+                // around a nav icon (a real pattern: the notification tab) rendered
+                // "99+" as a bare "9". react-ui has the same 20px box and does not
+                // need this, because a CSS width does not clip an overflowing child
+                // the way Compose's measurement constraints do.
+                Box(
+                    modifier = Modifier
+                        .size(SnackySize.Icon.md)
+                        .wrapContentSize(unbounded = true),
+                ) {
                     val icon = if (active && item.activeIcon != null) item.activeIcon else item.icon
                     CompositionLocalProvider(LocalContentColor provides iconColor) {
                         icon()
