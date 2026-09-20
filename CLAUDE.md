@@ -509,6 +509,26 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   component bindings; the same mistake on a loose icon in a screen frame does not,
   because the packages contain no screens. So a Figma slip matters here exactly to
   the extent that it lives inside a component.
+- **The docs site had the same icon question asked of it, and answered
+  differently.** Three parts, and only one of them was wrong. The `ICONS`
+  registry `index.html` renders from is generated from `icons.json` by
+  `generate-icons.js`, confirmed by re-running the generator and diffing (no
+  change), so the site draws exactly the geometry the packages ship. The Live
+  Preview renders the real package, so the slot-centring and chevron fixes reach
+  it without the docs being touched at all. What was wrong is the playgrounds'
+  own `ic()` calls: eleven passed a raw hex (`#333333`, `#525252`, `#f8b732`) and
+  the helper itself fell back to a raw `#525252`, all now semantic tokens.
+  Verified inside the preview iframe rather than assumed: `--icon-primary`,
+  `--icon-secondary`, `--icon-brand` and `--icon-disabled` all resolve there to
+  the same hex values that were replaced, so nothing moved visually. The one
+  inline SVG left in a playground is the Google "G" in the Button page, a brand
+  logo, which is caller artwork exactly like a payment logo and correctly not in
+  the icon set.
+  Worth stating the limit plainly, because it is easy to over-read a green
+  audit: `assets/images/variants/*.png` are exports FROM Figma, so they show
+  Figma's state, not the packages'. A wrong icon or binding still sitting in the
+  Figma file shows up in those images no matter how clean the packages are, and
+  no amount of package auditing fixes it.
 - **Caller icon slots were pinned to the top of their box, found from a payment
   logo in the Accordion playground.** A slot that fixes its own size and then does
   not centre its content only looks right while the content is square and fills
