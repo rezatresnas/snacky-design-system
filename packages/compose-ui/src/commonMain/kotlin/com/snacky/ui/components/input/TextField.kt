@@ -2,6 +2,7 @@ package com.snacky.ui.components.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +21,9 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +32,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
@@ -142,7 +147,23 @@ fun SnackyTextField(
     }
 }
 
-/** Password field - [SnackyTextField] with the digits masked and a caller-supplied eye toggle. */
+/**
+ * Password field - [SnackyTextField] with the characters masked and a real
+ * eye toggle in the trailing slot.
+ *
+ * The toggle is the component's own, not something the caller has to supply:
+ * Figma draws the crossed-out eye inside the field and the docs show it in
+ * every password state, so a caller who omitted it used to get a masked field
+ * with no way to reveal it. Same rule as SearchField's magnifier and
+ * AddressResult's pin: an icon slot that is part of the spec gets a real
+ * default, while an image slot stays caller-owned.
+ *
+ * [visible] is optional on purpose. Left null the field owns the reveal state
+ * and the toggle simply works; pass a value (with [onVisibleChange]) to drive
+ * it from the caller, for instance to reveal two password fields at once.
+ * [trailingIcon] still replaces the whole slot if a caller wants something
+ * else there.
+ */
 @Composable
 fun SnackyPasswordField(
     value: String,
@@ -150,23 +171,41 @@ fun SnackyPasswordField(
     modifier: Modifier = Modifier,
     label: String? = null,
     placeholder: String? = null,
-    visible: Boolean = false,
+    visible: Boolean? = null,
+    onVisibleChange: ((Boolean) -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
     isError: Boolean = false,
     errorMessage: String? = null,
     enabled: Boolean = true,
 ) {
+    var selfVisible by remember { mutableStateOf(false) }
+    val revealed = visible ?: selfVisible
+
     SnackyTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
         label = label,
         placeholder = placeholder,
-        trailingIcon = trailingIcon,
+        trailingIcon = trailingIcon ?: {
+            SnackyIcon(
+                icon = if (revealed) SnackyIcons.Outline.Eye else SnackyIcons.Outline.EyeOff,
+                size = 20.dp,
+                contentDescription = if (revealed) "Hide password" else "Show password",
+                modifier = Modifier.clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                    enabled = enabled,
+                ) {
+                    if (visible == null) selfVisible = !selfVisible
+                    onVisibleChange?.invoke(!revealed)
+                },
+            )
+        },
         isError = isError,
         errorMessage = errorMessage,
         enabled = enabled,
-        visualTransformation = if (visible) VisualTransformation.None else PasswordVisualTransformation(),
+        visualTransformation = if (revealed) VisualTransformation.None else PasswordVisualTransformation(),
     )
 }
 

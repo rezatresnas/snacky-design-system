@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
+// Figma draws both glyphs inside the banner and binds them to icon/icon-brand
+// at 16x16, so they belong to this component's spec rather than the caller.
+import { balance as BalanceIcon, points as PointsIcon } from '../../icons/solid.js';
 import './Banner.css';
 
 export interface ImageBannerProps {
@@ -25,9 +28,9 @@ export function FullWidthBanner({ imageUrl, alt, onClick, className }: ImageBann
 }
 
 export interface PointBalanceBannerProps {
-  pointsIcon: ReactNode;
+  pointsIcon?: ReactNode;
   points: string;
-  balanceIcon: ReactNode;
+  balanceIcon?: ReactNode;
   balance: string;
   className?: string;
 }
@@ -37,7 +40,9 @@ export function PointBalanceBanner({ pointsIcon, points, balanceIcon, balance, c
   return (
     <div className={cx('snacky-banner-point-balance', className)}>
       <div className="snacky-banner-point-balance__item">
-        <span className="snacky-banner-point-balance__icon">{pointsIcon}</span>
+        <span className="snacky-banner-point-balance__icon">
+          {pointsIcon ?? <PointsIcon width={16} height={16} />}
+        </span>
         <div>
           <p className="snacky-banner-point-balance__label">Points</p>
           <p className="snacky-banner-point-balance__value">{points}</p>
@@ -45,7 +50,9 @@ export function PointBalanceBanner({ pointsIcon, points, balanceIcon, balance, c
       </div>
       <div className="snacky-banner-point-balance__divider" />
       <div className="snacky-banner-point-balance__item">
-        <span className="snacky-banner-point-balance__icon">{balanceIcon}</span>
+        <span className="snacky-banner-point-balance__icon">
+          {balanceIcon ?? <BalanceIcon width={16} height={16} />}
+        </span>
         <div>
           <p className="snacky-banner-point-balance__label">Balance</p>
           <p className="snacky-banner-point-balance__value">{balance}</p>

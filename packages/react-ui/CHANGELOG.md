@@ -4,6 +4,35 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## Icons and affordances the spec owns, not the caller (0.13.3)
+
+`0.13.2` gave `SearchField`'s magnifier a real default and noted the rule: an
+image slot is caller-owned because this package ships no photography, but an
+icon slot belongs to the component's own spec and has to fall back to the icon
+set. Rendering all 26 components at once in a real app turned up three more
+slots that had never been audited against it, each checked here against its own
+Figma-exported variant PNG:
+
+- `AddressResult` rendered no map pin unless `icon` was passed. It now defaults
+  to `outline.address` at 20px, which is what `input-address-search-selected.png`
+  shows and what the docs sample always passed.
+- `PointBalanceBanner` rendered neither of its two glyphs. `pointsIcon` and
+  `balanceIcon` were required props, so TypeScript at least caught an omission,
+  but there was no reason for a caller to supply artwork the component's own
+  Figma node draws. Both are optional now and default to `solid.points` and
+  `solid.balance` at 16px, already tinted `--icon-brand` by the CSS.
+- `SearchField`'s clear button was gated on `value && onClear`, so a caller who
+  wired up only `value`/`onChange` got a filled field with no way to empty it, a
+  state Figma does not have (its filled variant always draws the button). The
+  text alone drives it now, and it falls back to `onChange('')`. Same rule
+  applied to behaviour rather than artwork: an optional prop that gates part of
+  the spec is a missing default, whatever it carries.
+
+The compose-ui counterpart of all three shipped as `compose-v2.3.7`, which also
+gives its `SnackyPasswordField` a real eye toggle. React has no `PasswordField`
+component (password is `<TextField type="password" trailingIcon={...} />`, as
+Figma models it), so there is nothing matching to fix here.
+
 ## ProductGroupSection, and a mouse-draggable product row (0.13.0)
 
 `ProductGroupSection` is a titled group of list `ProductCard`s with

@@ -26,6 +26,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
@@ -127,6 +129,12 @@ fun SnackyFullWidthBanner(
  * The "Points"/"Balance" captions are parameters rather than hardcoded
  * strings (react-ui hardcodes them in English), so this stays usable in a
  * localised app.
+ *
+ * [pointsIcon] and [balanceIcon] fall back to the real set
+ * ([SnackyIcons.Solid.Points] and [SnackyIcons.Solid.Balance], both 16dp,
+ * both bound to icon/icon-brand in Figma) rather than rendering nothing.
+ * Figma draws both glyphs inside the banner, so they are part of this
+ * component's spec, not caller decoration.
  */
 @Composable
 fun SnackyPointBalanceBanner(
@@ -166,7 +174,11 @@ fun SnackyPointBalanceBanner(
         // first group instead of centred, and a growing empty band of surface
         // colour on the end in any container wider than the content itself.
         Box(modifier = Modifier.weight(1f)) {
-            PointBalanceItem(pointsLabel, points, pointsIcon)
+            PointBalanceItem(
+                pointsLabel,
+                points,
+                pointsIcon ?: { SnackyIcon(SnackyIcons.Solid.Points, size = 16.dp) },
+            )
         }
         // react-ui's divider is `align-self: stretch`, so it spans the row's
         // content box rather than a fixed height.
@@ -177,7 +189,11 @@ fun SnackyPointBalanceBanner(
                 .background(SnackyColor.borderHighlight),
         )
         Box(modifier = Modifier.weight(1f)) {
-            PointBalanceItem(balanceLabel, balance, balanceIcon)
+            PointBalanceItem(
+                balanceLabel,
+                balance,
+                balanceIcon ?: { SnackyIcon(SnackyIcons.Solid.Balance, size = 16.dp) },
+            )
         }
     }
 }
@@ -186,7 +202,7 @@ fun SnackyPointBalanceBanner(
 private fun PointBalanceItem(
     label: String,
     value: String,
-    icon: (@Composable () -> Unit)?,
+    icon: @Composable () -> Unit,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -197,14 +213,12 @@ private fun PointBalanceItem(
         // 12dp, hence the primitive.
         horizontalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space12),
     ) {
-        if (icon != null) {
-            // Figma binds both icons to icon/icon-brand and draws them at 16x16.
-            // Providing the tint here means a caller's SnackyIcon picks up the accent
-            // instead of inheriting the row's dark label colour.
-            Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
-                CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
-                    icon()
-                }
+        // Figma binds both icons to icon/icon-brand and draws them at 16x16.
+        // Providing the tint here means a caller's SnackyIcon picks up the accent
+        // instead of inheriting the row's dark label colour.
+        Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
+            CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
+                icon()
             }
         }
         Column {

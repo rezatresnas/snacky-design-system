@@ -32,8 +32,17 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(functi
         onChange={(e) => onChange(e.target.value)}
         {...rest}
       />
-      {value && onClear && (
-        <button type="button" className="snacky-search__clear" onClick={onClear} aria-label="Clear search">
+      {/* Figma's filled variant always carries the clear button, so the text
+          alone drives it. Requiring onClear too meant a caller who wired up
+          nothing but value/onChange got a filled field with no way to empty
+          it, matching no documented state. */}
+      {value && (
+        <button
+          type="button"
+          className="snacky-search__clear"
+          onClick={onClear ?? (() => onChange(''))}
+          aria-label="Clear search"
+        >
           {clearIcon ?? <CloseInputIcon width={16} height={16} />}
         </button>
       )}

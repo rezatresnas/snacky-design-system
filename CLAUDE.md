@@ -421,6 +421,67 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   "99+" correctly in the header (unconstrained parent) and "9" in the nav bar, and that
   it had previously shown "99" and only degraded to "9" once Poppins made the glyphs
   wider, which is the signature of clipping rather than a counting bug.
+- **Four more spec'd icons were still caller-supplied, found by rendering every
+  component at once in a real app** (`SnackyApp`'s `ComponentGallery.kt`, a screen
+  per component built straight from the docs). The SearchField magnifier fix two
+  entries up closed one instance of this and the rule was already written down;
+  these four were simply never audited against it. Fixed together in
+  `compose-v2.3.7` / `@snacky/ui` `0.13.3`, each against its own Figma-exported
+  variant PNG: `SnackyPasswordField` rendered no eye at all (`Outline.EyeOff`
+  masked, `Outline.Eye` revealed, per `input-texticon-default.png`),
+  `AddressResult` no map pin (`Outline.Address` at 20dp, per
+  `input-address-search-selected.png`), and `PointBalanceBanner` neither of its
+  two glyphs (`Solid.Points` and `Solid.Balance` at 16dp, per
+  `banner-point-balance.png`). The password field is the sharpest case: it is a
+  named component whose entire job is masking, and it shipped the mask with no
+  way to undo it, so `visible` is now optional (null means the component owns the
+  reveal state and the toggle just works) rather than a flag only a caller with
+  their own icon could reach.
+  The fourth is the same rule applied to behaviour rather than artwork:
+  SearchField's clear button was gated on `value.isNotEmpty() && onClear != null`
+  on both platforms, so a caller who wired up nothing but value and onChange got a
+  filled field with no clear button, which matches no documented state (Figma's
+  filled/active variant always draws it). It is driven by the text alone now and
+  falls back to emptying the field itself; `onClear` is only for callers who need
+  to hear about it. Worth generalising: **an optional prop that gates a piece of
+  the spec is the same bug as a missing default**, whether the prop carries an
+  icon or a callback.
+- **Two whole docs pages described APIs neither package has ever exported**, found
+  in the same pass because the real app could not be written from them. Every one
+  of the Banner page's 28 code samples (7 variants plus 7 playground types, both
+  languages) called `SnackyBanner(imageUrl = ..., variant = BannerVariant.X)` and
+  `<Banner variant="..." />`; the real exports are `SnackyHeroBanner`,
+  `SnackySquareBanner`, `SnackyFullWidthBanner`, `SnackyPointBalanceBanner` and
+  `SnackyAlertBanner` (`HeroBanner`, `SquareBanner`, ... in react), the three image
+  banners take a content slot rather than a URL because the package ships no image
+  loader, and none of them has an `onClick` parameter. The Input page's four
+  password samples passed `isPassword = true`, a parameter that has never existed.
+  Note what did NOT catch this: the Banner playground's `impl` already rendered the
+  correct components (`U.HeroBanner`, `U.AlertBanner`), so the Live Preview was
+  right while the Show Code panel beside it was fiction. **A page rendering
+  correctly is not evidence its code samples compile**, and the
+  `build-docs-bundle.js` migration only replaced `impl`, never the sample strings.
+  The whole file was then swept rather than just those two pages, which turned up
+  six more components documented against an API they never had: `CopyField` took a
+  `copied` flag, `ProductChip` an `icon` instead of `thumbnail`, `OrderListItem`
+  `price`/`quantity`/`productCount`/`onDetailClick` instead of
+  `itemsSummary`/`total`/`onAction`, `NotificationListItem` `highlighted` instead of
+  `unread`, and `Avatar`, `ProductImage` and `ProductCard` all took a URL where the
+  Kotlin side has a content slot (`ProductImage` also named a nonexistent
+  `ImageUsage` enum and a `sold` flag, `ProductCard` a nonexistent
+  `ProductCardVariant.Details` in place of `SnackyProductCardDetails`, and a
+  `Double` rating where the parameter is a `String`).
+  How the sweep was done, since eyeballing 174 samples does not work: parse every
+  `fun Snacky*` signature out of compose-ui and every props interface out of
+  react-ui's source (unions included), pull every sample string out of
+  `index.html`, and diff the named arguments and JSX props against them. That
+  found all 17 bad Kotlin arguments and every bad prop mechanically. The samples
+  were then compiled for real, in a throwaway `DocsSampleCheck.kt` under
+  `commonMain` with stub painters, with a negative control (one old-form
+  `SnackyAvatar(imageUrl = ...)` call, which failed exactly as it should) to prove
+  the check had teeth; the file was deleted once green. Both audit scripts and that
+  pattern are worth rebuilding rather than trusting a read-through if samples
+  drift again.
 
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,

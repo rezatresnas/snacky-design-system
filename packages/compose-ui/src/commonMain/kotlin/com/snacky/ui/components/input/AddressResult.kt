@@ -18,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -30,6 +32,13 @@ import com.snacky.ui.theme.SnackyTypography
  * AddressResult.tsx/AddressResult.css: the icon aligns to the top of the
  * row (not centred) with a 2dp nudge so it sits on the title's baseline,
  * and the subtitle truncates to one line.
+ *
+ * [icon] falls back to the real map pin rather than rendering nothing. The
+ * pin is part of this component's own spec (Figma's "Address, Search
+ * (Selected)" draws it, and the docs sample passes
+ * `SnackyIcons.Outline.Address` at 20dp), not caller decoration, so a
+ * caller who omits it used to get a bare two-line row where the docs show
+ * a pin. Same rule as SearchField's magnifier.
  */
 @Composable
 fun SnackyAddressResult(
@@ -60,9 +69,10 @@ fun SnackyAddressResult(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(SnackyGap.textIcon),
     ) {
-        if (icon != null) {
-            FieldIcon(icon, modifier = Modifier.padding(top = 2.dp))
-        }
+        FieldIcon(
+            icon ?: { SnackyIcon(SnackyIcons.Outline.Address, size = 20.dp) },
+            modifier = Modifier.padding(top = 2.dp),
+        )
         Column {
             BasicText(
                 text = title,

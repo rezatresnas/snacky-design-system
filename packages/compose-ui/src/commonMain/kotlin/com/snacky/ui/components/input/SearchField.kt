@@ -41,7 +41,8 @@ import com.snacky.ui.theme.SnackyTypography
  * accent focus ring does not shift the layout.
  *
  * [searchIcon] and [clearIcon] fall back to the real icon set rather than
- * rendering nothing. Both are part of this component's spec, not caller
+ * rendering nothing, and the clear button appears whenever the field has
+ * text, exactly as Figma's filled variant draws it. Both are part of this component's spec, not caller
  * decoration, so a caller that omits them used to get a field with no
  * magnifier at all and no way to clear it. Both icons are authored at 16px in
  * `icons.json`, which is the size the slots render at.
@@ -98,13 +99,19 @@ fun SnackySearchField(
                     }
                     innerTextField()
                 }
-                if (value.isNotEmpty() && onClear != null) {
+                // Figma's filled/active variant always carries the clear button,
+                // so it is driven by the text alone. It used to also require a
+                // non-null [onClear], which meant a caller who wired up nothing
+                // but value/onValueChange got a filled field with no way to
+                // empty it, matching no documented state. [onClear] is now only
+                // for callers who need to hear about it.
+                if (value.isNotEmpty()) {
                     Box(
                         modifier = Modifier
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null,
-                                onClick = onClear,
+                                onClick = onClear ?: { onValueChange("") },
                             )
                             .semantics { contentDescription = "Clear search" },
                     ) {

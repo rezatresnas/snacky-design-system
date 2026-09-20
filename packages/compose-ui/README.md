@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.6")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.7")
 ```
 
 ### Using the icons
@@ -272,6 +272,31 @@ Worth noting react-ui does NOT have this bug despite the identical 20px
 box: a CSS `width` does not clip an overflowing child, while Compose's
 measurement constraints do. A port being visually identical in the normal
 case says nothing about how the two behave at the edges.
+
+**Three more components still made the caller supply an icon the spec owns,
+and SearchField hid its clear button behind an optional callback, all fixed
+in `compose-v2.3.7`.** Rendering every component at once in a real app
+(`SnackyApp`'s component gallery, one screen per component, written from the
+docs) made the gaps obvious side by side:
+
+- `SnackyPasswordField` drew no eye at all. It is the sharpest case of the
+  rule above, since masking is the component's whole job and it shipped the
+  mask with no way to undo it. The trailing slot now defaults to
+  `SnackyIcons.Outline.EyeOff` while masked and `Outline.Eye` while revealed,
+  and `visible` became nullable: leave it null and the field owns the reveal
+  state so the toggle simply works, or pass it with `onVisibleChange` to drive
+  it from outside.
+- `SnackyAddressResult` drew no map pin. Defaults to
+  `SnackyIcons.Outline.Address` at 20dp, matching the Figma export.
+- `SnackyPointBalanceBanner` drew neither glyph. Defaults to
+  `SnackyIcons.Solid.Points` and `SnackyIcons.Solid.Balance` at 16dp, both
+  already tinted `iconBrand` by the component.
+- `SnackySearchField`'s clear button required `onClear` as well as text, so a
+  caller wiring up only `value`/`onValueChange` got a filled field with no way
+  to empty it, a state Figma does not have. The text alone drives it now, and
+  it clears the field itself unless `onClear` is given. Same rule as the icon
+  defaults, applied to behaviour: an optional prop that gates part of the spec
+  is a missing default, whatever it carries.
 
 ## Artwork credit and licensing
 
