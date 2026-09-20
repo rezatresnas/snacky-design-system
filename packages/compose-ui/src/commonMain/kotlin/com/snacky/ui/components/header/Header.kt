@@ -1,6 +1,5 @@
 package com.snacky.ui.components.header
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -16,16 +15,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.LocalSnackyFontFamily
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyTypography
 
@@ -120,49 +117,23 @@ private fun HeaderIconButton(
             .semantics { this.contentDescription = contentDescription },
         contentAlignment = Alignment.Center,
     ) {
-        Box(modifier = Modifier.size(24.dp)) {
+        Box(modifier = Modifier.size(24.dp), contentAlignment = Alignment.Center) {
             content()
         }
     }
 }
 
+// Both glyphs come from the set, the same way react-ui's Header has always
+// taken them (`SnackyIcons.outline.back` / `outline.close`). This side drew
+// them by hand instead: a stroked polyline for Back and two stroked diagonals
+// for Close, which is a different shape from the real UIcons artwork and drifts
+// from Figma the moment the set is re-exported.
 @Composable
 private fun BackGlyph() {
-    Canvas(modifier = Modifier.size(24.dp)) {
-        val path = Path().apply {
-            moveTo(size.width * (15f / 24f), size.height * (6f / 24f))
-            lineTo(size.width * (9f / 24f), size.height * (12f / 24f))
-            lineTo(size.width * (15f / 24f), size.height * (18f / 24f))
-        }
-        drawPath(
-            path = path,
-            color = SnackyColor.iconPrimary,
-            style = Stroke(
-                width = size.minDimension * (1.5f / 24f),
-                cap = StrokeCap.Round,
-                join = StrokeJoin.Round,
-            ),
-        )
-    }
+    SnackyIcon(SnackyIcons.Outline.Back, size = 24.dp, tint = SnackyColor.iconPrimary)
 }
 
 @Composable
 private fun CloseGlyph() {
-    Canvas(modifier = Modifier.size(24.dp)) {
-        val stroke = Stroke(
-            width = size.minDimension * (1.5f / 24f),
-            cap = StrokeCap.Round,
-            join = StrokeJoin.Round,
-        )
-        val diagonal1 = Path().apply {
-            moveTo(size.width * (6f / 24f), size.height * (6f / 24f))
-            lineTo(size.width * (18f / 24f), size.height * (18f / 24f))
-        }
-        val diagonal2 = Path().apply {
-            moveTo(size.width * (18f / 24f), size.height * (6f / 24f))
-            lineTo(size.width * (6f / 24f), size.height * (18f / 24f))
-        }
-        drawPath(path = diagonal1, color = SnackyColor.iconPrimary, style = stroke)
-        drawPath(path = diagonal2, color = SnackyColor.iconPrimary, style = stroke)
-    }
+    SnackyIcon(SnackyIcons.Outline.Close, size = 24.dp, tint = SnackyColor.iconPrimary)
 }

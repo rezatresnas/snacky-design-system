@@ -162,7 +162,7 @@ fun SnackyInfoBadge(
             // 16/20/24 (SnackySize.Icon.sm/md/lg) and Figma draws this one at
             // 12, below the smallest step. Sized here rather than left to the
             // caller so the badge stays 32 tall whatever icon is passed in.
-            Box(modifier = Modifier.size(12.dp)) {
+            Box(modifier = Modifier.size(12.dp), contentAlignment = Alignment.Center) {
                 CompositionLocalProvider(LocalContentColor provides SnackyColor.iconBrand) {
                     icon()
                 }

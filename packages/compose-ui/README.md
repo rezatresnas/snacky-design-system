@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.7")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.8")
 ```
 
 ### Using the icons
@@ -297,6 +297,30 @@ docs) made the gaps obvious side by side:
   it clears the field itself unless `onClear` is given. Same rule as the icon
   defaults, applied to behaviour: an optional prop that gates part of the spec
   is a missing default, whatever it carries.
+
+**Three glyphs were hand-drawn when the icon set already had them, and every
+caller icon slot pinned its content to the top left, both fixed in
+`compose-v2.3.8`.** `SnackyAccordion` stroked its own chevron polyline and
+`SnackyHeader` its own Back and Close, the latter while react-ui had always
+taken both from the set. The chevron was measured rather than judged by eye:
+against Figma's own export of the component, its chevron is 11.41 x 5.71 design
+units, `SnackyIcons.Outline.ChevronDown` at 20dp is 11.67 x 5.98, and the
+polyline was 11.50 x 6.50, about 14% too tall. What stays hand-drawn is
+deliberate: Checkbox's tick and ImagePlaceholder's photo glyph have no
+equivalent in `icons.json`, and Stepper's connector and Tab's underline are not
+icons at all.
+
+The alignment half showed up as a payment logo floating above its own label. A
+`Box` with a fixed `size()` and no `contentAlignment` defaults to
+`Alignment.TopStart`, which looks correct for every icon in the set (square, and
+filling the box) and wrong for anything a caller supplies at another aspect: a
+24dp slot holding the 3.19:1 BCA mark renders it 24x7.5, hard against the top
+edge. Nine slots now centre their content, which changes nothing for content
+that already fills the box.
+
+The colour side of the same audit found nothing: `SnackyIcon` has no colour of
+its own (it defaults to `LocalContentColor`), so an icon is always painted by
+its host, and every tint this package provides is a semantic token.
 
 ## Artwork credit and licensing
 

@@ -4,6 +4,29 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## Icon slots centre their content, and Accordion's chevron is a real icon (0.13.4)
+
+A payment logo in the Accordion playground sat visibly above its own label. The
+cause is a slot that fixes its own size and never centres what goes in it, which
+looks correct for every icon in the set, since those are square and fill the
+box, and wrong for anything a caller supplies at another aspect: the BCA mark is
+3.19:1, so at 24px wide it renders 7.5 tall and pins to the top edge.
+
+Measured by rendering every caller-owned slot with that same wide logo and
+comparing centres: `Accordion` and `ProductChip` were 8.2px out,
+`PointBalanceBanner` 5.5px and `Button` 2px, while `AddressResult`, `NavBar`,
+`InfoBadge` and `IconButton` were already right. The four now centre their
+content, which is a no-op for content that already fills the slot.
+`PointBalanceBanner` is worth noting: compose-ui's version was already correct,
+so this was one port drifting from the other in a place nothing renders both.
+
+`Accordion` also stopped stroking its own chevron polyline and uses
+`outline.chevronDown` instead. Against Figma's own export of the component the
+chevron is 11.41 x 5.71 design units; the set icon at 20px is 11.67 x 5.98, and
+the polyline was 11.50 x 6.50, about 14% too tall. Nothing else in this package
+draws an icon by hand except `ImagePlaceholder`, whose glyph has no equivalent
+in the set.
+
 ## Icons and affordances the spec owns, not the caller (0.13.3)
 
 `0.13.2` gave `SearchField`'s magnifier a real default and noted the rule: an

@@ -1,5 +1,11 @@
 import { useId, useState, type ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
+// The real set icon rather than a hand-drawn polyline. Both platforms used to
+// stroke (5,7.5)-(10,12.5)-(15,7.5) in a 20x20 box, copied from each other and
+// not from Figma: measured off accordion-withicon-default.png, Figma's chevron
+// is 11.41x5.71 and this icon at 20px is 11.67x5.98, while the polyline came
+// out 11.50x6.50, about 14% too tall.
+import { chevronDown as ChevronDownIcon } from '../../icons/outline.js';
 import './Accordion.css';
 
 export interface AccordionProps {
@@ -33,13 +39,9 @@ export function Accordion({ title, leadingIcon, children, defaultOpen = false, c
       >
         {leadingIcon && <span className="snacky-accordion__icon">{leadingIcon}</span>}
         <span className="snacky-accordion__title">{title}</span>
-        <svg
-          className={cx('snacky-accordion__chevron', open && 'snacky-accordion__chevron--open')}
-          viewBox="0 0 20 20"
-          fill="none"
-        >
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <span className={cx('snacky-accordion__chevron', open && 'snacky-accordion__chevron--open')}>
+          <ChevronDownIcon width={20} height={20} />
+        </span>
       </button>
       {open && (
         <div id={panelId} className="snacky-accordion__panel">

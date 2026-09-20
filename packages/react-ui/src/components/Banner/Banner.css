@@ -76,6 +76,9 @@
   gap: var(--spacing-12);
 }
 .snacky-banner-point-balance__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   /* Figma binds both icons to icon/icon-brand and draws them at 16x16. Without
      an explicit colour the icons render currentColor, which inherits the row's
      dark label colour instead of the accent. */

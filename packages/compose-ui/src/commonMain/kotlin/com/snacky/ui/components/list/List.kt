@@ -110,7 +110,7 @@ fun SnackyOrderListItem(
                     .clip(RoundedCornerShape(SnackyRadius.field)),
                 contentAlignment = Alignment.Center,
             ) {
-                Box(modifier = Modifier.size(48.dp)) {
+                Box(modifier = Modifier.size(48.dp), contentAlignment = Alignment.Center) {
                     productImage()
                 }
             }

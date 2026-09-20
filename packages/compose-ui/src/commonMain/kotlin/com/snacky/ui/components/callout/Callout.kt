@@ -87,7 +87,7 @@ fun SnackyCallout(
             )
             if (statusIcon != null && !isReceived) {
                 Spacer(Modifier.width(4.dp))
-                Box(modifier = Modifier.size(16.dp)) {
+                Box(modifier = Modifier.size(16.dp), contentAlignment = Alignment.Center) {
                     statusIcon()
                 }
             }

@@ -826,7 +826,7 @@ const PG={
     component:'SnackyToggle',initialProps:{checked:false},
     controls:[{id:'checked',label:'Checked',type:'toggle',def:false}],
     impl:`const SnackyToggle=({checked})=>{const h=React.createElement;const U=SnackyUI;const[on,setOn]=useState(!!checked);useEffect(()=>{setOn(!!checked);},[checked]);return h(U.Toggle,{checked:on,onChange:setOn,ariaLabel:'Toggle'});};`,
-    getReact:p=>`<SnackyToggle checked={${p.checked}} onCheckedChange={setChecked} />`,
+    getReact:p=>`<Toggle checked={${p.checked}} onChange={setChecked} />`,
     getKotlin:p=>`SnackyToggle(\n  checked = ${p.checked},\n  onCheckedChange = { checked = it }\n)`
   },
   badge:{
@@ -1026,7 +1026,7 @@ const PG={
       /* Accordion is uncontrolled (defaultOpen only), so the Expanded control
          remounts it via key rather than driving an open prop that does not exist. */
       return h('div',{style:{width:312}},h(U.Accordion,{key:String(!!open),title:withIcon?'BCA Virtual Account':'Accordion',defaultOpen:!!open,leadingIcon:withIcon&&src?h('img',{src:src,alt:'BCA',style:{maxWidth:24,maxHeight:24,objectFit:'contain',display:'block'}}):undefined},h('ul',{style:{margin:0,paddingLeft:21}},h('li',null,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacus nunc,'),h('li',null,'efficitur ultrices varius sit amet, imperdiet nec massa. Integer congue luctus purus, nec accumsan erat dignissim quis.'),h('li',null,'Aliquam sed sapien ornare magna ultricies convallis. Nunc semper risus semper tellus iaculis rdiet erat efficitur ut. Duis non imperdiet mi.'))));};`,
-    getReact:p=>`<SnackyAccordion\n  title="${p.withIcon?'BCA Virtual Account':'Accordion'}"${p.withIcon?'\n  leadingIcon={Icons.Wallet}':''}\n  expanded={isExpanded}\n  onToggle={() => setExpanded(!isExpanded)}\n>\n  <BulletList items={contentItems} />\n</SnackyAccordion>`,
+    getReact:p=>`<Accordion\n  title="${p.withIcon?'BCA Virtual Account':'Accordion'}"${p.withIcon?'\n  leadingIcon={<img src="/logos/bca.png" alt="BCA" width={24} height={24} />}':''}\n  defaultOpen={${p.open}}\n>\n  <BulletList items={contentItems} />\n</Accordion>`,
     getKotlin:p=>`SnackyAccordion(\n  title = "${p.withIcon?'BCA Virtual Account':'Accordion'}",${p.withIcon?'\n  leadingIcon = { SnackyIcon(SnackyIcons.Outline.Balance, size = 20.dp) },':''}\n  expanded = isExpanded,\n  onToggle = { isExpanded = !isExpanded }\n) {\n  BulletList(items = contentItems)\n}`
   },
   navbar:{

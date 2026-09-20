@@ -26,5 +26,11 @@
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  object-fit: contain;
+  /* Centres whatever the caller hands the slot. Without this the slot only
+     looks right when the content is square and fills it: a wide logo (the
+     BCA mark is 3.19:1, so 24x7.5 here) pins to the top of the box and sits
+     visibly above the text it is supposed to line up with. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

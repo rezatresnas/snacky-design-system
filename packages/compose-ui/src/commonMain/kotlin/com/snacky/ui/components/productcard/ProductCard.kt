@@ -92,7 +92,7 @@ fun SnackyProductCard(
             .padding(horizontal = SnackySpacingPrimitive.space8, vertical = SnackySpacingPrimitive.space12),
         verticalArrangement = Arrangement.spacedBy(SnackySpacingPrimitive.space12),
     ) {
-        Box(modifier = Modifier.size(128.dp)) {
+        Box(modifier = Modifier.size(128.dp), contentAlignment = Alignment.Center) {
             image()
             if (discountLabel != null) {
                 SnackyDiscountTag(label = discountLabel, modifier = Modifier.align(Alignment.TopEnd))

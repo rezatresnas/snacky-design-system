@@ -109,6 +109,7 @@ fun SnackyButton(
                     .align(Alignment.CenterStart)
                     .padding(start = SnackySpacingPrimitive.space8)
                     .size(iconSize),
+                contentAlignment = Alignment.Center,
             ) {
                 CompositionLocalProvider(LocalContentColor provides colors.contentColor) {
                     icon()

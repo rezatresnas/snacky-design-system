@@ -105,7 +105,7 @@ fun SnackyProductChip(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Box(modifier = Modifier.size(24.dp)) {
+        Box(modifier = Modifier.size(24.dp), contentAlignment = Alignment.Center) {
             thumbnail()
         }
         BasicText(text = label, style = chipTextStyle)

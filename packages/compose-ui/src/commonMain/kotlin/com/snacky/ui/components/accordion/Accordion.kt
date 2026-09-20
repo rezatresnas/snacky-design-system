@@ -1,7 +1,6 @@
 package com.snacky.ui.components.accordion
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -27,13 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.LocalSnackyFontFamily
+import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.SnackyColor
 import com.snacky.ui.theme.SnackyGap
 import com.snacky.ui.theme.SnackyRadius
@@ -97,7 +94,7 @@ fun SnackyAccordion(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (leadingIcon != null) {
-                Box(modifier = Modifier.size(24.dp)) {
+                Box(modifier = Modifier.size(24.dp), contentAlignment = Alignment.Center) {
                     leadingIcon()
                 }
                 Spacer(Modifier.width(SnackyGap.textIcon))
@@ -114,28 +111,18 @@ fun SnackyAccordion(
                     letterSpacing = titleStyle.letterSpacing,
                 ),
             )
-            // Polyline (5,7.5)-(10,12.5)-(15,7.5) in a 20x20 viewBox, stroke
-            // width 1.5, matching Accordion.tsx's inline chevron SVG exactly.
-            Canvas(
-                modifier = Modifier
-                    .size(20.dp)
-                    .rotate(rotation),
-            ) {
-                val path = Path().apply {
-                    moveTo(size.width * (5f / 20f), size.height * (7.5f / 20f))
-                    lineTo(size.width * (10f / 20f), size.height * (12.5f / 20f))
-                    lineTo(size.width * (15f / 20f), size.height * (7.5f / 20f))
-                }
-                drawPath(
-                    path = path,
-                    color = SnackyColor.iconSecondary,
-                    style = Stroke(
-                        width = size.minDimension * (1.5f / 20f),
-                        cap = StrokeCap.Round,
-                        join = StrokeJoin.Round,
-                    ),
-                )
-            }
+            // The real set icon, not a hand-drawn polyline. Both platforms used
+            // to stroke (5,7.5)-(10,12.5)-(15,7.5) in a 20x20 box, copied from
+            // each other rather than from Figma, and it was a near miss: measured
+            // off `accordion-withicon-default.png`, Figma's chevron is 11.41x5.71
+            // and this set icon at 20dp is 11.67x5.98, while the polyline came out
+            // 11.50x6.50, about 14% too tall.
+            SnackyIcon(
+                icon = SnackyIcons.Outline.ChevronDown,
+                size = 20.dp,
+                tint = SnackyColor.iconSecondary,
+                modifier = Modifier.rotate(rotation),
+            )
         }
         if (isExpanded) {
             Column(

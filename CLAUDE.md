@@ -483,6 +483,48 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   pattern are worth rebuilding rather than trusting a read-through if samples
   drift again.
 
+- **An icon audit, prompted by the user finding two Figma nodes that were not
+  instances of the icon component.** Two separate questions, worth keeping
+  separate. **Colour: clean.** The `SnackyIcon` primitive carries no colour of
+  its own (it defaults to `LocalContentColor`, and react's generated icons to
+  `currentColor`), so an icon is always painted by whatever host renders it, and
+  all 12 compose tint providers plus every react `__icon` rule resolve to a
+  semantic token. The `text/*` tokens some field icons use are Figma's own
+  binding, not an invention. No icon anywhere carries a raw hex.
+  **Geometry: three real defects**, all the same shape as the Section chevron
+  already recorded above. `SnackyAccordion` stroked its own chevron polyline on
+  both platforms, and compose-ui's `SnackyHeader` hand-drew Back and Close while
+  react-ui had always taken both from the set. The accordion chevron was measured
+  rather than eyeballed: against `accordion-withicon-default.png` (a 2.1x export,
+  so the card's own 312 width calibrates the scale), Figma's chevron is 11.41 x
+  5.71, the set's `chevronDown` at 20dp is 11.67 x 5.98, and the hand-drawn
+  polyline was 11.50 x 6.50, about 14% too tall. All three now come from the set.
+  What is left hand-drawn is legitimate and worth not "fixing" later: Checkbox's
+  tick and ImagePlaceholder's photo glyph have no equivalent in `icons.json` at
+  all (`check` lives in `legacy-extras.json` precisely because it is not in either
+  Figma set, and Figma draws the tick inside the Checkbox component itself), and
+  Stepper's connector and Tab's underline are not icons.
+  The lesson is about the direction of trust: a wrong binding or a non-instance
+  icon *inside a component* flows into the packages, because the packages mirror
+  component bindings; the same mistake on a loose icon in a screen frame does not,
+  because the packages contain no screens. So a Figma slip matters here exactly to
+  the extent that it lives inside a component.
+- **Caller icon slots were pinned to the top of their box, found from a payment
+  logo in the Accordion playground.** A slot that fixes its own size and then does
+  not centre its content only looks right while the content is square and fills
+  it, which every icon in the set is, so the bug hid until a 3.19:1 bank logo went
+  in: at 24 wide the BCA mark is 7.5 tall and sat 8.2px above the title it was
+  supposed to line up with. Measured, not eyeballed, by rendering every
+  caller-owned slot with that same wide logo and comparing centres: Accordion
+  (-8.2), ProductChip (-8.2), PointBalanceBanner (-5.5) and Button (-2) were all
+  off, AddressResult, NavBar, InfoBadge and IconButton were already right. Compose
+  has the same trap with a different spelling, since a fixed-size `Box` defaults to
+  `Alignment.TopStart`, so nine slot boxes there got `contentAlignment =
+  Alignment.Center`. Note `PointBalanceBanner` was broken in react and already
+  correct in compose, one more case of the two ports diverging exactly where
+  nothing renders both. Adding centring is a no-op for content that already fills
+  the box, which is why this is safe to apply across every slot rather than only
+  the four that were measurably wrong.
 - `packages/react-ui/src/fonts/` - real Poppins `.ttf` (OFL-1.1, `OFL.txt` alongside),
   added by a `/design-sync` run. These exist for the **Claude Design bundle only**,
   wired in through `.design-sync/config.json`'s `extraFonts`. They are NOT published:
