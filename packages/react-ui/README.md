@@ -134,7 +134,7 @@ Callout, List (OrderListItem/NotificationListItem), Accordion, BottomSheet
 ProductGroupSection (titled product rows and grids), Avatar,
 Illustration, ProductImage, ProductCard.
 
-Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (42
+Plus the icon set, as `SnackyIcons.outline.*` and `SnackyIcons.solid.*` (43
 Outline, 13 Solid). Two things to know: they are **filled** shapes rather than
 stroked paths, so there is no `strokeWidth` to set, and the set is **not
 uniform** - each icon is authored at 16, 20 or 24px and defaults to its own

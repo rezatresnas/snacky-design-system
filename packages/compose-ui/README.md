@@ -44,13 +44,13 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.8")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.9")
 ```
 
 ### Using the icons
 
 **Never substitute an emoji or a hand-drawn shape for an icon.** The real set
-ships as `SnackyIcons.Outline.*` (42) and `SnackyIcons.Solid.*` (12), rendered
+ships as `SnackyIcons.Outline.*` (43) and `SnackyIcons.Solid.*` (13), rendered
 through `SnackyIcon`:
 
 ```kotlin
@@ -321,6 +321,16 @@ that already fills the box.
 The colour side of the same audit found nothing: `SnackyIcon` has no colour of
 its own (it defaults to `LocalContentColor`), so an icon is always painted by
 its host, and every tint this package provides is a semantic token.
+
+**`SnackyIcons.Outline.ChevronLeft` is new, and `SnackyCalendar`'s month arrows
+were the wrong glyph, both in `compose-v2.3.9`.** Figma's Icon-outline set gained
+a `list/left` variant, the mirror of `list/right` (which ships as
+`ChevronRight`), so the Calendar could instance the set. Icon names here are
+semantic rather than read from Figma's variant labels, so the variant rename that
+came with it changed no existing name. The Calendar used `Outline.Back`, a
+shafted arrow, and turned it round for "next" with `rotate(180f)`; Figma draws a
+plain chevron, so the two buttons now use `ChevronLeft` and `ChevronRight` with
+no rotation.
 
 ## Artwork credit and licensing
 
@@ -731,7 +741,7 @@ that credit with them.
 
 - The `Icon` set (`src/commonMain/kotlin/com/snacky/ui/components/icon/`),
   `SnackyIcon` plus a `SnackyIcons.Outline` / `SnackyIcons.Solid` namespace:
-  **42 Outline + 13 Solid, exported from the real Figma icon components**
+  **43 Outline + 13 Solid, exported from the real Figma icon components**
   (`Icon-outline` node `55:2062`, `Icon-solid` node `8772:5851`).
 
   `SnackyIcons.kt` is generated from `../../assets/icons/icons.json` by

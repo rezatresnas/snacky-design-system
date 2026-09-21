@@ -1,5 +1,8 @@
 import { cx } from '../../utils/cx.js';
-import { back as BackIcon } from '../../icons/outline.js';
+// Figma's month navigation instances the icon set's list/left and list/right
+// chevrons. This used to draw outline.back, a shafted arrow and a different
+// glyph, mirrored with scaleX(-1) for "next".
+import { chevronLeft as ChevronLeftIcon, chevronRight as ChevronRightIcon } from '../../icons/outline.js';
 import { Button } from '../Button/Button.js';
 import './Calendar.css';
 
@@ -88,18 +91,18 @@ export function Calendar({
           onClick={onPrevMonth}
           aria-label="Previous month"
         >
-          <BackIcon width={24} height={24} />
+          <ChevronLeftIcon width={24} height={24} />
         </button>
         <span className="snacky-calendar__label">
           {MONTHS[month.getMonth()]} {month.getFullYear()}
         </span>
         <button
           type="button"
-          className="snacky-calendar__nav snacky-calendar__nav--next"
+          className="snacky-calendar__nav"
           onClick={onNextMonth}
           aria-label="Next month"
         >
-          <BackIcon width={24} height={24} />
+          <ChevronRightIcon width={24} height={24} />
         </button>
       </div>
 

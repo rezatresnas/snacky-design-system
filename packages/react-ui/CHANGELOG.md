@@ -4,6 +4,21 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## chevronLeft, and Calendar's month arrows are chevrons (0.13.5)
+
+`outline.chevronLeft` is new, the mirror of `chevronRight`. It came from Figma:
+the Icon-outline set gained a `list/left` variant so the Calendar could instance
+the set instead of drawing loose arrows. Icon names in this package are semantic
+and not read from the Figma variant label, so the variant's own rename moved no
+existing name; the new glyph was normalised exactly the way `chevronRight` was,
+confirmed by reproducing all of `chevronRight`'s coordinates from the same Figma
+source within 0.0001.
+
+`Calendar` used `outline.back`, a shafted arrow, for both month buttons and
+mirrored it with `scaleX(-1)` for "next". Figma draws a plain chevron there, so
+the previous and next buttons now use `chevronLeft` and `chevronRight` with no
+transform. The outline set is 43 icons.
+
 ## Icon slots centre their content, and Accordion's chevron is a real icon (0.13.4)
 
 A payment logo in the Accordion playground sat visibly above its own label. The

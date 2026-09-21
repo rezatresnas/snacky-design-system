@@ -32,9 +32,6 @@
 }
 /* One back glyph serves both arrows - the set has no forward twin, and Figma
    uses the same instance mirrored. */
-.snacky-calendar__nav--next {
-  transform: scaleX(-1);
-}
 .snacky-calendar__label {
   flex: 1;
   text-align: center;

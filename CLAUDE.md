@@ -55,7 +55,7 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   data changes and this isn't re-run, `tokens.json` (and everything generated
   from it) silently goes stale.
 - `assets/icons/icons.json` - the real icon geometry exported from Figma's `Icon-outline`
-  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 42 outline + 13 solid,
+  (node `55:2062`) and `Icon-solid` (`8772:5851`) component sets: 43 outline + 13 solid,
   each with its own viewBox (the set is 16/20/24px, not uniform) and its SVG path data.
   **Never hand-edit.** `scripts/generate-icons.js` turns it into BOTH
   `packages/react-ui/src/icons/outline.tsx`/`solid.tsx` and compose-ui's
@@ -529,6 +529,50 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   Figma's state, not the packages'. A wrong icon or binding still sitting in the
   Figma file shows up in those images no matter how clean the packages are, and
   no amount of package auditing fixes it.
+- **The Figma icon audit, then the fixes, then a set change from the user.** A
+  read-only figma-cli pass over all 27 pages found the component pages far cleaner
+  than feared, and every finding already correct in the packages, so none of it
+  reached a user; the point of fixing them is that Figma stops disagreeing with
+  itself. Fixed in the file: 13 rating stars painted with
+  `background/action/bg-action-primary` or `border/input/border-input-active`
+  (right hex, wrong role) now bound to `icon/icon-brand`; the one Accordion chevron
+  of four bound to `text/text-placeholder` now `icon/icon-secondary` like its
+  siblings; and seven icons living outside the two sets swapped to real set
+  instances (Section's destination pin and two small down chevrons, Input's search
+  glyph and its send glyph, which was a raw vector). Two more wrong roles surfaced
+  inside those swaps and were fixed in the same pass: the pin painted with
+  `bg-action-primary` and the active send glyph with `background/surface/bg-surface`
+  (now `icon/icon-on-accent`, which is what the package already used). Every rebind
+  was checked to keep the same hex before and after, except the Accordion chevron,
+  which is the only visible change and the whole point of it.
+  **Always dry-run a rebind against the whole page.** The first star pass matched 37
+  nodes, not 12: the other 25 were Icon-Button background circles, which correctly
+  use `bg-action-primary`. Applying it would have produced the mirror image of the
+  bug being fixed, an icon token painting a background. Scoping by the glyph's own
+  node name (`Star icon`) brought it to exactly the 12 the audit had counted.
+  Also worth recording, since the report said otherwise at first:
+  `fi-rr-angle-small-down` was NOT a missing icon. Measured against the set it is
+  `chevronDown` (9.33 x 4.78 against a measured 9 x 5), and the destination pin is
+  `address` (13.41 x 16 against 13 x 16).
+  The user then added `Property 2=list, Property 3=left` (node 10564:7674) to
+  Icon-outline and renamed `list/right`'s own Property 3, so the Calendar could
+  instance the set instead of drawing loose arrows. **A variant rename moves no code
+  name here**: `icons.json` names are semantic and were mapped by hand, and this
+  repo has no automatic exporter, so the new glyph was matched by geometry, not
+  label. The export transform was recovered rather than guessed: Figma's current
+  `list/right` path scaled per axis by 24/29.14 and 24/30 reproduces all 106
+  coordinates of the shipped `chevronRight` within 0.0001, so the same transform
+  applied to `list/left` yields `chevronLeft`, occupying the identical box pointing
+  the other way. The variant frames are 29.14 x 30 while `icons.json` normalises to
+  24, which is why a naive export would have come out stretched.
+  **Both packages had been drawing the wrong glyph in Calendar all along.** They
+  used `outline.back`, a shafted arrow, turned round for "next" by `rotate(180f)` in
+  compose and `scaleX(-1)` in react, two different operations on an asymmetric
+  glyph. Figma's month navigation was a plain chevron even before this change, so
+  the fix was a glyph swap, not just a rename: `chevronLeft` / `chevronRight`, no
+  flip. One inconsistency left in Figma for the user: the two Calendar arrow
+  instances sit at the master's raw 29.14 x 30 while every other use of the same
+  chevron is resized to 24. The packages keep 24.
 - **Caller icon slots were pinned to the top of their box, found from a payment
   logo in the Accordion playground.** A slot that fixes its own size and then does
   not centre its content only looks right while the content is square and fills

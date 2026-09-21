@@ -19,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -27,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.snacky.ui.components.button.SnackyButton
 import com.snacky.ui.components.icon.SnackyIcon
+import com.snacky.ui.components.icon.SnackyIconSpec
 import com.snacky.ui.components.icon.SnackyIcons
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
@@ -80,7 +80,7 @@ fun SnackyCalendar(
             modifier = Modifier.fillMaxWidth().height(36.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            NavArrow(onClick = onPrevMonth)
+            NavArrow(onClick = onPrevMonth, icon = SnackyIcons.Outline.ChevronLeft)
             BasicText(
                 text = label,
                 modifier = Modifier.weight(1f),
@@ -94,7 +94,7 @@ fun SnackyCalendar(
                     textAlign = TextAlign.Center,
                 ),
             )
-            NavArrow(onClick = onNextMonth, flip = true)
+            NavArrow(onClick = onNextMonth, icon = SnackyIcons.Outline.ChevronRight)
         }
 
         Column(
@@ -198,7 +198,7 @@ private fun androidx.compose.foundation.layout.RowScope.DayCell(
 
 /** The set has no forward arrow, so the next control is the back glyph mirrored. */
 @Composable
-private fun NavArrow(onClick: (() -> Unit)?, flip: Boolean = false) {
+private fun NavArrow(onClick: (() -> Unit)?, icon: SnackyIconSpec) {
     Box(
         modifier = Modifier
             .size(24.dp)
@@ -212,10 +212,13 @@ private fun NavArrow(onClick: (() -> Unit)?, flip: Boolean = false) {
                 } else {
                     Modifier
                 }
-            )
-            .then(if (flip) Modifier.rotate(180f) else Modifier),
+            ),
         contentAlignment = Alignment.Center,
     ) {
-        SnackyIcon(SnackyIcons.Outline.Back, size = 24.dp, tint = SnackyColor.iconPrimary)
+        // Figma's month navigation instances the icon set's own list/left and
+        // list/right chevrons. This used to draw Outline.Back, a shafted arrow and
+        // a different glyph, and turned it round for "next" with rotate(180f)
+        // while react-ui mirrored it with scaleX(-1) instead.
+        SnackyIcon(icon, size = 24.dp, tint = SnackyColor.iconPrimary)
     }
 }

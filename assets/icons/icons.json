@@ -1,5 +1,5 @@
 {
-  "$comment": "Icon geometry exported from Figma (file 9EBmWLyRsaHDIdg9N2wBAw, component sets Icon-outline 55:2062 and Icon-solid 8772:5851). Generated, do not hand-edit. Regenerate by re-exporting the variants as SVG and extracting the <g id=\"Icon-outline\"> / <g id=\"Icon-solid\"> subtree. The ratings star (`fi-ss-star`, node 46:1411) is included too: it is the same UIcons family and is bound to icon/icon-brand in the Product Card and review components, but whoever built the file never filed it inside the Icon-solid component set, so the original export missed it and the packages could not render their own documented rating row. The small Icon-Button chevron (`fi-sr-angle-small-right`, a remote library component instanced as node 36:553 inside the Icon-Button set 8685:6254) is included the same way: every Section header and \"see other products\" card uses that small Icon-Button, and without it the packages drew a hand-made stroked chevron at a smaller size instead.",
+  "$comment": "Icon geometry exported from Figma (file 9EBmWLyRsaHDIdg9N2wBAw, component sets Icon-outline 55:2062 and Icon-solid 8772:5851). Generated, do not hand-edit. Regenerate by re-exporting the variants as SVG and extracting the <g id=\"Icon-outline\"> / <g id=\"Icon-solid\"> subtree. The ratings star (`fi-ss-star`, node 46:1411) is included too: it is the same UIcons family and is bound to icon/icon-brand in the Product Card and review components, but whoever built the file never filed it inside the Icon-solid component set, so the original export missed it and the packages could not render their own documented rating row. The small Icon-Button chevron (`fi-sr-angle-small-right`, a remote library component instanced as node 36:553 inside the Icon-Button set 8685:6254) is included the same way: every Section header and \"see other products\" card uses that small Icon-Button, and without it the packages drew a hand-made stroked chevron at a smaller size instead. The Icon-outline set later gained `Property 2=list, Property 3=left` (node 10564:7674), the mirror of `list/right` (388:9256, shipped as chevronRight), added so the Calendar month navigation could instance the set instead of drawing loose arrows; it ships as chevronLeft. The same change renamed list/right's own Property 3 to `right`, which moved no code name, since names here are semantic and not read from the variant label. chevronLeft was normalised exactly as chevronRight was, per axis 24/29.14 by 24/30 from the variant frame, a transform confirmed by reproducing all 106 chevronRight coordinates within 0.0001.",
   "icons": [
     {
       "name": "account",
@@ -778,6 +778,17 @@
       "paths": [
         {
           "d": "M8.00001 0.0283203C6.23597 0.030261 4.54473 0.731837 3.2973 1.97914C2.04987 3.22644 1.34813 4.91762 1.34601 6.68165C1.34601 8.39499 2.67268 11.0763 5.28934 14.651C5.60085 15.0777 6.00871 15.4249 6.47974 15.6643C6.95077 15.9036 7.47166 16.0283 8.00001 16.0283C8.52836 16.0283 9.04924 15.9036 9.52027 15.6643C9.9913 15.4249 10.3992 15.0777 10.7107 14.651C13.3273 11.0763 14.654 8.39499 14.654 6.68165C14.6519 4.91762 13.9501 3.22644 12.7027 1.97914C11.4553 0.731837 9.76405 0.030261 8.00001 0.0283203V0.0283203ZM8.00001 9.33365C7.47259 9.33365 6.95702 9.17726 6.51849 8.88424C6.07996 8.59122 5.73816 8.17475 5.53633 7.68748C5.3345 7.20021 5.28169 6.66403 5.38458 6.14675C5.48747 5.62946 5.74145 5.15431 6.11439 4.78137C6.48733 4.40843 6.96248 4.15445 7.47977 4.05156C7.99705 3.94867 8.53323 4.00148 9.0205 4.20331C9.50777 4.40514 9.92424 4.74694 10.2173 5.18547C10.5103 5.624 10.6667 6.13957 10.6667 6.66699C10.6667 7.37423 10.3857 8.05251 9.88563 8.55261C9.38553 9.0527 8.70725 9.33365 8.00001 9.33365Z",
+          "fillRule": "nonzero"
+        }
+      ]
+    },
+    {
+      "name": "chevronLeft",
+      "style": "outline",
+      "size": 24.0,
+      "paths": [
+        {
+          "d": "M9.9814 14.1198L14.5714 18.7098C14.7588 18.896 15.0122 19.0006 15.2764 19.0006C15.5406 19.0006 15.7941 18.896 15.9814 18.7098C16.0751 18.6168 16.1495 18.5062 16.2003 18.3843C16.251 18.2625 16.2772 18.1318 16.2772 17.9998C16.2772 17.8678 16.251 17.737 16.2003 17.6152C16.1495 17.4934 16.0751 17.3827 15.9814 17.2898L11.3814 12.7098C11.2877 12.6168 11.2133 12.5062 11.1625 12.3843C11.1117 12.2625 11.0856 12.1318 11.0856 11.9998C11.0856 11.8678 11.1117 11.737 11.1625 11.6152C11.2133 11.4934 11.2877 11.3827 11.3814 11.2898L15.9814 6.7098C16.1697 6.5228 16.276 6.2687 16.277 6.0033C16.2779 5.738 16.1734 5.4831 15.9864 5.2948C15.7994 5.1065 15.5453 5.0002 15.2799 4.9992C15.0146 4.9983 14.7597 5.1028 14.5714 5.2898L9.9814 9.8798C9.4196 10.4423 9.104 11.2048 9.104 11.9998C9.104 12.7948 9.4196 13.5573 9.9814 14.1198Z",
           "fillRule": "nonzero"
         }
       ]
