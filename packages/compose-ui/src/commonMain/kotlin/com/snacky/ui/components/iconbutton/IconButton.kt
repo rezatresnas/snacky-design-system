@@ -22,6 +22,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.snacky.ui.theme.SnackyColor
+import com.snacky.ui.theme.SnackySize
 
 enum class IconButtonVariant { Primary, Secondary, Tertiary }
 
@@ -33,10 +34,11 @@ enum class IconButtonSize { Default, Small }
  * Mirrors packages/react-ui's IconButton.tsx/IconButton.css.
  *
  * [size] only has an effect on [IconButtonVariant.Primary]: 32dp with a 16dp
- * icon by default, or Figma's small variant, a 24dp circle whose icon fills
- * the full 24dp (Icon-Button set 8685:6254, Property 1=small, which carries
- * [SnackyIcons.Solid.AngleSmallRight]). The small icon used to stay at 16dp,
- * which drew that chevron at about 60% of its Figma size.
+ * icon by default, or Figma's small variant, a 24dp circle holding an
+ * Icon-outline instance sized to size/icon/sm (16dp), centred (Icon-Button set
+ * 8685:6254, Property 1=small). That instance is `list/right`, shipped as
+ * [SnackyIcons.Outline.ChevronRight]; the variant used to carry a remote
+ * fi-sr-angle-small-right at the full 24dp, which is why this slot was 24.
  *
  * Mobile has no hover, only a press: this maps Secondary/Primary's CSS
  * `:active` (pressed) colors and Tertiary's transient press overlay, and
@@ -68,7 +70,7 @@ fun SnackyIconButton(
         else -> 40.dp
     }
     val iconSize = when (variant) {
-        IconButtonVariant.Primary -> if (size == IconButtonSize.Small) 24.dp else 16.dp
+        IconButtonVariant.Primary -> if (size == IconButtonSize.Small) SnackySize.Icon.sm else 16.dp
         IconButtonVariant.Secondary -> 20.dp
         IconButtonVariant.Tertiary -> 24.dp
     }

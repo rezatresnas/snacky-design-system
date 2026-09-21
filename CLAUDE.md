@@ -77,6 +77,12 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   drew a stroked 16px chevron by hand and `IconButton size="small"` inset its icon to
   16px, both about 60% of Figma's size. It is now `angleSmallRight` in the solid set,
   the small variant has no padding, and Section uses the shared small IconButton.
+  The design later moved on from that remote glyph: the small variant now holds an
+  Icon-outline `list/right` instance (outline `chevronRight`) bound to
+  `size/icon/sm`, 16px at a 4px inset, centred. Both packages follow that
+  (`compose-v2.3.10` / `@snacky/ui` `0.13.6`), so nothing in the design uses
+  `angleSmallRight` any more; it stays exported only so existing callers keep
+  compiling.
   Code names follow the outline twin, not the Figma variant label: a solid icon
   takes the name of the outline icon with the same shape. Figma's `Icon-solid`
   variant `general/pin` (node `10437:8198`, the UIcons `fi-sr-marker`) is the
@@ -573,6 +579,26 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   flip. One inconsistency left in Figma for the user: the two Calendar arrow
   instances sit at the master's raw 29.14 x 30 while every other use of the same
   chevron is resized to 24. The packages keep 24.
+- **All 43 Icon-outline masters once grew to 29.14 x 30, and every outline instance
+  without a size override grew with them.** The cause was an auto-layout added to a
+  component frame while building the left chevron; the outline set is not
+  uniform (29 icons at 24, 8 at 20, 2 at 16), and the auto-layout flattened all of
+  them to one size. The symptom that surfaced first was the small Icon-Button's
+  chevron hanging off the circle, but the real damage was quieter: Input's
+  Text+Icon field went 312x48 to 321x54, and Navbar, Modal and Calendar icons all
+  inflated. Restoring was done by geometry, not by assumption, and the order
+  matters as a lesson because the first attempt got it wrong. Every master was
+  first set to 24x24 on the theory that the set was uniform; checking a 24, a 20
+  and a 16 icon afterwards showed the 24s exact and the rest 1.2x and 1.5x too big.
+  The fix was to export every master's SVG and match its full path against
+  `icons.json` at each candidate size (current coordinates times s/24 must equal a
+  real entry): 39 of 43 matched exactly to a unique name, the other four resolved
+  by point sets and elimination, giving each master's true size. After restoring,
+  the 16 and 20 icons reproduce `icons.json` at 1:1 within 0.0001, the fields are
+  back to 312x48, and no icon instance on any component page is larger than its
+  container. **Verify a sample from every size class before applying a bulk fix,
+  not after**; one chevron proving exact said nothing about the icons that were
+  not 24.
 - **Caller icon slots were pinned to the top of their box, found from a payment
   logo in the Accordion playground.** A slot that fixes its own size and then does
   not centre its content only looks right while the content is square and fills

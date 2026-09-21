@@ -34,9 +34,9 @@ export function Sizes() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       <IconButton size="default" icon={<SnackyIcons.outline.plus />} ariaLabel="Increase quantity" />
-      {/* Figma's small variant is a 24px circle carrying the full-size
-          angleSmallRight chevron, the "see more" action on Section headers. */}
-      <IconButton size="small" icon={<SnackyIcons.solid.angleSmallRight />} ariaLabel="See more" />
+      {/* Figma's small variant is a 24px circle with the set's chevronRight at
+          size-icon-sm (16px), centred: the "see more" action on Section headers. */}
+      <IconButton size="small" icon={<SnackyIcons.outline.chevronRight />} ariaLabel="See more" />
     </div>
   );
 }

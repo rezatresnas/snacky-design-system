@@ -44,7 +44,7 @@ dependencyResolutionManagement {
 }
 
 // build.gradle.kts
-implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.9")
+implementation("com.github.rezatresnas:snacky-design-system:compose-v2.3.10")
 ```
 
 ### Using the icons
@@ -331,6 +331,15 @@ came with it changed no existing name. The Calendar used `Outline.Back`, a
 shafted arrow, and turned it round for "next" with `rotate(180f)`; Figma draws a
 plain chevron, so the two buttons now use `ChevronLeft` and `ChevronRight` with
 no rotation.
+
+**The small `SnackyIconButton` takes the set's chevron at 16dp, in
+`compose-v2.3.10`.** Figma's small Icon-Button now holds an Icon-outline
+`list/right` instance (`SnackyIcons.Outline.ChevronRight`) bound to
+`size/icon/sm`, 16dp and centred, instead of the remote full-size glyph that
+`SnackyIcons.Solid.AngleSmallRight` was exported from. The small slot is
+`SnackySize.Icon.sm` now, and `SnackySection` and `SnackyProductGroupSection`
+pass `Outline.ChevronRight`. `Solid.AngleSmallRight` stays exported for
+existing callers.
 
 ## Artwork credit and licensing
 

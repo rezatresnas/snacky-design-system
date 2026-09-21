@@ -33,6 +33,7 @@ import com.snacky.ui.components.section.SnackySection
 import com.snacky.ui.components.section.SnackySectionHeader
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
+import com.snacky.ui.theme.SnackySize
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackyRadius
 import com.snacky.ui.theme.SnackySpacingPrimitive
@@ -154,7 +155,7 @@ private fun SeeMoreCard(label: String, onClick: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SnackyIconButton(
-            icon = { SnackyIcon(SnackyIcons.Solid.AngleSmallRight) },
+            icon = { SnackyIcon(SnackyIcons.Outline.ChevronRight, size = SnackySize.Icon.sm) },
             onClick = onClick,
             contentDescription = label,
             size = IconButtonSize.Small,

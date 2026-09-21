@@ -29,13 +29,16 @@
 .snacky-iconbtn--primary:disabled .snacky-iconbtn__icon { color: var(--icon-disabled); }
 
 /* Figma's small variant (Icon-Button set, Property 1=small) is a 24px circle
-   with its chevron icon at the full 24x24, not inset: no padding. */
+   holding an Icon-outline instance sized to size/icon/sm (16px), centred, so
+   it sits 4px in from each edge. It used to carry a remote
+   fi-sr-angle-small-right at the full 24x24; the design now takes the chevron
+   from the icon set (list/right, shipped as chevronRight). */
 .snacky-iconbtn--primary.snacky-iconbtn--small {
   width: 24px;
   height: 24px;
   padding: 0;
 }
-.snacky-iconbtn--primary.snacky-iconbtn--small .snacky-iconbtn__icon { width: 24px; height: 24px; }
+.snacky-iconbtn--primary.snacky-iconbtn--small .snacky-iconbtn__icon { width: var(--size-icon-sm); height: var(--size-icon-sm); }
 
 /* Secondary - 40px, elevated, can act as a toggle via `selected` */
 .snacky-iconbtn--secondary {

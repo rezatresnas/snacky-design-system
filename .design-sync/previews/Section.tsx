@@ -71,7 +71,7 @@ function Divider({ width = 312 }: { width?: number }) {
 }
 
 const seeAll = (
-  <IconButton size="small" ariaLabel="See more" icon={<SnackyIcons.solid.angleSmallRight />} onClick={() => {}} />
+  <IconButton size="small" ariaLabel="See more" icon={<SnackyIcons.outline.chevronRight />} onClick={() => {}} />
 );
 
 function Card({ name, price, old }: { name: string; price: string; old: string }) {

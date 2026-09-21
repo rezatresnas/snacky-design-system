@@ -21,6 +21,7 @@ import com.snacky.ui.components.iconbutton.IconButtonSize
 import com.snacky.ui.components.iconbutton.SnackyIconButton
 import com.snacky.ui.theme.LocalSnackyFontFamily
 import com.snacky.ui.theme.SnackyColor
+import com.snacky.ui.theme.SnackySize
 import com.snacky.ui.theme.SnackyLayout
 import com.snacky.ui.theme.SnackySpacingPrimitive
 import com.snacky.ui.theme.SnackyTypography
@@ -98,7 +99,7 @@ internal fun SnackySectionHeader(
         )
         if (onAction != null) {
             SnackyIconButton(
-                icon = { SnackyIcon(SnackyIcons.Solid.AngleSmallRight) },
+                icon = { SnackyIcon(SnackyIcons.Outline.ChevronRight, size = SnackySize.Icon.sm) },
                 onClick = onAction,
                 contentDescription = "See more: $title",
                 modifier = Modifier.align(Alignment.CenterVertically),

@@ -4,6 +4,18 @@ How `@snacky/ui` got to its current state. The README documents what the
 package *is*; this documents how it got there, including the mistakes, so the
 verification claims in the README can be taken at face value.
 
+## The small IconButton takes the set's chevron at 16px (0.13.6)
+
+Figma's small Icon-Button used to carry a remote `fi-sr-angle-small-right` at the
+full 24x24, which is why this package shipped `solid.angleSmallRight` and drew the
+small variant's icon at 24 with no inset. The design now uses the icon set's own
+`list/right` (outline `chevronRight`), bound to `size/icon/sm`: 16px, centred, 4px
+in from each edge. `IconButton size="small"` sizes its icon slot to
+`--size-icon-sm`, and `Section` and `ProductGroupSection` pass
+`outline.chevronRight`. Checked against Figma: 24px button, 16px icon box at a
+4px inset, glyph 4.78 x 9.33 on both. `solid.angleSmallRight` stays exported so
+existing code keeps compiling, but nothing in the design uses it now.
+
 ## chevronLeft, and Calendar's month arrows are chevrons (0.13.5)
 
 `outline.chevronLeft` is new, the mirror of `chevronRight`. It came from Figma:

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
-import { angleSmallRight as AngleSmallRightIcon } from '../../icons/solid.js';
+import { chevronRight as ChevronRightIcon } from '../../icons/outline.js';
 import { IconButton } from '../IconButton/IconButton.js';
 import './Section.css';
 
@@ -24,7 +24,7 @@ export function Section({ title, onAction, children, className }: SectionProps) 
       <div className="snacky-section__header">
         <h3 className="snacky-section__title">{title}</h3>
         {onAction && (
-          <IconButton size="small" icon={<AngleSmallRightIcon />} onClick={onAction} ariaLabel={`See more: ${title}`} />
+          <IconButton size="small" icon={<ChevronRightIcon width={16} height={16} />} onClick={onAction} ariaLabel={`See more: ${title}`} />
         )}
       </div>
       {children}

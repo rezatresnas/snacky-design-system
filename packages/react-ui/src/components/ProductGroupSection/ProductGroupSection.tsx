@@ -1,6 +1,6 @@
 import { useRef, type PointerEvent, type ReactNode } from 'react';
 import { cx } from '../../utils/cx.js';
-import { angleSmallRight as AngleSmallRightIcon } from '../../icons/solid.js';
+import { chevronRight as ChevronRightIcon } from '../../icons/outline.js';
 import { IconButton } from '../IconButton/IconButton.js';
 import { Section } from '../Section/Section.js';
 import './ProductGroupSection.css';
@@ -43,7 +43,7 @@ export function ProductGroupSection({
   const drag = useDragScroll();
   const seeMore = onSeeMore && layout !== 'grid' && (
     <div className="snacky-product-group__see-more">
-      <IconButton size="small" icon={<AngleSmallRightIcon />} onClick={onSeeMore} ariaLabel={seeMoreLabel} />
+      <IconButton size="small" icon={<ChevronRightIcon width={16} height={16} />} onClick={onSeeMore} ariaLabel={seeMoreLabel} />
       <span className="snacky-product-group__see-more-label">{seeMoreLabel}</span>
     </div>
   );
