@@ -905,9 +905,56 @@ silently and needs `connect --safe` re-run before most calls (harmless, just
 retry); and `export node`/`verify` at a high `--scale` on a tall/dense frame
 reliably times out with a bare "fetch failed" while the same call at `--scale
 1-2` (or `--max` capped around 2000-3000px) succeeds, so scale down before
-concluding a node is broken. `verify --save` is the more reliable of the two
-export commands and was used in place of `export node` for every PNG in this
-fix.
+concluding a node is broken. A third symptom of the same flakiness: a script
+can return an empty result (`[]`, no error) even though every mutation inside
+it actually landed on the Figma side, because the response, not the request,
+is what dropped. Re-reading the target nodes after an empty-looking result is
+cheaper than assuming the call did nothing and retrying blind. `verify --save`
+is the more reliable of the two export commands and was used in place of
+`export node` for every PNG in this fix.
+
+**The Chiki fix above missed the file the user actually asked about, because it
+was never searched for inside this repo's own `assets/images/`.** `index.html`'s
+own homepage (`renderHome()`) embeds `assets/images/showcase-mockup.png`, a
+2831x5604 nine-screen collage on an orange background, exactly the image the
+user's very first message in this exchange had attached. The investigation
+above went straight to Figma and to the external article project
+([[article-and-assets]]) and concluded the mockup must live outside the repo;
+it did not. Lesson: when a user attaches an image and says "this", check the
+repo's own asset folders (`grep`/`ls assets/`) before widening the search to
+Figma or another project, when a tracked file is cheaper to find than a Figma
+node and ruling it out first avoids exactly this kind of miss.
+Fixing the file for real also surfaced two more instances of the same
+photo/text mismatch, on the Customer App screens themselves this time, not the
+component library: `Home`'s three promo-grid cards and `Kategori`'s first
+product card all still said "Chicki Balls/Twist/Puffs" over the already-swapped
+Crispy Potato Chips photo. These did NOT inherit the `Product Card` component
+fix above, because they run through a second, separate local component
+(`111:201`) never wired to the same source, or (`Kategori`'s card) carry their
+own local text override that decouples an instance from its master even when
+the base component id matches. Fixed the same way: text retexted to match each
+card's actual photo (all landed on Crispy Potato Chips, since all six affected
+cards share the one photo), and the Home promo banner's "Chiki Discount" label
+retexted to "Snack Discount". `Detail Barang`'s own title needed no Figma edit
+at all: it inherits the `Product Card` master's text with no local override,
+so the master fix above had already corrected it silently.
+The showcase image itself was rebuilt, not hand-edited: with the phone bezels
+laid out on an exact grid (three columns, three rows, each phone's outer frame
+732x1516 with a uniform 30px border on every side, found by masking the frame's
+`(38,38,42)` bezel color and running connected-components on it), the four
+affected phones' content rectangles were replaced by pasting a freshly-cropped
+top-780px-tall "viewport" of each fixed screen's real Figma export, scaled to
+fit. The 780px crop height matters: these screens are scrollable pages taller
+than one phone viewport (`Detail Barang` is 1399, `Kategori` is 1520), and the
+original mockup was already showing just the first screenful, not the whole
+scroll, so pasting a full-page export instead would have looked stretched and
+tiny next to the other five untouched phones. Left alone, deliberately: the
+promo banner's own hand-drawn illustration (still shows miniature "Chiki
+Puffs"/"Chiki Twist"/"Chiki Balls" bags baked into the artwork, not a text
+field) and `Detail Barang`'s small variant-weight icons and review-photo
+thumbnails (still the old Chiki bag images, not text): both are image content
+a text fix cannot reach, and neither was the specific "still says Chicki"
+complaint this pass was chasing.
 
 ## Key rules (don't relitigate these, they're already decided)
 
