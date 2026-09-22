@@ -838,6 +838,77 @@ computed style, not screenshots, per the working-style note below), confirming
 non-zero padding bands at the right percentages and the gap zone/band boundaries
 landing exactly where computed.
 
+**Chiki was retired as the example product, and the real bug hiding under that
+request was a photo swapped without its label.** The user asked for a stale
+portfolio mockup (nine app screens on an orange background) to be refreshed with
+"the newest, non-Chiki screens." Grepping Figma for a third product turned up
+nothing: every screen and every prior version of Home/Category/Product Detail
+still used the same two Chiki SKUs. What had actually changed, found only by
+diffing image hashes against their neighboring text across every frame, was
+narrower and stranger: somewhere along the way the shared product PHOTO
+(`imageHash 074ece0582...`) had already been repainted to a generic "Crispy
+Potato Chips" bag, but the TEXT label next to it, in the app screens, in the
+Category grid (every one of its 6 distinct-named cards), and in this design
+system's own `Product Card`/`Section`/`Modal` components, still read "Chicki
+Balls Cheeky Chicken 75 g". A second photo (`imageHash 248e4e86c8...`) was
+worse: still the literal old Chiki-branded bag, wherever it appeared. Only one
+frame in the whole file (a "Keranjang"/Cart variant, node `8682:6332`) had both
+sides fixed and consistent: "Crispy Potato Chips 75 g" paired with the new bag,
+"Choco Chip Cookies 75 g" paired with a third image (`imageHash
+4a4b8d4efa0cc...`) that turned out to be the correct replacement for the second
+photo. The user picked those two names as the design system's new canonical
+products, everywhere, rather than inventing photos for the other stray names
+(Oishi/Lays/Pota Bee) that happened to share the same mismatch, since those were
+never Chiki and were left as they were: only the Chiki instances were the ask. Fixed directly in Figma (not just docs) across all four pages this
+`CLAUDE.md` already treats as an editable component library:
+`Product Card`'s "Product name" text (both `list`/`details` variants),
+`Section`'s three `Group-Products-*` grid cards (11 text nodes, several of
+which had been showing a THIRD stray name, "Chicki Puffs Cheddar Cheese", on
+the same shared 074ece photo, normalized to "Crispy Potato Chips" like every
+other card on that same image), `Section`'s `order-summary` two-item list and
+`order-details` single item, and `Modal`'s `Variants` weight-picker (4 icons,
+image-only, no text). 9 image nodes were rebound from the old hash to the new
+one; 14 text nodes were retexted. `index.html`'s own code samples had the
+identical stale name in 12 places (`List`'s three Overview states, `Section`'s
+Playground `impl`/`getReact`/`getKotlin` for Banner/Grid/order-summary/
+order-details, `Image`'s demo alt, and two generic "Chiki Discount" banner alt
+strings that were genericized to "Snack Discount" since they aren't tied to a
+specific SKU), all updated to match, and `chikiPhoto`/`chikiUrl` sample
+variable names renamed to `productPhoto`/`productImageUrl` so no orphaned
+brand reference survives now that the brand is gone. Component PNGs regenerated
+from the fixed Figma nodes: `product-card.png` (the cover thumbnail, which
+turned out to be a dead link to a file that never existed on disk, fixed
+incidentally), `productcard-slider.png`, `productcard-details.png`,
+`product-group-horizontal/banner/grid.png`, `section-order-summary/
+-details.png`, `modal-variants.png`.
+Left alone, deliberately: the Customer App screens themselves (`Home`,
+`Kategori`, `Detail Barang`) still show the same photo/text mismatch this fix
+corrected in the component library, because the user's decision was scoped to
+"the design system's components," not to editing the app-screen mockups. The
+`List` page's own three "Order - Waiting/Process/Process (COD)" instances
+(`list-order-waiting/process/process-cod.png`) still carry the old "Chiki Balls
+68g"/"Chiki Twist 65g" text baked into their PNGs too: `index.html`'s Playground
+sample strings for these were fixed, but the page itself would not load through
+`figma-cli` (`setCurrentPageAsync` silently hung on every attempt, even after a
+daemon restart), so the static screenshots were left stale rather than guessed
+at. Revisit both if asked to finish the sweep.
+**`figma-cli` (the `figma-ds-cli` package, Safe Mode plugin) is a second,
+quota-free path to the same Figma file, useful precisely when the MCP path in
+[[figma-mcp-quota]] is exhausted.** It runs as a local daemon (port 3456) that a
+Figma-side plugin (`Plugins -> Development -> FigCli`) connects to, and once
+connected, `eval`/`verify`/`export node` all run against the live desktop app
+with no call quota at all. Source lives outside this repo (a plugin bundle
+under the Claude app's own data directory) and needs `npm install` before first
+use, which is why it wasn't reached for until the MCP quota ran out mid-session.
+Two real rough edges worth planning around: the plugin connection drops
+silently and needs `connect --safe` re-run before most calls (harmless, just
+retry); and `export node`/`verify` at a high `--scale` on a tall/dense frame
+reliably times out with a bare "fetch failed" while the same call at `--scale
+1-2` (or `--max` capped around 2000-3000px) succeeds, so scale down before
+concluding a node is broken. `verify --save` is the more reliable of the two
+export commands and was used in place of `export node` for every PNG in this
+fix.
+
 ## Key rules (don't relitigate these, they're already decided)
 
 - Screen margin is 16px on every screen (`spacing.margin.screen`), content is Fill
