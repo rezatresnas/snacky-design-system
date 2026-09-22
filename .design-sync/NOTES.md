@@ -589,6 +589,28 @@
   docs-site-only (`index.html`, `figma-links.js`), nothing this sync reads.
   compose-ui compiles clean.
 
+- **2026-09-22 (large catch-up, 10 commits)**: `@snacky/ui` 0.13.6, compose-v2.3.10.
+  Rebuilt both packages and re-verified against the fresh screenshots for every
+  real cross-platform fix landed since the last sync: the compose-ui Android
+  publish fix and the `FlowRow` runtime-crash fix (both invisible here - neither
+  changes anything the docs render, confirmed by compiling clean rather than by a
+  screenshot), the new `SnackyTheme`/`LocalSnackyFontFamily` plumbing, HeroBanner's
+  radius fix (`radius-field` -> `radius-bubble`, matching Figma's `Card Background`
+  node) - visible on `SquareBanner` (Discount/Favourites/Deals) and
+  `ProductGroupSection`'s Banner story - NavBar's height fix (72 -> 88, the bar's
+  own missing 16px bottom padding, graded across all 5 Active stories), the
+  SearchField/AddressResult/PointBalanceBanner icon-default fixes (each graded
+  against its own real icon rendering instead of an empty slot), the NavBar badge-
+  clipping fix, the icon-slot centering pass (graded on `ProductChip`), and the
+  small-IconButton-chevron-size fix (now the real `chevronRight` at 16px/4px inset
+  instead of the old oversized icon - graded on `IconButton`'s Sizes story and on
+  `Section`'s see-more chevron across all 16 Section stories, since Section's
+  chevron shares the same underlying small IconButton). No preview `.tsx` files
+  needed editing this cycle - every affected component already had a preview
+  authored from an earlier sync, so this was pure rebuild + re-grade. compose-ui
+  compiles clean (`compileDebugKotlinAndroid compileCommonMainKotlinMetadata`,
+  confirmed after this diff's `.kt` changes including the new `theme/SnackyTheme.kt`).
+
 ## Component-level gaps found (not preview-authoring bugs, real component issues)
 
 - **OtpField's `disabled` prop has no distinct visual treatment** -
