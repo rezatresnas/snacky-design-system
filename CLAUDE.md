@@ -599,6 +599,60 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   container. **Verify a sample from every size class before applying a bulk fix,
   not after**; one chevron proving exact said nothing about the icons that were
   not 24.
+- **Five spec-diagram bugs, all found by the user looking at the rendered
+  Spec tab rather than the source data.** None touched the packages; all are
+  `index.html`'s own diagram overlays or exported PNGs.
+  `Group Products - Horizontal`'s gap overlay had three evenly-spaced zones
+  (26.70/50.00/73.30%) that ran straight through the middle of card 1 and card
+  2 instead of sitting in the actual 8px gaps between cards; the real gaps sit
+  at 48.89%/93.33% (padding-left 24 + card 152 = 176, /360), computed from the
+  documented layout math and confirmed against the PNG's own pixel edges. Now
+  two zones, correctly placed.
+  `Page Indicator` and all four `Stepper` variants had a `gap` value but no
+  `gapZones`/`gapBands`, so they fell back to the generic "Gap: Npx" caption
+  below the image instead of an overlay positioned on it. Page Indicator's
+  actual gap sits at two points in its 52px-wide row (dot→dot, dot→pill),
+  measured directly from `page-indicator.png`'s pixel transitions; it now uses
+  a new `dot-gap` anchor (labelled "Dot → Dot Gap", token `gap/cell`, matching
+  the component's real `SnackyGap.cell` in code) rather than reusing an anchor
+  that didn't fit. Stepper's four variants each needed their own three
+  `gapBands`, since step height varies per variant (48 with a timestamp, 24
+  without), all four computed from the `Column` layout math
+  (`Arrangement.spacedBy(space32)` between rows of varying height) and
+  confirmed against each PNG's own dot positions. New `row-gap` anchor label
+  "Row → Row Gap".
+  The `OTP` field's Active-state image was a 1440x192 export of the whole
+  360-wide component with a solid dark canvas colour baked into the ~90% of
+  the frame the single active cell didn't fill, while Default/Filled were
+  clean 192x192 crops of just the one 48x48 cell (the Figma "otp" component
+  genuinely contains only one cell; the 6-cell field shown in the docs is an
+  assembled instance, not the master). Re-exported Active from the correct
+  inner 48x48 frame (confirmed the focus border lives on that frame, not the
+  wrapper), matching the other two states exactly.
+  `Accordion`'s four PNGs (with-icon/no-icon x default/expand) all had the
+  same solid-dark-canvas bug as OTP, in a smaller, easy-to-miss proportion for
+  the tall `expand` images but glaring for the short 48px-tall `default` ones,
+  which is what actually prompted the report. A first re-export (via a plain
+  `exportAsync`) fixed the canvas colour but introduced a different problem:
+  Figma includes effect bounds (the card's drop shadow) in the exported
+  bitmap by default, so the image's true aspect no longer matched its
+  documented box (312x48/340) and the padding-overlay percentages (computed
+  against the documented height) landed up to 27% off from the actual card
+  edges. Checked against `list-order-waiting.png`, an existing shadowed
+  component's asset, confirmed this repo's convention is a hard crop to the
+  exact documented box with no shadow bleed baked in, not a soft-edged export,
+  so all four were re-cropped in a second pass (bleed measured precisely via
+  each PNG's own alpha channel: 8/4/8/12 design units on left/top/right/bottom,
+  matching the shadow's own blur:8/offsetY:4) to exactly 312x48 and 312x340,
+  confirmed by the docs page's own overlay math landing within 0.1% after the
+  fix versus roughly 25 points off before it.
+  One thing found along the way and deliberately NOT fixed here, since it is a
+  Figma content decision rather than a diagram bug: the "with-icon" master's
+  two variants disagree on their own example content. `default` shows Mandiri
+  with the real Mandiri logo; `expand` shows the title "BCA Virtual Account"
+  (matching both code samples) but a generic product-photo icon instead of a
+  bank logo. Whichever is correct, it should be fixed by setting the right
+  image fill on that node in Figma, not by re-exporting.
 - **Caller icon slots were pinned to the top of their box, found from a payment
   logo in the Accordion playground.** A slot that fixes its own size and then does
   not centre its content only looks right while the content is square and fills
