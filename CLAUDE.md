@@ -806,6 +806,38 @@ as showing how to USE it. A list of icon names reads as reference material; a
 snippet reads as an instruction. Agents copy snippets. And a rule the code itself
 violates will lose to the code every time.
 
+**Two more spec-diagram bugs, found by the user from the rendered docs site: a gap
+badge touching the Order Status title, and an Accordion gap line bleeding into
+expanded content.** Both were the wrong overlay shape for what the gap actually
+sits between, the same class of bug as the five fixed earlier in this file.
+`section-order-status`'s shared top-level `s` carried `gapAnchor:'icon-label'`
+with a `gapZones` entry: a vertical, full-height zone meant for a horizontal
+icon-to-label gap, applied to what is actually a vertical title-to-stepper gap.
+Worse, none of its 4 states had a per-state `h`, so `ptP`/`pbP` (which divide by
+`s.h`) silently rendered the padding bands at `height:0%`, a 1.5px line with a
+floating badge sitting exactly at the image's top edge, which is what read as
+"touching the title" in the user's screenshot. Fixed by removing the top-level
+`gapAnchor`/`gapZones` entirely and giving each state its own `sOverride` with
+the real PNG height (measured via `PIL.Image.size`: Received 360, Waiting 288,
+Delivered 336, Cancelled 288) plus a `gapAnchor:'block-gap'` `gapBands` entry
+bounding just the title-to-stepper gap (`pt`16 + title-line 24 = 40, gap 16, so
+`topPct=40/h*100, heightPct=16/h*100` per state), the same `block-gap`/
+`gapBands` shape `section-destination`/`section-destination-description` already
+use for their own vertical gaps, not a new pattern.
+Accordion's Expanded state had the opposite problem: its `gapZones` (inherited
+unchanged from the Collapsed state's top-level `s`, `{leftPct:10.26,
+widthPct:2.56}`) is a vertical zone with no `topPct`/`heightPct`, so it defaults
+to spanning the full height, correct for the 48px-tall Collapsed row but wrong
+for the 340px-tall Expanded panel, where it ran from the icon/title header all
+the way through the bullet-list body below. Fixed by adding `topPct:0,
+heightPct:14.12` to that same `sOverride` (14.12 = 48/340*100, the header row's
+own height inside the taller expanded panel), bounding the zone to just the
+icon-title gap and leaving the collapsed state's unbounded zone untouched.
+Both fixes were verified numerically against the live DOM (`getBoundingClientRect`/
+computed style, not screenshots, per the working-style note below), confirming
+non-zero padding bands at the right percentages and the gap zone/band boundaries
+landing exactly where computed.
+
 ## Key rules (don't relitigate these, they're already decided)
 
 - Screen margin is 16px on every screen (`spacing.margin.screen`), content is Fill
