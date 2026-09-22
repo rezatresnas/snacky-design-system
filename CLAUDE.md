@@ -646,13 +646,23 @@ against Figma via `use_figma`/`get_screenshot` before documenting or changing on
   matching the shadow's own blur:8/offsetY:4) to exactly 312x48 and 312x340,
   confirmed by the docs page's own overlay math landing within 0.1% after the
   fix versus roughly 25 points off before it.
-  One thing found along the way and deliberately NOT fixed here, since it is a
-  Figma content decision rather than a diagram bug: the "with-icon" master's
-  two variants disagree on their own example content. `default` shows Mandiri
-  with the real Mandiri logo; `expand` shows the title "BCA Virtual Account"
-  (matching both code samples) but a generic product-photo icon instead of a
-  bank logo. Whichever is correct, it should be fixed by setting the right
-  image fill on that node in Figma, not by re-exporting.
+  One thing found along the way and fixed in Figma directly, on the user's
+  instruction, rather than left as a docs-only patch: the "with-icon" master's
+  two variants disagreed on their own example content. `default` showed
+  Mandiri with the real Mandiri logo; `expand` showed the title "BCA Virtual
+  Account" (matching both code samples, which have always said BCA) but a
+  generic product-photo icon instead of a bank logo. Both variants now show
+  BCA: `default`'s title was retextted to "BCA Virtual Account" and both
+  variants' icon fills point at a newly uploaded image built from the repo's
+  own `assets/images/bca-logo.png` (the same asset the Accordion's own live
+  Playground and the Modal payment-methods list already use for BCA), with
+  scaleMode set to FIT rather than the FILL the old fills used, because the
+  source logo is a wide badge+wordmark lockup and FIT is what lets it render
+  legibly in a 24x24 slot instead of being cropped to an unrecognisable
+  sliver. `index.html`'s own "With Icon" usage description (which said
+  `"Mandiri Virtual Account"` as its example) was updated to match. Both
+  `accordion-withicon-default.png` and `accordion-withicon-expand.png` were
+  re-exported and re-cropped the same way as the fix above.
 - **Caller icon slots were pinned to the top of their box, found from a payment
   logo in the Accordion playground.** A slot that fixes its own size and then does
   not centre its content only looks right while the content is square and fills
