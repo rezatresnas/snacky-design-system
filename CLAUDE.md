@@ -956,6 +956,28 @@ thumbnails (still the old Chiki bag images, not text): both are image content
 a text fix cannot reach, and neither was the specific "still says Chicki"
 complaint this pass was chasing.
 
+That first rebuild shipped two more bugs, both from the same root cause:
+**the pasted screens had square corners sitting inside the bezel's rounded
+opening, and the Cart phone's crop ran past its own content into empty page
+background**, both caught by the user looking at the live file rather than
+anything checked before committing. The corner fix then took two attempts
+because the first one silently did nothing: `im.paste(patch, xy, patch)` with
+a masked RGBA `patch` only reveals the DESTINATION pixel under a
+transparent corner, and by the time that first fix ran, the destination was
+already this session's own prior square-cornered commit, not the original
+bezel artwork, so the mask had nothing correct left to reveal. `git checkout
+-- <path>` only ever restores the current HEAD's committed version, which
+after a bad commit IS the bad version. The fix was `git checkout
+<last-good-sha> -- <path>` to reach back before the regression (found via
+`git log --oneline -- <path>`, matching commit messages against symptoms:
+`3558dd0` "Fix squared-off bezel corners" was the correct base, from an
+August pass that had already solved this exact rounding problem once). General
+lesson for any raster composite like this one: verify a paste-with-mask
+against a pixel that the ORIGINAL asset, not the working copy, is known to
+render differently, and when compositing onto a file this session has
+already committed more than once, checking out a specific known-good SHA is
+safer than a bare `checkout --` once a bad version might be HEAD.
+
 ## Key rules (don't relitigate these, they're already decided)
 
 - Screen margin is 16px on every screen (`spacing.margin.screen`), content is Fill
